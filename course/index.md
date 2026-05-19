@@ -12,8 +12,7 @@ Podczas tych zajęć będziemy korzystać z układu **ESP32-C6**. Jest to mikrok
 > * **Wskazówka:** Numery pinów GPIO są również nadrukowane (zazwyczaj jako białe napisy) na pinoutach wzdłuż krawędzi płytki, obok otworów do lutowania.
 
 > [!NOTE] Dla ciekawskich
-> **Strapping Pins** -
-> niektóre piny (np. GPIO8, GPIO9) mają specjalne znaczenie podczas startu układu (tzw. *strapping pins*). Jeśli podłączymy do nich coś, co wymusi na nich konkretny stan w momencie włączania zasilania, mikrokontroler może nie wystartować poprawnie lub wejść w tryb programowania.
+> **Strapping Pins** - niektóre piny (np. GPIO8, GPIO9) mają specjalne znaczenie podczas startu układu (tzw. *strapping pins*). Jeśli podłączymy do nich coś, co wymusi na nich konkretny stan w momencie włączania zasilania, mikrokontroler może nie wystartować poprawnie lub wejść w tryb programowania.
 
 Poniżej znajduje się schemat naszej zestawowej płytki edukacyjnej:
 
