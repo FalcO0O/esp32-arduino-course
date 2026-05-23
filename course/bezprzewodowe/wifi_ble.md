@@ -186,6 +186,7 @@ Jeżeli Twój sprzęt nie wymaga globalnego dostępu ani gigantycznego transferu
 Do odczytywania danych z opasek, hulajnóg i szczoteczek sonicznych stworzono energooszczędny **BLE**.
 
 Urządzenia BLE opierają się na profilu zwanym **GATT**:
+
 - Posiadają **Usługi (Service)** o danym numerze identyfikacyjnym UUID.
 - Wewnątrz Usług posiadają **Charakterystyki (Characteristic)**. Jedna służy pod komendę "Write" i nasłuchuje czy smartfon nie każe jej ustawić silnika hulajnogi na dany bieg, inna zaś posiada komende "Notify" – rzucając na żywo do Twojego smartfona na jakich obrotach pracuje silnik hulajnogi!
 
@@ -274,6 +275,7 @@ void loop() {
 ```
 
 ### Odbiór w nRF Connect:
+
 - Znajdź swoje urządzenie na liście skanowania i się z nim połącz.
 - Otwórz drzewko jego Usługi "18a55060..."
 - Naciśnij ikonę potrójnych Strzałeczek (ikona powiadomienia subskrypcyjnego). Aplikacja powinna zacząć co sekundę ładować od strony serwera świeże wiadomości odczytane w systemie UTF!

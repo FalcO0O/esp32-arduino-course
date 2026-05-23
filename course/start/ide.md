@@ -40,7 +40,7 @@ Domyślnie środowisko Arduino IDE obsługuje jedynie oficjalne płytki z rodzin
 1. Podłącz swoją płytkę ESP32-C6 do komputera za pomocą kabla USB-C. Kabel należy podłączyć do portu oznaczonego na płytce deweloperskiej jako **`USB`**.
 2. Upewnij się, że używany przewód obsługuje transmisję danych (niektóre przewody przeznaczone wyłącznie do ładowania nie posiadają linii sygnałowych).
 3. W Arduino IDE wejdź w menu **Narzędzia → Płytka → esp32** i wybierz **`ESP32-C6 Dev Module`**.
-![Zdjęcie okna wyboru płytki w Arduino IDE](../img/start/arduinio_ide_wybor_plytki.png)
+<!-- ![Zdjęcie okna wyboru płytki w Arduino IDE](../img/start/arduinio_ide_wybor_plytki.png) -->
 4. Wejdź w **Narzędzia → Port** i wybierz port, pod którym zgłosiła się Twoja płytka (na Windowsie będzie to np. `COM3` lub `COM4`, na Linuxie np. `/dev/ttyACM0` lub `/dev/ttyUSB0`, na macOS np. `/dev/cu.usbmodem...`).
 
 > [!IMPORTANT] Ważne dla użytkowników systemu Linux: Brak dostępu do portu
@@ -62,9 +62,7 @@ Układ ESP32-C6 posiada wbudowany kontroler USB-JTAG/Serial. Aby Monitor Szerego
 > W menu Narzędzia odszukaj pozycję **`USB CDC On Boot`** i ustaw jej wartość na **`Enabled`**.
 > Bez tego ustawienia program wgra się poprawnie, ale w Monitorze Szeregowym nie zobaczysz żadnych napisów!
 
-```
-[PLACEHOLDER: Tutaj wstaw zrzut ekranu przedstawiający opcję Narzędzia -> USB CDC On Boot -> Enabled w Arduino IDE]
-```
+![Włączenie USB CDC On Boot w Arduino IDE](../img/podstawy/cnc_enable.png){ align=center }
 
 ---
 
@@ -87,13 +85,13 @@ Sprawdźmy, czy cały łańcuch narzędziowy działa poprawnie. Spróbujemy wgra
    }
    ```
 2. Kliknij ikonę **Strzałki w prawo (Wgraj)** w lewym górnym rogu (lub użyj skrótu `Ctrl + U`).
-![Zdjęcie okna z kodem w Arduino IDE](../img/start/arduinio_ide_kod.png)
+<!-- ![Zdjęcie okna z kodem w Arduino IDE](../img/start/arduinio_ide_kod.png) -->
 3. Poczekaj, aż w dolnej konsoli zobaczysz napisy informujące o kompilacji i procesie wgrywania (zakończonym komunikatem typu *Leaving... Hard resetting via RTS pin...*).
 4. Otwórz **Monitor Szeregowy** (ikona lupy w prawym górnym rogu lub skrót `Ctrl + Shift + M`).
-![Zdjęcie okna Monitora Szeregowego w Arduino IDE](../img/start/arduinio_ide_monitor.png)
+![Zdjęcie okna Monitora Szeregowego w Arduino IDE](../img/podstawy/serial_monitor.png)
 5. Upewnij się, że w prawym dolnym rogu okna Monitora wybrana jest poprawna prędkość transmisji: **`115200 baud`**.
 6. Jeśli widzisz pojawiające się napisy "ESP32-C6 żyje i nadaje..." – Twoje środowisko jest gotowe do pracy!
-![Zdjęcie okna Monitora Szeregowego w Arduino IDE](../img/start/arduinio_ide_monitor.png)
+![Zdjęcie okna Monitora Szeregowego w Arduino IDE](../img/podstawy/serial_monitor.png)
 
 Jeśli cokolwiek poszło nie tak, spróbuj rozwiązań opisanych poniżej.
 
@@ -110,6 +108,7 @@ Jeśli cokolwiek poszło nie tak, spróbuj rozwiązań opisanych poniżej.
 ### 2. Kompilator zgłasza błąd podczas wgrywania (Timeout / Failed to connect)
 
 * **Rozwiązanie**: Czasami automatyczny reset płytki w tryb programowania zawodzi. Możesz go wymusić ręcznie:
+
   1. Kliknij przycisk **Wgraj** w Arduino IDE.
   2. Gdy w konsoli pojawi się linijka zaczynająca się od `Connecting...`, **wciśnij i przytrzymaj** przycisk **`BOOT`** na fizycznej płytce ESP32.
   3. W czasie trzymania przycisku BOOT, kliknij raz krótko przycisk **`RST` (Reset)**.

@@ -6,33 +6,70 @@ Magistrala I<sup>2</sup>C, choć bardzo oszczędna pod kątem wyprowadzeń, posi
 
 ---
 
-## 🔌 Fizyka SPI: Aktywne Sterowanie Push-Pull
+## 🔌 Charakterystyka fizyczna SPI: Aktywne Sterowanie Push-Pull
 
 W przeciwieństwie do otwartego drenu stosowanego w standardzie I<sup>2</sup>C, linie danych SPI są sterowane aktywnie w konfiguracji **Push-Pull** (symetryczne stopnie wyjściowe tranzystorowe, które aktywnie wymuszają na linii zarówno stan niski $0\text{ V}$, jak i wysoki $3.3\text{ V}$).
+
 * **Zaleta**: Bardzo krótkie czasy narastania i opadania sygnału, co umożliwia stabilne taktowanie zegarem o częstotliwościach nawet $40\text{ MHz} - 80\text{ MHz}$.
 * **Wada**: Brak możliwości łączenia wielu wyjść ze sobą bez użycia dedykowanej linii wyboru odbiornika.
 
 #### Cztery linie sygnałowe SPI:
-* **SCK** (*Serial Clock*) – sygnał zegarowy generowany przez kontroler (ESP32).
-* **MOSI** (*Master Out Slave In*) – dane przesyłane z kontrolera do odbiornika (wyjście z ESP32).
-* **MISO** (*Master In Slave Out*) – dane przesyłane z odbiornika do kontrolera (wejście do ESP32).
+
+* **SCK** (*Serial Clock*) – sygnał zegarowy generowany przez mikrokontroler.
+* **MOSI** (*Master Out Slave In*) – dane przesyłane z mikrokontrolera do odbiornika.
+* **MISO** (*Master In Slave Out*) – dane przesyłane z odbiornika do mikrokontrolera.
 * **CS / SS** (*Chip Select / Slave Select*) – linia wyboru odbiornika. Zazwyczaj stan aktywny to stan niski (LOW). Gdy linia CS jest w stanie wysokim (HIGH), odbiornik ignoruje sygnały na magistrali i odłącza swoją linię MISO w stan wysokiej impedancji (Hi-Z), umożliwiając innym układom korzystanie z tych samych linii danych.
 
 ![SPI_diagram](../img/protokoly/spi.png){ align=center }
 
 ---
 
-## 📦 Sprzęt SPI w ESP32-C6
+## 📊 Charakterystyka logiczna (Anatomia transmisji)
+
+Komunikacja SPI opiera się na ciągłym przesuwaniu bitów w rejestrach przesuwnych Mastera i Slave'a (tworząc zamkniętą pętlę kołową). Aby poprawnie zsynchronizować transmisję, oba urządzenia muszą korzystać z tej samej konfiguracji parametrów czasowych sygnału.
+
+![Wykres czasowy ramki SPI](../img/protokoly/SPI_frames.png){ align=center }
+
+### Krok po kroku: Jak przebiega ramka?
+
+1. **Wybór układu (CS -> LOW)**: Transmisja rozpoczyna się od ustawienia przez Mastera linii **CS** (*Chip Select*) wybranego układu Slave w stan niski. Aktywuje to interfejs wyjściowy Slave'a (w tym linię MISO).
+2. **Generowanie taktowania (SCK)**: Master rozpoczyna generowanie impulsów zegarowych na linii **SCK**. Z każdym impulsem następuje przesłanie 1 bitu danych.
+3. **Przesuwanie danych (MOSI / MISO)**: Dane są jednocześnie wystawiane na liniach **MOSI** (przez Mastera) i **MISO** (przez Slave'a) i zatrzaskiwane po stronie odbiornika. Najczęściej bity są przesyłane poczynając od najstarszego (**MSB First**).
+4. **Zakończenie ramki (CS -> HIGH)**: Po przesłaniu określonej liczby bitów (zwykle wielokrotności 8, np. 1 bajt), Master kończy generowanie zegara SCK i ustawia linię **CS** w stan wysoki. Slave przechodzi wtedy w stan uśpienia, a linia MISO wraca do stanu wysokiej impedancji.
+
+### Tryby pracy SPI (SPI Modes)
+W zależności od konfiguracji sygnału zegarowego, wyróżnia się cztery tryby pracy SPI. Definiują je dwa parametry:
+
+* **CPOL** (*Clock Polarity*) – określa stan linii zegara w spoczynku:
+
+    * `CPOL = 0` – zegar w spoczynku ma stan niski (LOW).
+    * `CPOL = 1` – zegar w spoczynku ma stan wysoki (HIGH).
+* **CPHA** (*Clock Phase*) – określa, na którym zboczu zegara następuje odczyt (próbkowanie) danych:
+
+    * `CPHA = 0` – dane są próbkowane na pierwszym zboczu zegara (zboczu aktywnym).
+    * `CPHA = 1` – dane są próbkowane na drugim zboczu zegara (zboczu powrotnym).
+
+| Tryb SPI | CPOL | CPHA | Próbkowanie danych | Stan zegara w spoczynku |
+| :---: | :---: | :---: | :--- | :--- |
+| **Mode 0** | 0 | 0 | Pierwsze zbocze (narastające) | Niski (LOW) |
+| **Mode 1** | 0 | 1 | Drugie zbocze (opadające) | Niski (LOW) |
+| **Mode 2** | 1 | 0 | Pierwsze zbocze (opadające) | Wysoki (HIGH) |
+| **Mode 3** | 1 | 1 | Drugie zbocze (narastające) | Wysoki (HIGH) |
+
+---
+
+## 📦 Obsługa sprzętowa w ESP32-C6
 
 ESP32-C6 integruje w sobie kontrolery SPI. Jeden z nich jest zarezerwowany dla komunikacji z wewnętrzną/zewnętrzną pamięcią Flash (SPI0/SPI1), natomiast drugi (**SPI2 / General Purpose SPI**) jest w pełni dostępny dla użytkownika. Może on pracować z taktowaniem do $80\text{ MHz}$, a jego piny mogą być dowolnie mapowane za pomocą GPIO Matrix.
 
 ---
 
-## 🎯 Ćwiczenie Praktyczne: Wyświetlacz TFT ILI9341
+## 🎯 Ćwiczenie praktyczne: Wyświetlacz TFT ILI9341
 
 W tym ćwiczeniu użyjemy wyświetlacza graficznego TFT (320x240 pikseli, kolor 16-bit RGB) sterowanego układem **ILI9341**.
 
 Ponieważ ekran jedynie przyjmuje dane o kolorach pikseli i nie odsyła informacji zwrotnych do ESP32, nie podłączamy linii MISO. Dodatkowo wyświetlacz wymaga dwóch pinów pomocniczych:
+
 * **RESET (RES)** – służący do sprzętowego resetu sterownika ekranu.
 * **Data/Command (D/C)** – określa typ wysyłanych danych: stan niski (LOW) oznacza komendę konfiguracyjną, a wysoki (HIGH) przesyłanie pikseli obrazu.
 
@@ -114,6 +151,7 @@ void loop() {
 ## 🛠️ Zadanie: Integracja czujnika i wyświetlacza
 
 Zbuduj miniaturowy system pomiarowy:
+
 1. Połącz kody dla czujnika **MPU6050 (I2C)** oraz wyświetlacza **TFT ILI9341 (SPI)**.
 2. Odczytuj w pętli `loop` wartości kątów pochylenia w osiach X i Y co 100 ms.
 3. Wyświetlaj te wartości w czytelny sposób na ekranie TFT.

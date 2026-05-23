@@ -22,6 +22,10 @@ Poniższa tabela przedstawia kluczowe różnice między tymi dwoma światami:
 | **Pobór energii** | Wysoki (od kilkunastu do setek watów) | Ekstremalnie niski (miliwaty w czasie pracy, mikrowaty w uśpieniu) |
 | **Koszt układu** | Od kilkuset do kilku tysięcy złotych | Od kilku do kilkudziesięciu złotych |
 
+> [!NOTE] Odłączenie zasilania a utrata danych
+> Bardzo częste pytanie na początku brzmi: *"Czy muszę wgrywać kod z komputera za każdym razem, gdy odłączę kabel USB?"*.
+> Odpowiedź brzmi: **Nie**. Twój program wgrywany jest na stałe do nieulotnej pamięci **Flash**. Po odpięciu przewodu od komputera i podłączeniu np. ładowarki lub powerbanka, mikrokontroler ułamek sekundy po starcie automatycznie uruchomi wgrany wcześniej kod. Należy jednak pamiętać, że po każdym takim restarcie zasilania (lub wciśnięciu przycisku RESET) zawartość pamięci **RAM** jest całkowicie kasowana. Oznacza to, że wszystkie zmienne w Twoim programie (np. aktualny wynik licznika) zostaną zresetowane do wartości początkowych.
+
 ---
 
 ## Po co w ogóle stosuje się mikrokontrolery?

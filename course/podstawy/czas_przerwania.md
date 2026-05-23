@@ -1,12 +1,13 @@
 # Czas i Przerwania (millis, ISR)
 
-Do tej pory używałeś funkcji `delay()`. Jest ona wygodna na samym początku nauki, ale posiada krytyczną wadę – jest to **funkcja blokująca**.
+W poprzednich lekcjach do odmierzania czasu używaliśmy funkcji `delay()`. Na początku nauki jest ona bardzo wygodna, ale ma jedną poważną wadę – wstrzymuje działanie całego programu.
 
-Podczas wywoływania `delay(1000)` procesor zostaje całkowicie wstrzymany na jedną sekundę (*busy waiting*). W tym czasie mikrokontroler nie może odczytywać stanu przycisków, reagować na sygnały z czujników ani obsługiwać komunikacji sieciowej (np. stosu Wi-Fi/Bluetooth).
+Gdy wywołujesz np. `delay(1000)`, mikrokontroler dosłownie „zamiera” na całą sekundę. W tym czasie nie może sprawdzić, czy wcisnąłeś przycisk, odebrać sygnału z czujników ani obsłużyć połączeń sieciowych. Twój program staje się na ten czas całkowicie „głuchy” na to, co dzieje się wokół niego.
 
-**Wniosek:** Stosowanie opóźnień blokujących sprawia, że urządzenie staje się chwilowo "głuche" na zdarzenia zewnętrzne i traci zdolność reakcji w czasie rzeczywistym. W profesjonalnych systemach wbudowanych, gdzie konieczna jest jednoczesna obsługa wielu zadań, używanie `delay()` jest niedopuszczalne.
+W profesjonalnych urządzeniach, które muszą wykonywać wiele zadań jednocześnie i szybko reagować na zdarzenia w otoczeniu, klasyczne `delay()` jest rzadko używane.
 
 W tym rozdziale rozwiążemy ten problem na dwa sposoby:
+
 1. Używając systemowego zegara za pomocą funkcji `millis()`.
 2. Korzystając z **przerwań zewnętrznych (Interrupts / ISR)** do natychmiastowej, sprzętowej reakcji na zdarzenia.
 
@@ -17,6 +18,7 @@ W tym rozdziale rozwiążemy ten problem na dwa sposoby:
 Zamiast zatrzymywać procesor, pozwolimy pętli `loop()` wykonywać się bez żadnych przerw. W każdym jej obiegu będziemy sprawdzać aktualny czas systemowy. Funkcja `millis()` zwraca liczbę milisekund, które upłynęły od momentu uruchomienia (zasilenia) mikrokontrolera ESP32.
 
 Zasada ta przypomina parzenie herbaty:
+
 * **Podejście z `delay()`**: Włączasz czajnik i stoisz przy nim bezczynnie przez 5 minut, ignorując wszystko inne wokół.
 * **Podejście z `millis()`**: Włączasz czajnik, zapisujesz na kartce aktualną godzinę i idziesz robić inne rzeczy (np. czytasz książkę w pętli `loop()`). Co jakiś czas spoglądasz na zegarek i porównujesz czas z zapisaną godziną. Gdy minie 5 minut, zalewasz herbatę.
 
@@ -77,6 +79,7 @@ W momencie wystąpienia takiego zdarzenia (zbocza sygnału), procesor natychmias
 ### Jak zdefiniować przerwanie?
 
 Rejestrujemy je na wybranym pinie, podając nazwę funkcji, która ma się wykonać, oraz typ zmiany napięcia, jaki ma wywołać przerwanie:
+
 * `RISING` – zbocze narastające (napięcie rośnie, z `LOW` do `HIGH`).
 * `FALLING` – zbocze opadające (napięcie spada, z `HIGH` do `LOW` – przydatne przy konfiguracji `INPUT_PULLUP`).
 * `CHANGE` – dowolna zmiana stanu (z `LOW` do `HIGH` lub z `HIGH` do `LOW`).

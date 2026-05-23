@@ -1,4 +1,4 @@
-# Sygnały: PWM i ADC
+# Sygnały analogowe: PWM i ADC
 
 Do tej pory operowaliśmy na dwóch stanach: 1 lub 0. Włączony lub wyłączony. Jednak nasz świat nie jest czarno-biały – światło ściemnia się płynnie, temperatura zmienia się co dziesiątą część stopnia, a głośność można regulować na obrotowym kółku.
 W tej sekcji nauczymy się "udawać" sygnał ciągły oraz odbierać sygnał ciągły ze świata fizycznego!
@@ -85,15 +85,17 @@ Potrafimy już płynnie sterować poziomem sygnału wyjściowego. W jaki sposób
 
 Do tego celu służy przetwornik analogowo-cyfrowy, czyli **ADC** (*Analog-to-Digital Converter*).
 Mikrokontroler ESP32-C6 wyposażony jest w 12-bitowy przetwornik ADC. Konwertuje on mierzone napięcie wejściowe z zakresu od 0 V do 3.3 V na odpowiadającą mu wartość cyfrową w skali od 0 do 4095:
+
 - 0 V → 0
 - 1.65 V → ok. 2047
 - 3.3 V → 4095
 
 > [!IMPORTANT] Dostępność wejść ADC w układzie ESP32-C6
-> Pomiary analogowe nie są dostępne na wszystkich pinach GPIO. W mikrokontrolerze ESP32-C6 dedykowane kanały przetwornika ADC są przypisane do pinów: **GPIO0, GPIO1, GPIO2, GPIO3, GPIO4, GPIO5 oraz GPIO6** (można to odczytać ze schematu wyprowadzeń w sekcji [Płytka ESP32-C6 i sprzęt](../start/sprzet.md) – szukaj oznaczeń **ADC**). W naszym ćwiczeniu potencjometr podłączymy do pinu **GPIO4**.
+> Pomiary analogowe nie są dostępne na wszystkich pinach GPIO. W mikrokontrolerze ESP32-C6 dedykowane kanały przetwornika ADC są przypisane do pinów: **GPIO0, GPIO1, GPIO2, GPIO3, GPIO4, GPIO5 oraz GPIO6** (można to odczytać ze [schematu wyprowadzeń](../start/sprzet.md#schemat-wyprowadzen-pinout) – szukaj oznaczeń **ADC**). W naszym ćwiczeniu potencjometr podłączymy do pinu **GPIO4**.
 
 ### Jak podłączyć potencjometr?
 Potencjometr obrotowy posiada trzy wyprowadzenia:
+
 * **Skrajne nóżki**: Podłączamy odpowiednio do zasilania (**3.3 V**) oraz masy (**GND**).
 * **Środkowa nóżka (suwak/zbierak)**: Wyprowadza napięcie wyjściowe, które zmienia się proporcjonalnie do kąta obrotu osi potencjometru. To wyprowadzenie łączymy z wejściem ADC mikrokontrolera (w naszym przypadku `GPIO4`).
 
@@ -104,7 +106,11 @@ Taka konfiguracja tworzy tzw. **regulowany dzielnik napięcia**. Obracając pokr
 ### Odczyt wartości z dzielnika
 
 Do odczytu napięcia analogowego wykorzystujemy funkcję:
-* **`analogRead(pin)`**: Odczytuje napięcie na podanym pinie (z przedziału 0V – 3.3V) i zwraca wartość całkowitą z zakresu od **`0`** do **`4095`** (dla rozdzielczości 12-bitowej).
+
+* **`analogRead(pin)`**: Odczytuje napięcie na podanym pinie (z przedziału 0 V – 3,3 V) i zwraca wartość całkowitą z zakresu od **`0`** do **`4095`** (dla rozdzielczości 12-bitowej).
+
+> [!NOTE] Brak potrzeby konfiguracji pinMode()
+> Zauważ, że w funkcji `setup()` poniższego programu nie wywołujemy `pinMode(PIN_POTENCJOMETR, INPUT)`. Wywołanie to nie jest wymagane dla odczytów analogowych, ponieważ funkcja `analogRead()` automatycznie rekonfiguruje wskazany pin GPIO do pracy w trybie wejścia analogowego (ADC) przy każdym wywołaniu.
 
 ```cpp
 const int PIN_POTENCJOMETR = 4;
@@ -124,13 +130,14 @@ void loop() {
 
 > [!TIP] Wizualizacja danych: Serial Plotter
 > Aby zaobserwować zmiany odczytów w czasie w formie graficznej, możesz skorzystać z narzędzia **Serial Plotter** wbudowanego w Arduino IDE i Wokwi. Znajdziesz je w prawym górnym rogu okna (ikona wykresu obok lupy) lub w menu *Narzędzia -> Serial Plotter*. Ruch pokrętła potencjometru zostanie przedstawiony na płynnym, rysowanym w czasie rzeczywistym wykresie.
-![Serial Plotter](../img/podstawy/serial-plotter-adc.png){.center}
+![Serial Plotter](../img/podstawy/serial_plotter.png){.center}
 
 ### Zadanie: Kontrola progowa
 
 Częstym zastosowaniem pomiarów analogowych (np. temperatury, poziomu wody czy ciśnienia) jest reagowanie na przekroczenie określonej wartości progowej – na przykład w celu uruchomienia alarmu lub wyłączenia zasilania.
 
 Zmodyfikuj swój program tak, aby:
+
 1. Odczytywał wartość analogową z potencjometru.
 2. **Jeśli odczyt przekroczy wartość 3000** (co odpowiada blisko 2.4V), włączał diodę LED podłączoną do pinu 2 za pomocą funkcji `digitalWrite()`.
 3. **W przeciwnym wypadku** (gdy odczyt spadnie poniżej 3000), wyłączał tę diodę.
@@ -170,13 +177,16 @@ void loop() {
 Chcemy teraz zrealizować praktyczny projekt: płynnie kontrolować jasność diody LED za pomocą obracania potencjometru.
 
 Pojawia się tu jednak problem niedopasowania zakresów wartości:
+
 * Przetwornik analogowo-cyfrowy (ADC) zwraca nam wartości od **0 do 4095**.
 * Funkcja sterowania jasnością diody `analogWrite()` przyjmuje wartości wypełnienia PWM w zakresie od **0 do 255**.
 
 Gdybyśmy bezpośrednio przekazali odczyt z potencjometru (np. 1000) do funkcji `analogWrite()`, wartość ta uległaby przepełnieniu (zostałaby zrzutowana na typ 8-bitowy), przez co dioda zamiast płynnie się rozjaśniać, kilkukrotnie zapalałaby się i gasła podczas jednego pełnego obrotu pokrętła.
 
 Do rozwiązania tego problemu służy wbudowana funkcja:
+
 * **`map(wartość, zMin, zMax, doMin, doMax)`**: Przeskalowuje podaną liczbę z jednego zakresu na inny. Przyjmuje ona 5 argumentów:
+
     1. `wartość` – zmienna, którą chcemy przeskalować (np. nasz odczyt z potencjometru).
     2. `zMin` – dolna granica obecnego zakresu (dla ADC: `0`).
     3. `zMax` – górna granica obecnego zakresu (dla ADC: `4095`).

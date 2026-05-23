@@ -1,6 +1,6 @@
 # Wstęp do IO: Cyfrowe wyjścia i wejścia
 
-Witamy w sekcji praktycznej! W tym dziale nauczysz się jak składać własne obwody elektryczne, jak rozmawiać z komputerem i jak w pełni operować sygnałem cyfrowym – czyli układem "WŁĄCZONY" / "WYŁĄCZONY".
+Witamy w sekcji praktycznej! W tym rozdziale dowiesz się, jak budować obwody na płytce stykowej, komunikować się z komputerem przez port szeregowy oraz w pełni kontrolować sygnały cyfrowe – czyli takie, które przyjmują tylko dwa możliwe stany: włączony (1) lub wyłączony (0).
 
 ---
 
@@ -24,6 +24,7 @@ Zasada jest prosta - zielone linie to połączenia:
 ## Ćwiczenie 1 – Serial
 
 Do komunikacji z komputerem służy wbudowany w mikrokontroler port szeregowy, reprezentowany w kodzie przez obiekt **`Serial`**. Aby móc z niego korzystać, musimy poznać podstawowe funkcje:
+
 * **`Serial.begin(prędkość)`**: Uruchamia komunikację z komputerem. Prędkość (baud rate) określa, jak szybko płyną bity. Zazwyczaj stosujemy standardowe `115200`. Funkcję tę wywołujemy jednorazowo w bloku `setup()`.
 * **`Serial.println(tekst)`**: Wysyła tekst lub wartość zmiennej do komputera i automatycznie przechodzi do nowej linii (dodaje znak Enter).
 * **`Serial.print(tekst)`**: Działa identycznie jak `println()`, ale nie przechodzi do nowej linii – kolejny komunikat pojawi się bezpośrednio za nim.
@@ -51,7 +52,7 @@ void loop() {
 
 Po upewnieniu się że masz wybrany odpowiedni port COM oraz model płytki wciśnij ikonę wgrywania (Ctrl + U), a w IDE z menu górnego wybierz **Lupa z prawej strony (Monitor Szeregowy)**. Skontroluj w rogu jego okienka czy prędkość (*baud rate*) jest ustawiona na `115200`.
 
-![Serial Monitor](../img/podstawy/serial-monitor.png)
+![Serial Monitor](../img/podstawy/serial_monitor.png)
 
 > [!NOTE] Dla ciekawskich: Czym jest baud (baud rate)?
 > **Baud** określa prędkość transmisji danych w komunikacji szeregowej. W standardowych połączeniach tego typu **1 bod (baud) odpowiada przesłaniu 1 bitu na sekundę**.
@@ -90,6 +91,7 @@ void loop() {
 ## Ćwiczenie 2 – Wyjście cyfrowe: LED
 
 Aby sterować diodą LED, musimy wysłać napięcie z pinu GPIO. W tym celu korzystamy z dwóch kluczowych funkcji:
+
 * **`pinMode(pin, tryb)`**: Konfiguruje dany pin do pracy. Jako tryb podajemy `OUTPUT` (wyjście, gdy chcemy sterować prądem) lub `INPUT` (wejście, gdy czytamy dane). Tę konfigurację wywołujemy raz w `setup()`.
 * **`digitalWrite(pin, stan)`**: Ustawia stan napięcia na skonfigurowanym wyjściu. Możemy podać stan **`HIGH`** (podaje pełne napięcie 3.3V) lub **`LOW`** (podaje masę 0V, wyłączając zasilanie).
 
@@ -105,16 +107,16 @@ W ramach tego ćwiczenia zbudujemy fizyczny układ z diodą LED na płytce styko
 > 
 > Wartość rezystora szeregowego obliczamy na podstawie **prawa Ohma** ($R = \frac{U}{I}$):
 > 
-> $$R = \frac{U_{zasilania} - U_{diody}}{I_{diody}}$$
+> $$R = \frac{U_{\text{zasilania}} - U_{\text{diody}}}{I_{\text{diody}}}$$
 > 
 > Gdzie:
-> * $U_{zasilania} = 3.3\text{ V}$ (napięcie logiczne pinu GPIO w układzie ESP32-C6)
-> * $U_{diody} \approx 2.0\text{ V}$ (typowy spadek napięcia na przewodzącej **czerwonej** diodzie LED)
-> * $I_{diody} \approx 10\text{ mA} = 0.01\text{ A}$ (bezpieczny prąd diody, nieprzeciążający portu GPIO mikrokontrolera)
+> * $U_{\text{zasilania}} = 3{,}3\text{ V}$ (napięcie logiczne pinu GPIO w układzie ESP32-C6)
+> * $U_{\text{diody}} \approx 2{,}0\text{ V}$ (typowy spadek napięcia na przewodzącej **czerwonej** diodzie LED)
+> * $I_{\text{diody}} \approx 10\text{ mA} = 0{,}01\text{ A}$ (bezpieczny prąd diody, nieprzeciążający portu GPIO mikrokontrolera)
 > 
 > Podstawiając wartości do wzoru:
 > 
-> $$R = \frac{3.3\text{ V} - 2.0\text{ V}}{0.01\text{ A}} = \frac{1.3\text{ V}}{0.01\text{ A}} = 130\ \Omega$$
+> $$R = \frac{3{,}3\text{ V} - 2{,}0\text{ V}}{0{,}01\text{ A}} = \frac{1{,}3\text{ V}}{0{,}01\text{ A}} = 130\ \Omega$$
 > 
 > Ponieważ rezystory produkuje się w określonych szeregach wartości (np. E24), w praktyce wybieramy najbliższą większą dostępną wartość z szeregu, np. **$150\ \Omega$** lub bardzo popularny rezystor **$220\ \Omega$** (który ograniczy prąd do ok. 6 mA, co w zupełności wystarczy do jasnego świecenia diody).
 
@@ -175,15 +177,31 @@ void loop() {
 ## Ćwiczenie 3 – Wejście cyfrowe: Przycisk
 
 W poprzednich ćwiczeniach mikrokontroler sterował stanem wyjść (wysyłał napięcie). W tym rozdziale skonfigurujemy go do odczytu sygnałów zewnętrznych (wprowadzania danych). Aby odczytać stan fizycznego przycisku (przełącznika), potrzebujemy:
-* **`pinMode(pin, INPUT_PULLUP)`**: Konfiguruje pin jako wejście i jednocześnie aktywuje wbudowany rezystor podciągający do linii 3.3 V (pull-up). Dzięki temu pin nie znajduje się w tzw. stanie nieustalonym (wysoka impedancja), co powodowałoby losowe odczyty zakłóceń elektromagnetycznych z otoczenia. Gdy przycisk jest zwolniony, na pinie panuje stabilny stan wysoki (`HIGH`).
-* **`digitalRead(pin)`**: Odczytuje aktualny stan logiczny na danym pinie. Zwraca wartość **`HIGH`** (3.3V) lub **`LOW`** (0V).
 
-Użyjemy mechanicznego przełącznika *tact switch*. 
-Ponieważ wbudowany rezystor podciąga linię do 3.3V, przycisk podłączamy tak, aby jego wciśnięcie zwierało pin z masą (GND). Oznacza to, że logika przycisku w programie będzie odwrócona:
+* **`pinMode(pin, INPUT_PULLUP)`**: Konfiguruje pin jako wejście i aktywuje wbudowany rezystor podciągający do linii 3,3 V.
+* **`digitalRead(pin)`**: Odczytuje aktualny stan logiczny na danym pinie. Zwraca wartość `HIGH` (3,3 V) lub `LOW` (0 V).
+
+> [!IMPORTANT] Rezystory Pull-up / Pull-down a stan nieustalony (floating)
+> Wejście mikrokontrolera w trybie `INPUT` ma ekstremalnie duży opór elektryczny. Z jednej strony to zaleta (pobiera znikomy prąd), ale z drugiej sprawia, że odłączony pin zachowuje się jak czuła antena. Gdy przycisk nie jest wciśnięty, przewód „wisi w powietrzu”, a układ znajduje się w tzw. **stanie nieustalonym (floating)**. Zbiera wtedy zakłócenia z otoczenia, przez co `digitalRead()` odczytuje losowe zera i jedynki.
+> 
+> Aby zapewnić stabilny poziom napięcia, stosuje się rezystory:
+> 1. **Pull-up (podciągający)**: Łączy pin z zasilaniem 3,3 V. W stanie spoczynku wymusza bezpieczny stan `HIGH` (3,3 V). Wciśnięcie przycisku zwiera pin do masy (`GND`), co daje odczyt `LOW` (0 V).
+> 2. **Pull-down (ściągający)**: Łączy pin z masą (`GND`). W spoczynku wymusza stan `LOW` (0 V). Przycisk łączy pin z 3,3 V, więc jego wciśnięcie podaje stan `HIGH`.
+> 
+> **Fizyczny rezystor na płytce vs wbudowany w mikrokontroler:**
+> Te układy możemy zrealizować na dwa sposoby:
+> * **Zewnętrznie**: podłączając tradycyjny rezystor (np. 10 kΩ) na płytce stykowej.
+> * **Wewnętrznie**: programowo aktywując rezystory wbudowane bezpośrednio w strukturę krzemową ESP32-C6. Nie jest to żadna wirtualna sztuczka programowa – wewnątrz chipu fizycznie znajdują się mikroskopijne rezystory o wartości ok. 30–40 kΩ. Deklarując w kodzie `INPUT_PULLUP` lub `INPUT_PULLDOWN`, dajemy mikrokontrolerowi sygnał, by za pomocą wewnętrznego przełącznika tranzystorowego podłączył ten wbudowany rezystor do pinu GPIO.
+> 
+> **Zasada BHP: Przed czym chroni nas ten rezystor?**
+> * **Bezpieczeństwo**: Gdy wciskasz przycisk, prąd zasilania płynie do masy przez rezystor (np. 35 kΩ), co ogranicza natężenie do bezpiecznych 94 µA (3,3 V / 35 kΩ). Sam pin w trybie wejścia pobiera niemal zerowy prąd.
+> * **Zwarcie linii zasilania (bez rezystora)**: Podłączenie przycisku bezpośrednio między 3,3 V a GND (bez żadnego rezystora) i wciśnięcie go spowoduje natychmiastowe zwarcie szyn zasilania, co zresetuje lub trwale uszkodzi stabilizator napięcia na płytce.
+> * **Spalenie pinu GPIO (błąd programisty)**: Jeśli przez pomyłkę ustawisz pin jako wyjście (`OUTPUT`) w stanie `LOW` (0 V), a przycisk podłączysz pod 3,3 V bezpośrednio (bez opornika szeregowego), wciśnięcie przycisku zmusi wyjście do przyjęcia napięcia 3,3 V. Popłynie prąd o ogromnym natężeniu, który **nieodwracalnie spali port GPIO**.
+
+W tym ćwiczeniu użyjemy wbudowanego podciągania `INPUT_PULLUP`. Przycisk podłączamy tak, aby jego wciśnięcie zwierało pin z masą (GND). Oznacza to, że logika przycisku w programie będzie odwrócona:
+
 * Przycisk puszczony → odczytujemy stan **`HIGH`**
 * Przycisk wciśnięty → odczytujemy stan **`LOW`**
-
-
 
 🎯 **[Otwórz Wokwi z układem przycisku i LED]** *(tutaj pojawi się wirtualny układ)*
 

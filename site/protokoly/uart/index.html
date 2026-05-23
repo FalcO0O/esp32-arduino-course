@@ -16,7 +16,7 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../i2c_spi/">
+        <link rel="next" href="../i2c/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Ćw. 8 – UART: loopback i komendy - Kurs Programowania Mikrokontrolerów</title>
+        <title>UART: loopback i komendy - Kurs Programowania Mikrokontrolerów</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cwiczenie-8-uart-loopback-i-parsowanie-komend" class="md-skip">
+        <a href="#uart-petla-zwrotna-i-parsowanie-komend" class="md-skip">
           Przejdź do treści
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ćw. 8 – UART: loopback i komendy
+              UART: loopback i komendy
             
           </span>
         </div>
@@ -236,26 +236,6 @@
   
   
   Podstawy
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../sterowanie/" class="md-tabs__link">
-          
-  
-  
-  Sterowanie
 
         </a>
       </li>
@@ -649,7 +629,7 @@
   <span class="md-ellipsis">
     
   
-    Ćw. 1-3 – Wstęp do IO: Cyfrowe wyjścia i wejścia
+    Wstęp do IO: Cyfrowe wyjścia i wejścia
   
 
     
@@ -677,94 +657,7 @@
   <span class="md-ellipsis">
     
   
-    Ćw. 4-5 – Sygnały: PWM i ADC
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Sterowanie
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Sterowanie
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../sterowanie/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Przegląd modułu
+    Sygnały: PWM i ADC
   
 
     
@@ -785,14 +678,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sterowanie/czas_przerwania/" class="md-nav__link">
+      <a href="../../podstawy/serwa/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 6-7 – Czas i Przerwania (millis(), ISR)
+    Serwomechanizmy (PWM w praktyce)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../podstawy/czas_przerwania/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Czas i Przerwania (millis(), ISR)
   
 
     
@@ -838,10 +759,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -859,8 +780,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -921,7 +842,7 @@
   <span class="md-ellipsis">
     
   
-    Ćw. 8 – UART: loopback i komendy
+    UART: loopback i komendy
   
 
     
@@ -939,7 +860,7 @@
   <span class="md-ellipsis">
     
   
-    Ćw. 8 – UART: loopback i komendy
+    UART: loopback i komendy
   
 
     
@@ -965,22 +886,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#loopback-komunikacja-z-samym-soba" class="md-nav__link">
+  <a href="#charakterystyka-fizyczna-i-zasada-dziaania" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Loopback – komunikacja z samym sobą
+        ⚡ Charakterystyka fizyczna i zasada działania
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Loopback – komunikacja z samym sobą">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anatomia-ramki-uart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Anatomia ramki UART
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Anatomia ramki UART">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#co-sie-dzieje-w-loopback" class="md-nav__link">
+  <a href="#matematyka-predkosci-baud-rate" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Co się dzieje w loopback?
+        Matematyka prędkości (Baud Rate)
       
     </span>
   </a>
@@ -993,38 +925,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kod-terminal-komend" class="md-nav__link">
+  <a href="#standardy-ttl-vs-rs-232" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kod: terminal komend
+        🔌 Standardy: TTL vs RS-232
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Kod: terminal komend">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#jak-testowac" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Jak testować?
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#parametry-uart" class="md-nav__link">
+  <a href="#obsuga-sprzetowa-w-esp32-c6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Parametry UART
+        📦 Obsługa sprzętowa w ESP32-C6
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#konfiguracja-petli-zwrotnej-loopback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Konfiguracja pętli zwrotnej (Loopback)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kod-programu-terminal-komend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💻 Kod programu: Terminal komend
       
     </span>
   </a>
@@ -1035,7 +972,7 @@
   <a href="#zadanie-do-samodzielnego-wykonania" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Zadanie do samodzielnego wykonania
+        🛠️ Zadanie do samodzielnego wykonania
       
     </span>
   </a>
@@ -1058,14 +995,70 @@
   
   
     <li class="md-nav__item">
-      <a href="../i2c_spi/" class="md-nav__link">
+      <a href="../i2c/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 9-10 – Magistrale cyfrowe: I2C i SPI
+    Magistrala I2C (Akcelerometr)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Magistrala SPI (Wyświetlacz TFT)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onewire/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transmisja jednoprzewodowa (WS2812B)
   
 
     
@@ -1106,10 +1099,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -1127,8 +1120,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1153,6 +1146,34 @@
     
   
     Przegląd modułu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemy/nvs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pamięć trwała (NVS)
   
 
     
@@ -1249,10 +1270,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -1270,8 +1291,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1392,10 +1413,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -1413,8 +1434,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1542,22 +1563,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#loopback-komunikacja-z-samym-soba" class="md-nav__link">
+  <a href="#charakterystyka-fizyczna-i-zasada-dziaania" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Loopback – komunikacja z samym sobą
+        ⚡ Charakterystyka fizyczna i zasada działania
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Loopback – komunikacja z samym sobą">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anatomia-ramki-uart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Anatomia ramki UART
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Anatomia ramki UART">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#co-sie-dzieje-w-loopback" class="md-nav__link">
+  <a href="#matematyka-predkosci-baud-rate" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Co się dzieje w loopback?
+        Matematyka prędkości (Baud Rate)
       
     </span>
   </a>
@@ -1570,38 +1602,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kod-terminal-komend" class="md-nav__link">
+  <a href="#standardy-ttl-vs-rs-232" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kod: terminal komend
+        🔌 Standardy: TTL vs RS-232
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Kod: terminal komend">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#jak-testowac" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Jak testować?
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#parametry-uart" class="md-nav__link">
+  <a href="#obsuga-sprzetowa-w-esp32-c6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Parametry UART
+        📦 Obsługa sprzętowa w ESP32-C6
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#konfiguracja-petli-zwrotnej-loopback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Konfiguracja pętli zwrotnej (Loopback)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kod-programu-terminal-komend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💻 Kod programu: Terminal komend
       
     </span>
   </a>
@@ -1612,7 +1649,7 @@
   <a href="#zadanie-do-samodzielnego-wykonania" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Zadanie do samodzielnego wykonania
+        🛠️ Zadanie do samodzielnego wykonania
       
     </span>
   </a>
@@ -1642,175 +1679,175 @@
 
 
 
-<h1 id="cwiczenie-8-uart-loopback-i-parsowanie-komend">Ćwiczenie 8 – UART: loopback i parsowanie komend</h1>
-<p><strong>Potrzebujesz:</strong> 🔌 Breadboard, 1 przewód jumper (TX→RX loopback).</p>
-<p><strong>UART</strong> (<em>Universal Asynchronous Receiver-Transmitter</em>) to najprostszy i najstarszy protokół komunikacji szeregowej. Jest asynchroniczny – brak sygnału zegarowego, obie strony muszą ustalić prędkość z góry.</p>
-<p>W tym ćwiczeniu przeprowadzisz eksperyment <strong>na jednej płytce</strong>: ESP32 wysyła dane przez jeden port UART i sam je odbiera przez drugi, dzięki fizycznemu połączeniu TX→RX kablem na breadboardzie.
-A jeśli chcesz, wszystko to sprawdzisz równie skutecznie w symulacji!</p>
-<p>🎯 <strong>[Otwórz Wokwi z wirtualnym systemem UART Loopback]</strong> <em>(link zostanie zaktualizowany)</em></p>
+<h1 id="uart-petla-zwrotna-i-parsowanie-komend">UART: pętla zwrotna i parsowanie komend</h1>
+<p><strong>UART</strong> (<em>Universal Asynchronous Receiver-Transmitter</em>) to jeden z najstarszych, najprostszych i najbardziej rozpowszechnionych protokołów komunikacji szeregowej w systemach wbudowanych. W przeciwieństwie do magistral takich jak I<sup>2</sup>C czy SPI, UART jest interfejsem typu <strong>punkt-punkt</strong> (point-to-point) służącym do łączenia dokładnie dwóch urządzeń.</p>
 <hr />
-<h2 id="loopback-komunikacja-z-samym-soba">Loopback – komunikacja z samym sobą</h2>
-<p>Zamiast drugiej płytki, połącz jumperem dwa piny na breadboardzie:</p>
-<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ESP32-C6 DevKit      Breadboard
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>────────────────────────────────
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>GPIO4 (TX)  ───────► GPIO5 (RX)   ← jeden przewód jumper!
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>GND         ───────► GND (masa wspólna)
-</span></code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Możesz użyć innych pinów</p>
-<p>GPIO4 i GPIO5 to przykład. Możesz wybrać dowolną parę wolnych GPIO – zmień stałe <code>UART_TX</code> i <code>UART_RX</code> w kodzie. Upewnij się tylko, że wybrane piny nie są Strapping Pins (sprawdź w sekcji <a href="../../materialy/pinout/">Materiały → Pinout</a>).</p>
-</div>
-<h3 id="co-sie-dzieje-w-loopback">Co się dzieje w loopback?</h3>
+<h2 id="charakterystyka-fizyczna-i-zasada-dziaania">⚡ Charakterystyka fizyczna i zasada działania</h2>
+<p>Transmisja UART jest <strong>asynchroniczna</strong>, co oznacza, że linia transmisyjna nie przesyła sygnału zegarowego (SCLK). Z tego powodu oba urządzenia muszą niezależnie generować częstotliwość taktowania transmisji i przed rozpoczęciem pracy mieć z góry skonfigurowaną identyczną prędkość transmisji (<strong>Baud Rate</strong>).</p>
+<p>Do pełnej komunikacji dwukierunkowej (Full-Duplex) wymagane są tylko dwie linie sygnałowe (oraz wspólna masa GND):
+* <strong>TX</strong> (<em>Transmit Data</em>) – linia nadawcza.
+* <strong>RX</strong> (<em>Receive Data</em>) – linia odbiorcza.</p>
+<p><img align="center" alt="UART" src="../../img/protokoly/uart.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Krzyżowanie linii TX/RX i wspólna masa (GND)</p>
+<p>Przy łączeniu dwóch niezależnych urządzeń (np. mikrokontrolera z sensorem GPS lub innej płytki deweloperskiej), musisz przestrzegać dwóch kluczowych zasad:</p>
 <ol>
-<li>ESP32 wysyła bajty przez <code>Serial1</code> na GPIO4 (TX)</li>
-<li>Kabel jumper fizycznie łączy GPIO4 z GPIO5</li>
-<li>ESP32 odbiera te same bajty przez <code>Serial1</code> na GPIO5 (RX)</li>
-<li><code>Serial</code> (USB do komputera) służy jako terminal – wpisujesz komendy w Serial Monitor</li>
+<li><strong>Krzyżowanie połączeń</strong>: Sygnał nadawany musi trafić do wejścia odbiorczego. Oznacza to, że łączysz <strong>TX urządzenia A z RX urządzenia B</strong> oraz <strong>RX urządzenia A z TX urządzenia B</strong>. Połączenie TX-TX i RX-RX jest częstym błędem i całkowicie blokuje transmisję.</li>
+<li><strong>Wspólny punkt odniesienia (GND)</strong>: Poza liniami danych musisz bezwzględnie połączyć ze sobą piny <strong>GND obu urządzeń</strong>. Bez wspólnego punktu odniesienia masy, odbiornik nie będzie w stanie prawidłowo zinterpretować poziomów napięć stanu wysokiego (3.3 V) i niskiego (0 V).</li>
 </ol>
-<hr />
-<h2 id="kod-terminal-komend">Kod: terminal komend</h2>
-<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">UART_TX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w">  </span><span class="c1">// Pin nadawczy</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">UART_RX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">  </span><span class="c1">// Pin odbiorczy (połącz jumperem z TX!)</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">PIN_LED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">String</span><span class="w"> </span><span class="n">buforKomendy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w">   </span><span class="c1">// Port USB – komunikacja z komputerem</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="c1">// Drugi port UART na naszych pinach</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="n">Serial1</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">,</span><span class="w"> </span><span class="n">SERIAL_8N1</span><span class="p">,</span><span class="w"> </span><span class="n">UART_RX</span><span class="p">,</span><span class="w"> </span><span class="n">UART_TX</span><span class="p">);</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Terminal gotowy. Wpisz: LED_ON, LED_OFF lub STATUS&quot;</span><span class="p">);</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">}</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="c1">// --- Odczyt komend z klawiatury (przez Serial USB) ---</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">znak</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">znak</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">znak</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\r&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">      </span><span class="c1">// Koniec linii – wyślij komendę przez UART</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">buforKomendy</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Wysyłam przez UART: &quot;</span><span class="p">);</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">buforKomendy</span><span class="p">);</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">        </span><span class="n">Serial1</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">buforKomendy</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wyślij przez Serial1 (TX)</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">        </span><span class="n">buforKomendy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">      </span><span class="p">}</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">      </span><span class="n">buforKomendy</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">znak</span><span class="p">;</span><span class="w"> </span><span class="c1">// Zbieraj znaki w buforze</span>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">  </span><span class="c1">// --- Odbiór danych z UART (loopback z RX) ---</span>
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">Serial1</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">odebrana</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial1</span><span class="p">.</span><span class="n">readStringUntil</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span>
-</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">    </span><span class="n">odebrana</span><span class="p">.</span><span class="n">trim</span><span class="p">();</span>
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
-</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Odebrano przez UART: &quot;</span><span class="p">);</span>
-</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">odebrana</span><span class="p">);</span>
-</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>
-</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">    </span><span class="c1">// Parsowanie komend</span>
-</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;LED_ON&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
-</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Dioda WŁĄCZONA&quot;</span><span class="p">);</span>
-</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;LED_OFF&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
-</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Dioda WYŁĄCZONA&quot;</span><span class="p">);</span>
-</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;STATUS&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="w">      </span><span class="kt">bool</span><span class="w"> </span><span class="n">stanLED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">);</span>
-</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;→ Stan diody: &quot;</span><span class="p">);</span>
-</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">stanLED</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;ON&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;OFF&quot;</span><span class="p">);</span>
-</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Nieznana komenda!&quot;</span><span class="p">);</span>
-</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="p">}</span>
-</span></code></pre></div>
-<h3 id="jak-testowac">Jak testować?</h3>
-<ol>
-<li>Wgraj kod, otwórz Serial Monitor (115200 baud).</li>
-<li>W polu tekstowym wpisz <code>LED_ON</code> i naciśnij Enter.</li>
-<li>Obserwuj odpowiedź – komenda „podróżuje" TX→RX i wraca z obsługą.</li>
-</ol>
-<hr />
-<h2 id="parametry-uart">Parametry UART</h2>
-<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Serial1</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">baud</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">rxPin</span><span class="p">,</span><span class="w"> </span><span class="n">txPin</span><span class="p">);</span>
-</span></code></pre></div>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Parametr</th>
-<th style="text-align: left;">Typowe wartości</th>
-<th style="text-align: left;">Opis</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>baud</code></td>
-<td style="text-align: left;">9600, 115200, 921600</td>
-<td style="text-align: left;">Prędkość transmisji</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>config</code></td>
-<td style="text-align: left;"><code>SERIAL_8N1</code></td>
-<td style="text-align: left;">8 bitów danych, brak parzystości, 1 bit stopu</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>rxPin</code></td>
-<td style="text-align: left;">dowolny GPIO</td>
-<td style="text-align: left;">Pin odbiorczy</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>txPin</code></td>
-<td style="text-align: left;">dowolny GPIO</td>
-<td style="text-align: left;">Pin nadawczy</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Dwa urządzenia zamiast loopback</p>
-<p>Jeśli masz dostęp do drugiej płytki ESP32, możesz połączyć:
-TX Płytki A → RX Płytki B i TX Płytki B → RX Płytki A + wspólne GND.
-Kod na każdej płytce pozostaje identyczny – zmień tylko która wysyła, a która odbiera komendy.</p>
 </div>
 <hr />
-<h2 id="zadanie-do-samodzielnego-wykonania">Zadanie do samodzielnego wykonania</h2>
-<p>Rozbuduj system komend o:
-- <code>PWM:128</code> – ustaw jasność diody na wartość 0–255 podaną po dwukropku
-- <code>RESET</code> – wyłącz LED i wypisz <code>"System zresetowany"</code></p>
-<p>Użyj metody <code>indexOf(':')</code> do znalezienia separatora i <code>substring()</code> do wyciągnięcia wartości liczbowej z komendy.</p>
+<h2 id="anatomia-ramki-uart">📊 Anatomia ramki UART</h2>
+<p>Ponieważ nadawca i odbiorca nie dzielą wspólnego zegara, dane przesyłane są w postaci małych paczek (ramek), najczęściej pakowanych po 8 bitów (1 bajt). </p>
+<p>W stanie spoczynku (gdy dane nie są przesyłane) na linii TX utrzymuje się stan wysoki (<strong>Idle HIGH</strong>). Transmisja pojedynczej ramki przebiega według następującego schematu:</p>
+<p><img align="center" alt="UART" src="../../img/protokoly/uart_logic.png" /></p>
+<ol>
+<li><strong>Bit Startu (Start Bit)</strong>: Nadawca ściąga stan linii w dół (do wartości logicznej <code>0</code> - LOW) na czas trwania jednego bitu. To zbocze opadające sygnalizuje odbiornikowi rozpoczęcie transmisji i pozwala mu zsynchronizować swój wewnętrzny zegar generatora baud rate.</li>
+<li><strong>Bity Danych (Data Bits)</strong>: Następuje przesłanie właściwych danych (najczęściej 8 bitów), zaczynając od bitu najmniej znaczącego (LSB - <em>Least Significant Bit</em>).</li>
+<li><strong>Bit Parzystości (Parity Bit)</strong> <em>(opcjonalny)</em>: Służy do prostej detekcji błędów transmisji. Może działać w trybie parzystym (<em>Even</em>) lub nieparzystym (<em>Odd</em>), uzupełniając sumę jedynek w ramce.</li>
+<li><strong>Bity Stopu (Stop Bits)</strong>: Nadawca ustawia linię z powrotem w stan wysoki (HIGH) na czas trwania 1, 1.5 lub 2 bitów, co oznacza zakończenie ramki i pozwala linii powrócić do stanu spoczynku.</li>
+</ol>
+<h3 id="matematyka-predkosci-baud-rate">Matematyka prędkości (Baud Rate)</h3>
+<p>Baud rate określa liczbę bitów przesyłanych w ciągu sekundy. Czas trwania pojedynczego bitu (<span class="arithmatex">\(T_{bit}\)</span>) obliczamy jako odwrotność prędkości:</p>
+<div class="arithmatex">\[T_{bit} = \frac{1}{\text{Baud Rate}}\]</div>
+<ul>
+<li>Dla prędkości <strong><span class="arithmatex">\(9600\text{ baud}\)</span></strong>: <span class="arithmatex">\(T_{bit} \approx 104.17\ \mu\text{s}\)</span> (cała ramka 8N1 trwa około <span class="arithmatex">\(1.04\text{ ms}\)</span>).</li>
+<li>Dla prędkości <strong><span class="arithmatex">\(115200\text{ baud}\)</span></strong>: <span class="arithmatex">\(T_{bit} \approx 8.68\ \mu\text{s}\)</span> (cała ramka 8N1 trwa około <span class="arithmatex">\(86.8\ \mu\text{s}\)</span>).</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nadpróbkowanie (Oversampling)</p>
+<p>Odbiornik UART nie mierzy stanu linii na samym początku bitu. Zamiast tego po wykryciu bitu startu próbkuje linię z częstotliwością np. 16-krotnie większą niż Baud Rate (16x oversampling) i odczytuje stan sygnału dokładnie w połowie szerokości każdego bitu (np. przy 8. próbce), co minimalizuje wpływ zakłóceń i jitteru zegara.</p>
+</div>
+<hr />
+<h2 id="standardy-ttl-vs-rs-232">🔌 Standardy: TTL vs RS-232</h2>
+<ul>
+<li><strong>Poziomy TTL (Transistor-Transistor Logic)</strong>: Standard stosowany bezpośrednio w pinach mikrokontrolera (w ESP32-C6 stan niskie to <span class="arithmatex">\(0\text{ V}\)</span>, a wysoki to <span class="arithmatex">\(3.3\text{ V}\)</span>).</li>
+<li><strong>Standard RS-232</strong>: Historyczny standard stosowany między innymi w portach szeregowych komputerów PC. Wykorzystuje wyższe napięcia oraz odwróconą logikę (logicznemu <code>1</code> odpowiada napięcie od <span class="arithmatex">\(-3\text{ V}\)</span> do <span class="arithmatex">\(-15\text{ V}\)</span>, a <code>0</code> napięcie od <span class="arithmatex">\(+3\text{ V}\)</span> do <span class="arithmatex">\(+15\text{ V}\)</span>).</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Niebezpieczeństwo uszkodzenia!</p>
+<p><strong>Nigdy nie podłączaj linii RS-232 z komputera PC bezpośrednio do pinów GPIO mikrokontrolera</strong>. Napięcie rzędu <span class="arithmatex">\(\pm12\text{ V}\)</span> natychmiastowo zniszczy ESP32. W celu połączenia tych systemów wymagany jest konwerter poziomów logicznych (np. układ MAX3232).</p>
+</div>
+<hr />
+<h2 id="obsuga-sprzetowa-w-esp32-c6">📦 Obsługa sprzętowa w ESP32-C6</h2>
+<p>Mikrokontroler ESP32-C6 posiada <strong>dwa niezależne sprzętowe kontrolery UART</strong> (UART0 oraz UART1). Każdy z nich wyposażony jest w:
+* Dedykowany sprzętowy bufor kołowy nadawczo-odbiorczy <strong>FIFO o pojemności 128 bajtów</strong>.
+* Dzięki obecności <strong>GPIO Matrix</strong>, linie TX i RX mogą zostać zmapowane na dowolne wolne piny GPIO mikrokontrolera.</p>
+<p>Gdy dane przychodzą na pin RX, kontroler sprzętowy UART automatycznie zapisuje je w buforze FIFO i wywołuje przerwanie w tle. Biblioteka Arduino przepisuje te dane do większego bufora programowego w pamięci RAM, z którego odczytujemy je za pomocą funkcji <code>Serial.read()</code>.</p>
+<hr />
+<h2 id="konfiguracja-petli-zwrotnej-loopback">🛠️ Konfiguracja pętli zwrotnej (Loopback)</h2>
+<p>W tym ćwiczeniu przeprowadzisz eksperyment pętli zwrotnej (loopback) na jednym mikrokontrolerze: ESP32 wyśle dane przez port nadawczy UART i natychmiast odbierze je na swoim porcie odbiorczym, dzięki fizycznemu połączeniu linii TX i RX za pomocą przewodu.</p>
+<p>Połącz za pomocą przewodu połączeniowego dwa piny na płytce stykowej:
+* <strong>GPIO4 (TX)</strong> <span class="arithmatex">\(\rightarrow\)</span> <strong>GPIO5 (RX)</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Wybór pinów GPIO</p>
+<p>Piny GPIO4 i GPIO5 zostały użyte jako przykład. Dzięki GPIO Matrix możesz wybrać dowolną inną parę wolnych pinów GPIO, pamiętając o zaktualizowaniu stałych w kodzie. Upewnij się jedynie, że wybrane piny nie pełnią specjalnych funkcji podczas rozruchu (tzw. Strapping Pins – szczegóły w sekcji <a href="../../start/sprzet/">Płytka ESP32-C6</a>).</p>
+</div>
+<hr />
+<h2 id="kod-programu-terminal-komend">💻 Kod programu: Terminal komend</h2>
+<p>Poniższy program odbiera komendy wpisane przez użytkownika w Monitorze Szeregowym komputera, przesyła je przez zewnętrzny port UART (pętla zwrotna GPIO4 <span class="arithmatex">\(\rightarrow\)</span> GPIO5) i po odebraniu wykonuje odpowiednie akcje.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">UART_TX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w">  </span><span class="c1">// Pin nadawczy</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">UART_RX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">  </span><span class="c1">// Pin odbiorczy (połączony fizycznie z TX)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">PIN_LED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">String</span><span class="w"> </span><span class="n">buforKomendy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span><span class="w">   </span><span class="c1">// Inicjalizacja portu USB (Serial monitor na komputerze)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="c1">// Inicjalizacja sprzętowego portu UART1 o prędkości 9600 bodów,</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="c1">// w konfiguracji 8N1 (8 bitów danych, brak parzystości, 1 bit stopu)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="c1">// z mapowaniem pinów przez GPIO Matrix</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="n">Serial1</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">,</span><span class="w"> </span><span class="n">SERIAL_8N1</span><span class="p">,</span><span class="w"> </span><span class="n">UART_RX</span><span class="p">,</span><span class="w"> </span><span class="n">UART_TX</span><span class="p">);</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Terminal gotowy. Wpisz: LED_ON, LED_OFF lub STATUS&quot;</span><span class="p">);</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">}</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="c1">// --- KROK 1: Odczyt komend z klawiatury komputera i wysłanie przez TX ---</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">znak</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">znak</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">znak</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\r&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">buforKomendy</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Wysyłam przez UART TX (GPIO4): &quot;</span><span class="p">);</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">buforKomendy</span><span class="p">);</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">        </span><span class="n">Serial1</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">buforKomendy</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wysłanie danych przez port TX Serial1</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">        </span><span class="n">buforKomendy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">      </span><span class="n">buforKomendy</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">znak</span><span class="p">;</span><span class="w"> </span><span class="c1">// Zapisywanie znaku w buforze</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">  </span><span class="c1">// --- KROK 2: Odbiór danych z portu RX (loopback z GPIO5) ---</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">Serial1</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="c1">// Odczyt linii tekstu aż do napotkania znaku końca linii \n</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">odebrana</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serial1</span><span class="p">.</span><span class="n">readStringUntil</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="n">odebrana</span><span class="p">.</span><span class="n">trim</span><span class="p">();</span><span class="w"> </span><span class="c1">// Usunięcie białych znaków (np. \r)</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Odebrano przez UART RX (GPIO5): &quot;</span><span class="p">);</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">odebrana</span><span class="p">);</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span><span class="c1">// Interpretacja odebranej komendy</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;LED_ON&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Akcja: Dioda WŁĄCZONA&quot;</span><span class="p">);</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;LED_OFF&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Akcja: Dioda WYŁĄCZONA&quot;</span><span class="p">);</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;STATUS&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">      </span><span class="kt">bool</span><span class="w"> </span><span class="n">stanLED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">);</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;→ Akcja: Stan diody to &quot;</span><span class="p">);</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">stanLED</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;ON&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;OFF&quot;</span><span class="p">);</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Akcja: Nieznana komenda!&quot;</span><span class="p">);</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Znaki końca linii (<code>\n</code> oraz <code>\r</code>)</p>
+<p>Znaki <code>\n</code> (Line Feed - LF, wartość ASCII 10) oraz <code>\r</code> (Carriage Return - CR, wartość ASCII 13) określają koniec wiersza. System Windows stosuje domyślnie parę <code>\r\n</code> (CRLF), podczas gdy Unix/Linux używa samego <code>\n</code> (LF). Zastosowanie metody <code>odebrana.trim()</code> jest dobrą praktyką inżynierską – usuwa ona niewidoczne znaki kontrolne z obu końców napisu, zapobiegając błędom podczas porównywania ciągów znaków (np. <code>"LED_ON\r"</code> nie byłoby równe <code>"LED_ON"</code>).</p>
+</div>
+<hr />
+<h2 id="zadanie-do-samodzielnego-wykonania">🛠️ Zadanie do samodzielnego wykonania</h2>
+<p>Rozbuduj funkcjonalność parsowania komend o obsługę parametru liczbowego:
+1. Dodaj komendę <code>PWM:X</code>, gdzie <code>X</code> to wartość wypełnienia sygnału PWM (od <code>0</code> do <code>255</code>), która ustawi zadaną jasność diody LED.
+2. Dodaj komendę <code>RESET</code>, która zgasi diodę LED i wyświetli komunikat <code>"→ System zresetowany"</code>.</p>
+<p><em>Wskazówka: Wykorzystaj metodę <code>indexOf(':')</code> w celu wykrycia obecności znaku dwukropka oraz funkcję <code>substring()</code> do wyciągnięcia tekstu reprezentującego liczbę, a następnie przekonwertuj go za pomocą <code>toInt()</code>.</em></p>
 <details>
 <summary>Pokaż rozwiązanie</summary>
 
-<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="c1">// Wewnątrz bloku sprawdzającego odebrane komendy (w loop):</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;LED_ON&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Dioda WŁĄCZONA&quot;</span><span class="p">);</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;LED_OFF&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Dioda WYŁĄCZONA&quot;</span><span class="p">);</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;RESET&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ System zresetowany&quot;</span><span class="p">);</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s">&quot;PWM:&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">      </span><span class="c1">// Jeśli komenda zaczyna się od &quot;PWM:&quot;</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">wartosc_str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">odebrana</span><span class="p">.</span><span class="n">substring</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wyciągnij wszystko po 4 znaku</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">pwm_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wartosc_str</span><span class="p">.</span><span class="n">toInt</span><span class="p">();</span><span class="w">          </span><span class="c1">// Zamień to na liczbę Int</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">      </span><span class="c1">// ogranicz przed głupimi wpisami</span>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">pwm_val</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">pwm_val</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">         </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">pwm_val</span><span class="p">);</span>
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">         </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;→ Zmieniono moc diody na: &quot;</span><span class="p">);</span>
-</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">         </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">pwm_val</span><span class="p">);</span>
-</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">         </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Blad: PWM poza zakresem!&quot;</span><span class="p">);</span>
-</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">      </span><span class="p">}</span>
-</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Nieznana komenda!&quot;</span><span class="p">);</span>
-</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">    </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="c1">// Zastąp blok analizy odebranej komendy w pętli loop następującym kodem:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;LED_ON&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Akcja: Dioda WŁĄCZONA&quot;</span><span class="p">);</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;LED_OFF&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Akcja: Dioda WYŁĄCZONA&quot;</span><span class="p">);</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;RESET&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Akcja: System zresetowany&quot;</span><span class="p">);</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">odebrana</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s">&quot;PWM:&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">      </span><span class="c1">// Wyodrębnienie wartości po słowie kluczowym &quot;PWM:&quot;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">wartoscStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">odebrana</span><span class="p">.</span><span class="n">substring</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">pwmVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wartoscStr</span><span class="p">.</span><span class="n">toInt</span><span class="p">();</span><span class="w"> </span><span class="c1">// Konwersja tekstu na int</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">      </span><span class="c1">// Walidacja poprawności zakresu</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pwmVal</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">pwmVal</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">        </span><span class="n">analogWrite</span><span class="p">(</span><span class="n">PIN_LED</span><span class="p">,</span><span class="w"> </span><span class="n">pwmVal</span><span class="p">);</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;→ Akcja: Ustawiono PWM na &quot;</span><span class="p">);</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">pwmVal</span><span class="p">);</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">        </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Błąd: Wartość PWM poza zakresem [0-255]!&quot;</span><span class="p">);</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">      </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;→ Akcja: Nieznana komenda!&quot;</span><span class="p">);</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="p">}</span>
 </span></code></pre></div>
 </details>
 
@@ -1865,13 +1902,13 @@ Kod na każdej płytce pozostaje identyczny – zmień tylko która wysyła, a k
         
         
           
-          <a href="../i2c_spi/" class="md-footer__link md-footer__link--next" aria-label="Następna strona: Ćw. 9-10 – Magistrale cyfrowe: I2C i SPI">
+          <a href="../i2c/" class="md-footer__link md-footer__link--next" aria-label="Następna strona: Magistrala I2C (Akcelerometr)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Następna strona
               </span>
               <div class="md-ellipsis">
-                Ćw. 9-10 – Magistrale cyfrowe: I2C i SPI
+                Magistrala I2C (Akcelerometr)
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1912,6 +1949,10 @@ Kod na każdej płytce pozostaje identyczny – zmień tylko która wysyła, a k
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

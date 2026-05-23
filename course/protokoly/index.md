@@ -1,6 +1,6 @@
 # Protokoły komunikacyjne
 
-W tym module dowiesz się, w jaki sposób urządzenia cyfrowe wymieniają ze sobą dane oraz jak podłączać zewnętrzne układy scalone.
+W tym module dowiesz się, w jaki sposób urządzenia cyfrowe wymieniają ze sobą dane oraz jak podłączać do mikrokontrolera zewnętrzne układy scalone.
 
 ---
 
@@ -32,3 +32,14 @@ Dla praktyki na żywym sprzęcie potrzebujesz:
 2. [Magistrala I<sup>2</sup>C: komunikacja z akcelerometrem](i2c.md)
 3. [Magistrala SPI: obsługa wyświetlacza TFT](spi.md)
 4. [Transmisja jednoprzewodowa i wbudowana dioda ARGB (WS2812B)](onewire.md)
+
+---
+
+## 💡 Jak podchodzić do nauki protokołów?
+
+Każda z poniższych lekcji została podzielona na dwie części:
+
+1. **Teoria (fizyka i logika)** – w której pokazujemy, jak dana magistrala przesyła bity, jak wyglądają wykresy czasowe i jak układają się napięcia na liniach.
+2. **Praktyka** – w której wykorzystujemy gotowe biblioteki do komunikacji z czujnikami lub ekranami.
+
+Pamiętaj, że **nie musisz uczyć się na pamięć szczegółów logicznych ani struktur ramek danych**. Przedstawiamy je po to, aby przybliżyć Ci zasadę działania sprzętu i pokazać, że pod spodem jest to bardzo proste. W codziennych projektach gotowe biblioteki wykonają całą niskopoziomową pracę za Ciebie.

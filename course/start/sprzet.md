@@ -14,14 +14,16 @@ Poniżej możesz zobaczyć fizyczny wygląd płytki deweloperskiej ESP32-C6 (w w
 > Wielu początkujących myśli, że duży srebrny prostokąt z wygrawerowanym logo (widoczny na module WROOM) to sam mikrokontroler. W rzeczywistości jest to metalowy ekran (tzw. EMI shield), który chroni układ przed zewnętrznymi zakłóceniami radiowymi oraz pełni funkcję rozpraszacza ciepła (IHS). Prawdziwy mikrokontroler (krzemowa kostka SoC), zewnętrzna pamięć Flash oraz rezonator kwarcowy są schowane dopiero pod tą osłoną (tak jak widać na poniższym obrazku)!
 ![Wygląd płytki deweloperskiej ESP32-C6](../img/start/esp_no_shield.png){: .center}
 
-Seria ESP32 zdobyła ogromną popularność na całym świecie dzięki wbudowanej łączności bezprzewodowej. Model **ESP32-C6** to jeden z najnowszych przedstawicieli tej rodziny. W przeciwieństwie do starszych wersji, które opierały się na architekturze Xtensa, C6 wykorzystuje nowoczesny, otwarty rdzeń **RISC-V** taktowany zegarem do 160 MHz.
+Seria ESP32 zdobyła ogromną popularność na całym świecie dzięki wbudowanej łączności bezprzewodowej. Model **ESP32-C6** to jeden z przedstawicieli tej rodziny. W przeciwieństwie do starszych wersji, które opierały się na architekturze Xtensa, C6 wykorzystuje nowoczesny, otwarty rdzeń **RISC-V** taktowany zegarem do 160 MHz.
 
 Do dyspozycji mamy bogaty zestaw łączności bezprzewodowej zintegrowany w jednym chipie:
+
 * **Wi-Fi 6** (w pasmie 2.4 GHz) – wspiera najnowszy standard sieciowy, co poprawia stabilność połączenia i zmniejsza pobór prądu.
 * **Bluetooth 5 (LE)** – standard idealny do komunikacji ze smartfonami na bliskie odległości.
 * **Zigbee & Thread (802.15.4)** – standardy bezprzewodowe dedykowane dla profesjonalnych systemów automatyki domowej (Smart Home).
 
 Płytka posiada również:
+
 * **512 KB pamięci SRAM** (pamięć operacyjna procesora).
 * **4 MB pamięci Flash** (pamięć nieulotna na Twój program).
 * Sprzętowe wsparcie dla **kryptografii**.
@@ -59,11 +61,11 @@ Oprócz zwykłych cyfrowych wejść/wyjść, piny ESP32-C6 posiadają alternatyw
 
 1. **ADC (Analog-to-Digital Converter)**: Pozwala mierzyć płynne napięcie (np. z potencjometru lub czujnika światła) i zamieniać je na liczby od `0` do `4095` (rozdzielczość 12-bitowa).
 2. **PWM (Pulse Width Modulation)**: Pozwala na szybkie pulsowanie napięciem wyjściowym, co symuluje sygnał analogowy i umożliwia np. płynną regulację jasności diody lub prędkości silnika.
-3. **Magistrale komunikacyjne (I2C, SPI, UART)**: Dedykowane pary lub grupy pinów służące do szybkiego przesyłania danych między mikrokontrolerem a wyświetlaczami, czujnikami czy komputerem.
+3. **Magistrale komunikacyjne (I<sup>2</sup>C, SPI, UART)**: Dedykowane pary lub grupy pinów służące do szybkiego przesyłania danych między mikrokontrolerem a wyświetlaczami, czujnikami czy komputerem.
 
 > [!NOTE] Ciekawostka: Matryca GPIO (GPIO Matrix)
 > W tradycyjnych mikrokontrolerach (np. starszych układach 8-bitowych) bloki peryferyjne były na sztywno przypisane do konkretnych nóżek (np. linia TX interfejsu UART mogła być wyprowadzona wyłącznie na jednym konkretnym pinie).
-> Układy ESP32 rozwiązują ten problem za pomocą mechanizmu o nazwie **GPIO Matrix**. Jest to wewnętrzny przełącznik sprzętowy (tzw. multiplekser), który pozwala na przekierowanie sygnału z niemal dowolnego bloku peryferyjnego (np. nadajnika UART, linii I2C czy generatora PWM) na **dowolny fizyczny pin GPIO** mikrokontrolera. Daje to ogromną elastyczność przy projektowaniu płytek drukowanych (PCB) oraz pozwala na wygodną zmianę przypisania pinów w kodzie programu.
+> Układy ESP32 rozwiązują ten problem za pomocą mechanizmu o nazwie **GPIO Matrix**. Jest to wewnętrzny przełącznik sprzętowy (tzw. multiplekser), który pozwala na przekierowanie sygnału z niemal dowolnego bloku peryferyjnego (np. nadajnika UART, linii I<sup>2</sup>C czy generatora PWM) na **dowolny fizyczny pin GPIO** mikrokontrolera. Daje to ogromną elastyczność przy projektowaniu płytek drukowanych (PCB) oraz pozwala na wygodną zmianę przypisania pinów w kodzie programu.
 
 > [!CAUTION] Zasady bezpiecznego używania pinów GPIO
 > Aby uniknąć trwałego uszkodzenia mikrokontrolera, musisz przestrzegać dwóch kluczowych zasad:

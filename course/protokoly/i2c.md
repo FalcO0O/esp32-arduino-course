@@ -3,12 +3,13 @@
 **I<sup>2</sup>C** (*Inter-Integrated Circuit*, wymawiane jako *I-kwadrat-C*) to synchroniczna, dwuprzewodowa magistrala szeregowa. Służy do łatwego i wygodnego podłączania prostych układów scalonych oraz czujników (np. temperatury, ciśnienia, akcelerometrów czy zegarów RTC) przesyłających niewielkie ilości danych. Umożliwia to realizację lokalnej komunikacji na krótkich dystansach – najczęściej w obrębie tej samej płytki drukowanej (PCB) – przy minimalnym obciążeniu linii GPIO mikrokontrolera.
 
 Komunikacja opiera się na dwóch liniach sygnałowych:
+
 * **SDA** (*Serial Data*) – linia danych służąca do dwukierunkowej transmisji.
 * **SCL** (*Serial Clock*) – linia zegarowa synchronizująca transmisję bitów (generowana zawsze przez kontroler).
 
 ---
 
-## 🔌 Fizyka I<sup>2</sup>C: Konfiguracja Otwartych Drenów i Pull-Up
+## 🔌 Charakterystyka fizyczna I<sup>2</sup>C: Konfiguracja Otwartych Drenów i Pull-Up
 
 Jedną z najważniejszych cech I<sup>2</sup>C jest konstrukcja wyjść stopni elektrycznych urządzeń. Pracują one w konfiguracji **otrawtego drenu** (Open-Drain). Oznacza to, że żadne urządzenie nie potrafi aktywnie wymusić na magistrali stanu wysokiego ($3.3\text{ V}$). Układy mogą jedynie "ściągać" linię do masy ($0\text{ V}$), zwierając ją wewnętrznym tranzystorem.
 
@@ -39,15 +40,16 @@ Transmisja danych w I<sup>2</sup>C opiera się na określonych stanach logicznyc
 ![I2C_wave](../img/protokoly/i2c_logic.png){ align=center }
 
 #### Prędkości pracy (I2C Speed Modes):
+
 * **Standard Mode**: do $100\text{ kb/s}$
 * **Fast Mode**: do $400\text{ kb/s}$ (najbardziej powszechny standard)
 * **Fast Mode Plus (Fm+)**: do $1\text{ Mb/s}$
 
 ---
 
-## 📦 Sprzęt I2C w ESP32-C6
+## 📦 Obsługa sprzętowa w ESP32-C6
 
-Układ ESP32-C6 wyposażony jest w **dedykowany sprzętowy kontroler I<sup>2</sup>C**. Dzięki matrycy **GPIO Matrix**, linie SDA oraz SCL mogą być przypisane do dowolnych pinów GPIO. Kontroler sprzętowo realizuje całą maszynę stanów protokołu I2C (generowanie START, STOP, wysyłanie adresu, automatyczna weryfikacja bitów ACK).  
+Układ ESP32-C6 wyposażony jest w **dedykowany sprzętowy kontroler I<sup>2</sup>C**. Dzięki matrycy **GPIO Matrix**, linie SDA oraz SCL mogą być przypisane do dowolnych pinów GPIO. Kontroler sprzętowo realizuje całą maszynę stanów protokołu I<sup>2</sup>C (generowanie START, STOP, wysyłanie adresu, automatyczna weryfikacja bitów ACK).  
 
 ---
 

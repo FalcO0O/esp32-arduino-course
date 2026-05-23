@@ -1,58 +1,59 @@
-# Transmisja jednoprzewodowa i wbudowana dioda ARGB (WS2812B)
+# Transmisja jednoprzewodowa: dioda ARGB (WS2812B)
 
-Poza klasycznymi interfejsami, takimi jak UART, I<sup>2</sup>C czy SPI, w systemach wbudowanych szeroko stosowane są protokoły przesyłu danych za pomocą **jednego przewodu sygnałowego** (oraz wspólnej linii odniesienia masy GND). Rozwiązania te pozwalają na oszczędność fizycznych pinów mikrokontrolera oraz uproszczenie trasowania płytek drukowanych (PCB).
+W systemach wbudowanych stosuje się także protokoły przesyłu danych za pomocą **tylko jednego przewodu sygnałowego** (oraz wspólnej linii masy GND).
 
-W tym rozdziale zapoznasz się z charakterystyką protokołów jednoprzewodowych, dowiesz się, jak działają inteligentne diody ARGB, oraz uruchomisz wbudowaną w płytkę ESP32-C6 diodę WS2812B.
+W tym rozdziale skupimy się na specyficznym, niezwykle popularnym protokole służącym do obsługi inteligentnych diod ARGB (WS2812B / NeoPixel), w które między innymi fabrycznie wyposażona jest nasza płytka deweloperska.
 
----
-
-## ⚡ Rodzaje transmisji jednoprzewodowej
-
-Pod pojęciem transmisji jednoprzewodowej kryją się dwa różne podejścia technologiczne, które różnią się zarówno architekturą, jak i przeznaczeniem:
-
-### 1. Dallas 1-Wire
-Jest to standaryzowany, dwukierunkowy protokół komunikacyjny stworzony przez firmę Dallas Semiconductor (obecnie Maxim Integrated). 
-
-* **Zasada działania**: Linia sygnałowa pracuje w konfiguracji otwartego drenu (*open-drain*) i wymaga zewnętrznego rezystora podciągającego (Pull-Up) do zasilania VCC. Komunikacja jest dwukierunkowa i opiera się na architekturze typu Master-Slave.
-* **Adresowanie**: Każde urządzenie (np. popularny cyfrowy czujnik temperatury **DS18B20**) posiada unikalny, zakodowany fabrycznie 64-bitowy numer identyfikacyjny (ROM ID). Pozwala to na podłączenie wielu urządzeń równolegle do tej samej linii sygnałowej.
-* **Charakterystyka**: Transmisja jest wolna (standardowa prędkość to ok. 16.3 kb/s), ale stabilna na dłuższych dystansach (nawet do kilkudziesięciu metrów).
-
-### 2. Custom Single-Wire / NZR (np. WS2812B)
-Jest to szybki, jednokierunkowy protokół szeregowy bez linii zegarowej, stosowany przede wszystkim do sterowania adresowalnymi diodami LED RGB (ARGB / NeoPixel).
-
-* **Zasada działania**: Transmisja odbywa się w trybie simplex (tylko w jedną stronę: od kontrolera do odbiorników). Diody łączone są kaskadowo (wyjście danych `DO` jednej diody łączone jest z wejściem danych `DI` kolejnej).
-* **Brak adresowania**: Urządzenia nie posiadają unikalnych identyfikatorów. Adresowanie odbywa się geometrycznie (pozycyjnie) – każda kolejna dioda "odcina" pierwszy zestaw bitów koloru, a resztę danych przesyła dalej.
-* **Charakterystyka**: Transmisja jest szybka (ok. 800 kb/s), ale wymaga bardzo precyzyjnych zależności czasowych w skali nanosekundowej.
+> [!NOTE] 1-Wire vs Single-Wire
+> Choć pojęcia te bywają potocznie używane zamiennie, oznaczają dwa różne standardy:
+> * **Dallas 1-Wire** – dwukierunkowa, relatywnie wolna magistrala z unikalnym 64-bitowym adresowaniem sprzętowym każdego układu, używana głownie do czujników (np. popularnego czujnika temperatury DS18B20).
+> * **Custom Single-Wire (NZR)** – jednokierunkowy, szybki protokół kaskadowy bez sprzętowego adresowania, stosowany wyłącznie do sterowania matrycami i paskami LED (np. WS2812B). To właśnie nim zajmiemy się w tej lekcji.
 
 ---
 
-## 🛠️ Jak działa inteligentna dioda ARGB (WS2812B)?
+## 🔌 Charakterystyka fizyczna
 
-Dioda **WS2812B** (często określana jako NeoPixel) nie jest zwykłą diodą LED. Wewnątrz jej obudowy (najczęściej SMD 5050) zintegrowano:
-1. Trzy struktury półprzewodnikowe LED: **Czerwoną (R)**, **Zieloną (G)** i **Niebieską (B)**.
-2. Mikroskopijny układ scalony (kontroler) pełniący funkcję sterownika prądowego PWM z rejestrem przesuwnym.
+Protokół sterowania diodami WS2812B opiera się na szybkim przesyłaniu cyfrowego sygnału napięciowego w trybie **simplex** (tylko w jedną stronę: od kontrolera do odbiorników). 
 
-Dzięki temu każdą diodą w łańcuchu możemy sterować niezależnie, ustawiając jej dowolną barwę z palety 16,7 miliona kolorów (24-bitowa głębia kolorów: po 8 bitów na składową R, G i B).
+Fizyczna struktura takiego układu opiera się na inteligentnych diodach. Dioda WS2812B (zazwyczaj w obudowie SMD 5050) nie jest zwykłą diodą LED. W jej wnętrzu zintegrowano:
 
-### Kodowanie bitów w protokole WS2812B
-Transmisja danych odbywa się za pomocą standardu **NZR** (*Non-Return-to-Zero*), gdzie informacja o stanie logicznym bitu jest kodowana **czasem trwania** stanu wysokiego ($T_H$) i niskiego ($T_L$) w jednym cyklu:
+1. **Trzy diody LED**: Czerwoną (R), Zieloną (G) i Niebieską (B).
+2. **Układ scalony (kontroler)**: Odpowiada za odczyt i dekodowanie cyfrowego sygnału oraz sterowanie jasnością poszczególnych barw poprzez PWM.
+
+### Kaskadowe łączenie i "adresowanie"
+Transmisja nie używa fizycznych adresów jak I2C. Zamiast tego adresowanie odbywa się **geometrycznie**. 
+Sygnał z mikrokontrolera trafia najpierw do pinu wejściowego **DI** (*Data In*) pierwszej diody w łańcuchu. Układ scalony tej diody "odcina" dla siebie pierwszy pakiet danych (swój kolor), a całą resztę przesyła dalej ze swojego pinu wyjściowego **DO** (*Data Out*) prosto do pinu **DI** kolejnej diody. Dzięki temu można sterować łańcuchem setek diod używając zaledwie jednego pinu w ESP32.
+
+---
+
+## 📊 Charakterystyka logiczna (Anatomia transmisji)
+
+Z powodu braku dodatkowej linii zegarowej (SCLK), odbiorniki muszą odzyskiwać informację o czasie z samego sygnału danych. Protokół wykorzystuje standard **NZR** (*Non-Return-to-Zero*), w którym informacja o stanie logicznym bitu jest kodowana **czasem trwania** stanu wysokiego ($T_H$) i niskiego ($T_L$) w jednym, stałym cyklu bitowym.
+
+Każda dioda oczekuje ramki składającej się z 24 bitów (po 8 bitów na składową koloru, co daje 24-bitową głębię kolorów, czyli 16,7 miliona barw). Bity zazwyczaj ułożone są w kolejności GRB (Zielony, Czerwony, Niebieski).
+
+### Kodowanie impulsów czasowych:
 
 * **Bit `0`**: krótki stan wysoki ($T_{0H} \approx 0.4\ \mu\text{s}$), po którym następuje długi stan niski ($T_{0L} \approx 0.85\ \mu\text{s}$).
 * **Bit `1`**: długi stan wysoki ($T_{1H} \approx 0.8\ \mu\text{s}$), po którym następuje krótki stan niski ($T_{1L} \approx 0.45\ \mu\text{s}$).
-* **Sygnał resetu (RESET)**: utrzymanie stanu niskiego przez czas dłuższy niż $50\ \mu\text{s}$ (powoduje zatrzaśnięcie przesłanych danych w rejestrach diod i wyświetlenie koloru).
+* **Sygnał resetu (Zatrzask)**: utrzymanie stanu niskiego przez czas dłuższy niż $50\ \mu\text{s}$ powoduje zakończenie transmisji ramki. Układy scalone zatrzaskują wtedy odcięte dane w swoich rejestrach, co skutkuje natychmiastową, jednoczesną aktualizacją kolorów w całym łańcuchu.
 
-![](../img/protokoly/nrz.png){ align=center }
+![](../img/protokoly/NRZ.png){ align=center }
 
-### Problem taktowania i rola sprzętu w ESP32
-Ponieważ czasy trwania impulsów muszą być dotrzymane z dokładnością do kilkudziesięciu nanosekund, generowanie takiego sygnału programowo (*bit-banging* poprzez szybkie włączanie/wyłączanie pinu w kodzie) jest bardzo trudne. Każde przerwanie systemowe zakłóciłoby strukturę czasową ramki, powodując migotanie diod lub błędne kolory.
+---
 
-Aby temu zapobiec, układy ESP32 wykorzystują swoje wbudowane bloki sprzętowe:
+## 📦 Obsługa sprzętowa w ESP32-C6
+
+Ponieważ czasy trwania impulsów muszą być dotrzymane z dokładnością do kilkudziesięciu nanosekund, generowanie takiego sygnału programowo (*bit-banging* poprzez szybkie włączanie/wyłączanie pinu w kodzie) jest trudne i mocno obciąża procesor. Każde przerwanie systemowe zakłóciłoby strukturę czasową ramki, powodując migotanie diod lub błędne kolory.
+
+Aby temu zapobiec, układy ESP32-C6 wykorzystują wbudowane bloki sprzętowe:
+
 * **RMT (Remote Control)**: Nadajnik podczerwieni, który potrafi sprzętowo generować precyzyjne przebiegi czasowe na podstawie zdefiniowanych czasów trwania stanów wysokich i niskich.
 * **SPI**: Wykorzystuje wysyłanie odpowiednio uformowanych bajtów danych z dużą częstotliwością tak, aby sekwencje bitów na linii MOSI udawały impulsy o szerokościach wymaganych przez WS2812B.
 
 ---
 
-## 🎯 Przykład praktyczny: Uruchomienie wbudowanej diody ARGB
+## 🎯 Ćwiczenie praktyczne: Wbudowana dioda ARGB
 
 Standardowa płytka deweloperska **ESP32-C6 DevKit** posiada wbudowaną adresowalną diodę RGB podłączoną wewnętrznie do pinu **GPIO8**. 
 

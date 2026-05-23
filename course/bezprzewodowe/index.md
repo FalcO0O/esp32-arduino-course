@@ -1,8 +1,8 @@
-# Moduł: Bezprzewodowe (IoT)
+# Technologie bezprzewodowe
 
-Wchodzimy w ostatni, najbardziej zaawansowany i najbardziej ekscytujący etap pracy z mikrokontrolerami ESP. To tutaj dowiadujesz się dlaczego te konkretnie kostki zrewolucjonizowały świat hobbystów na całym globie!
+Wchodzimy w ostatni, najbardziej ekscytujący etap pracy z mikrokontrolerami ESP. To tutaj dowiadujesz się dlaczego te konkretnie kostki zrewolucjonizowały świat hobbystów na całym globie!
 
-ESP32-C6 to jeden z niewielu układów scalonych z **pełnym zestawem** nowoczesnych technologii bezprzewodowych wlutowanych prosto w jedną małą płytkę, zawierającą zarówno silne Wi-Fi jak i nowoczesny, energooszczędny Bluetooth.
+ESP32-C6 to układ scalony z **pełnym zestawem** nowoczesnych technologii bezprzewodowych wlutowanych prosto w jedną małą płytkę, zawierającą zarówno silne Wi-Fi jak i nowoczesny, energooszczędny Bluetooth.
 
 ---
 

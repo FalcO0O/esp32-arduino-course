@@ -42,35 +42,34 @@ plugins:
 nav:
   - Start:
       - Mapa kursu: index.md
-      - 1. Teoria – czym jest mikrokontroler: start/teoria.md
-      - 2. Płytka ESP32-C6: start/sprzet.md
-      - 3. Konfiguracja środowiska i Wokwi: start/ide.md
+      - Teoria – czym jest mikrokontroler: start/teoria.md
+      - Płytka ESP32-C6: start/sprzet.md
+      - Konfiguracja środowiska i Wokwi: start/ide.md
 
   - Podstawy:
       - Przegląd modułu: podstawy/index.md
       - "Wstęp do IO: Cyfrowe wyjścia i wejścia": podstawy/cyfrowe.md
       - "Sygnały: PWM i ADC": podstawy/analogowe.md
+      - "Serwomechanizmy": podstawy/serwa.md
+      - "Czas i Przerwania": podstawy/czas_przerwania.md
 
-  - Sterowanie:
-      - Przegląd modułu: sterowanie/index.md
-      - "Czas i Przerwania (millis(), ISR)": sterowanie/czas_przerwania.md
-
-  - Protokoły:
+  - Protokoły komunikacyjne:
       - Przegląd modułu: protokoly/index.md
-      - "UART: loopback i komendy": protokoly/uart.md
-      - "Magistrala I2C (Akcelerometr)": protokoly/i2c.md
-      - "Magistrala SPI (Wyświetlacz TFT)": protokoly/spi.md
-      - "Transmisja jednoprzewodowa (WS2812B)": protokoly/onewire.md
+      - "UART": protokoly/uart.md
+      - "Magistrala I²C": protokoly/i2c.md
+      - "Magistrala SPI": protokoly/spi.md
+      - "Transmisja jednoprzewodowa": protokoly/onewire.md
 
-  - Systemy:
+  - Systemy operacyjne i pamięć:
       - Przegląd modułu: systemy/index.md
-      - "Ćw. 11-12 – FreeRTOS: Zadania i kolejki": systemy/freertos.md
-      - "Ćw. 13 – Deep Sleep: zarządzanie energią": systemy/deepsleep.md
+      - "Pamięć trwała (NVS)": systemy/nvs.md
+      - "Sleep: zarządzanie energią": systemy/deepsleep.md
+      - "FreeRTOS: Zadania, kolejki i notyfikacje": systemy/freertos.md
 
-  - Bezprzewodowe:
+  - Technologie bezprzewodowe:
       - Przegląd modułu: bezprzewodowe/index.md
-      - "👥 Ćw. 14 – ESP-NOW": bezprzewodowe/espnow.md
-      - "Ćw. 15-16 – Sieci i radio: Wi-Fi i BLE": bezprzewodowe/wifi_ble.md
+      - "ESP-NOW": bezprzewodowe/espnow.md
+      - "Sieci i radio: Wi-Fi i BLE": bezprzewodowe/wifi_ble.md
 
   - Materiały:
       - Kod wzorcowy: materialy/kod_wzorcowy.md
@@ -88,6 +87,12 @@ markdown_extensions:
       anchor_linenums: true
       line_spans: __span
   - pymdownx.inlinehilite
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 extra_css:
   - stylesheets/custom.css
