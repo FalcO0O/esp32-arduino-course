@@ -1,32 +1,29 @@
-# Podstawy programowania ESP32
+# Moduł: Podstawy 
 
-W tym module nauczysz się sterować elektroniką za pomocą kodu. Zaczniemy od najprostszych programów (bez żadnych komponentów), a następnie krok po kroku podłączymy diody, potencjometr i przyciski.
+W tym module poznasz najbardziej elementarne i absolutnie kluczowe koncepcje elektroniki cyfrowej oraz zamiany sygnałów otaczającego nas świata fizycznego na liczby w programie.
 
 ---
 
-## Wymagany sprzęt w tym module
+## ⚡ Czego się nauczysz w tej sekcji?
+Zaczniemy od wysłania pierwszych tekstów z urządzenia do komputera, przez zapalanie świateł i odczytywania wciśnięć (Sygnały Cyfrowe), aż po symulowanie płynności i czytanie potencjometru (Sygnały Analogowe).
 
-| Komponent | Od którego ćwiczenia |
+## 🛠️ Wymagany sprzęt w tym module
+Wszystkie opisane lekcje możesz zasymulować bezpośrednio w oknie swojej przeglądarki dzięki narzędziu **[Wokwi](https://wokwi.com/)**  - do każdego zadania dołączony jest przycisk wczytujący ten sam schemat i ten sam kod, na którym pracujemy!
+
+Jeśli chcesz pracować z fizycznym prądem, potrzebujesz:
+
+| Komponent | Do czego posłuży? |
 |:---|:---|
-| ESP32-C6 DevKit + kabel USB | Ćw. 1 |
-| Breadboard + przewody jumper | Ćw. 2 (Lekcja: Breadboard) |
-| LED × 2 + rezystor 220–330 Ω × 2 | Ćw. 2 |
-| Potencjometr 10 kΩ | Ćw. 4 |
-| Przycisk tact switch | Ćw. 5 |
+| **Płytka ESP32-C6 + kabel USB** | Serce naszych operacji i źródło zasilania |
+| **Płytka Stykowa (Breadboard) + kable (jumpery)** | Połączenie wszystkich elementów razem |
+| **2x dioda LED + 2x opornik (220/330 Ohm)** | Generowanie sygnału w świat fizyczny (Cyfrowe i PWM) |
+| **Przycisk (Tact Switch)** | Nasłuchiwanie świata zewnętrznego (Wejścia Cyfrowe) |
+| **Potencjometr (najlepiej 10kOhm)** | Płynne podawanie napięcia (Wejścia Analogowe ADC) |
 
 ---
 
-## Ćwiczenia w tym module
+## 🗺️ Spis Lekcji
+Masz już wszystko na biurku? Otwórz środowisko Arduino IDE i przejdź do pierwszej lekcji.
 
-| # | Strona | Czego się nauczysz |
-|:---:|:---|:---|
-| – | [Lekcja: Breadboard](breadboard.md) | Jak używać płytki stykowej |
-| 1 | [Serial: Hello World](serial.md) | Wysyłanie wiadomości do komputera |
-| 2 | [Wyjście cyfrowe: LED](cyfrowe.md) | Sterowanie diodą, `digitalWrite` |
-| 3 | [PWM: płynna jasność](pwm.md) | Modulacja sygnału, `analogWrite` |
-| 4 | [ADC: potencjometr](adc.md) | Odczyt napięcia analogowego |
-| 5 | [Wejście cyfrowe: przycisk](wejscie.md) | Odczyt stanu przycisku, drgania styków |
-| 6 | [Przerwania zewnętrzne](interrupty.md) | ISR, `attachInterrupt` |
-
-> [!TIP] Kolejność jest ważna
-> Lekcja o breadboardzie pojawia się przed Ćw. 2, bo od tego momentu będziesz montować układy na płytce stykowej. Zacznij od lekcji, zanim przejdziesz do ćwiczeń z komponentami.
+1. [Wstęp do IO: Cyfrowe wyjścia i wejścia](cyfrowe.md)
+2. [Sygnały: PWM i ADC](analogowe.md)

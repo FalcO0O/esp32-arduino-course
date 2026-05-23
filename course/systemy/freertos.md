@@ -6,6 +6,8 @@ W klasycznym Arduino cały program mieści się w jednej pętli `loop()`. Gdy ch
 
 ESP32-C6 natywnie działa pod kontrolą **FreeRTOS** – systemu operacyjnego czasu rzeczywistego, który rozwiązuje ten problem elegancko.
 
+🎯 **[Otwórz Wokwi z symulacją FreeRTOS - dwa niezależne zadania]** *(link zostanie zaktualizowany)*
+
 ---
 
 ## Czym jest FreeRTOS?
@@ -198,4 +200,27 @@ xQueueReceive(kolejkaDanych, &odebranaWartosc, portMAX_DELAY);
 ## Zadanie do samodzielnego wykonania
 
 1. Zmień rozmiar kolejki na `1` i zaobserwuj czy dane nadal płyną poprawnie.
-2. Zmodyfikuj `TaskNadajnik` tak, aby wysyłał dane **tylko gdy odczyt zmienił się o więcej niż 50** jednostek w stosunku do poprzedniego pomiaru.
+2. Zmodyfikuj `TaskNadajnik` tak, aby wysyłał dane **tylko gdy odczyt zmienił się o więcej niż 50** jednostek w stosunku do poprzedniego pomiaru. Mniej spamu to lżejsza praca dla odbiornika!
+
+<details>
+<summary>Pokaż rozwiązanie wyzwania</summary>
+
+```cpp
+void TaskNadajnik(void *pvParameters) {
+  int poprzedni_odczyt = -999;
+  
+  for (;;) {
+    int odczyt = analogRead(PIN_POT);
+
+    // Jesli roznica miedzy nowym a starym jest wieksza od 50:
+    if (abs(odczyt - poprzedni_odczyt) > 50) {
+        
+        xQueueSend(kolejkaDanych, &odczyt, portMAX_DELAY);
+        poprzedni_odczyt = odczyt;
+    }
+
+    vTaskDelay(pdMS_TO_TICKS(100));
+  }
+}
+```
+</details>

@@ -1,101 +1,64 @@
-# Teoria – czym jest mikrokontroler?
+# 1. Teoria – czym jest mikrokontroler?
 
-Zanim uruchomisz swój pierwszy program, warto zrozumieć z czym masz do czynienia. Ta strona wyjaśnia podstawowe pojęcia, które będą pojawiać się w całym kursie.
+Zanim zaczniesz pisać swój pierwszy kod i łączyć kabelki na płytce stykowej, warto zrozumieć, z jakim rodzajem komputera masz do czynienia. Choć mikrokontroler potrafi wykonywać programy podobnie jak Twój komputer czy smartfon, jego architektura, przeznaczenie oraz sposób działania są zupełnie inne.
 
 ---
 
-## 1. Komputer vs. mikrokontroler
+## Komputer (PC) vs. Mikrokontroler (MCU)
 
-Twój komputer to potężna maszyna: wielordzeniowy procesor, gigabajty RAM-u, system operacyjny zarządzający dziesiątkami procesów jednocześnie. Jest wszechstronny, ale też nieprzewidywalny – może się zawiesić, wymaga aktualizacji i pochłania wiele energii.
+Urządzenia, z których korzystamy na co dzień, takie jak komputery osobiste, serwery czy smartfony, opierają się na **procesorach aplikacyjnych (MPU)**. Ich zadaniem jest uruchamianie ogromnych, złożonych systemów operacyjnych (np. Windows, Linux, macOS, Android), które koordynują setki procesów w tym samym czasie.
 
-**Mikrokontroler (MCU)** to zupełnie inne podejście:
+**Mikrokontroler (MCU - Microcontroller Unit)** to z kolei kompletny miniaturowy komputer zintegrowany wewnątrz **jednego układu scalonego**. Zawiera on w sobie nie tylko rdzeń procesora, ale również pamięć RAM, pamięć nieulotną Flash (odpowiednik dysku twardego) oraz bloki peryferyjne (np. przetworniki cyfrowo-analogowe, kontrolery magistral komunikacyjnych) ułatwiające fizyczne innymi urządzeniami.
 
-| Cecha | Komputer (PC) | Mikrokontroler (MCU) |
+Poniższa tabela przedstawia kluczowe różnice między tymi dwoma światami:
+
+| Cecha | Komputer (PC / Smartfon) | Mikrokontroler (MCU / ESP32) |
 |:---|:---|:---|
-| Procesor | Wielordzeniowy, GHz | Jednoprocessor, MHz–GHz |
-| Pamięć RAM | Gigabajty | Kilobajty–Megabajty |
-| System operacyjny | Windows / Linux / macOS | Brak (lub RTOS) |
-| Zadania | Wiele jednocześnie | Jedno wgrane zadanie |
-| Czas reakcji | Nieprzewidywalny (ms–s) | Deterministyczny (µs–ms) |
-| Pobór energii | Dziesiątki–setki watów | Miliwarty–miliwarty |
-| Cena | Setki złotych | 5–50 zł |
-
-Mikrokontroler to **komputer na jednym układzie scalonym** – zawiera procesor, pamięć Flash (program), pamięć RAM (dane) i piny wejścia/wyjścia w jednej małej kostce.
-
-> [!NOTE] Po co w ogóle mikrokontrolery?
-> Są **małe, tanie i energooszczędne**. Termostat w piekarniku, sterownik ABS w samochodzie, inteligentna żarówka, rozrusznik serca – wszędzie tam, gdzie komputer byłby przerostem formy nad treścią, siedzi mikrokontroler.
+| **Budowa fizyczna** | Wiele osobnych układów na płycie głównej (CPU, RAM, Dysk, GPU) | Wszystko w jednym chipie (System on Chip - SoC) |
+| **Pamięć RAM** | Liczona w gigabajtach (GB) | Liczona w kilobajtach (KB) lub megabajtach (MB) |
+| **Pamięć na program** | Dyski SSD/HDD (setki GB / TB) | Pamięć Flash (zazwyczaj od kilkuset KB do kilku MB) |
+| **System operacyjny** | Złożony (Windows, Linux) zarządzający wieloma wątkami | Brak systemu (Bare Metal) lub bardzo lekki system czasu rzeczywistego (RTOS) |
+| **Przewidywalność czasu** | Niska (system operacyjny może na chwilę zamrozić program na rzecz aktualizacji lub antywirusa) | Całkowita deterministyczność (kod wykonuje się w ściśle określonym czasie) |
+| **Pobór energii** | Wysoki (od kilkunastu do setek watów) | Ekstremalnie niski (miliwaty w czasie pracy, mikrowaty w uśpieniu) |
+| **Koszt układu** | Od kilkuset do kilku tysięcy złotych | Od kilku do kilkudziesięciu złotych |
 
 ---
 
-## 2. ESP32-C6 – nasz układ
+## Po co w ogóle stosuje się mikrokontrolery?
 
-W tym kursie korzystamy z mikrokontrolera **ESP32-C6** firmy Espressif Systems. To nowoczesny układ oparty na otwartej architekturze **RISC-V**, który wyróżnia się bogatym zestawem peryferiów bezprzewodowych:
+Skoro tradycyjny komputer jest tak potężny, dlaczego nie stosuje się procesorów z rodziny Intel Core lub Apple Silicon w pralkach, lodówkach, pilotach telewizyjnych czy zabawkach? 
 
-- **Wi-Fi 6** (802.11ax)
-- **Bluetooth Low Energy 5.3**
-- **Zigbee / Thread** (protokoły Smart Home)
+Powody są trzy: **koszt, zużycie energii oraz niezawodność**.
 
-Oprócz łączności bezprzewodowej układ oferuje:
-- Przetwornik **ADC** (12-bit, odczyt napięcia analogowego)
-- Magistrale **SPI, I2C, UART, I2S**
-- Sprzętowy **PWM** na większości pinów GPIO
-- Wbudowany system operacyjny czasu rzeczywistego **FreeRTOS**
+1. **Efektywność kosztowa**: Koszt produkcji prostego mikrokontrolera jest niezwykle niski. Wyposażenie każdego domowego urządzenia AGD w pełnoprawny procesor aplikacyjny i kości pamięci DDR podniosłoby cenę tych urządzeń wielokrotnie, nie przynosząc żadnej korzyści użytkownikowi.
+2. **Zużycie energii**: Urządzenia Internetu Rzeczy (IoT), takie jak czujniki pogody, inteligentne liczniki wody czy bezprzewodowe przyciski smart home, muszą działać na jednej małej baterii przez miesiące lub lata. Mikrokontroler potrafi przejść w tryb głębokiego uśpienia (Deep Sleep), pobierając prąd rzędu kilku mikroamperów (µA), i wybudzać się tylko w momencie wykrycia zdarzenia. Tradycyjny komputer rozładowałby taką baterię w kilka minut.
+3. **Niezawodność i determinizm**: Mikrokontroler nie posiada dysku twardego, który może ulec uszkodzeniu, ani systemu operacyjnego, który może się zawiesić z powodu braku pamięci lub błędu w tle. Sterownik poduszek powietrznych w samochodzie nie może czekać, aż system operacyjny skończy instalować aktualizację w tle – musi podjąć decyzję o wystrzale w ciągu ułamka milisekundy. Mikrokontrolery gwarantują czas reakcji w czasie rzeczywistym.
 
 ---
 
-## 3. GPIO – piny wejścia/wyjścia
+## Podejście Bare Metal
 
-**GPIO** (*General-Purpose Input/Output*) to piny na obrzeżach płytki, przez które mikrokontroler komunikuje się ze światem zewnętrznym. Każdy pin można skonfigurować jako:
+W tym kursie rozpoczniemy naukę programowania w podejściu nazywanym **Bare Metal**. Oznacza to, że nasz mikrokontroler nie będzie obciążony żadnym systemem zarządzającym zasobami. 
 
-- **Wyjście (OUTPUT):** pin wysyła napięcie – steruje diodą, silnikiem, przekaźnikiem.
-- **Wejście (INPUT):** pin odczytuje napięcie – reaguje na przycisk, czujnik.
+Twój napisany program kompiluje się bezpośrednio do instrukcji procesora. Układ po włączeniu zasilania uruchamia funkcję konfiguracji, po czym rozpoczyna wykonywanie nieskończonej pętli, realizując instrukcje krok po kroku:
 
-### Sygnały cyfrowe i analogowe
+```cpp
+void setup() {
+  // Wykonaj raz przy starcie systemu
+}
 
-**Sygnał cyfrowy** zna tylko dwa stany:
+void loop() {
+  // Wykonuj cyklicznie w pętli nieskończonej
+}
+```
 
-- `HIGH` – napięcie 3,3 V (logiczna jedynka)
-- `LOW` – napięcie 0 V, masa (logiczne zero)
-
-**Sygnał analogowy** może przyjmować dowolną wartość w zakresie 0–3,3 V. Przetwornik ADC zamienia to napięcie na liczbę 0–4095 (rozdzielczość 12-bitowa).
-
-> [!IMPORTANT] Napięcie logiczne: 3,3 V!
-> ESP32-C6 pracuje na napięciu **3,3 V**, nie 5 V jak klasyczne Arduino UNO. Podanie 5 V na pin GPIO **uszkodzi układ**. Zawsze sprawdzaj napięcie modułów przed podłączeniem.
-
----
-
-## 4. Protokoły komunikacyjne
-
-Gdy chcemy podłączyć zewnętrzny czujnik lub moduł, używamy standaryzowanych protokołów komunikacyjnych. W tym kursie poznasz trzy najważniejsze:
-
-### UART (*Universal Asynchronous Receiver-Transmitter*)
-- **Przewody:** TX (nadajnik) + RX (odbiornik) + GND
-- **Zasada:** Asynchroniczna – brak sygnału zegarowego, obie strony muszą umówić się na prędkość (*baud rate*).
-- **Zastosowanie:** Komunikacja z komputerem (Serial Monitor), moduły GPS, Bluetooth Classic.
-
-### I2C (*Inter-Integrated Circuit*)
-- **Przewody:** SDA (dane) + SCL (zegar) + GND + VCC
-- **Zasada:** Synchroniczna – jeden master steruje zegarem. Wiele urządzeń (każde z unikalnym adresem) na jednej parze przewodów.
-- **Zastosowanie:** Czujniki (temperatury, ruchu, ciśnienia), małe wyświetlacze.
-
-### SPI (*Serial Peripheral Interface*)
-- **Przewody:** MOSI + MISO + SCK + CS + GND + VCC
-- **Zasada:** Synchroniczna, pełnodupleksowa – dane płyną w obu kierunkach jednocześnie. Szybsza niż I2C.
-- **Zastosowanie:** Wyświetlacze graficzne, karty pamięci SD, szybkie przetworniki.
+Jest to podejście niesamowicie wydajne, przewidywalne i proste do zrozumienia na start. W dalszej części kursu poznamy jednak inne podejście, które ułatwia zarządzanie bardziej skomplikowanymi projektami.
 
 ---
 
-## 5. Framework Arduino
-
-**Arduino** to nie tylko płytka – to trzy różne rzeczy:
-
-| Składnik | Co to jest |
-|:---|:---|
-| **Płytka** | Fizyczny sprzęt (Arduino UNO, ESP32 DevKit…) |
-| **IDE** | Program na komputerze do pisania i wgrywania kodu |
-| **Framework** | Biblioteka funkcji w C++ upraszczająca programowanie MCU |
-
-W tym kursie korzystamy z **Arduino IDE** jako narzędzia i z **Arduino Framework** jako zestawu gotowych funkcji (`pinMode`, `digitalWrite`, `Serial.println`...), ale na sprzęcie **ESP32-C6** – nie na płytce Arduino.
-
-> [!NOTE] Debugowanie
-> Mikrokontroler nie ma monitora. Jedynym wbudowanym narzędziem debugowania jest wysyłanie tekstu przez port szeregowy (`Serial.println()`). To tzw. *printf debugging* i jest w tym kursie twoim najlepszym przyjacielem.
+> [!NOTE] Ciekawostka: Czy mikrokontroler może mieć system operacyjny?
+> Tak! Bardziej zaawansowane układy (takie jak nasz ESP32-C6) potrafią uruchamiać systemy operacyjne, jednak nie przypominają one systemów Windows czy macOS z interfejsem graficznym. 
+> 
+> Są to tzw. **systemy czasu rzeczywistego (RTOS - Real-Time Operating System)**. Są one ekstremalnie lekkie i służą głównie do zarządzania wątkami oraz planowania zadań tak, by procesor mógł płynnie przełączać się między wieloma operacjami w tle (np. jednoczesnym odczytem czujników i komunikacją Wi-Fi). 
+> 
+> W module **Systemy** dowiesz się, dlaczego RTOS jest tak pomocny i jak z niego w pełni korzystać. Na razie skupimy się w pełni na klasycznym podejściu Bare Metal.

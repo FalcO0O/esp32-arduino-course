@@ -1,35 +1,29 @@
-# Technologie bezprzewodowe
+# Moduł: Bezprzewodowe (IoT)
 
-ESP32-C6 to jeden z niewielu mikrokontrolerów z **pełnym zestawem** nowoczesnych technologii bezprzewodowych w jednym układzie. Ten moduł pokazuje jak z nich korzystać.
+Wchodzimy w ostatni, najbardziej zaawansowany i najbardziej ekscytujący etap pracy z mikrokontrolerami ESP. To tutaj dowiadujesz się dlaczego te konkretnie kostki zrewolucjonizowały świat hobbystów na całym globie!
+
+ESP32-C6 to jeden z niewielu układów scalonych z **pełnym zestawem** nowoczesnych technologii bezprzewodowych wlutowanych prosto w jedną małą płytkę, zawierającą zarówno silne Wi-Fi jak i nowoczesny, energooszczędny Bluetooth.
 
 ---
 
-## Wymagany sprzęt
+## ⚡ Czego się nauczysz w tej sekcji?
+Wykorzystasz potęgę wbudowanego radia. Najpierw zbudujemy najszybszą, bezpośrednią sieć układów gadających między sobą (w czasie poniżej kilku milisekund z odległości kilkuset metrów!) za pomocą technologii ESP-NOW.
+Następnie otworzymy nasz mikrokontroler na klasyczny internet routerów Wi-Fi i sprawimy, by pobierał wiedzę z globalnej bazy danych. Na sam koniec zmienimy ESP32 w serwer BLE udostępniający usługi dla Twojego telefonu.
 
-| Komponent | Ćwiczenie |
+## 🛠️ Wymagany sprzęt w tym module
+Funkcje bezprzewodowe silnie polegają na łączności z wieloma urządzeniami. O ile symulowanie Wi-Fi w Wokwi jest do pewnego stopnia możliwe, praca w tym module da Ci największą satysfakcję w otaczającym Cię, namacalnym świecie.
+
+Potrzebujesz:
+| Komponent | Do czego posłuży? |
 |:---|:---|
-| Smartfon lub laptop | Ćw. 14 (Wi-Fi) |
-| Smartfon z nRF Connect | Ćw. 15 (BLE) |
-| **Druga płytka ESP32-C6** 👥 | **Ćw. 13 (ESP-NOW)** |
+| **Druga Płytka ESP32-C6** | Konieczna do przetestowania wysyłania komend ESP-NOW (od biedy przetestujesz to łącząc się z płytką sąsiada z ławki!) |
+| **Twój Telefon / Laptop** | Konieczny by połączyć się z siecią WebServera oraz skanować usługi Bluetooth z aplikacji (nRF Connect) |
 
 ---
 
-## Ćwiczenia
+## 🗺️ Spis Lekcji
 
-| # | Strona | Technologia | Wymagania |
-|:---:|:---|:---:|:---|
-| 13 | [ESP-NOW: komunikacja P2P](espnow.md) | ESP-NOW | 👥 2 płytki |
-| 14 | [Wi-Fi: serwer i REST API](wifi.md) | Wi-Fi | Smartfon / laptop |
-| 15 | [Bluetooth Low Energy](ble.md) | BLE | 📱 Smartfon |
-
----
-
-## Porównanie technologii
-
-| | ESP-NOW | Wi-Fi AP | Wi-Fi STA | BLE |
-|:---|:---:|:---:|:---:|:---:|
-| Zasięg | ~200 m | ~30–50 m | Przez router | ~10–30 m |
-| Router potrzebny | ❌ | ❌ | ✅ | ❌ |
-| Max przepustowość | 1 Mb/s | 150 Mb/s | 150 Mb/s | ~1 Mb/s |
-| Zużycie energii | Bardzo niskie | Wysokie | Wysokie | Niskie |
-| Urządzenia klienckie | ESP32 | Każde Wi-Fi | — | BLE (smartfon) |
+| # | Temat | Technologie |
+|:---:|:---|:---|
+| 13 | [ESP-NOW: komunikacja P2P](espnow.md) | Komunikacja radiowa omijająca domowy router |
+| 14-15 | [Wi-Fi i BLE: Serwery i Klient](wifi_ble.md) | Wystawianie strony WWW oraz Serwera Bluetooth |

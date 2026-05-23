@@ -1,0 +1,1800 @@
+
+<!doctype html>
+<html lang="pl" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Kurs ESP32-C6 z Arduino IDE – od podstaw do systemów bezprzewodowych">
+      
+      
+        <meta name="author" content="AGH-AIOTA">
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../sprzet/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>1. Teoria – czym jest mikrokontroler - Kurs Programowania Mikrokontrolerów</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Outfit";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-teoria-czym-jest-mikrokontroler" class="md-skip">
+          Przejdź do treści
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Nagłówek">
+    <a href="../.." title="Kurs Programowania Mikrokontrolerów" class="md-header__button md-logo" aria-label="Kurs Programowania Mikrokontrolerów" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kurs Programowania Mikrokontrolerów
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1. Teoria – czym jest mikrokontroler
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="deep-orange"  aria-label="Przełącz na tryb ciemny"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Przełącz na tryb ciemny" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="deep-orange"  aria-label="Przełącz na tryb jasny"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Przełącz na tryb jasny" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Szukaj" placeholder="Szukaj" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Szukaj">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Wyczyść" aria-label="Wyczyść" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicjowanie wyszukiwania
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Zakładki" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Start
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../podstawy/" class="md-tabs__link">
+          
+  
+  
+  Podstawy
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sterowanie/" class="md-tabs__link">
+          
+  
+  
+  Sterowanie
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../protokoly/" class="md-tabs__link">
+          
+  
+  
+  Protokoły
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../systemy/" class="md-tabs__link">
+          
+  
+  
+  Systemy
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../bezprzewodowe/" class="md-tabs__link">
+          
+  
+  
+  Bezprzewodowe
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../materialy/kod_wzorcowy/" class="md-tabs__link">
+          
+  
+  
+  Materiały
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Nawigacja" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Kurs Programowania Mikrokontrolerów" class="md-nav__button md-logo" aria-label="Kurs Programowania Mikrokontrolerów" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Kurs Programowania Mikrokontrolerów
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Start
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mapa kursu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Teoria – czym jest mikrokontroler
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Teoria – czym jest mikrokontroler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Spis treści">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Spis treści
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#komputer-pc-vs-mikrokontroler-mcu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Komputer (PC) vs. Mikrokontroler (MCU)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#po-co-w-ogole-stosuje-sie-mikrokontrolery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Po co w ogóle stosuje się mikrokontrolery?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programowanie-bezposrednie-bare-metal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programowanie bezpośrednie (Bare Metal)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kiedy-wkracza-rtos-real-time-operating-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kiedy wkracza RTOS (Real-Time Operating System)?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kiedy wkracza RTOS (Real-Time Operating System)?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dlaczego-warto-uzywac-rtos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dlaczego warto używać RTOS?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprzet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Płytka ESP32-C6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Konfiguracja środowiska i Wokwi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Podstawy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Podstawy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../podstawy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Przegląd modułu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../podstawy/cyfrowe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ćw. 1-3 – Wstęp do IO: Cyfrowe wyjścia i wejścia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../podstawy/analogowe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ćw. 4-5 – Sygnały: PWM i ADC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sterowanie
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sterowanie
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sterowanie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Przegląd modułu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sterowanie/czas_przerwania/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ćw. 6-7 – Czas i Przerwania (millis(), ISR)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protokoły
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protokoły
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protokoly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Przegląd modułu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protokoly/uart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ćw. 8 – UART: loopback i komendy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protokoly/i2c_spi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ćw. 9-10 – Magistrale cyfrowe: I2C i SPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Systemy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Systemy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Przegląd modułu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemy/freertos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ćw. 11-12 – FreeRTOS: Zadania i kolejki
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemy/deepsleep/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ćw. 13 – Deep Sleep: zarządzanie energią
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bezprzewodowe
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bezprzewodowe
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bezprzewodowe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Przegląd modułu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bezprzewodowe/espnow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    👥 Ćw. 14 – ESP-NOW
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bezprzewodowe/wifi_ble/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ćw. 15-16 – Sieci i radio: Wi-Fi i BLE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materiały
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Materiały
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materialy/kod_wzorcowy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kod wzorcowy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materialy/pinout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pinout ESP32-C6 DevKit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../materialy/zasoby/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zasoby i dokumentacja
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Spis treści">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Spis treści
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#komputer-pc-vs-mikrokontroler-mcu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Komputer (PC) vs. Mikrokontroler (MCU)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#po-co-w-ogole-stosuje-sie-mikrokontrolery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Po co w ogóle stosuje się mikrokontrolery?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#programowanie-bezposrednie-bare-metal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programowanie bezpośrednie (Bare Metal)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kiedy-wkracza-rtos-real-time-operating-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kiedy wkracza RTOS (Real-Time Operating System)?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kiedy wkracza RTOS (Real-Time Operating System)?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dlaczego-warto-uzywac-rtos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dlaczego warto używać RTOS?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="1-teoria-czym-jest-mikrokontroler">1. Teoria – czym jest mikrokontroler?</h1>
+<p>Zanim zaczniesz pisać swój pierwszy kod i łączyć kabelki na płytce stykowej, warto zrozumieć, z jakim rodzajem komputera masz do czynienia. Choć mikrokontroler potrafi wykonywać programy podobnie jak Twój komputer czy smartfon, jego architektura, przeznaczenie oraz sposób działania są zupełnie inne.</p>
+<hr />
+<h2 id="komputer-pc-vs-mikrokontroler-mcu">Komputer (PC) vs. Mikrokontroler (MCU)</h2>
+<p>Urządzenia, z których korzystamy na co dzień (takie jak komputery osobiste, serwery czy smartfony), opierają się na <strong>procesorach aplikacyjnych (MPU)</strong>. Ich zadaniem jest uruchamianie ogromnych, złożonych systemów operacyjnych (np. Windows, Linux, macOS, Android), które koordynują setki procesów w tym samym czasie.</p>
+<p><strong>Mikrokontroler (MCU - Microcontroller Unit)</strong> to z kolei kompletny miniaturowy komputer zintegrowany wewnątrz <strong>jednego układu scalonego</strong> (tzw. jednoukładowy mikrokomputer). Zawiera on w sobie nie tylko rdzeń procesora, ale również pamięć RAM, pamięć nieulotną Flash (odpowiednik dysku twardego) oraz bloki peryferyjne (np. przetworniki cyfrowo-analogowe, kontrolery magistral komunikacyjnych) ułatwiające fizyczne sterowanie innymi urządzeniami.</p>
+<p>Poniższa tabela przedstawia kluczowe różnice między tymi dwoma światami:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Cecha</th>
+<th style="text-align: left;">Komputer (PC / Smartfon)</th>
+<th style="text-align: left;">Mikrokontroler (MCU / ESP32)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Budowa fizyczna</strong></td>
+<td style="text-align: left;">Wiele osobnych układów na płycie głównej (CPU, RAM, Dysk, GPU)</td>
+<td style="text-align: left;">Wszystko w jednym chipie (System on Chip - SoC)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Pamięć RAM</strong></td>
+<td style="text-align: left;">Liczona w gigabajtach (GB)</td>
+<td style="text-align: left;">Liczona w kilobajtach (KB) lub megabajtach (MB)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Pamięć na program</strong></td>
+<td style="text-align: left;">Dyski SSD/HDD (setki GB / TB)</td>
+<td style="text-align: left;">Pamięć Flash (zazwyczaj od kilkuset KB do kilku MB)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>System operacyjny</strong></td>
+<td style="text-align: left;">Złożony (Windows, Linux) zarządzający wieloma wątkami</td>
+<td style="text-align: left;">Brak systemu (Bare Metal) lub bardzo lekki system czasu rzeczywistego (RTOS)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Przewidywalność czasu</strong></td>
+<td style="text-align: left;">Niska (system operacyjny może na chwilę zamrozić program na rzecz aktualizacji lub antywirusa)</td>
+<td style="text-align: left;">Całkowita deterministyczność (kod wykonuje się zawsze w ściśle określonym czasie)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Pobór energii</strong></td>
+<td style="text-align: left;">Wysoki (od kilkunastu do setek watów)</td>
+<td style="text-align: left;">Ekstremalnie niski (miliwaty w czasie pracy, mikrowaty w uśpieniu)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Koszt układu</strong></td>
+<td style="text-align: left;">Od kilkuset do kilku tysięcy złotych</td>
+<td style="text-align: left;">Od kilku do kilkudziesięciu złotych</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="po-co-w-ogole-stosuje-sie-mikrokontrolery">Po co w ogóle stosuje się mikrokontrolery?</h2>
+<p>Skoro tradycyjny komputer jest tak potężny, dlaczego nie wsadzamy procesorów z rodziny Intel Core lub Apple Silicon do pralek, lodówek, pilotów telewizyjnych czy zabawek? </p>
+<p>Powody są trzy: <strong>koszt, zużycie energii oraz niezawodność</strong>.</p>
+<ol>
+<li><strong>Efektywność kosztowa</strong>: Produkcja prostego mikrokontrolera kosztuje grosze. Wyposażenie każdego domowego urządzenia AGD w pełnoprawny procesor aplikacyjny i kości pamięci DDR podniosłoby cenę tych urządzeń wielokrotnie, nie przynosząc żadnej korzyści użytkownikowi.</li>
+<li><strong>Zużycie energii</strong>: Urządzenia Internetu Rzeczy (IoT), takie jak czujniki pogody, inteligentne liczniki wody czy bezprzewodowe przyciski smart home, muszą działać na jednej małej baterii przez miesiące lub lata. Mikrokontroler potrafi przejść w tryb głębokiego uśpienia (Deep Sleep), pobierając prąd rzędu kilku mikroamperów (µA), i wybudzać się tylko w momencie wykrycia zdarzenia. Tradycyjny komputer rozładowałby taką baterię w kilka minut.</li>
+<li><strong>Niezawodność i determinizm</strong>: Mikrokontroler nie posiada dysku twardego, który może ulec uszkodzeniu, ani systemu operacyjnego, który może się zawiesić z powodu braku pamięci lub błędu w tle. Sterownik poduszek powietrznych w samochodzie nie może czekać, aż system operacyjny skończy instalować aktualizację w tle – musi podjąć decyzję o wystrzale w ciągu ułamka milisekundy. Mikrokontrolery gwarantują czas reakcji w czasie rzeczywistym.</li>
+</ol>
+<hr />
+<h2 id="programowanie-bezposrednie-bare-metal">Programowanie bezpośrednie (Bare Metal)</h2>
+<p>Większość tradycyjnych, prostych kursów Arduino uczy podejścia zwanego <strong>Bare Metal</strong> (programowanie "gołego metalu"). W tym podejściu mikrokontroler nie posiada żadnego systemu zarządzającego zasobami. </p>
+<p>Twój kod kompiluje się bezpośrednio do instrukcji procesora, a układ po włączeniu zasilania uruchamia funkcję konfiguracji, po czym wpada w nieskończoną pętlę i wykonuje linijka po linijce instrukcje, które mu zadałeś:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="c1">// Wykonaj raz przy starcie systemu</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="c1">// Wykonuj w kółko bez przerwy linijka po linijce</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Jest to podejście niesamowicie wydajne i proste do zrozumienia na start. Dopóki Twój program ma tylko migać diodą i czytać temperaturę z jednego czujnika – sprawdza się idealnie. Problemy pojawiają się, gdy chcemy wykonywać wiele niezależnych operacji o różnych interwałach czasowych jednocześnie, o czym przekonasz się w module <strong>Sterowanie</strong>.</p>
+<hr />
+<h2 id="kiedy-wkracza-rtos-real-time-operating-system">Kiedy wkracza RTOS (Real-Time Operating System)?</h2>
+<p>Gdy projekt rośnie (na przykład budujesz robota, który musi jednocześnie balansować na dwóch kołach, odczytywać dane z radaru laserowego, obsługiwać komunikację bezprzewodową z kontrolerem i wyświetlać stan baterii na ekranie), tradycyjna pętla <code>loop()</code> przestaje wystarczać. Zablokowanie programu choćby na moment uniemożliwi robotowi utrzymanie pionu i doprowadzi do jego upadku.</p>
+<p>W takich sytuacjach na mikrokontrolerach uruchamia się <strong>RTOS</strong> – lekki system operacyjny czasu rzeczywistego. </p>
+<h3 id="dlaczego-warto-uzywac-rtos">Dlaczego warto używać RTOS?</h3>
+<ul>
+<li><strong>Podział na zadania (Tasks)</strong>: Zamiast jednej pętli <code>loop()</code>, tworzysz wiele mniejszych pętli działających niezależnie (np. jedna pętla pilnuje tylko balansu robota, druga tylko komunikacji).</li>
+<li><strong>Planista (Scheduler)</strong>: System operacyjny dba o to, by przełączać procesor między zadaniami tak szybko (tysiące razy na sekundę), że dla ludzkiego oka wyglądają one, jakby działy się w tym samym czasie.</li>
+<li><strong>Priorytety</strong>: Możesz przypisać zadaniu pilnowania balansu najwyższy priorytet, dzięki czemu procesor przerwie wysyłanie danych przez Wi-Fi, jeśli robot zacznie tracić stabilność.</li>
+<li><strong>Czas rzeczywisty</strong>: RTOS gwarantuje determinizm czasowy – kluczowe zadania otrzymają czas procesora dokładnie wtedy, kiedy go potrzebują, w ułamku mikrosekundy.</li>
+</ul>
+<p>Co ciekawe, w przypadku układów takich jak <strong>ESP32-C6</strong>, pod spodem środowiska Arduino <strong>zawsze działa wbudowany system FreeRTOS</strong>! Nawet jeśli piszesz prostą pętlę <code>loop()</code>, jest ona uruchamiana jako pojedyncze zadanie w tym systemie. W module <strong>Systemy</strong> nauczysz się w pełni korzystać z jego potęgi.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Powrót do góry
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Stopka" >
+        
+          
+          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Poprzednia strona: Mapa kursu">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Poprzednia strona
+              </span>
+              <div class="md-ellipsis">
+                Mapa kursu
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../sprzet/" class="md-footer__link md-footer__link--next" aria-label="Następna strona: 2. Płytka ESP32-C6">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Następna strona
+              </span>
+              <div class="md-ellipsis">
+                2. Płytka ESP32-C6
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.path", "navigation.footer", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Skopiowano do schowka", "clipboard.copy": "Kopiuj do schowka", "search.result.more.one": "1 wi\u0119cej na tej stronie", "search.result.more.other": "# wi\u0119cej na tej stronie", "search.result.none": "Brak wynik\u00f3w wyszukiwania", "search.result.one": "Wyniki wyszukiwania: 1", "search.result.other": "Wyniki wyszukiwania: #", "search.result.placeholder": "Zacznij pisa\u0107, aby szuka\u0107", "search.result.term.missing": "Brak", "select.version": "Wybierz wersj\u0119"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

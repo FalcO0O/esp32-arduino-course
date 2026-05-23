@@ -1,34 +1,34 @@
 # Protokoły komunikacyjne
 
-W tym module podłączysz zewnętrzne czujniki i moduły przez standaryzowane magistrale komunikacyjne. Każdy protokół ma inne zastosowanie i charakterystykę.
+W tym module dowiesz się, w jaki sposób urządzenia cyfrowe wymieniają ze sobą dane oraz jak podłączać zewnętrzne układy scalone.
 
 ---
 
-## Wymagany sprzęt w tym module
+## ⚡ Czego się nauczysz w tej sekcji?
+Poznasz cztery kluczowe protokoły wymiany danych stosowane w systemach wbudowanych:
 
-| Komponent | Ćwiczenie |
+1. **UART** – dwukierunkowy interfejs szeregowy, idealny do bezpośredniej komunikacji punkt-punkt (np. mikrokontroler-komputer).
+2. **I<sup>2</sup>C** – magistrala szeregowa o niskiej złożoności, wymagająca jedynie dwóch linii sygnałowych (SDA, SCL), pozwalająca na równoległe podłączenie wielu urządzeń do jednego kontrolera.
+3. **SPI** – szybki, synchroniczny interfejs komunikacyjny, stosowany w aplikacjach wymagających wysokiej przepustowości (np. przy obsłudze wyświetlaczy graficznych lub pamięci zewnętrznych).
+4. **Protokoły jednoprzewodowe (One-Wire / Single-Wire)** – techniki przesyłania informacji za pomocą tylko jednej linii sygnałowej.
+
+## 🛠️ Wymagany sprzęt w tym module
+Wszystkie opisane lekcje i eksperymenty możesz także zasymulować bezpośrednio w przeglądarce dzięki narzędziu **Wokwi**.
+
+Dla praktyki na żywym sprzęcie potrzebujesz:
+
+| Komponent | Do czego posłuży? |
 |:---|:---|
-| Moduł MPU6050 + przewody jumper | Ćw. 7 (I2C) |
-| Dwa przewody jumper (loopback) | Ćw. 8 (UART) |
-| Wyświetlacz OLED SSD1306 SPI + przewody | Ćw. 9 (SPI) |
+| **Płytka ESP32-C6 + 1 przewód połączeniowy** | Realizacja testu pętli zwrotnej (loopback) poprzez połączenie pinu nadawczego (TX) z odbiorczym (RX) |
+| **Czujnik Akcelerometru (np. MPU6050)** | Komunikacja po magistrali I<sup>2</sup>C |
+| **Wyświetlacz Graficzny TFT ILI9341 SPI** | Komunikacja po magistrali SPI |
+| **Wbudowana dioda ARGB WS2812B** | Prezentacja działania protokołu jednoprzewodowego bez dodatkowego okablowania |
 
 ---
 
-## Ćwiczenia
+## Spis Lekcji
 
-| # | Strona | Magistrala | Czego się nauczysz |
-|:---:|:---|:---:|:---|
-| 7 | [I2C: czujnik MPU6050](i2c.md) | I2C | Akcelerometr, żyroskop, biblioteki |
-| 8 | [UART: loopback i komendy](uart.md) | UART | Komunikacja szeregowa, parsowanie |
-| 9 | [SPI: wyświetlacz OLED](spi.md) | SPI | Grafika, tekst na wyświetlaczu |
-
----
-
-## Porównanie protokołów
-
-| | I2C | UART | SPI |
-|:---|:---:|:---:|:---:|
-| Liczba przewodów | 2 (SDA+SCL) | 2 (TX+RX) | 4+ (MOSI+MISO+SCK+CS) |
-| Urządzeń na bus | Wiele (adresy) | 2 (point-to-point) | Wiele (CS per device) |
-| Szybkość | Średnia (400 kHz) | Średnia | Wysoka (MHz) |
-| Złożoność | Niska | Najniższa | Średnia |
+1. [UART: pętla zwrotna i komendy](uart.md)
+2. [Magistrala I<sup>2</sup>C: komunikacja z akcelerometrem](i2c.md)
+3. [Magistrala SPI: obsługa wyświetlacza TFT](spi.md)
+4. [Transmisja jednoprzewodowa i wbudowana dioda ARGB (WS2812B)](onewire.md)

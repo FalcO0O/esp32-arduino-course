@@ -1,155 +1,199 @@
-# Ćwiczenie 9 – SPI: wyświetlacz OLED SSD1306
+# Magistrala SPI: obsługa wyświetlacza TFT
 
-**Potrzebujesz:** 🔌 Wyświetlacz OLED SSD1306 (wersja SPI, 128×64), breadboard, przewody jumper.
+Magistrala I<sup>2</sup>C, choć bardzo oszczędna pod kątem wyprowadzeń, posiada poważne ograniczenie: prędkość. Przy przesyłaniu dużych ilości danych, takich jak całe ramki obrazu dla kolorowych wyświetlaczy graficznych czy dane z kart pamięci SD, I<sup>2</sup>C okazuje się zbyt wolne. Rozwiązaniem tego problemu jest standard **SPI**.
 
-**SPI** (*Serial Peripheral Interface*) to szybka, synchroniczna magistrala do komunikacji z urządzeniami peryferyjnymi. W odróżnieniu od I2C jest pełnodupleksowa – dane mogą płynąć w obu kierunkach jednocześnie, co zapewnia wyższą przepustowość.
-
----
-
-## Magistrala SPI – sygnały
-
-| Pin | Nazwa pełna | Kierunek | Opis |
-|:---|:---|:---:|:---|
-| **SCK** | Serial Clock | Master→Slave | Sygnał zegarowy |
-| **MOSI** | Master Out Slave In | Master→Slave | Dane od ESP32 do urządzenia |
-| **MISO** | Master In Slave Out | Slave→Master | Dane od urządzenia do ESP32 |
-| **CS** | Chip Select | Master→Slave | Wybór urządzenia (LOW = aktywne) |
-
-SSD1306 nie wysyła danych do hosta, więc **MISO nie jest używany**. Wyświetlacz wymaga dodatkowo:
-- **DC** (*Data/Command*) – rozróżnia czy bajt to dane graficzne czy komenda sterująca
-- **RES** (*Reset*) – sprzętowy reset wyświetlacza
+**SPI** (*Serial Peripheral Interface*) to szybki, synchroniczny interfejs komunikacyjny pracujący w trybie **Full-Duplex** (pełen dupleks). Wymaga większej liczby przewodów (zazwyczaj 4 linie sygnałowe), lecz dzięki aktywnemu sterowaniu wyjściami (**Push-Pull**) oraz sprzętowemu adresowaniu pozwala osiągać prędkości rzędu kilkudziesięciu megabitów na sekundę (MHz).
 
 ---
 
-## Podłączenie SSD1306 (SPI)
+## 🔌 Fizyka SPI: Aktywne Sterowanie Push-Pull
 
-```
-SSD1306 Pin    ESP32-C6 DevKit
+W przeciwieństwie do otwartego drenu stosowanego w standardzie I<sup>2</sup>C, linie danych SPI są sterowane aktywnie w konfiguracji **Push-Pull** (symetryczne stopnie wyjściowe tranzystorowe, które aktywnie wymuszają na linii zarówno stan niski $0\text{ V}$, jak i wysoki $3.3\text{ V}$).
+* **Zaleta**: Bardzo krótkie czasy narastania i opadania sygnału, co umożliwia stabilne taktowanie zegarem o częstotliwościach nawet $40\text{ MHz} - 80\text{ MHz}$.
+* **Wada**: Brak możliwości łączenia wielu wyjść ze sobą bez użycia dedykowanej linii wyboru odbiornika.
+
+#### Cztery linie sygnałowe SPI:
+* **SCK** (*Serial Clock*) – sygnał zegarowy generowany przez kontroler (ESP32).
+* **MOSI** (*Master Out Slave In*) – dane przesyłane z kontrolera do odbiornika (wyjście z ESP32).
+* **MISO** (*Master In Slave Out*) – dane przesyłane z odbiornika do kontrolera (wejście do ESP32).
+* **CS / SS** (*Chip Select / Slave Select*) – linia wyboru odbiornika. Zazwyczaj stan aktywny to stan niski (LOW). Gdy linia CS jest w stanie wysokim (HIGH), odbiornik ignoruje sygnały na magistrali i odłącza swoją linię MISO w stan wysokiej impedancji (Hi-Z), umożliwiając innym układom korzystanie z tych samych linii danych.
+
+![SPI_diagram](../img/protokoly/spi.png){ align=center }
+
+---
+
+## 📦 Sprzęt SPI w ESP32-C6
+
+ESP32-C6 integruje w sobie kontrolery SPI. Jeden z nich jest zarezerwowany dla komunikacji z wewnętrzną/zewnętrzną pamięcią Flash (SPI0/SPI1), natomiast drugi (**SPI2 / General Purpose SPI**) jest w pełni dostępny dla użytkownika. Może on pracować z taktowaniem do $80\text{ MHz}$, a jego piny mogą być dowolnie mapowane za pomocą GPIO Matrix.
+
+---
+
+## 🎯 Ćwiczenie Praktyczne: Wyświetlacz TFT ILI9341
+
+W tym ćwiczeniu użyjemy wyświetlacza graficznego TFT (320x240 pikseli, kolor 16-bit RGB) sterowanego układem **ILI9341**.
+
+Ponieważ ekran jedynie przyjmuje dane o kolorach pikseli i nie odsyła informacji zwrotnych do ESP32, nie podłączamy linii MISO. Dodatkowo wyświetlacz wymaga dwóch pinów pomocniczych:
+* **RESET (RES)** – służący do sprzętowego resetu sterownika ekranu.
+* **Data/Command (D/C)** – określa typ wysyłanych danych: stan niski (LOW) oznacza komendę konfiguracyjną, a wysoki (HIGH) przesyłanie pikseli obrazu.
+
+🎯 **[Otwórz Wokwi z podłączonym ekranem TFT ILI9341]** *(link zostanie zaktualizowany)*
+
+### Podłączenie
+Połącz wyświetlacz z mikrokontrolerem według tabeli:
+
+```text
+ILI9341 (SPI)   ESP32-C6
 ──────────────────────────────
-VCC   ────────  3V3
+VCC   ────────  3.3 V
 GND   ────────  GND
-SCK   ────────  GPIO6   (zegar SPI)
-SDA/MOSI ─────  GPIO7   (dane do wyświetlacza)
-RES   ────────  GPIO4   (reset)
-DC    ────────  GPIO3   (data/command)
-CS    ────────  GPIO2   (chip select)
+CS    ────────  GPIO2
+RESET ────────  GPIO4
+D/C   ────────  GPIO3
+SDI   ────────  GPIO7 (MOSI)
+SCK   ────────  GPIO6 (SCK)
+LED   ────────  3.3 V (Zasilanie podświetlenia)
 ```
 
-> [!NOTE] Piny SPI można zmienić
-> ESP32-C6 obsługuje mapowanie SPI na dowolne GPIO. Piny powyżej to przykład – zmień stałe w kodzie jeśli masz inne podłączenie. Zachowaj tylko logikę: CS, DC i RES mogą być dowolnymi GPIO cyfrowymi.
+> [!NOTE] Instalacja biblioteki
+> W Arduino IDE pobierz i zainstaluj z Menedżera Bibliotek dwie pozycje: **Adafruit GFX Library** (podstawowe rysowanie kształtów) oraz **Adafruit ILI9341** (sterownik konkretnego ekranu).
 
----
-
-## Instalacja bibliotek
-
-1. **Szkic → Zarządzaj bibliotekami…**
-2. Zainstaluj: **Adafruit SSD1306** (autor: Adafruit Industries)
-3. Zainstaluj (jeśli wymagana): **Adafruit GFX Library** (autor: Adafruit Industries)
-
----
-
-## Kod: tekst i grafika na OLED
+### Kod programu: Animowany pasek postępu
+Poniższy kod konfiguruje ekran SPI i w pętli `loop` rysuje przesuwający się biały pasek. W przeciwieństwie do małych ekranów monochromatycznych, sterownik ILI9341 zapisuje piksele bezpośrednio do pamięci GRAM wyświetlacza – każda funkcja rysująca natychmiast zmienia stan fizyczny matrycy, bez konieczności wywoływania metody `display()`.
 
 ```cpp
 #include <SPI.h>
 #include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+#include <Adafruit_ILI9341.h>
 
-// Rozdzielczość wyświetlacza
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
+#define TFT_SCK   6
+#define TFT_MOSI  7
+#define TFT_RES   4
+#define TFT_DC    3
+#define TFT_CS    2
+#define TFT_MISO -1 // Brak linii MISO
 
-// Piny SPI – zmień jeśli masz inne podłączenie
-#define OLED_SCK  6
-#define OLED_MOSI 7
-#define OLED_RES  4
-#define OLED_DC   3
-#define OLED_CS   2
-
-// Inicjalizacja z programowym SPI (dowolne piny)
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT,
-                          OLED_MOSI, OLED_SCK, OLED_DC, OLED_RES, OLED_CS);
+// Inicjalizacja programowego/sprzętowego sterownika ekranu:
+Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC, TFT_MOSI, TFT_SCK, TFT_RES, TFT_MISO);
 
 void setup() {
   Serial.begin(115200);
 
-  if (!display.begin(SSD1306_SWITCHCAPVCC)) {
-    Serial.println("Błąd inicjalizacji SSD1306! Sprawdź połączenia.");
-    while (1);
-  }
+  tft.begin();
+  tft.setRotation(1); // Orientacja pozioma (szerokość 320, wysokość 240)
 
-  // Ekran powitalny
-  display.clearDisplay();
-  display.setTextSize(2);              // Rozmiar tekstu (1=mały, 2=duży)
-  display.setTextColor(SSD1306_WHITE);
-  display.setCursor(0, 0);            // Pozycja (x, y) w pikselach
-  display.println("ESP32-C6");
-  display.setTextSize(1);
-  display.println("Kurs Arduino");
-  display.println("Cwiczenie 9: SPI");
-  display.display();                   // Wyślij bufor na ekran!
-  delay(2000);
+  // Wyczyszczenie całego ekranu kolorem czarnym
+  tft.fillScreen(ILI9341_BLACK);
+  
+  // Rysowanie tekstu
+  tft.setTextSize(2);                  // Ustawienie wielkości czcionki
+  tft.setTextColor(ILI9341_WHITE);    // Kolor czcionki
+  tft.setCursor(10, 10);              // Współrzędne (X, Y)
+  tft.println("ESP32-C6");
+  
+  tft.setTextSize(1);
+  tft.setCursor(10, 35);
+  tft.println("Kurs Arduino SPI (ILI9341)");
 }
 
 void loop() {
-  static int licznik = 0;
-  licznik++;
-
-  display.clearDisplay();
-
-  // Nagłówek
-  display.setTextSize(1);
-  display.setTextColor(SSD1306_WHITE);
-  display.setCursor(0, 0);
-  display.println("=== ESP32 Monitor ===");
-
-  // Licznik sekund
-  display.setCursor(0, 16);
-  display.print("Czas: ");
-  display.print(licznik);
-  display.println(" s");
-
-  // Pasek postępu (prosty, rysowany prostokątami)
-  int szerokosc = map(licznik % 100, 0, 99, 0, 120);
-  display.drawRect(0, 32, 128, 10, SSD1306_WHITE);    // Obramowanie
-  display.fillRect(0, 32, szerokosc, 10, SSD1306_WHITE); // Wypełnienie
-
-  // Linia pozioma jako separator
-  display.drawLine(0, 48, 127, 48, SSD1306_WHITE);
-
-  display.setCursor(0, 52);
-  display.print("SPI OLED dziala!");
-
-  display.display(); // Zawsze na końcu!
-  delay(1000);
+   static int szerokoscPaska = 0;
+   szerokoscPaska++;
+   
+   // Nadpisanie poprzedniego obszaru paska kolorem czarnym (czyszczenie lokalne)
+   tft.fillRect(10, 50, 300, 15, ILI9341_BLACK);
+   
+   // Rysowanie nowej szerokości paska (szerokość maksymalna to 300 px)
+   tft.fillRect(10, 50, (szerokoscPaska % 300), 15, ILI9341_WHITE);
+   
+   delay(10);
 }
 ```
 
 ---
 
-## Kluczowe funkcje biblioteki
+## 🛠️ Zadanie: Integracja czujnika i wyświetlacza
 
-| Funkcja | Opis |
-|:---|:---|
-| `display.clearDisplay()` | Czyści bufor (nie ekran!) |
-| `display.display()` | Wysyła bufor na fizyczny ekran |
-| `display.setTextSize(n)` | Rozmiar tekstu: 1=6×8px, 2=12×16px |
-| `display.setCursor(x, y)` | Ustaw kursor w pikselach |
-| `display.println("tekst")` | Wypisz tekst z nową linią |
-| `display.drawRect(x,y,w,h,kolor)` | Prostokąt (kontur) |
-| `display.fillRect(x,y,w,h,kolor)` | Prostokąt wypełniony |
-| `display.drawLine(x1,y1,x2,y2,kolor)` | Linia |
-| `display.drawCircle(x,y,r,kolor)` | Okrąg |
+Zbuduj miniaturowy system pomiarowy:
+1. Połącz kody dla czujnika **MPU6050 (I2C)** oraz wyświetlacza **TFT ILI9341 (SPI)**.
+2. Odczytuj w pętli `loop` wartości kątów pochylenia w osiach X i Y co 100 ms.
+3. Wyświetlaj te wartości w czytelny sposób na ekranie TFT.
+4. *Wskazówka optymalizacyjna*: Czyszczenie całego ekranu (`fillScreen`) przy każdym odczycie spowoduje silne migotanie tekstu ze względu na ograniczony czas transmisji. Zamiast tego czyść tylko obszar tekstu z wartością liczbową (np. rysując czarny prostokąt pod tekstem) lub nadpisuj stary tekst nowym kolorem czarnym przed wypisaniem nowej wartości.
 
-> [!TIP] Buforowanie
-> Biblioteka SSD1306 używa bufora w RAM – wszystkie operacje rysowania modyfikują bufor w pamięci ESP32. Dopiero wywołanie `display.display()` przesyła cały bufor przez SPI na fizyczny ekran. Dlatego wywołuj `display()` zawsze na końcu sekwencji rysowania!
+<details>
+<summary>Pokaż rozwiązanie</summary>
 
----
+```cpp
+#include <Wire.h>
+#include <SPI.h>
+#include <MPU6050_light.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_ILI9341.h>
 
-## Zadanie do samodzielnego wykonania
+// Definicje pinów I2C
+const int I2C_SDA = 6;
+const int I2C_SCL = 7;
 
-Zmodyfikuj program tak, aby wyświetlacz pokazywał w czasie rzeczywistym:
-1. Wartość odczytaną z potencjometru (ADC z Ćw. 4) jako liczbę i graficzny pasek postępu.
-2. Informację czy przycisk (z Ćw. 5) jest aktualnie naciśnięty czy nie.
+// Definicje pinów SPI
+#define TFT_SCK   6
+#define TFT_MOSI  7
+#define TFT_RES   4
+#define TFT_DC    3
+#define TFT_CS    2
+#define TFT_MISO -1
 
-Połącz w jednym projekcie wiedzę z poprzednich ćwiczeń!
+MPU6050 mpu(Wire);
+Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC, TFT_MOSI, TFT_SCK, TFT_RES, TFT_MISO);
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Uruchomienie I2C i SPI
+  Wire.begin(I2C_SDA, I2C_SCL);
+  tft.begin();
+  tft.setRotation(1);
+  tft.fillScreen(ILI9341_BLACK);
+  
+  tft.setTextSize(2);
+  tft.setTextColor(ILI9341_WHITE);
+  tft.setCursor(10, 10);
+  tft.println("MONITOR MPU6050");
+  
+  if (mpu.begin() != 0) {
+    tft.setTextColor(ILI9341_RED);
+    tft.println("Blad MPU6050!");
+    while(1);
+  }
+  
+  tft.println("Kalibracja...");
+  delay(1000);
+  mpu.calcOffsets();
+  tft.fillScreen(ILI9341_BLACK); // Ostateczne wyczyszczenie
+}
+
+void loop() {
+  mpu.update();
+  
+  // Pobranie danych
+  float katX = mpu.getAngleX();
+  float katY = mpu.getAngleY();
+  
+  // Czyszczenie starego tekstu poprzez narysowanie czarnych prostokątów
+  tft.fillRect(100, 50, 150, 50, ILI9341_BLACK);
+  
+  tft.setTextSize(2);
+  tft.setTextColor(ILI9341_GREEN);
+  
+  tft.setCursor(10, 50);
+  tft.print("Kat X: ");
+  tft.print(katX);
+  tft.print(" deg");
+  
+  tft.setCursor(10, 80);
+  tft.print("Kat Y: ");
+  tft.print(katY);
+  tft.print(" deg");
+  
+  delay(100);
+}
+```
+</details>

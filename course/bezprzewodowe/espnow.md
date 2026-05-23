@@ -14,6 +14,8 @@ Zamiast adresów IP, ESP-NOW identyfikuje urządzenia przez **adresy MAC** – u
 > [!IMPORTANT] Klucz do komunikacji: adres MAC
 > Każdy ESP32 ma unikalny adres MAC. Płytka nadawcza **musi go znać** zanim wyśle cokolwiek.
 
+🎯 **[Otwórz Wokwi z dwoma połączonymi układami ESP-NOW]** *(Wokwi nie wspiera w pełni natywnej komunikacji P2P między wieloma oknami, ale ten projekt demonstruje to wewnątrz jednego ogromnego symulowanego bloku logicznego. Link zostanie zaktualizowany)*
+
 ---
 
 ## Krok 1: Odczyt adresu MAC odbiornika
@@ -167,7 +169,8 @@ Połącz ESP-NOW z wiedzą z modułu Protokoły:
 2. **Płytka B (Odbiornik):** Reaguj na odebrany kąt – gdy `katX > 30.0`, zapal LED; gdy `katX < -30.0`, gaś LED.
 
 <details>
-<summary>Wskazówka: modyfikacja struktury</summary>
+<summary>Wskazówka oraz przykładowe rozwiązanie nadajnika i odbiornika</summary>
+
 Struktura musi być identyczna na obu płytkach:
 
 ```cpp
@@ -176,4 +179,30 @@ typedef struct struct_message {
   float katY;
 } struct_message;
 ```
+
+**Nadajnik (Płytka A) - główna pętla z I2C:**
+```cpp
+void loop() {
+  mpu.update();
+  wysylaneDane.katX = mpu.getAngleX();
+  wysylaneDane.katY = mpu.getAngleY();
+  
+  esp_now_send(adresOdbiornika, (uint8_t *)&wysylaneDane, sizeof(wysylaneDane));
+  delay(100);
+}
+```
+
+**Odbiornik (Płytka B) - blok sprawdzający:**
+```cpp
+void onDataRecv(const esp_now_recv_info_t *recv_info, const uint8_t *incomingData, int len) {
+  memcpy(&odebraneDane, incomingData, sizeof(odebraneDane));
+  
+  if (odebraneDane.katX > 30.0) {
+      digitalWrite(PIN_LED, HIGH);
+  } else if (odebraneDane.katX < -30.0) {
+      digitalWrite(PIN_LED, LOW);
+  }
+}
+```
+
 </details>

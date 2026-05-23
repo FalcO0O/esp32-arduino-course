@@ -4,6 +4,8 @@
 
 Urządzenia IoT często zasilane są z baterii i muszą działać miesiącami lub latami. ESP32-C6 w trybie aktywnym pobiera ok. 80–150 mA. W trybie **Deep Sleep** – zaledwie kilka µA (mikroamperów). To różnica rzędu 10 000×!
 
+🎯 **[Otwórz Wokwi z symulacją Deep Sleep z Timerem]** *(link zostanie zaktualizowany)*
+
 ---
 
 ## Tryby uśpienia ESP32-C6
@@ -127,3 +129,20 @@ Zmienne normalne: wyzerowane
 Rozbuduj program o:
 1. Wyświetlanie odczytu ADC i liczby wybudzeń na wyświetlaczu OLED (z Ćw. 9).
 2. Podłącz przycisk i skonfiguruj **równoległe** wybudzanie: zarówno przez timer (10 s) jak i przez przycisk GPIO. Wyświetlaj w Serial Monitor która przyczyna wybudziła płytkę.
+
+<details>
+<summary>Pokaż rozwiązanie konfiguracji obu źródeł</summary>
+
+```cpp
+  // Na końcu funkcji setup(), przed wywołaniem deep_sleep_start():
+  
+  // Konfiguracja wybudzenia przez timer (10 sekund)
+  esp_sleep_enable_timer_wakeup(SLEEP_US);
+
+  // Oraz jednoczesna konfiguracja wybudzenia przez GPIO9 (przycisk PULLUP spada na LOW)
+  esp_sleep_enable_ext0_wakeup(GPIO_NUM_9, 0); 
+
+  // Wejście w Deep Sleep
+  esp_deep_sleep_start();
+```
+</details>
