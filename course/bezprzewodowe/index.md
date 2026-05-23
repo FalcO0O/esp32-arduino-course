@@ -1,23 +1,29 @@
 # Technologie bezprzewodowe
 
-Wchodzimy w ostatni, najbardziej ekscytujący etap pracy z mikrokontrolerami ESP. To tutaj dowiadujesz się dlaczego te konkretnie kostki zrewolucjonizowały świat hobbystów na całym globie!
+Wkraczamy w etap pracy z wbudowanymi modułami radiowymi układów ESP. Bezprzewodowa łączność to jedna z kluczowych cech mikrokontrolerów z rodziny ESP32.
 
-ESP32-C6 to układ scalony z **pełnym zestawem** nowoczesnych technologii bezprzewodowych wlutowanych prosto w jedną małą płytkę, zawierającą zarówno silne Wi-Fi jak i nowoczesny, energooszczędny Bluetooth.
+ESP32-C6 integruje technologie bezprzewodowe na jednej płytce deweloperskiej, wspierając łączność Wi-Fi (w standardzie Wi-Fi 6) oraz energooszczędny standard Bluetooth Low Energy (BLE 5.3).
 
 ---
 
 ## ⚡ Czego się nauczysz w tej sekcji?
-Wykorzystasz potęgę wbudowanego radia. Najpierw zbudujemy najszybszą, bezpośrednią sieć układów gadających między sobą (w czasie poniżej kilku milisekund z odległości kilkuset metrów!) za pomocą technologii ESP-NOW.
-Następnie otworzymy nasz mikrokontroler na klasyczny internet routerów Wi-Fi i sprawimy, by pobierał wiedzę z globalnej bazy danych. Na sam koniec zmienimy ESP32 w serwer BLE udostępniający usługi dla Twojego telefonu.
+
+W tym module poznasz trzy najważniejsze metody komunikacji bezprzewodowej obsługiwane przez ESP32-C6:
+
+- **Wi-Fi** – stworzysz kod łączący się jako klient STA z siecią lokalną w celu pobierania danych z zewnętrznych serwisów (API) oraz uruchomisz własny punkt dostępowy (Access Point) z serwerem WWW do sterowania urządzeniem z poziomu przeglądarki.
+- **Bluetooth Low Energy (BLE)** – skonfigurujesz ESP32 jako serwer BLE (GATT) udostępniający usługi oraz wyślesz asynchroniczne powiadomienia (Notify) bezpośrednio do aplikacji na smartfonie.
+- **ESP-NOW** – zaimplementujesz szybką łączność bezpośrednią peer-to-peer oraz rozgłoszeniową (Broadcast) między wieloma układami ESP z minimalnymi opóźnieniami i bez użycia routera.
+
+---
 
 ## 🛠️ Wymagany sprzęt w tym module
-Funkcje bezprzewodowe silnie polegają na łączności z wieloma urządzeniami. O ile symulowanie Wi-Fi w Wokwi jest do pewnego stopnia możliwe, praca w tym module da Ci największą satysfakcję w otaczającym Cię, namacalnym świecie.
 
-Potrzebujesz:
+Funkcje bezprzewodowe opierają się na łączności z innymi urządzeniami. Aby w pełni przetestować przykłady w tym module, będziesz potrzebować:
+
 | Komponent | Do czego posłuży? |
 |:---|:---|
-| **Druga Płytka ESP32-C6** | Konieczna do przetestowania wysyłania komend ESP-NOW (od biedy przetestujesz to łącząc się z płytką sąsiada z ławki!) |
-| **Twój Telefon / Laptop** | Konieczny by połączyć się z siecią WebServera oraz skanować usługi Bluetooth z aplikacji (nRF Connect) |
+| **Smartfon lub laptop** | Niezbędny do połączenia z serwerem WWW przez Wi-Fi oraz do skanowania usług Bluetooth w aplikacji testowej. |
+| **Druga Płytka ESP32-C6** | Konieczna do przetestowania bezpośredniej komunikacji ESP-NOW. |
 
 ---
 
@@ -25,5 +31,6 @@ Potrzebujesz:
 
 | # | Temat | Technologie |
 |:---:|:---|:---|
-| 13 | [ESP-NOW: komunikacja P2P](espnow.md) | Komunikacja radiowa omijająca domowy router |
-| 14-15 | [Wi-Fi i BLE: Serwery i Klient](wifi_ble.md) | Wystawianie strony WWW oraz Serwera Bluetooth |
+| 1 | [Wi-Fi: Serwer i Klient](wifi.md) | Uruchomienie punktu dostępowego WWW oraz klienta HTTP pobierającego dane JSON |
+| 2 | [Bluetooth Low Energy (BLE)](ble.md) | Konfiguracja serwera GATT i asynchroniczne powiadomienia (Notify) |
+| 3 | [ESP-NOW: Komunikacja bezpośrednia](espnow.md) | Szybka wymiana danych peer-to-peer oraz transmisja rozgłoszeniowa |

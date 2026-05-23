@@ -27,7 +27,7 @@
     
     
       
-        <title>Transmisja jednoprzewodowa (WS2812B) - Kurs Programowania Mikrokontrolerów</title>
+        <title>Transmisja jednoprzewodowa - Kurs Programowania Mikrokontrolerów</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#transmisja-jednoprzewodowa-i-wbudowana-dioda-argb-ws2812b" class="md-skip">
+        <a href="#transmisja-jednoprzewodowa-dioda-argb-ws2812b" class="md-skip">
           Przejdź do treści
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Transmisja jednoprzewodowa (WS2812B)
+              Transmisja jednoprzewodowa
             
           </span>
         </div>
@@ -257,7 +257,7 @@
           
   
   
-  Protokoły
+  Protokoły komunikacyjne
 
         </a>
       </li>
@@ -277,7 +277,7 @@
           
   
   
-  Systemy
+  Systemy operacyjne i pamięć
 
         </a>
       </li>
@@ -297,7 +297,7 @@
           
   
   
-  Bezprzewodowe
+  Technologie bezprzewodowe
 
         </a>
       </li>
@@ -458,7 +458,7 @@
   <span class="md-ellipsis">
     
   
-    1. Teoria – czym jest mikrokontroler
+    Teoria – czym jest mikrokontroler
   
 
     
@@ -486,7 +486,7 @@
   <span class="md-ellipsis">
     
   
-    2. Płytka ESP32-C6
+    Płytka ESP32-C6
   
 
     
@@ -514,7 +514,7 @@
   <span class="md-ellipsis">
     
   
-    3. Konfiguracja środowiska i Wokwi
+    Konfiguracja środowiska i Wokwi
   
 
     
@@ -685,7 +685,7 @@
   <span class="md-ellipsis">
     
   
-    Serwomechanizmy (PWM w praktyce)
+    Serwomechanizmy
   
 
     
@@ -713,7 +713,7 @@
   <span class="md-ellipsis">
     
   
-    Czas i Przerwania (millis(), ISR)
+    Czas i Przerwania
   
 
     
@@ -769,7 +769,7 @@
   <span class="md-ellipsis">
     
   
-    Protokoły
+    Protokoły komunikacyjne
   
 
     
@@ -785,7 +785,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Protokoły
+    Protokoły komunikacyjne
   
 
           </label>
@@ -833,7 +833,7 @@
   <span class="md-ellipsis">
     
   
-    UART: loopback i komendy
+    UART
   
 
     
@@ -861,7 +861,7 @@
   <span class="md-ellipsis">
     
   
-    Magistrala I2C (Akcelerometr)
+    Magistrala I²C
   
 
     
@@ -889,7 +889,7 @@
   <span class="md-ellipsis">
     
   
-    Magistrala SPI (Wyświetlacz TFT)
+    Magistrala SPI
   
 
     
@@ -926,7 +926,7 @@
   <span class="md-ellipsis">
     
   
-    Transmisja jednoprzewodowa (WS2812B)
+    Transmisja jednoprzewodowa
   
 
     
@@ -944,7 +944,7 @@
   <span class="md-ellipsis">
     
   
-    Transmisja jednoprzewodowa (WS2812B)
+    Transmisja jednoprzewodowa
   
 
     
@@ -970,33 +970,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rodzaje-transmisji-jednoprzewodowej" class="md-nav__link">
+  <a href="#charakterystyka-fizyczna" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚡ Rodzaje transmisji jednoprzewodowej
+        🔌 Charakterystyka fizyczna
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="⚡ Rodzaje transmisji jednoprzewodowej">
+    <nav class="md-nav" aria-label="🔌 Charakterystyka fizyczna">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-dallas-1-wire" class="md-nav__link">
+  <a href="#kaskadowe-aczenie-i-adresowanie" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Dallas 1-Wire
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-custom-single-wire-nzr-np-ws2812b" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Custom Single-Wire / NZR (np. WS2812B)
+        Kaskadowe łączenie i "adresowanie"
       
     </span>
   </a>
@@ -1009,33 +998,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#jak-dziaa-inteligentna-dioda-argb-ws2812b" class="md-nav__link">
+  <a href="#charakterystyka-logiczna-anatomia-transmisji" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Jak działa inteligentna dioda ARGB (WS2812B)?
+        📊 Charakterystyka logiczna (Anatomia transmisji)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🛠️ Jak działa inteligentna dioda ARGB (WS2812B)?">
+    <nav class="md-nav" aria-label="📊 Charakterystyka logiczna (Anatomia transmisji)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#kodowanie-bitow-w-protokole-ws2812b" class="md-nav__link">
+  <a href="#kodowanie-impulsow-czasowych" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kodowanie bitów w protokole WS2812B
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#problem-taktowania-i-rola-sprzetu-w-esp32" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Problem taktowania i rola sprzętu w ESP32
+        Kodowanie impulsów czasowych:
       
     </span>
   </a>
@@ -1048,15 +1026,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#przykad-praktyczny-uruchomienie-wbudowanej-diody-argb" class="md-nav__link">
+  <a href="#obsuga-sprzetowa-w-esp32-c6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Przykład praktyczny: Uruchomienie wbudowanej diody ARGB
+        📦 Obsługa sprzętowa w ESP32-C6
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Przykład praktyczny: Uruchomienie wbudowanej diody ARGB">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cwiczenie-praktyczne-wbudowana-dioda-argb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Ćwiczenie praktyczne: Wbudowana dioda ARGB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Ćwiczenie praktyczne: Wbudowana dioda ARGB">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1132,7 +1121,7 @@
   <span class="md-ellipsis">
     
   
-    Systemy
+    Systemy operacyjne i pamięć
   
 
     
@@ -1148,7 +1137,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Systemy
+    Systemy operacyjne i pamięć
   
 
           </label>
@@ -1217,14 +1206,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/freertos/" class="md-nav__link">
+      <a href="../../systemy/deepsleep/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 11-12 – FreeRTOS: Zadania i kolejki
+    Sleep: zarządzanie energią
   
 
     
@@ -1245,14 +1234,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/deepsleep/" class="md-nav__link">
+      <a href="../../systemy/freertos/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 13 – Deep Sleep: zarządzanie energią
+    FreeRTOS: Zadania, kolejki i notyfikacje
   
 
     
@@ -1303,7 +1292,7 @@
   <span class="md-ellipsis">
     
   
-    Bezprzewodowe
+    Technologie bezprzewodowe
   
 
     
@@ -1319,7 +1308,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Bezprzewodowe
+    Technologie bezprzewodowe
   
 
           </label>
@@ -1360,14 +1349,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../bezprzewodowe/espnow/" class="md-nav__link">
+      <a href="../../bezprzewodowe/wifi/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    👥 Ćw. 14 – ESP-NOW
+    Wi-Fi: Serwer i Klient
   
 
     
@@ -1388,14 +1377,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../bezprzewodowe/wifi_ble/" class="md-nav__link">
+      <a href="../../bezprzewodowe/ble/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 15-16 – Sieci i radio: Wi-Fi i BLE
+    Bluetooth Low Energy (BLE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bezprzewodowe/espnow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ESP-NOW: Komunikacja bezpośrednia
   
 
     
@@ -1586,33 +1603,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rodzaje-transmisji-jednoprzewodowej" class="md-nav__link">
+  <a href="#charakterystyka-fizyczna" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚡ Rodzaje transmisji jednoprzewodowej
+        🔌 Charakterystyka fizyczna
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="⚡ Rodzaje transmisji jednoprzewodowej">
+    <nav class="md-nav" aria-label="🔌 Charakterystyka fizyczna">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-dallas-1-wire" class="md-nav__link">
+  <a href="#kaskadowe-aczenie-i-adresowanie" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Dallas 1-Wire
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-custom-single-wire-nzr-np-ws2812b" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Custom Single-Wire / NZR (np. WS2812B)
+        Kaskadowe łączenie i "adresowanie"
       
     </span>
   </a>
@@ -1625,33 +1631,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#jak-dziaa-inteligentna-dioda-argb-ws2812b" class="md-nav__link">
+  <a href="#charakterystyka-logiczna-anatomia-transmisji" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Jak działa inteligentna dioda ARGB (WS2812B)?
+        📊 Charakterystyka logiczna (Anatomia transmisji)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🛠️ Jak działa inteligentna dioda ARGB (WS2812B)?">
+    <nav class="md-nav" aria-label="📊 Charakterystyka logiczna (Anatomia transmisji)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#kodowanie-bitow-w-protokole-ws2812b" class="md-nav__link">
+  <a href="#kodowanie-impulsow-czasowych" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kodowanie bitów w protokole WS2812B
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#problem-taktowania-i-rola-sprzetu-w-esp32" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Problem taktowania i rola sprzętu w ESP32
+        Kodowanie impulsów czasowych:
       
     </span>
   </a>
@@ -1664,15 +1659,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#przykad-praktyczny-uruchomienie-wbudowanej-diody-argb" class="md-nav__link">
+  <a href="#obsuga-sprzetowa-w-esp32-c6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Przykład praktyczny: Uruchomienie wbudowanej diody ARGB
+        📦 Obsługa sprzętowa w ESP32-C6
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Przykład praktyczny: Uruchomienie wbudowanej diody ARGB">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cwiczenie-praktyczne-wbudowana-dioda-argb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Ćwiczenie praktyczne: Wbudowana dioda ARGB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Ćwiczenie praktyczne: Wbudowana dioda ARGB">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1725,47 +1731,49 @@
 
 
 
-<h1 id="transmisja-jednoprzewodowa-i-wbudowana-dioda-argb-ws2812b">Transmisja jednoprzewodowa i wbudowana dioda ARGB (WS2812B)</h1>
-<p>Poza klasycznymi interfejsami, takimi jak UART, I<sup>2</sup>C czy SPI, w systemach wbudowanych szeroko stosowane są protokoły przesyłu danych za pomocą <strong>jednego przewodu sygnałowego</strong> (oraz wspólnej linii odniesienia masy GND). Rozwiązania te pozwalają na oszczędność fizycznych pinów mikrokontrolera oraz uproszczenie trasowania płytek drukowanych (PCB).</p>
-<p>W tym rozdziale zapoznasz się z charakterystyką protokołów jednoprzewodowych, dowiesz się, jak działają inteligentne diody ARGB, oraz uruchomisz wbudowaną w płytkę ESP32-C6 diodę WS2812B.</p>
-<hr />
-<h2 id="rodzaje-transmisji-jednoprzewodowej">⚡ Rodzaje transmisji jednoprzewodowej</h2>
-<p>Pod pojęciem transmisji jednoprzewodowej kryją się dwa różne podejścia technologiczne, które różnią się zarówno architekturą, jak i przeznaczeniem:</p>
-<h3 id="1-dallas-1-wire">1. Dallas 1-Wire</h3>
-<p>Jest to standaryzowany, dwukierunkowy protokół komunikacyjny stworzony przez firmę Dallas Semiconductor (obecnie Maxim Integrated). </p>
+<h1 id="transmisja-jednoprzewodowa-dioda-argb-ws2812b">Transmisja jednoprzewodowa: dioda ARGB (WS2812B)</h1>
+<p>W systemach wbudowanych stosuje się także protokoły przesyłu danych za pomocą <strong>tylko jednego przewodu sygnałowego</strong> (oraz wspólnej linii masy GND).</p>
+<p>W tym rozdziale skupimy się na specyficznym, niezwykle popularnym protokole służącym do obsługi inteligentnych diod ARGB (WS2812B / NeoPixel), w które między innymi fabrycznie wyposażona jest nasza płytka deweloperska.</p>
+<div class="admonition note">
+<p class="admonition-title">1-Wire vs Single-Wire</p>
+<p>Choć pojęcia te bywają potocznie używane zamiennie, oznaczają dwa różne standardy:</p>
 <ul>
-<li><strong>Zasada działania</strong>: Linia sygnałowa pracuje w konfiguracji otwartego drenu (<em>open-drain</em>) i wymaga zewnętrznego rezystora podciągającego (Pull-Up) do zasilania VCC. Komunikacja jest dwukierunkowa i opiera się na architekturze typu Master-Slave.</li>
-<li><strong>Adresowanie</strong>: Każde urządzenie (np. popularny cyfrowy czujnik temperatury <strong>DS18B20</strong>) posiada unikalny, zakodowany fabrycznie 64-bitowy numer identyfikacyjny (ROM ID). Pozwala to na podłączenie wielu urządzeń równolegle do tej samej linii sygnałowej.</li>
-<li><strong>Charakterystyka</strong>: Transmisja jest wolna (standardowa prędkość to ok. 16.3 kb/s), ale stabilna na dłuższych dystansach (nawet do kilkudziesięciu metrów).</li>
+<li><strong>Dallas 1-Wire</strong> – dwukierunkowa, relatywnie wolna magistrala z unikalnym 64-bitowym adresowaniem sprzętowym każdego układu, używana głownie do czujników (np. popularnego czujnika temperatury DS18B20).</li>
+<li><strong>Custom Single-Wire (NZR)</strong> – jednokierunkowy, szybki protokół kaskadowy bez sprzętowego adresowania, stosowany wyłącznie do sterowania matrycami i paskami LED (np. WS2812B). To właśnie nim zajmiemy się w tej lekcji.</li>
 </ul>
-<h3 id="2-custom-single-wire-nzr-np-ws2812b">2. Custom Single-Wire / NZR (np. WS2812B)</h3>
-<p>Jest to szybki, jednokierunkowy protokół szeregowy bez linii zegarowej, stosowany przede wszystkim do sterowania adresowalnymi diodami LED RGB (ARGB / NeoPixel).</p>
-<ul>
-<li><strong>Zasada działania</strong>: Transmisja odbywa się w trybie simplex (tylko w jedną stronę: od kontrolera do odbiorników). Diody łączone są kaskadowo (wyjście danych <code>DO</code> jednej diody łączone jest z wejściem danych <code>DI</code> kolejnej).</li>
-<li><strong>Brak adresowania</strong>: Urządzenia nie posiadają unikalnych identyfikatorów. Adresowanie odbywa się geometrycznie (pozycyjnie) – każda kolejna dioda "odcina" pierwszy zestaw bitów koloru, a resztę danych przesyła dalej.</li>
-<li><strong>Charakterystyka</strong>: Transmisja jest szybka (ok. 800 kb/s), ale wymaga bardzo precyzyjnych zależności czasowych w skali nanosekundowej.</li>
-</ul>
+</div>
 <hr />
-<h2 id="jak-dziaa-inteligentna-dioda-argb-ws2812b">🛠️ Jak działa inteligentna dioda ARGB (WS2812B)?</h2>
-<p>Dioda <strong>WS2812B</strong> (często określana jako NeoPixel) nie jest zwykłą diodą LED. Wewnątrz jej obudowy (najczęściej SMD 5050) zintegrowano:
-1. Trzy struktury półprzewodnikowe LED: <strong>Czerwoną (R)</strong>, <strong>Zieloną (G)</strong> i <strong>Niebieską (B)</strong>.
-2. Mikroskopijny układ scalony (kontroler) pełniący funkcję sterownika prądowego PWM z rejestrem przesuwnym.</p>
-<p>Dzięki temu każdą diodą w łańcuchu możemy sterować niezależnie, ustawiając jej dowolną barwę z palety 16,7 miliona kolorów (24-bitowa głębia kolorów: po 8 bitów na składową R, G i B).</p>
-<h3 id="kodowanie-bitow-w-protokole-ws2812b">Kodowanie bitów w protokole WS2812B</h3>
-<p>Transmisja danych odbywa się za pomocą standardu <strong>NZR</strong> (<em>Non-Return-to-Zero</em>), gdzie informacja o stanie logicznym bitu jest kodowana <strong>czasem trwania</strong> stanu wysokiego (<span class="arithmatex">\(T_H\)</span>) i niskiego (<span class="arithmatex">\(T_L\)</span>) w jednym cyklu:</p>
+<h2 id="charakterystyka-fizyczna">🔌 Charakterystyka fizyczna</h2>
+<p>Protokół sterowania diodami WS2812B opiera się na szybkim przesyłaniu cyfrowego sygnału napięciowego w trybie <strong>simplex</strong> (tylko w jedną stronę: od kontrolera do odbiorników). </p>
+<p>Fizyczna struktura takiego układu opiera się na inteligentnych diodach. Dioda WS2812B (zazwyczaj w obudowie SMD 5050) nie jest zwykłą diodą LED. W jej wnętrzu zintegrowano:</p>
+<ol>
+<li><strong>Trzy diody LED</strong>: Czerwoną (R), Zieloną (G) i Niebieską (B).</li>
+<li><strong>Układ scalony (kontroler)</strong>: Odpowiada za odczyt i dekodowanie cyfrowego sygnału oraz sterowanie jasnością poszczególnych barw poprzez PWM.</li>
+</ol>
+<h3 id="kaskadowe-aczenie-i-adresowanie">Kaskadowe łączenie i "adresowanie"</h3>
+<p>Transmisja nie używa fizycznych adresów jak I2C. Zamiast tego adresowanie odbywa się <strong>geometrycznie</strong>. 
+Sygnał z mikrokontrolera trafia najpierw do pinu wejściowego <strong>DI</strong> (<em>Data In</em>) pierwszej diody w łańcuchu. Układ scalony tej diody "odcina" dla siebie pierwszy pakiet danych (swój kolor), a całą resztę przesyła dalej ze swojego pinu wyjściowego <strong>DO</strong> (<em>Data Out</em>) prosto do pinu <strong>DI</strong> kolejnej diody. Dzięki temu można sterować łańcuchem setek diod używając zaledwie jednego pinu w ESP32.</p>
+<hr />
+<h2 id="charakterystyka-logiczna-anatomia-transmisji">📊 Charakterystyka logiczna (Anatomia transmisji)</h2>
+<p>Z powodu braku dodatkowej linii zegarowej (SCLK), odbiorniki muszą odzyskiwać informację o czasie z samego sygnału danych. Protokół wykorzystuje standard <strong>NZR</strong> (<em>Non-Return-to-Zero</em>), w którym informacja o stanie logicznym bitu jest kodowana <strong>czasem trwania</strong> stanu wysokiego (<span class="arithmatex">\(T_H\)</span>) i niskiego (<span class="arithmatex">\(T_L\)</span>) w jednym, stałym cyklu bitowym.</p>
+<p>Każda dioda oczekuje ramki składającej się z 24 bitów (po 8 bitów na składową koloru, co daje 24-bitową głębię kolorów, czyli 16,7 miliona barw). Bity zazwyczaj ułożone są w kolejności GRB (Zielony, Czerwony, Niebieski).</p>
+<h3 id="kodowanie-impulsow-czasowych">Kodowanie impulsów czasowych:</h3>
 <ul>
 <li><strong>Bit <code>0</code></strong>: krótki stan wysoki (<span class="arithmatex">\(T_{0H} \approx 0.4\ \mu\text{s}\)</span>), po którym następuje długi stan niski (<span class="arithmatex">\(T_{0L} \approx 0.85\ \mu\text{s}\)</span>).</li>
 <li><strong>Bit <code>1</code></strong>: długi stan wysoki (<span class="arithmatex">\(T_{1H} \approx 0.8\ \mu\text{s}\)</span>), po którym następuje krótki stan niski (<span class="arithmatex">\(T_{1L} \approx 0.45\ \mu\text{s}\)</span>).</li>
-<li><strong>Sygnał resetu (RESET)</strong>: utrzymanie stanu niskiego przez czas dłuższy niż <span class="arithmatex">\(50\ \mu\text{s}\)</span> (powoduje zatrzaśnięcie przesłanych danych w rejestrach diod i wyświetlenie koloru).</li>
+<li><strong>Sygnał resetu (Zatrzask)</strong>: utrzymanie stanu niskiego przez czas dłuższy niż <span class="arithmatex">\(50\ \mu\text{s}\)</span> powoduje zakończenie transmisji ramki. Układy scalone zatrzaskują wtedy odcięte dane w swoich rejestrach, co skutkuje natychmiastową, jednoczesną aktualizacją kolorów w całym łańcuchu.</li>
 </ul>
 <p><img align="center" alt="" src="../../img/protokoly/NRZ.png" /></p>
-<h3 id="problem-taktowania-i-rola-sprzetu-w-esp32">Problem taktowania i rola sprzętu w ESP32</h3>
-<p>Ponieważ czasy trwania impulsów muszą być dotrzymane z dokładnością do kilkudziesięciu nanosekund, generowanie takiego sygnału programowo (<em>bit-banging</em> poprzez szybkie włączanie/wyłączanie pinu w kodzie) jest bardzo trudne. Każde przerwanie systemowe zakłóciłoby strukturę czasową ramki, powodując migotanie diod lub błędne kolory.</p>
-<p>Aby temu zapobiec, układy ESP32 wykorzystują swoje wbudowane bloki sprzętowe:
-* <strong>RMT (Remote Control)</strong>: Nadajnik podczerwieni, który potrafi sprzętowo generować precyzyjne przebiegi czasowe na podstawie zdefiniowanych czasów trwania stanów wysokich i niskich.
-* <strong>SPI</strong>: Wykorzystuje wysyłanie odpowiednio uformowanych bajtów danych z dużą częstotliwością tak, aby sekwencje bitów na linii MOSI udawały impulsy o szerokościach wymaganych przez WS2812B.</p>
 <hr />
-<h2 id="przykad-praktyczny-uruchomienie-wbudowanej-diody-argb">🎯 Przykład praktyczny: Uruchomienie wbudowanej diody ARGB</h2>
+<h2 id="obsuga-sprzetowa-w-esp32-c6">📦 Obsługa sprzętowa w ESP32-C6</h2>
+<p>Ponieważ czasy trwania impulsów muszą być dotrzymane z dokładnością do kilkudziesięciu nanosekund, generowanie takiego sygnału programowo (<em>bit-banging</em> poprzez szybkie włączanie/wyłączanie pinu w kodzie) jest trudne i mocno obciąża procesor. Każde przerwanie systemowe zakłóciłoby strukturę czasową ramki, powodując migotanie diod lub błędne kolory.</p>
+<p>Aby temu zapobiec, układy ESP32-C6 wykorzystują wbudowane bloki sprzętowe:</p>
+<ul>
+<li><strong>RMT (Remote Control)</strong>: Nadajnik podczerwieni, który potrafi sprzętowo generować precyzyjne przebiegi czasowe na podstawie zdefiniowanych czasów trwania stanów wysokich i niskich.</li>
+<li><strong>SPI</strong>: Wykorzystuje wysyłanie odpowiednio uformowanych bajtów danych z dużą częstotliwością tak, aby sekwencje bitów na linii MOSI udawały impulsy o szerokościach wymaganych przez WS2812B.</li>
+</ul>
+<hr />
+<h2 id="cwiczenie-praktyczne-wbudowana-dioda-argb">🎯 Ćwiczenie praktyczne: Wbudowana dioda ARGB</h2>
 <p>Standardowa płytka deweloperska <strong>ESP32-C6 DevKit</strong> posiada wbudowaną adresowalną diodę RGB podłączoną wewnętrznie do pinu <strong>GPIO8</strong>. </p>
 <p>Do jej obsłużenia wykorzystamy najpopularniejszą bibliotekę <strong>Adafruit NeoPixel</strong>.</p>
 <div class="admonition note">
@@ -1880,7 +1888,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Stopka" >
         
           
-          <a href="../spi/" class="md-footer__link md-footer__link--prev" aria-label="Poprzednia strona: Magistrala SPI (Wyświetlacz TFT)">
+          <a href="../spi/" class="md-footer__link md-footer__link--prev" aria-label="Poprzednia strona: Magistrala SPI">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1890,7 +1898,7 @@
                 Poprzednia strona
               </span>
               <div class="md-ellipsis">
-                Magistrala SPI (Wyświetlacz TFT)
+                Magistrala SPI
               </div>
             </div>
           </a>

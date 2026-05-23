@@ -27,7 +27,7 @@
     
     
       
-        <title>Magistrala SPI (Wyświetlacz TFT) - Kurs Programowania Mikrokontrolerów</title>
+        <title>Magistrala SPI - Kurs Programowania Mikrokontrolerów</title>
       
     
     
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Magistrala SPI (Wyświetlacz TFT)
+              Magistrala SPI
             
           </span>
         </div>
@@ -257,7 +257,7 @@
           
   
   
-  Protokoły
+  Protokoły komunikacyjne
 
         </a>
       </li>
@@ -277,7 +277,7 @@
           
   
   
-  Systemy
+  Systemy operacyjne i pamięć
 
         </a>
       </li>
@@ -297,7 +297,7 @@
           
   
   
-  Bezprzewodowe
+  Technologie bezprzewodowe
 
         </a>
       </li>
@@ -458,7 +458,7 @@
   <span class="md-ellipsis">
     
   
-    1. Teoria – czym jest mikrokontroler
+    Teoria – czym jest mikrokontroler
   
 
     
@@ -486,7 +486,7 @@
   <span class="md-ellipsis">
     
   
-    2. Płytka ESP32-C6
+    Płytka ESP32-C6
   
 
     
@@ -514,7 +514,7 @@
   <span class="md-ellipsis">
     
   
-    3. Konfiguracja środowiska i Wokwi
+    Konfiguracja środowiska i Wokwi
   
 
     
@@ -685,7 +685,7 @@
   <span class="md-ellipsis">
     
   
-    Serwomechanizmy (PWM w praktyce)
+    Serwomechanizmy
   
 
     
@@ -713,7 +713,7 @@
   <span class="md-ellipsis">
     
   
-    Czas i Przerwania (millis(), ISR)
+    Czas i Przerwania
   
 
     
@@ -769,7 +769,7 @@
   <span class="md-ellipsis">
     
   
-    Protokoły
+    Protokoły komunikacyjne
   
 
     
@@ -785,7 +785,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Protokoły
+    Protokoły komunikacyjne
   
 
           </label>
@@ -833,7 +833,7 @@
   <span class="md-ellipsis">
     
   
-    UART: loopback i komendy
+    UART
   
 
     
@@ -861,7 +861,7 @@
   <span class="md-ellipsis">
     
   
-    Magistrala I2C (Akcelerometr)
+    Magistrala I²C
   
 
     
@@ -898,7 +898,7 @@
   <span class="md-ellipsis">
     
   
-    Magistrala SPI (Wyświetlacz TFT)
+    Magistrala SPI
   
 
     
@@ -916,7 +916,7 @@
   <span class="md-ellipsis">
     
   
-    Magistrala SPI (Wyświetlacz TFT)
+    Magistrala SPI
   
 
     
@@ -942,15 +942,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#fizyka-spi-aktywne-sterowanie-push-pull" class="md-nav__link">
+  <a href="#charakterystyka-fizyczna-spi-aktywne-sterowanie-push-pull" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔌 Fizyka SPI: Aktywne Sterowanie Push-Pull
+        🔌 Charakterystyka fizyczna SPI: Aktywne Sterowanie Push-Pull
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🔌 Fizyka SPI: Aktywne Sterowanie Push-Pull">
+    <nav class="md-nav" aria-label="🔌 Charakterystyka fizyczna SPI: Aktywne Sterowanie Push-Pull">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -970,10 +970,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sprzet-spi-w-esp32-c6" class="md-nav__link">
+  <a href="#charakterystyka-logiczna-anatomia-transmisji" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📦 Sprzęt SPI w ESP32-C6
+        📊 Charakterystyka logiczna (Anatomia transmisji)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Charakterystyka logiczna (Anatomia transmisji)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#krok-po-kroku-jak-przebiega-ramka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Krok po kroku: Jak przebiega ramka?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tryby-pracy-spi-spi-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tryby pracy SPI (SPI Modes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#obsuga-sprzetowa-w-esp32-c6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Obsługa sprzętowa w ESP32-C6
       
     </span>
   </a>
@@ -984,12 +1023,12 @@
   <a href="#cwiczenie-praktyczne-wyswietlacz-tft-ili9341" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Ćwiczenie Praktyczne: Wyświetlacz TFT ILI9341
+        🎯 Ćwiczenie praktyczne: Wyświetlacz TFT ILI9341
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Ćwiczenie Praktyczne: Wyświetlacz TFT ILI9341">
+    <nav class="md-nav" aria-label="🎯 Ćwiczenie praktyczne: Wyświetlacz TFT ILI9341">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1053,7 +1092,7 @@
   <span class="md-ellipsis">
     
   
-    Transmisja jednoprzewodowa (WS2812B)
+    Transmisja jednoprzewodowa
   
 
     
@@ -1104,7 +1143,7 @@
   <span class="md-ellipsis">
     
   
-    Systemy
+    Systemy operacyjne i pamięć
   
 
     
@@ -1120,7 +1159,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Systemy
+    Systemy operacyjne i pamięć
   
 
           </label>
@@ -1189,14 +1228,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/freertos/" class="md-nav__link">
+      <a href="../../systemy/deepsleep/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 11-12 – FreeRTOS: Zadania i kolejki
+    Sleep: zarządzanie energią
   
 
     
@@ -1217,14 +1256,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/deepsleep/" class="md-nav__link">
+      <a href="../../systemy/freertos/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 13 – Deep Sleep: zarządzanie energią
+    FreeRTOS: Zadania, kolejki i notyfikacje
   
 
     
@@ -1275,7 +1314,7 @@
   <span class="md-ellipsis">
     
   
-    Bezprzewodowe
+    Technologie bezprzewodowe
   
 
     
@@ -1291,7 +1330,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Bezprzewodowe
+    Technologie bezprzewodowe
   
 
           </label>
@@ -1332,14 +1371,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../bezprzewodowe/espnow/" class="md-nav__link">
+      <a href="../../bezprzewodowe/wifi/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    👥 Ćw. 14 – ESP-NOW
+    Wi-Fi: Serwer i Klient
   
 
     
@@ -1360,14 +1399,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../bezprzewodowe/wifi_ble/" class="md-nav__link">
+      <a href="../../bezprzewodowe/ble/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 15-16 – Sieci i radio: Wi-Fi i BLE
+    Bluetooth Low Energy (BLE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bezprzewodowe/espnow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ESP-NOW: Komunikacja bezpośrednia
   
 
     
@@ -1558,15 +1625,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#fizyka-spi-aktywne-sterowanie-push-pull" class="md-nav__link">
+  <a href="#charakterystyka-fizyczna-spi-aktywne-sterowanie-push-pull" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔌 Fizyka SPI: Aktywne Sterowanie Push-Pull
+        🔌 Charakterystyka fizyczna SPI: Aktywne Sterowanie Push-Pull
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🔌 Fizyka SPI: Aktywne Sterowanie Push-Pull">
+    <nav class="md-nav" aria-label="🔌 Charakterystyka fizyczna SPI: Aktywne Sterowanie Push-Pull">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1586,10 +1653,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sprzet-spi-w-esp32-c6" class="md-nav__link">
+  <a href="#charakterystyka-logiczna-anatomia-transmisji" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📦 Sprzęt SPI w ESP32-C6
+        📊 Charakterystyka logiczna (Anatomia transmisji)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Charakterystyka logiczna (Anatomia transmisji)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#krok-po-kroku-jak-przebiega-ramka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Krok po kroku: Jak przebiega ramka?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tryby-pracy-spi-spi-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tryby pracy SPI (SPI Modes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#obsuga-sprzetowa-w-esp32-c6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Obsługa sprzętowa w ESP32-C6
       
     </span>
   </a>
@@ -1600,12 +1706,12 @@
   <a href="#cwiczenie-praktyczne-wyswietlacz-tft-ili9341" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Ćwiczenie Praktyczne: Wyświetlacz TFT ILI9341
+        🎯 Ćwiczenie praktyczne: Wyświetlacz TFT ILI9341
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Ćwiczenie Praktyczne: Wyświetlacz TFT ILI9341">
+    <nav class="md-nav" aria-label="🎯 Ćwiczenie praktyczne: Wyświetlacz TFT ILI9341">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1673,27 +1779,101 @@
 <p>Magistrala I<sup>2</sup>C, choć bardzo oszczędna pod kątem wyprowadzeń, posiada poważne ograniczenie: prędkość. Przy przesyłaniu dużych ilości danych, takich jak całe ramki obrazu dla kolorowych wyświetlaczy graficznych czy dane z kart pamięci SD, I<sup>2</sup>C okazuje się zbyt wolne. Rozwiązaniem tego problemu jest standard <strong>SPI</strong>.</p>
 <p><strong>SPI</strong> (<em>Serial Peripheral Interface</em>) to szybki, synchroniczny interfejs komunikacyjny pracujący w trybie <strong>Full-Duplex</strong> (pełen dupleks). Wymaga większej liczby przewodów (zazwyczaj 4 linie sygnałowe), lecz dzięki aktywnemu sterowaniu wyjściami (<strong>Push-Pull</strong>) oraz sprzętowemu adresowaniu pozwala osiągać prędkości rzędu kilkudziesięciu megabitów na sekundę (MHz).</p>
 <hr />
-<h2 id="fizyka-spi-aktywne-sterowanie-push-pull">🔌 Fizyka SPI: Aktywne Sterowanie Push-Pull</h2>
-<p>W przeciwieństwie do otwartego drenu stosowanego w standardzie I<sup>2</sup>C, linie danych SPI są sterowane aktywnie w konfiguracji <strong>Push-Pull</strong> (symetryczne stopnie wyjściowe tranzystorowe, które aktywnie wymuszają na linii zarówno stan niski <span class="arithmatex">\(0\text{ V}\)</span>, jak i wysoki <span class="arithmatex">\(3.3\text{ V}\)</span>).
-* <strong>Zaleta</strong>: Bardzo krótkie czasy narastania i opadania sygnału, co umożliwia stabilne taktowanie zegarem o częstotliwościach nawet <span class="arithmatex">\(40\text{ MHz} - 80\text{ MHz}\)</span>.
-* <strong>Wada</strong>: Brak możliwości łączenia wielu wyjść ze sobą bez użycia dedykowanej linii wyboru odbiornika.</p>
+<h2 id="charakterystyka-fizyczna-spi-aktywne-sterowanie-push-pull">🔌 Charakterystyka fizyczna SPI: Aktywne Sterowanie Push-Pull</h2>
+<p>W przeciwieństwie do otwartego drenu stosowanego w standardzie I<sup>2</sup>C, linie danych SPI są sterowane aktywnie w konfiguracji <strong>Push-Pull</strong> (symetryczne stopnie wyjściowe tranzystorowe, które aktywnie wymuszają na linii zarówno stan niski <span class="arithmatex">\(0\text{ V}\)</span>, jak i wysoki <span class="arithmatex">\(3.3\text{ V}\)</span>).</p>
+<ul>
+<li><strong>Zaleta</strong>: Bardzo krótkie czasy narastania i opadania sygnału, co umożliwia stabilne taktowanie zegarem o częstotliwościach nawet <span class="arithmatex">\(40\text{ MHz} - 80\text{ MHz}\)</span>.</li>
+<li><strong>Wada</strong>: Brak możliwości łączenia wielu wyjść ze sobą bez użycia dedykowanej linii wyboru odbiornika.</li>
+</ul>
 <h4 id="cztery-linie-sygnaowe-spi">Cztery linie sygnałowe SPI:</h4>
 <ul>
-<li><strong>SCK</strong> (<em>Serial Clock</em>) – sygnał zegarowy generowany przez kontroler (ESP32).</li>
-<li><strong>MOSI</strong> (<em>Master Out Slave In</em>) – dane przesyłane z kontrolera do odbiornika (wyjście z ESP32).</li>
-<li><strong>MISO</strong> (<em>Master In Slave Out</em>) – dane przesyłane z odbiornika do kontrolera (wejście do ESP32).</li>
+<li><strong>SCK</strong> (<em>Serial Clock</em>) – sygnał zegarowy generowany przez mikrokontroler.</li>
+<li><strong>MOSI</strong> (<em>Master Out Slave In</em>) – dane przesyłane z mikrokontrolera do odbiornika.</li>
+<li><strong>MISO</strong> (<em>Master In Slave Out</em>) – dane przesyłane z odbiornika do mikrokontrolera.</li>
 <li><strong>CS / SS</strong> (<em>Chip Select / Slave Select</em>) – linia wyboru odbiornika. Zazwyczaj stan aktywny to stan niski (LOW). Gdy linia CS jest w stanie wysokim (HIGH), odbiornik ignoruje sygnały na magistrali i odłącza swoją linię MISO w stan wysokiej impedancji (Hi-Z), umożliwiając innym układom korzystanie z tych samych linii danych.</li>
 </ul>
 <p><img align="center" alt="SPI_diagram" src="../../img/protokoly/spi.png" /></p>
 <hr />
-<h2 id="sprzet-spi-w-esp32-c6">📦 Sprzęt SPI w ESP32-C6</h2>
+<h2 id="charakterystyka-logiczna-anatomia-transmisji">📊 Charakterystyka logiczna (Anatomia transmisji)</h2>
+<p>Komunikacja SPI opiera się na ciągłym przesuwaniu bitów w rejestrach przesuwnych Mastera i Slave'a (tworząc zamkniętą pętlę kołową). Aby poprawnie zsynchronizować transmisję, oba urządzenia muszą korzystać z tej samej konfiguracji parametrów czasowych sygnału.</p>
+<p><img align="center" alt="Wykres czasowy ramki SPI" src="../../img/protokoly/SPI_frames.png" /></p>
+<h3 id="krok-po-kroku-jak-przebiega-ramka">Krok po kroku: Jak przebiega ramka?</h3>
+<ol>
+<li><strong>Wybór układu (CS -&gt; LOW)</strong>: Transmisja rozpoczyna się od ustawienia przez Mastera linii <strong>CS</strong> (<em>Chip Select</em>) wybranego układu Slave w stan niski. Aktywuje to interfejs wyjściowy Slave'a (w tym linię MISO).</li>
+<li><strong>Generowanie taktowania (SCK)</strong>: Master rozpoczyna generowanie impulsów zegarowych na linii <strong>SCK</strong>. Z każdym impulsem następuje przesłanie 1 bitu danych.</li>
+<li><strong>Przesuwanie danych (MOSI / MISO)</strong>: Dane są jednocześnie wystawiane na liniach <strong>MOSI</strong> (przez Mastera) i <strong>MISO</strong> (przez Slave'a) i zatrzaskiwane po stronie odbiornika. Najczęściej bity są przesyłane poczynając od najstarszego (<strong>MSB First</strong>).</li>
+<li><strong>Zakończenie ramki (CS -&gt; HIGH)</strong>: Po przesłaniu określonej liczby bitów (zwykle wielokrotności 8, np. 1 bajt), Master kończy generowanie zegara SCK i ustawia linię <strong>CS</strong> w stan wysoki. Slave przechodzi wtedy w stan uśpienia, a linia MISO wraca do stanu wysokiej impedancji.</li>
+</ol>
+<h3 id="tryby-pracy-spi-spi-modes">Tryby pracy SPI (SPI Modes)</h3>
+<p>W zależności od konfiguracji sygnału zegarowego, wyróżnia się cztery tryby pracy SPI. Definiują je dwa parametry:</p>
+<ul>
+<li>
+<p><strong>CPOL</strong> (<em>Clock Polarity</em>) – określa stan linii zegara w spoczynku:</p>
+<ul>
+<li><code>CPOL = 0</code> – zegar w spoczynku ma stan niski (LOW).</li>
+<li><code>CPOL = 1</code> – zegar w spoczynku ma stan wysoki (HIGH).</li>
+<li>
+<p><strong>CPHA</strong> (<em>Clock Phase</em>) – określa, na którym zboczu zegara następuje odczyt (próbkowanie) danych:</p>
+</li>
+<li>
+<p><code>CPHA = 0</code> – dane są próbkowane na pierwszym zboczu zegara (zboczu aktywnym).</p>
+</li>
+<li><code>CPHA = 1</code> – dane są próbkowane na drugim zboczu zegara (zboczu powrotnym).</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Tryb SPI</th>
+<th style="text-align: center;">CPOL</th>
+<th style="text-align: center;">CPHA</th>
+<th style="text-align: left;">Próbkowanie danych</th>
+<th style="text-align: left;">Stan zegara w spoczynku</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Mode 0</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">Pierwsze zbocze (narastające)</td>
+<td style="text-align: left;">Niski (LOW)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Mode 1</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Drugie zbocze (opadające)</td>
+<td style="text-align: left;">Niski (LOW)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Mode 2</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">Pierwsze zbocze (opadające)</td>
+<td style="text-align: left;">Wysoki (HIGH)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Mode 3</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Drugie zbocze (narastające)</td>
+<td style="text-align: left;">Wysoki (HIGH)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="obsuga-sprzetowa-w-esp32-c6">📦 Obsługa sprzętowa w ESP32-C6</h2>
 <p>ESP32-C6 integruje w sobie kontrolery SPI. Jeden z nich jest zarezerwowany dla komunikacji z wewnętrzną/zewnętrzną pamięcią Flash (SPI0/SPI1), natomiast drugi (<strong>SPI2 / General Purpose SPI</strong>) jest w pełni dostępny dla użytkownika. Może on pracować z taktowaniem do <span class="arithmatex">\(80\text{ MHz}\)</span>, a jego piny mogą być dowolnie mapowane za pomocą GPIO Matrix.</p>
 <hr />
-<h2 id="cwiczenie-praktyczne-wyswietlacz-tft-ili9341">🎯 Ćwiczenie Praktyczne: Wyświetlacz TFT ILI9341</h2>
+<h2 id="cwiczenie-praktyczne-wyswietlacz-tft-ili9341">🎯 Ćwiczenie praktyczne: Wyświetlacz TFT ILI9341</h2>
 <p>W tym ćwiczeniu użyjemy wyświetlacza graficznego TFT (320x240 pikseli, kolor 16-bit RGB) sterowanego układem <strong>ILI9341</strong>.</p>
-<p>Ponieważ ekran jedynie przyjmuje dane o kolorach pikseli i nie odsyła informacji zwrotnych do ESP32, nie podłączamy linii MISO. Dodatkowo wyświetlacz wymaga dwóch pinów pomocniczych:
-* <strong>RESET (RES)</strong> – służący do sprzętowego resetu sterownika ekranu.
-* <strong>Data/Command (D/C)</strong> – określa typ wysyłanych danych: stan niski (LOW) oznacza komendę konfiguracyjną, a wysoki (HIGH) przesyłanie pikseli obrazu.</p>
+<p>Ponieważ ekran jedynie przyjmuje dane o kolorach pikseli i nie odsyła informacji zwrotnych do ESP32, nie podłączamy linii MISO. Dodatkowo wyświetlacz wymaga dwóch pinów pomocniczych:</p>
+<ul>
+<li><strong>RESET (RES)</strong> – służący do sprzętowego resetu sterownika ekranu.</li>
+<li><strong>Data/Command (D/C)</strong> – określa typ wysyłanych danych: stan niski (LOW) oznacza komendę konfiguracyjną, a wysoki (HIGH) przesyłanie pikseli obrazu.</li>
+</ul>
 <p>🎯 <strong>[Otwórz Wokwi z podłączonym ekranem TFT ILI9341]</strong> <em>(link zostanie zaktualizowany)</em></p>
 <h3 id="podaczenie">Podłączenie</h3>
 <p>Połącz wyświetlacz z mikrokontrolerem według tabeli:</p>
@@ -1763,11 +1943,13 @@
 </span></code></pre></div>
 <hr />
 <h2 id="zadanie-integracja-czujnika-i-wyswietlacza">🛠️ Zadanie: Integracja czujnika i wyświetlacza</h2>
-<p>Zbuduj miniaturowy system pomiarowy:
-1. Połącz kody dla czujnika <strong>MPU6050 (I2C)</strong> oraz wyświetlacza <strong>TFT ILI9341 (SPI)</strong>.
-2. Odczytuj w pętli <code>loop</code> wartości kątów pochylenia w osiach X i Y co 100 ms.
-3. Wyświetlaj te wartości w czytelny sposób na ekranie TFT.
-4. <em>Wskazówka optymalizacyjna</em>: Czyszczenie całego ekranu (<code>fillScreen</code>) przy każdym odczycie spowoduje silne migotanie tekstu ze względu na ograniczony czas transmisji. Zamiast tego czyść tylko obszar tekstu z wartością liczbową (np. rysując czarny prostokąt pod tekstem) lub nadpisuj stary tekst nowym kolorem czarnym przed wypisaniem nowej wartości.</p>
+<p>Zbuduj miniaturowy system pomiarowy:</p>
+<ol>
+<li>Połącz kody dla czujnika <strong>MPU6050 (I2C)</strong> oraz wyświetlacza <strong>TFT ILI9341 (SPI)</strong>.</li>
+<li>Odczytuj w pętli <code>loop</code> wartości kątów pochylenia w osiach X i Y co 100 ms.</li>
+<li>Wyświetlaj te wartości w czytelny sposób na ekranie TFT.</li>
+<li><em>Wskazówka optymalizacyjna</em>: Czyszczenie całego ekranu (<code>fillScreen</code>) przy każdym odczycie spowoduje silne migotanie tekstu ze względu na ograniczony czas transmisji. Zamiast tego czyść tylko obszar tekstu z wartością liczbową (np. rysując czarny prostokąt pod tekstem) lub nadpisuj stary tekst nowym kolorem czarnym przed wypisaniem nowej wartości.</li>
+</ol>
 <details>
 <summary>Pokaż rozwiązanie</summary>
 
@@ -1880,7 +2062,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Stopka" >
         
           
-          <a href="../i2c/" class="md-footer__link md-footer__link--prev" aria-label="Poprzednia strona: Magistrala I2C (Akcelerometr)">
+          <a href="../i2c/" class="md-footer__link md-footer__link--prev" aria-label="Poprzednia strona: Magistrala I²C">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1890,20 +2072,20 @@
                 Poprzednia strona
               </span>
               <div class="md-ellipsis">
-                Magistrala I2C (Akcelerometr)
+                Magistrala I²C
               </div>
             </div>
           </a>
         
         
           
-          <a href="../onewire/" class="md-footer__link md-footer__link--next" aria-label="Następna strona: Transmisja jednoprzewodowa (WS2812B)">
+          <a href="../onewire/" class="md-footer__link md-footer__link--next" aria-label="Następna strona: Transmisja jednoprzewodowa">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Następna strona
               </span>
               <div class="md-ellipsis">
-                Transmisja jednoprzewodowa (WS2812B)
+                Transmisja jednoprzewodowa
               </div>
             </div>
             <div class="md-footer__button md-icon">

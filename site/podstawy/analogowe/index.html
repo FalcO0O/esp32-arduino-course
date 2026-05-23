@@ -257,7 +257,7 @@
           
   
   
-  Protokoły
+  Protokoły komunikacyjne
 
         </a>
       </li>
@@ -277,7 +277,7 @@
           
   
   
-  Systemy
+  Systemy operacyjne i pamięć
 
         </a>
       </li>
@@ -297,7 +297,7 @@
           
   
   
-  Bezprzewodowe
+  Technologie bezprzewodowe
 
         </a>
       </li>
@@ -458,7 +458,7 @@
   <span class="md-ellipsis">
     
   
-    1. Teoria – czym jest mikrokontroler
+    Teoria – czym jest mikrokontroler
   
 
     
@@ -486,7 +486,7 @@
   <span class="md-ellipsis">
     
   
-    2. Płytka ESP32-C6
+    Płytka ESP32-C6
   
 
     
@@ -514,7 +514,7 @@
   <span class="md-ellipsis">
     
   
-    3. Konfiguracja środowiska i Wokwi
+    Konfiguracja środowiska i Wokwi
   
 
     
@@ -854,7 +854,7 @@
   <span class="md-ellipsis">
     
   
-    Serwomechanizmy (PWM w praktyce)
+    Serwomechanizmy
   
 
     
@@ -882,7 +882,7 @@
   <span class="md-ellipsis">
     
   
-    Czas i Przerwania (millis(), ISR)
+    Czas i Przerwania
   
 
     
@@ -933,7 +933,7 @@
   <span class="md-ellipsis">
     
   
-    Protokoły
+    Protokoły komunikacyjne
   
 
     
@@ -949,7 +949,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Protokoły
+    Protokoły komunikacyjne
   
 
           </label>
@@ -997,7 +997,7 @@
   <span class="md-ellipsis">
     
   
-    UART: loopback i komendy
+    UART
   
 
     
@@ -1025,7 +1025,7 @@
   <span class="md-ellipsis">
     
   
-    Magistrala I2C (Akcelerometr)
+    Magistrala I²C
   
 
     
@@ -1053,7 +1053,7 @@
   <span class="md-ellipsis">
     
   
-    Magistrala SPI (Wyświetlacz TFT)
+    Magistrala SPI
   
 
     
@@ -1081,7 +1081,7 @@
   <span class="md-ellipsis">
     
   
-    Transmisja jednoprzewodowa (WS2812B)
+    Transmisja jednoprzewodowa
   
 
     
@@ -1132,7 +1132,7 @@
   <span class="md-ellipsis">
     
   
-    Systemy
+    Systemy operacyjne i pamięć
   
 
     
@@ -1148,7 +1148,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Systemy
+    Systemy operacyjne i pamięć
   
 
           </label>
@@ -1217,14 +1217,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/freertos/" class="md-nav__link">
+      <a href="../../systemy/deepsleep/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 11-12 – FreeRTOS: Zadania i kolejki
+    Sleep: zarządzanie energią
   
 
     
@@ -1245,14 +1245,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/deepsleep/" class="md-nav__link">
+      <a href="../../systemy/freertos/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 13 – Deep Sleep: zarządzanie energią
+    FreeRTOS: Zadania, kolejki i notyfikacje
   
 
     
@@ -1303,7 +1303,7 @@
   <span class="md-ellipsis">
     
   
-    Bezprzewodowe
+    Technologie bezprzewodowe
   
 
     
@@ -1319,7 +1319,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Bezprzewodowe
+    Technologie bezprzewodowe
   
 
           </label>
@@ -1360,14 +1360,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../bezprzewodowe/espnow/" class="md-nav__link">
+      <a href="../../bezprzewodowe/wifi/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    👥 Ćw. 14 – ESP-NOW
+    Wi-Fi: Serwer i Klient
   
 
     
@@ -1388,14 +1388,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../bezprzewodowe/wifi_ble/" class="md-nav__link">
+      <a href="../../bezprzewodowe/ble/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 15-16 – Sieci i radio: Wi-Fi i BLE
+    Bluetooth Low Energy (BLE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bezprzewodowe/espnow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ESP-NOW: Komunikacja bezpośrednia
   
 
     
@@ -1796,13 +1824,15 @@ Pin jest bardzo szybko włączany i wyłączany (np. 10 000 razy na sekundę!), 
 <h2 id="cwiczenie-2-adc-odczyt-potencjometru">Ćwiczenie 2 – ADC: odczyt potencjometru</h2>
 <p>Potrafimy już płynnie sterować poziomem sygnału wyjściowego. W jaki sposób możemy jednak odczytać wartości ciągłe z otoczenia? Na przykład sprawdzić kąt obrotu pokrętła potencjometru lub poziom wilgotności gleby?</p>
 <p>Do tego celu służy przetwornik analogowo-cyfrowy, czyli <strong>ADC</strong> (<em>Analog-to-Digital Converter</em>).
-Mikrokontroler ESP32-C6 wyposażony jest w 12-bitowy przetwornik ADC. Konwertuje on mierzone napięcie wejściowe z zakresu od 0 V do 3.3 V na odpowiadającą mu wartość cyfrową w skali od 0 do 4095:
-- 0 V → 0
-- 1.65 V → ok. 2047
-- 3.3 V → 4095</p>
+Mikrokontroler ESP32-C6 wyposażony jest w 12-bitowy przetwornik ADC. Konwertuje on mierzone napięcie wejściowe z zakresu od 0 V do 3.3 V na odpowiadającą mu wartość cyfrową w skali od 0 do 4095:</p>
+<ul>
+<li>0 V → 0</li>
+<li>1.65 V → ok. 2047</li>
+<li>3.3 V → 4095</li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">Dostępność wejść ADC w układzie ESP32-C6</p>
-<p>Pomiary analogowe nie są dostępne na wszystkich pinach GPIO. W mikrokontrolerze ESP32-C6 dedykowane kanały przetwornika ADC są przypisane do pinów: <strong>GPIO0, GPIO1, GPIO2, GPIO3, GPIO4, GPIO5 oraz GPIO6</strong> (można to odczytać ze schematu wyprowadzeń w sekcji <a href="../../start/sprzet/">Płytka ESP32-C6 i sprzęt</a> w części <code>Schemat wyprowadzeń (Pinout)</code> – szukaj oznaczeń <strong>ADC</strong>). W naszym ćwiczeniu potencjometr podłączymy do pinu <strong>GPIO4</strong>.</p>
+<p>Pomiary analogowe nie są dostępne na wszystkich pinach GPIO. W mikrokontrolerze ESP32-C6 dedykowane kanały przetwornika ADC są przypisane do pinów: <strong>GPIO0, GPIO1, GPIO2, GPIO3, GPIO4, GPIO5 oraz GPIO6</strong> (można to odczytać ze <a href="../../start/sprzet/#schemat-wyprowadzen-pinout">schematu wyprowadzeń</a> – szukaj oznaczeń <strong>ADC</strong>). W naszym ćwiczeniu potencjometr podłączymy do pinu <strong>GPIO4</strong>.</p>
 </div>
 <h3 id="jak-podaczyc-potencjometr">Jak podłączyć potencjometr?</h3>
 <p>Potencjometr obrotowy posiada trzy wyprowadzenia:</p>
@@ -1886,7 +1916,9 @@ Mikrokontroler ESP32-C6 wyposażony jest w 12-bitowy przetwornik ADC. Konwertuje
 <p>Gdybyśmy bezpośrednio przekazali odczyt z potencjometru (np. 1000) do funkcji <code>analogWrite()</code>, wartość ta uległaby przepełnieniu (zostałaby zrzutowana na typ 8-bitowy), przez co dioda zamiast płynnie się rozjaśniać, kilkukrotnie zapalałaby się i gasła podczas jednego pełnego obrotu pokrętła.</p>
 <p>Do rozwiązania tego problemu służy wbudowana funkcja:</p>
 <ul>
-<li><strong><code>map(wartość, zMin, zMax, doMin, doMax)</code></strong>: Przeskalowuje podaną liczbę z jednego zakresu na inny. Przyjmuje ona 5 argumentów:<ol>
+<li>
+<p><strong><code>map(wartość, zMin, zMax, doMin, doMax)</code></strong>: Przeskalowuje podaną liczbę z jednego zakresu na inny. Przyjmuje ona 5 argumentów:</p>
+<ol>
 <li><code>wartość</code> – zmienna, którą chcemy przeskalować (np. nasz odczyt z potencjometru).</li>
 <li><code>zMin</code> – dolna granica obecnego zakresu (dla ADC: <code>0</code>).</li>
 <li><code>zMax</code> – górna granica obecnego zakresu (dla ADC: <code>4095</code>).</li>
@@ -1977,13 +2009,13 @@ Mikrokontroler ESP32-C6 wyposażony jest w 12-bitowy przetwornik ADC. Konwertuje
         
         
           
-          <a href="../serwa/" class="md-footer__link md-footer__link--next" aria-label="Następna strona: Serwomechanizmy (PWM w praktyce)">
+          <a href="../serwa/" class="md-footer__link md-footer__link--next" aria-label="Następna strona: Serwomechanizmy">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Następna strona
               </span>
               <div class="md-ellipsis">
-                Serwomechanizmy (PWM w praktyce)
+                Serwomechanizmy
               </div>
             </div>
             <div class="md-footer__button md-icon">

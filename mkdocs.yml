@@ -68,8 +68,9 @@ nav:
 
   - Technologie bezprzewodowe:
       - Przegląd modułu: bezprzewodowe/index.md
-      - "ESP-NOW": bezprzewodowe/espnow.md
-      - "Sieci i radio: Wi-Fi i BLE": bezprzewodowe/wifi_ble.md
+      - "Wi-Fi: Serwer i Klient": bezprzewodowe/wifi.md
+      - "Bluetooth Low Energy (BLE)": bezprzewodowe/ble.md
+      - "ESP-NOW: Komunikacja bezpośrednia": bezprzewodowe/espnow.md
 
   - Materiały:
       - Kod wzorcowy: materialy/kod_wzorcowy.md

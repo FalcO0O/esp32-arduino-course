@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../systemy/deepsleep/">
+        <link rel="prev" href="../systemy/freertos/">
       
       
-        <link rel="next" href="espnow/">
+        <link rel="next" href="wifi/">
       
       
         
@@ -255,7 +255,7 @@
           
   
   
-  Protokoły
+  Protokoły komunikacyjne
 
         </a>
       </li>
@@ -275,7 +275,7 @@
           
   
   
-  Systemy
+  Systemy operacyjne i pamięć
 
         </a>
       </li>
@@ -297,7 +297,7 @@
           
   
   
-  Bezprzewodowe
+  Technologie bezprzewodowe
 
         </a>
       </li>
@@ -458,7 +458,7 @@
   <span class="md-ellipsis">
     
   
-    1. Teoria – czym jest mikrokontroler
+    Teoria – czym jest mikrokontroler
   
 
     
@@ -486,7 +486,7 @@
   <span class="md-ellipsis">
     
   
-    2. Płytka ESP32-C6
+    Płytka ESP32-C6
   
 
     
@@ -514,7 +514,7 @@
   <span class="md-ellipsis">
     
   
-    3. Konfiguracja środowiska i Wokwi
+    Konfiguracja środowiska i Wokwi
   
 
     
@@ -685,7 +685,7 @@
   <span class="md-ellipsis">
     
   
-    Serwomechanizmy (PWM w praktyce)
+    Serwomechanizmy
   
 
     
@@ -713,7 +713,7 @@
   <span class="md-ellipsis">
     
   
-    Czas i Przerwania (millis(), ISR)
+    Czas i Przerwania
   
 
     
@@ -764,7 +764,7 @@
   <span class="md-ellipsis">
     
   
-    Protokoły
+    Protokoły komunikacyjne
   
 
     
@@ -780,7 +780,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Protokoły
+    Protokoły komunikacyjne
   
 
           </label>
@@ -828,7 +828,7 @@
   <span class="md-ellipsis">
     
   
-    UART: loopback i komendy
+    UART
   
 
     
@@ -856,7 +856,7 @@
   <span class="md-ellipsis">
     
   
-    Magistrala I2C (Akcelerometr)
+    Magistrala I²C
   
 
     
@@ -884,7 +884,7 @@
   <span class="md-ellipsis">
     
   
-    Magistrala SPI (Wyświetlacz TFT)
+    Magistrala SPI
   
 
     
@@ -912,7 +912,7 @@
   <span class="md-ellipsis">
     
   
-    Transmisja jednoprzewodowa (WS2812B)
+    Transmisja jednoprzewodowa
   
 
     
@@ -963,7 +963,7 @@
   <span class="md-ellipsis">
     
   
-    Systemy
+    Systemy operacyjne i pamięć
   
 
     
@@ -979,7 +979,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Systemy
+    Systemy operacyjne i pamięć
   
 
           </label>
@@ -1048,14 +1048,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../systemy/freertos/" class="md-nav__link">
+      <a href="../systemy/deepsleep/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 11-12 – FreeRTOS: Zadania i kolejki
+    Sleep: zarządzanie energią
   
 
     
@@ -1076,14 +1076,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../systemy/deepsleep/" class="md-nav__link">
+      <a href="../systemy/freertos/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 13 – Deep Sleep: zarządzanie energią
+    FreeRTOS: Zadania, kolejki i notyfikacje
   
 
     
@@ -1139,7 +1139,7 @@
   <span class="md-ellipsis">
     
   
-    Bezprzewodowe
+    Technologie bezprzewodowe
   
 
     
@@ -1155,7 +1155,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Bezprzewodowe
+    Technologie bezprzewodowe
   
 
           </label>
@@ -1276,14 +1276,14 @@
   
   
     <li class="md-nav__item">
-      <a href="espnow/" class="md-nav__link">
+      <a href="wifi/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    👥 Ćw. 14 – ESP-NOW
+    Wi-Fi: Serwer i Klient
   
 
     
@@ -1304,14 +1304,42 @@
   
   
     <li class="md-nav__item">
-      <a href="wifi_ble/" class="md-nav__link">
+      <a href="ble/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ćw. 15-16 – Sieci i radio: Wi-Fi i BLE
+    Bluetooth Low Energy (BLE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="espnow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ESP-NOW: Komunikacja bezpośrednia
   
 
     
@@ -1558,19 +1586,37 @@
 
 
 <h1 id="technologie-bezprzewodowe">Technologie bezprzewodowe</h1>
-<p>Wchodzimy w ostatni, najbardziej zaawansowany i najbardziej ekscytujący etap pracy z mikrokontrolerami ESP. To tutaj dowiadujesz się dlaczego te konkretnie kostki zrewolucjonizowały świat hobbystów na całym globie!</p>
-<p>ESP32-C6 to jeden z niewielu układów scalonych z <strong>pełnym zestawem</strong> nowoczesnych technologii bezprzewodowych wlutowanych prosto w jedną małą płytkę, zawierającą zarówno silne Wi-Fi jak i nowoczesny, energooszczędny Bluetooth.</p>
+<p>Wkraczamy w etap pracy z wbudowanymi modułami radiowymi układów ESP. Bezprzewodowa łączność to jedna z kluczowych cech mikrokontrolerów z rodziny ESP32.</p>
+<p>ESP32-C6 integruje technologie bezprzewodowe na jednej płytce deweloperskiej, wspierając łączność Wi-Fi (w standardzie Wi-Fi 6) oraz energooszczędny standard Bluetooth Low Energy (BLE 5.3).</p>
 <hr />
 <h2 id="czego-sie-nauczysz-w-tej-sekcji">⚡ Czego się nauczysz w tej sekcji?</h2>
-<p>Wykorzystasz potęgę wbudowanego radia. Najpierw zbudujemy najszybszą, bezpośrednią sieć układów gadających między sobą (w czasie poniżej kilku milisekund z odległości kilkuset metrów!) za pomocą technologii ESP-NOW.
-Następnie otworzymy nasz mikrokontroler na klasyczny internet routerów Wi-Fi i sprawimy, by pobierał wiedzę z globalnej bazy danych. Na sam koniec zmienimy ESP32 w serwer BLE udostępniający usługi dla Twojego telefonu.</p>
+<p>W tym module poznasz trzy najważniejsze metody komunikacji bezprzewodowej obsługiwane przez ESP32-C6:</p>
+<ul>
+<li><strong>Wi-Fi</strong> – połączysz układ z siecią lokalną (jako klient STA) w celu pobierania danych z zewnętrznych serwisów (API) oraz uruchomisz własny punkt dostępowy (Access Point) z serwerem WWW do sterowania urządzeniem z poziomu przeglądarki.</li>
+<li><strong>Bluetooth Low Energy (BLE)</strong> – skonfigurujesz ESP32 jako serwer BLE (GATT), udostępniający usługi i wysyłający asynchroniczne powiadomienia (Notify) bezpośrednio do aplikacji na smartfonie.</li>
+<li><strong>ESP-NOW</strong> – zrealizujesz szybką komunikację bezpośrednią peer-to-peer oraz rozgłoszeniową (Broadcast) między wieloma układami ESP z minimalnymi opóźnieniami i bez użycia routera.</li>
+</ul>
+<hr />
 <h2 id="wymagany-sprzet-w-tym-module">🛠️ Wymagany sprzęt w tym module</h2>
-<p>Funkcje bezprzewodowe silnie polegają na łączności z wieloma urządzeniami. O ile symulowanie Wi-Fi w Wokwi jest do pewnego stopnia możliwe, praca w tym module da Ci największą satysfakcję w otaczającym Cię, namacalnym świecie.</p>
-<p>Potrzebujesz:
-| Komponent | Do czego posłuży? |
-|:---|:---|
-| <strong>Druga Płytka ESP32-C6</strong> | Konieczna do przetestowania wysyłania komend ESP-NOW (od biedy przetestujesz to łącząc się z płytką sąsiada z ławki!) |
-| <strong>Twój Telefon / Laptop</strong> | Konieczny by połączyć się z siecią WebServera oraz skanować usługi Bluetooth z aplikacji (nRF Connect) |</p>
+<p>Funkcje bezprzewodowe opierają się na łączności z innymi urządzeniami. Aby w pełni przetestować przykłady w tym module, będziesz potrzebować:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Komponent</th>
+<th style="text-align: left;">Do czego posłuży?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Druga Płytka ESP32-C6</strong></td>
+<td style="text-align: left;">Konieczna do przetestowania bezpośredniej komunikacji ESP-NOW.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Smartfon lub laptop</strong></td>
+<td style="text-align: left;">Niezbędny do połączenia z serwerem WWW przez Wi-Fi oraz do skanowania usług Bluetooth w aplikacji testowej.</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="spis-lekcji">🗺️ Spis Lekcji</h2>
 <table>
@@ -1584,13 +1630,18 @@ Następnie otworzymy nasz mikrokontroler na klasyczny internet routerów Wi-Fi i
 <tbody>
 <tr>
 <td style="text-align: center;">13</td>
-<td style="text-align: left;"><a href="espnow/">ESP-NOW: komunikacja P2P</a></td>
-<td style="text-align: left;">Komunikacja radiowa omijająca domowy router</td>
+<td style="text-align: left;"><a href="wifi/">Wi-Fi: Serwer i Klient</a></td>
+<td style="text-align: left;">Uruchomienie punktu dostępowego WWW oraz klienta HTTP pobierającego dane JSON</td>
 </tr>
 <tr>
-<td style="text-align: center;">14-15</td>
-<td style="text-align: left;"><a href="wifi_ble/">Wi-Fi i BLE: Serwery i Klient</a></td>
-<td style="text-align: left;">Wystawianie strony WWW oraz Serwera Bluetooth</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: left;"><a href="ble/">Bluetooth Low Energy (BLE)</a></td>
+<td style="text-align: left;">Konfiguracja serwera GATT i asynchroniczne powiadomienia (Notify)</td>
+</tr>
+<tr>
+<td style="text-align: center;">15</td>
+<td style="text-align: left;"><a href="espnow/">ESP-NOW: Komunikacja bezpośrednia</a></td>
+<td style="text-align: left;">Szybka wymiana danych peer-to-peer oraz transmisja rozgłoszeniowa</td>
 </tr>
 </tbody>
 </table>
@@ -1629,7 +1680,7 @@ Następnie otworzymy nasz mikrokontroler na klasyczny internet routerów Wi-Fi i
       <nav class="md-footer__inner md-grid" aria-label="Stopka" >
         
           
-          <a href="../systemy/deepsleep/" class="md-footer__link md-footer__link--prev" aria-label="Poprzednia strona: Ćw. 13 – Deep Sleep: zarządzanie energią">
+          <a href="../systemy/freertos/" class="md-footer__link md-footer__link--prev" aria-label="Poprzednia strona: FreeRTOS: Zadania, kolejki i notyfikacje">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1639,20 +1690,20 @@ Następnie otworzymy nasz mikrokontroler na klasyczny internet routerów Wi-Fi i
                 Poprzednia strona
               </span>
               <div class="md-ellipsis">
-                Ćw. 13 – Deep Sleep: zarządzanie energią
+                FreeRTOS: Zadania, kolejki i notyfikacje
               </div>
             </div>
           </a>
         
         
           
-          <a href="espnow/" class="md-footer__link md-footer__link--next" aria-label="Następna strona: 👥 Ćw. 14 – ESP-NOW">
+          <a href="wifi/" class="md-footer__link md-footer__link--next" aria-label="Następna strona: Wi-Fi: Serwer i Klient">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Następna strona
               </span>
               <div class="md-ellipsis">
-                👥 Ćw. 14 – ESP-NOW
+                Wi-Fi: Serwer i Klient
               </div>
             </div>
             <div class="md-footer__button md-icon">
