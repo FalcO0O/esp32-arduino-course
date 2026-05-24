@@ -25,32 +25,37 @@ Do pracy z rzeczywistym mikrokontrolerem będziemy korzystać z najpopularniejsz
 
 ### Krok 1: Instalacja programu
 
-1. Wejdź na oficjalną stronę: 🔗 [arduino.cc/en/software](https://www.arduino.cc/en/software)
-2. Pobierz wersję instalacyjną dla swojego systemu operacyjnego (np. Windows Installer) i przejdź standardowy proces instalacji.
+- Wejdź na oficjalną stronę: 🔗 [arduino.cc/en/software](https://www.arduino.cc/en/software)
+- Pobierz wersję instalacyjną dla swojego systemu operacyjnego (np. Windows Installer) i przejdź standardowy proces instalacji.
 
 
 Domyślnie środowisko Arduino IDE obsługuje jedynie oficjalne płytki z rodziny Arduino (np. Uno, Nano). Aby umożliwić programowanie układów firmy Espressif (w tym ESP32-C6), należy zainstalować odpowiedni pakiet obsługi:
 
-1. Otwórz Arduino IDE i wejdź w **Plik → Preferencje** (lub wciśnij skrót `Ctrl + ,`).
-2. Znajdź pole **Dodatkowe adresy URL menedżera płytek**.
-3. Wklej poniższy adres URL (odpowiadający za pobranie definicji płytek przez menedżer):
-   ```text
-   https://espressif.github.io/arduino-esp32/package_esp32_index.json
-   ```
-   *Uwaga: Jeśli masz już tam wpisane inne linki, rozdziel je przecinkiem lub dodaj w nowej linii klikając ikonę okna obok pola tekstowego.*
-4. Kliknij **OK**, aby zatwierdzić zmiany.
-5. Z lewego paska bocznego wybierz ikonę **Menedżer płytek** (lub przejdź do menu: *Narzędzia → Płytka → Menedżer płytek...*).
-6. Wyszukaj pakiet o nazwie **`esp32`** (autorstwa *Espressif Systems*) i kliknij przycisk **Instaluj**. Instalacja łańcucha narzędziowego i definicji może potrwać kilka minut.
+- Kliknij w ikonkę płytki po lewej stronie edytora.
+- Wyszukaj pakiet o nazwie **`esp32`** (autorstwa *Espressif Systems*)
+- Kliknij przycisk **Instaluj**. Instalacja łańcucha narzędziowego i definicji może potrwać kilka minut.
 
-### Krok 3: Wybór płytki i portu komunikacyjnego
+![Instalacja pakietu esp32](../img/start/board_install.png){: .center }
 
-1. Podłącz swoją płytkę ESP32-C6 do komputera za pomocą kabla USB-C. Kabel należy podłączyć do portu oznaczonego na płytce deweloperskiej jako **`USB`**.
+
+### Krok 2: Wybór płytki i portu komunikacyjnego
+
+1. Podłącz swoją płytkę ESP32-C6 do komputera za pomocą kabla USB. Kabel należy podłączyć do portu oznaczonego na płytce deweloperskiej jako **`USB`**.
 2. Upewnij się, że używany przewód obsługuje transmisję danych (niektóre przewody przeznaczone wyłącznie do ładowania nie posiadają linii sygnałowych).
 3. W Arduino IDE wejdź w menu **Narzędzia → Płytka → esp32** i wybierz **`ESP32-C6 Dev Module`**.
-<!-- ![Zdjęcie okna wyboru płytki w Arduino IDE](../img/start/arduinio_ide_wybor_plytki.png) -->
+![Zdjęcie okna wyboru płytki w Arduino IDE](../img/start/board_selection.png){: .center }
 4. Wejdź w **Narzędzia → Port** i wybierz port, pod którym zgłosiła się Twoja płytka (na Windowsie będzie to np. `COM3` lub `COM4`, na Linuxie np. `/dev/ttyACM0` lub `/dev/ttyUSB0`, na macOS np. `/dev/cu.usbmodem...`).
 
-> [!IMPORTANT] Ważne dla użytkowników systemu Linux: Brak dostępu do portu
+![Zdjęcie okna wyboru portu w Arduino IDE](../img/start/port_selection.png){: .center }
+
+> [!TIP] Jak najłatwiej sprawdzić, który port odpowiada Twojej płytce?
+> Jeśli na liście widzisz wiele portów (np. `COM1`, `COM3`, `COM4`) i nie wiesz, który z nich to podłączone ESP32-C6:
+> 1. Odłącz płytkę od portu USB komputera.
+> 2. Kliknij w menu **Narzędzia** i zjedź kursorem z zakładki **Port** (lub całkowicie zamknij menu), a następnie najedź na nią ponownie, aby odświeżyć listę portów.
+> 3. Zobacz, który port zniknął z listy.
+> 4. Podłącz płytkę z powrotem i ponownie rozwiń listę. Nowo dodany port (ten, który zniknął w poprzednim kroku) to Twoje urządzenie!
+
+> [!WARNING] Ważne dla użytkowników systemu Linux: Brak dostępu do portu
 > W systemach Linux domyślny użytkownik nie ma uprawnień do zapisu i odczytu z portów szeregowych (takich jak `/dev/ttyACM0` lub `/dev/ttyUSB0`). Uruchomienie Arduino IDE w takiej konfiguracji uniemożliwi wgranie programu i zakończy się błędem braku uprawnień (Permission Denied).
 > 
 > Aby nadać uprawnienia na stałe, dodaj swojego użytkownika do grupy systemowej `dialout` (w dystrybucjach typu Ubuntu/Debian) lub `uucp` (w dystrybucjach typu Arch). Otwórz terminal i wpisz:
@@ -69,7 +74,7 @@ Układ ESP32-C6 posiada wbudowany kontroler USB-JTAG/Serial. Aby Monitor Szerego
 > W menu Narzędzia odszukaj pozycję **`USB CDC On Boot`** i ustaw jej wartość na **`Enabled`**.
 > Bez tego ustawienia program wgra się poprawnie, ale w Monitorze Szeregowym nie zobaczysz żadnych napisów!
 
-![Włączenie USB CDC On Boot w Arduino IDE](../img/podstawy/cnc_enable.png){ align=center }
+![Włączenie USB CDC On Boot w Arduino IDE](../img/start/cnc_enable.png){: .center }
 
 ---
 
@@ -92,13 +97,20 @@ Sprawdźmy, czy cały łańcuch narzędziowy działa poprawnie. Spróbujemy wgra
    }
    ```
 2. Kliknij ikonę **Strzałki w prawo (Wgraj)** w lewym górnym rogu (lub użyj skrótu `Ctrl + U`).
-<!-- ![Zdjęcie okna z kodem w Arduino IDE](../img/start/arduinio_ide_kod.png) -->
+![Zdjęcie okna z kodem w Arduino IDE](../img/start/upload_arror.png){: .center }
 3. Poczekaj, aż w dolnej konsoli zobaczysz napisy informujące o kompilacji i procesie wgrywania (zakończonym komunikatem typu *Leaving... Hard resetting via RTS pin...*).
 4. Otwórz **Monitor Szeregowy** (ikona lupy w prawym górnym rogu lub skrót `Ctrl + Shift + M`).
-![Zdjęcie okna Monitora Szeregowego w Arduino IDE](../img/podstawy/serial_monitor.png)
+![Zdjęcie okna Monitora Szeregowego w Arduino IDE](../img/start/serial_monitor_ide.png){: .center }
 5. Upewnij się, że w prawym dolnym rogu okna Monitora wybrana jest poprawna prędkość transmisji: **`115200 baud`**.
+![Zdjęcie okna Monitora Szeregowego w Arduino IDE](../img/start/serial_monitor.png){: .center }
 6. Jeśli widzisz pojawiające się napisy "ESP32-C6 żyje i nadaje..." – Twoje środowisko jest gotowe do pracy!
-![Zdjęcie okna Monitora Szeregowego w Arduino IDE](../img/podstawy/serial_monitor.png)
+
+> [!WARNING] Rozłączanie Monitora Szeregowego po wgraniu programu
+> W momencie wgrywania nowego programu do ESP32-C6 port szeregowy w komputerze na chwilę znika (jest resetowany), co powoduje odłączenie Monitora Szeregowego w Arduino IDE.
+> 
+> Aby poprawnie odczytać dane po wgraniu:
+> 1. Upewnij się, że Monitor Szeregowy połączył się ponownie. Zrobsz to poprzez dwukrotne kliknięcie ikonki lupy w prawym górnym rogu (lub użyj skrótu `Ctrl + Shift + M`). (pierwsze kliknięcie zamyka monitor, drugie otwiera)
+> 2. Wciśnij krótko fizyczny przycisk **RST** (lub **EN**) na płytce deweloperskiej. Spowoduje to restart ESP32 i ponowne wysłanie początkowych komunikatów (z funkcji `setup()`), które mogły zostać wysłane zanim komputer zdążył ponownie otworzyć port szeregowy.
 
 Jeśli cokolwiek poszło nie tak, spróbuj rozwiązań opisanych poniżej.
 
@@ -109,8 +121,7 @@ Jeśli cokolwiek poszło nie tak, spróbuj rozwiązań opisanych poniżej.
 ### 1. Brak portu COM / Serial w menu Narzędzia → Port
 
 * **Przyczyna 1**: Twój kabel USB służy tylko do ładowania telefonu i nie przesyła danych. Wymień kabel na inny.
-* **Przyczyna 2**: Brak sterowników do konwertera USB-Serial na płytce. W zależności od wersji płytki deweloperskiej, zainstaluj sterowniki do układów **CH340** lub **CP2102** (dostępne na stronach producentów tych układów).
-* **Przyczyna 3 (Linux)**: Twój użytkownik nie ma uprawnień do odczytu urządzenia. Upewnij się, że wykonałeś krok z dodaniem użytkownika do grupy `dialout` i ponownie uruchomiłeś sesję systemową.
+* **Przyczyna 2 (Linux)**: Twój użytkownik nie ma uprawnień do odczytu urządzenia. Upewnij się, że wykonałeś krok z dodaniem użytkownika do grupy `dialout` i ponownie uruchomiłeś sesję systemową.
 
 ### 2. Kompilator zgłasza błąd podczas wgrywania (Timeout / Failed to connect)
 

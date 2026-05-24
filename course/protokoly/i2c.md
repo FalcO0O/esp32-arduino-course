@@ -11,7 +11,7 @@ Komunikacja opiera się na dwóch liniach sygnałowych:
 
 ## 🔌 Charakterystyka fizyczna I<sup>2</sup>C: Konfiguracja Otwartych Drenów i Pull-Up
 
-Jedną z najważniejszych cech I<sup>2</sup>C jest konstrukcja wyjść stopni elektrycznych urządzeń. Pracują one w konfiguracji **otrawtego drenu** (Open-Drain). Oznacza to, że żadne urządzenie nie potrafi aktywnie wymusić na magistrali stanu wysokiego ($3.3\text{ V}$). Układy mogą jedynie "ściągać" linię do masy ($0\text{ V}$), zwierając ją wewnętrznym tranzystorem.
+Jedną z najważniejszych cech I<sup>2</sup>C jest konstrukcja wyjść stopni elektrycznych urządzeń. Pracują one w konfiguracji **otwartego drenu** (Open-Drain). Oznacza to, że żadne urządzenie nie potrafi aktywnie wymusić na magistrali stanu wysokiego ($3.3\text{ V}$). Układy mogą jedynie "ściągać" linię do masy ($0\text{ V}$), zwierając ją wewnętrznym tranzystorem.
 
 Z tego powodu magistrala I<sup>2</sup>C wymaga zastosowania zewnętrznych **rezystorów podciągających (Pull-Up)** podłączonych między liniami SDA/SCL a zasilaniem VCC.
 
@@ -37,9 +37,9 @@ Transmisja danych w I<sup>2</sup>C opiera się na określonych stanach logicznyc
 4. **Potwierdzenie ACK/NACK**: Po przesłaniu każdego bajtu (8 bitów), odbiorca musi potwierdzić jego odebranie. W dziewiątym takcie zegara odbiorca ściąga linię SDA do stanu niskiego (**ACK** - *Acknowledge*). Jeśli linia pozostanie wysoka, oznacza to brak potwierdzenia (**NACK** - *Not Acknowledge*).
 5. **Warunek STOP (P)**: Linia SDA przechodzi ze stanu niskiego do wysokiego, podczas gdy linia SCL jest w stanie wysokim. Sygnalizuje to koniec transmisji.
 
-![I2C_wave](../img/protokoly/i2c_logic.png){ align=center }
+![I2C_wave](../img/protokoly/i2c_logic.png){: .center }
 
-#### Prędkości pracy (I2C Speed Modes):
+#### Prędkości pracy (I<sup>2</sup>C Speed Modes):
 
 * **Standard Mode**: do $100\text{ kb/s}$
 * **Fast Mode**: do $400\text{ kb/s}$ (najbardziej powszechny standard)
@@ -57,7 +57,7 @@ Układ ESP32-C6 wyposażony jest w **dedykowany sprzętowy kontroler I<sup>2</su
 
 [**Link do symulacji w Wokwi**](https://wokwi.com/projects/464856436584059905){: style="display: block; text-align: center;" }
 
-W tym ćwiczeniu użyjemy modułu czujnika inercyjnego **MPU6050** (zawierającego 3-osiowy akcelerometr i 3-osiowy żyroskop), komunikującego się za pomocą I2C.
+W tym ćwiczeniu użyjemy modułu czujnika inercyjnego **MPU6050** (zawierającego 3-osiowy akcelerometr i 3-osiowy żyroskop), komunikującego się za pomocą I<sup>2</sup>C.
 
 > [!NOTE] Instalacja biblioteki
 > Do obsługi MPU6050 wykorzystamy gotową bibliotekę **MPU6050_light** autorstwa *rfetick*. Instrukcja instalacji (krok po kroku) znajduje się [tutaj](../podstawy/serwa.md#instalacja-biblioteki-esp32servo).
@@ -111,6 +111,7 @@ void loop() {
 ## 🛠️ Zadanie: Wykrywacz wstrząsów
 
 Zamiast odczytywać kąt pochylenia (który bazuje na fuzji danych z żyroskopu i akcelerometru), napisz aplikację reagującą na nagły ruch (wstrząs).
+
 1. Zamiast metody `.getAngleX()`, użyj metody `.getAccX()` zwracającej przyspieszenie liniowe w osi X (mierzone w jednostkach przyspieszenia ziemskiego $G$, gdzie $1.0\text{ G} \approx 9.81\text{ m/s}^2$).
 2. Skonfiguruj pin `GPIO2` jako wyjście dla wbudowanej diody LED.
 3. Jeśli przyspieszenie w osi X przekroczy próg wstrząsu (wartość bezwzględna $|a_x| > 2.0\text{ G}$), włącz diodę LED i wyświetl ostrzeżenie na porcie szeregowym. Pamiętaj, że wstrząs może nastąpić w obu kierunkach osi X (przyspieszenie ujemne lub dodatnie).

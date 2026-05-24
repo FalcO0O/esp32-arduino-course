@@ -56,7 +56,7 @@ void loop() {
 
 Po upewnieniu się że masz wybrany odpowiedni port COM oraz model płytki wciśnij ikonę wgrywania (Ctrl + U), a w IDE z menu górnego wybierz **Lupa z prawej strony (Monitor Szeregowy)**. Skontroluj w rogu jego okienka czy prędkość (*baud rate*) jest ustawiona na `115200`. W przypadku Wokwi Serial Monitor otworzy się automatycznie i nie trzeba będzie wybierać prędkości.
 
-![Serial Monitor](../img/podstawy/serial_monitor.png)
+![Serial Monitor](../img/start/serial_monitor.png)
 
 > [!NOTE] Dla ciekawskich: Czym jest baud (baud rate)?
 > **Baud** określa prędkość transmisji danych w komunikacji szeregowej. W standardowych połączeniach tego typu **1 bod (baud) odpowiada przesłaniu 1 bitu na sekundę**.
@@ -209,8 +209,6 @@ W tym ćwiczeniu użyjemy wbudowanego podciągania `INPUT_PULLUP`. Przycisk pod�
 * Przycisk puszczony → odczytujemy stan **`HIGH`**
 * Przycisk wciśnięty → odczytujemy stan **`LOW`**
 
-### 🎯 Ćwiczenie 3: Odczyt stanu przycisku
-
 **Jak poprawnie podłączyć przycisk (tact switch)?**
 
 Fizyczny przycisk typu *tact switch* posiada zazwyczaj cztery nóżki, które wewnętrznie są połączone parami (nóżki leżące naprzeciwko siebie wzdłuż prostych krawędzi są trwale połączone). Naciśnięcie przycisku powoduje zamknięcie obwodu i połączenie wszystkich czterech wyprowadzeń.
@@ -220,6 +218,8 @@ Aby poprawnie podłączyć przycisk na płytce stykowej musisz uważać, aby nie
 Najbezpieczniejszym sposobem jest podłączenie przewodów **po przekątnej przycisku** (np. jeden styk do **GPIO9**, a styk po przekątnej do masy **GND**).
 
 ![Podłączenie przycisku Tact Switch](../img/podstawy/tactswitch.png){: .center}
+
+### 🎯 Ćwiczenie 3: Odczyt stanu przycisku
 
 [**Link do symulacji w Wokwi**](https://wokwi.com/projects/464853016624915457){: style="display: block; text-align: center;" }
 

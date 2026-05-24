@@ -139,6 +139,8 @@ const int PIN_LED = 2;
 
 bool stan_led = false;
 bool stan_przycisku_poprzedni = HIGH;
+// zmienna służąca zapobieganiu zmiany stanu diody podczas jednego wciśnięcia
+bool przycisk_obsluzony = false;
 unsigned long ostatni_czas_debouce = 0;
 
 void setup() {
@@ -166,18 +168,16 @@ void loop() {
 
   // Jeśli stan przycisku ustabilizował się na co najmniej 50 ms
   if ((millis() - ostatni_czas_debouce) > 50) {
-    // Jeśli nastąpiło zbocze opadające (przycisk wciśnięty)
-    if (odczyt_przycisku == LOW && stan_led == false) {
-      // Włączamy diodę i zapisujemy stan
-      stan_led = true;
-      digitalWrite(PIN_LED, HIGH);
-      zapisz_stan_do_nvs(stan_led);
-    } 
-    else if (odczyt_przycisku == LOW && stan_led == true) {
-      // Wyłączamy diodę i zapisujemy stan
-      stan_led = false;
-      digitalWrite(PIN_LED, LOW);
-      zapisz_stan_do_nvs(stan_led);
+    if (odczyt_przycisku == LOW) {
+      if (!przycisk_obsluzony) {
+        // Zmieniamy stan diody na przeciwny i zapisujemy do NVS
+        stan_led = !stan_led;
+        digitalWrite(PIN_LED, stan_led ? HIGH : LOW);
+        zapisz_stan_do_nvs(stan_led);
+        przycisk_obsluzony = true; // Zaznaczamy, że to wciśnięcie zostało już obsłużone
+      }
+    } else {
+      przycisk_obsluzony = false; // Resetujemy flagę po zwolnieniu przycisku
     }
   }
 

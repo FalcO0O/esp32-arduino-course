@@ -20,7 +20,7 @@ W przeciwieństwie do otwartego drenu stosowanego w standardzie I<sup>2</sup>C, 
 * **MISO** (*Master In Slave Out*) – dane przesyłane z odbiornika do mikrokontrolera.
 * **CS / SS** (*Chip Select / Slave Select*) – linia wyboru odbiornika. Zazwyczaj stan aktywny to stan niski (LOW). Gdy linia CS jest w stanie wysokim (HIGH), odbiornik ignoruje sygnały na magistrali i odłącza swoją linię MISO w stan wysokiej impedancji (Hi-Z), umożliwiając innym układom korzystanie z tych samych linii danych.
 
-![SPI_diagram](../img/protokoly/spi.png){ align=center }
+![SPI_diagram](../img/protokoly/spi.png){: .center }
 
 ---
 
@@ -28,7 +28,7 @@ W przeciwieństwie do otwartego drenu stosowanego w standardzie I<sup>2</sup>C, 
 
 Komunikacja SPI opiera się na ciągłym przesuwaniu bitów w rejestrach przesuwnych Mastera i Slave'a (tworząc zamkniętą pętlę kołową). Aby poprawnie zsynchronizować transmisję, oba urządzenia muszą korzystać z tej samej konfiguracji parametrów czasowych sygnału.
 
-![Wykres czasowy ramki SPI](../img/protokoly/SPI_frames.png){ align=center }
+![Wykres czasowy ramki SPI](../img/protokoly/SPI_frames.png){: .center }
 
 ### Krok po kroku: Jak przebiega ramka?
 

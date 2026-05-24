@@ -111,12 +111,14 @@ void loop() {
 1. Otwórz **nRF Connect** → Scan → znajdź `ESP32_BLE_Unikalna` → **CONNECT**
 2. Rozwiń usługę `4fafc201-...`
 3. Przy charakterystyce kliknij ikonę **strzałki w górę** (Write)
+![nRF Connect Write Characteristic](../img/bezprzewodowe/ble_strzalka.jpg){: .center width="250" }
 4. Typ: **BYTE**, wartość `01` → dioda się zapala; `00` → gaśnie
+![nRF Connect Write Value to Characteristic](../img/bezprzewodowe/ble_wpis_wartosc.jpg){: .center width="250" }
 
 > [!TIP] Filtrowanie urządzeń
 > W polu Search wpisz nazwę swojej płytki (`ESP32_BLE_Unikalna`) aby odfiltrować listę spośród wszystkich urządzeń BLE w okolicy.
 
-## 🛠️ Zadanie do samodzielnego wykonania: Rozbudowa komend sterujących
+## 🛠️ Zadanie: Rozbudowa komend sterujących
 
 Zmień logikę wewnątrz metody `onWrite` tak, aby odebranie bajtu o wartości `0x02` włączało drugą diodę LED (podłączoną do `GPIO3`), natomiast odebranie wartości `0x03` powodowało zgaszenie obu diod jednocześnie.
 
@@ -253,7 +255,9 @@ void loop() {
 2. Przy charakterystyce `29f37c35-...` kliknij ikonę **strzałek w dół** (Subscribe/Notify).
 3. Kręć potencjometrem – wartości aktualizują się na żywo!
 
-## 🛠️ Zadanie do samodzielnego wykonania: Optymalizacja transmisji (Histereza)
+![nRF Connect BLE Notify](../img/bezprzewodowe/ble_notyfikacje.jpg){: .center width="250" }
+
+## 🛠️ Zadanie: Optymalizacja transmisji (Histereza)
 
 Zoptymalizuj kod nadawczy tak, aby powiadomienie o nowym pomiarze (metoda `pCharN->notify()`) było wysyłane do smartfona wyłącznie wtedy, gdy aktualnie odczytana wartość z potencjometru zmieni się o więcej niż 50 jednostek względem ostatnio wysłanego pomiaru. Zaimplementowanie takiego filtrowania (histerezy) znacząco odciąży pasmo radiowe.
 
@@ -322,7 +326,7 @@ void loop() {
 ```
 </details>
 
-> [!NOTE] BLE i standardy GATT
+> [!NOTE] Warto wiedzieć - BLE i standardy GATT
 > Organizacja *Bluetooth SIG* definiuje standardowe UUID dla popularnych usług: poziom baterii (`0x180F`), tętno (`0x180D`) itd. Dzięki temu smartfon automatycznie rozumie dane ze słuchawek BLE bez specjalnej aplikacji. Pełna lista: [bluetooth.com – Assigned Numbers](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Assigned_Numbers/out/en/Assigned_Numbers.pdf)
 
 ---
@@ -373,7 +377,7 @@ void setup() {
   oAdvertisementData.setFlags(0x04); // Wyłączenie obsługi klasycznego Bluetooth (BR_EDR_NOT_SUPPORTED)
 
   // Ręczne zapakowanie nagłówków iBeacon zgodnie ze specyfikacją Bluetooth SIG
-  std::string strServiceData = "";
+  String strServiceData = "";
   strServiceData += (char)26;     // Długość rekordu (2 bajty Company ID + 24 bajty iBeacon payload)
   strServiceData += (char)0xFF;   // Typ pola: Manufacturer Specific Data (0xFF)
   strServiceData += oBeacon.getData(); // Surowe dane z obiektu beacona
@@ -415,16 +419,17 @@ Aby poprawnie skonstruować ramkę iBeacon bez pełnego stosu połączeniowego, 
 ### Jak testować?
 
 1. Otwórz **nRF Connect** na smartfonie i przejdź do zakładki **Scanner**.
-2. Rozpocznij skanowanie. Znajdziesz urządzenie o nazwie `N/A` (ponieważ nie nadajemy nazwy w pakiecie reklamowym), ale z etykietą **iBeacon**.
+2. Rozpocznij skanowanie. Znajdziesz urządzenie z etykietą **iBeacon**.
 3. Aplikacja nRF Connect automatycznie zinterpretuje strukturę pakietu i wyświetli wartości:
    - **Company:** `Apple, Inc.`
    - **UUID:** `2f234454-...`
    - **Major:** `100`
    - **Minor:** `1`
    - **TX Power:** `-59 dBm`
-4. Na podstawie aktualnego poziomu sygnału RSSI smartfon wyświetli przybliżoną odległość (np. *Proximity: Immediate / Near / Far*).
+  
+![nRF Connect iBeacon](../img/bezprzewodowe/ble_beacon.jpg){: .center width="250" }
 
-## 🛠️ Zadanie do samodzielnego wykonania: Personalizacja identyfikatorów beacona
+## 🛠️ Zadanie: Personalizacja identyfikatorów beacona
 
-Zmień wartość parametru Major na numer Twojej grupy laboratoryjnej (np. `1`), a Minor na ostatnie 4 cyfry Twojego numeru indeksu studenta. Uruchom program i zaobserwuj w aplikacji skanującej nRF Connect, czy wartości zaktualizowały się poprawnie na żywo.
+Zmień wartość parametru Major i Minor dowolnie wybrane. Uruchom program i zaobserwuj w aplikacji skanującej nRF Connect, czy wartości zaktualizowały się poprawnie na żywo.
 

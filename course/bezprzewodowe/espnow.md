@@ -1,7 +1,7 @@
 # ESP-NOW: Komunikacja bezpośrednia
 
 > [!WARNING] 👥 Wymagania sprzętowe
-> Protokół ESP-NOW służy do bezpośredniej komunikacji bezprzewodowej. Do przetestowania przykładów w tej lekcji potrzebne są **dwie płytki ESP32-C6**. Jeśli posiadasz tylko jedną płytkę, zapoznaj się z teorią i przejdź do kolejnej lekcji.
+> Protokół ESP-NOW służy do bezpośredniej komunikacji bezprzewodowej. Do przetestowania przykładów w tej lekcji potrzebne są **dwie płytki ESP32-C6**.
 
 ESP-NOW to protokół opracowany przez firmę Espressif, pozwalający na bezpośrednią wymianę danych między układami ESP bez pośrednictwa routera Wi-Fi. Opóźnienia transmisji są minimalne (rzędu kilku milisekund), a zasięg w otwartym terenie dochodzi do 200 metrów.
 
@@ -34,7 +34,11 @@ Wgraj poniższy program na **Płytkę B** (Odbiornik) i odczytaj jej adres MAC z
 
 void setup() {
   Serial.begin(115200);
+  delay(1000); // Czas na nawiązanie połączenia szeregowego (USB CDC)
+  
   WiFi.mode(WIFI_STA);
+  delay(100);  // Czas na inicjalizację sterownika Wi-Fi w tle
+  
   Serial.print("Adres MAC tej płytki: ");
   Serial.println(WiFi.macAddress());
 }
@@ -72,7 +76,7 @@ esp_now_peer_info_t peerInfo;
 // Callback informujący o statusie wysłania pakietu
 void onDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
   Serial.print("Status transmisji: ");
-  Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Sukces" : "Błąd");
+  Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Sukces" : "Nie dostarczono pakietu");
 }
 
 void setup() {
@@ -290,11 +294,11 @@ void loop() {}
 
 ---
 
-## 🛠️ Zadanie do samodzielnego wykonania: Bezprzewodowy kontroler gestów (P2P)
+## 🛠️ Zadanie: Bezprzewodowy kontroler gestów (P2P)
 
-Połączmy komunikację radiową ESP-NOW z obsługą magistrali I²C.
+Połączmy komunikację radiową ESP-NOW z obsługą magistrali I<sup>2</sup>C.
 
-1. **Płytka A (Nadajnik):** Podłącz akcelerometr MPU6050 przez magistralę I²C. Stwórz strukturę przesyłającą dwie wartości zmiennoprzecinkowe: `float katX; float katY;`. W pętli głównej wysyłaj zaktualizowane pomiary kątów 10 razy na sekundę do Odbiornika.
+1. **Płytka A (Nadajnik):** Podłącz akcelerometr MPU6050 przez magistralę I<sup>2</sup>C. Stwórz strukturę przesyłającą dwie wartości zmiennoprzecinkowe: `float katX; float katY;`. W pętli głównej wysyłaj zaktualizowane pomiary kątów 10 razy na sekundę do Odbiornika.
 2. **Płytka B (Odbiornik):** Po odebraniu pakietu przeanalizuj nachylenie kąta X. Jeśli `katX > 30.0`, włącz wbudowaną diodę LED. Jeśli `katX < -30.0`, wyłącz diodę LED.
 
 <details>

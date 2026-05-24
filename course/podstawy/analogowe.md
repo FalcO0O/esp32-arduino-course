@@ -82,7 +82,7 @@ void loop() {
 
 ## 📈 Czym jest przetwornik ADC i jak działa?
 
-Potrafimy już płynnie sterować poziomem sygnału wyjściowego. W jaki sposób możemy jednak odczytać wartości ciągłe z otoczenia? Na Example sprawdzić kąt obrotu pokrętła potencjometru lub poziom wilgotności gleby?
+Potrafimy już płynnie sterować poziomem sygnału wyjściowego. W jaki sposób możemy jednak odczytać wartości ciągłe z otoczenia? Na przykład sprawdzić kąt obrotu pokrętła potencjometru lub poziom wilgotności gleby?
 
 Do tego celu służy przetwornik analogowo-cyfrowy, czyli **ADC** (*Analog-to-Digital Converter*).
 Mikrokontroler ESP32-C6 wyposażony jest w 12-bitowy przetwornik ADC. Konwertuje on mierzone napięcie wejściowe z zakresu od 0 V do 3.3 V na odpowiadającą mu wartość cyfrową w skali od 0 do 4095:

@@ -99,7 +99,7 @@ void loop() {
 ```
 
 <details>
-<summary>Rozwiązanie</summary>
+<summary>Pokaż rozwiązanie</summary>
 
 ```cpp
 xTaskCreate(TaskDioda2, "LED2", 1024, NULL, 1, NULL);
@@ -222,7 +222,7 @@ void loop() { vTaskDelete(NULL); }
 ```
 
 <details>
-<summary>Rozwiązanie uzupełnień</summary>
+<summary>Pokaż rozwiązanie</summary>
 
 ```cpp
 // W nadajniku czas oczekiwania:
@@ -298,7 +298,7 @@ void loop() { vTaskDelete(NULL); }
 ```
 
 <details>
-<summary>Rozwiązanie uzupełnień</summary>
+<summary>Pokaż rozwiązanie</summary>
 
 ```cpp
 // W zadaniu kontrolnym podajemy uchwyt docelowy:
@@ -365,7 +365,7 @@ void loop() { vTaskDelete(NULL); }
 ```
 
 <details>
-<summary>Rozwiązanie uzupełnień</summary>
+<summary>Pokaż rozwiązanie</summary>
 
 ```cpp
 // Jako trzeci argument w xTimerCreate podajemy:
@@ -386,4 +386,97 @@ Podłącz potencjometr do pinu **GPIO4**, a diodę LED do pinu **GPIO2**.
 
 1. **Oddychanie diodą (Fading):** Zbuduj dwa komunikujące się ze sobą zadania – jedno odpowiadające za odczyt pętli potencjometru, a drugie za płynne rozjaśnianie i ściemnianie diody LED (za pomocą `analogWrite()`) z prędkością regulowaną przez odebraną wartość.
 2. **Precyzyjny raport (Status):** Stwórz osobny mechanizm, który **równo co 2000 milisekund** wypisuje na port szeregowy aktualny czas systemu w milisekundach (użyj funkcji `millis()`) oraz ostatni odczyt z potencjometru.
+
+<details>
+<summary>Pokaż przykładowe rozwiązanie</summary>
+
+```cpp
+#include <Arduino.h>
+
+const int PIN_POT = 4;
+const int PIN_LED = 2;
+
+QueueHandle_t kolejkaCzasuDelay;
+TimerHandle_t statusTimer;
+
+// Zmienna modyfikowana w jednym zadaniu, a odczytywana w timerze
+volatile int ostatniOdczyt = 0;
+
+void TaskPotencjometr(void *pvParameters) {
+  for (;;) {
+    int odczyt = analogRead(PIN_POT);
+    ostatniOdczyt = odczyt;
+
+    // Skalujemy odczyt ADC (0-4095) na czas opóźnienia kroku świecenia diody (np. od 2 do 30 ms)
+    int czasKroku = map(odczyt, 0, 4095, 2, 30);
+
+    // Wysyłamy nową wartość opóźnienia do kolejki (bufor o długości 1, nie blokujemy wysyłania)
+    xQueueSend(kolejkaCzasuDelay, &czasKroku, 0);
+
+    vTaskDelay(pdMS_TO_TICKS(100)); // Odczyt co 100 ms
+  }
+}
+
+void TaskFadingLED(void *pvParameters) {
+  int opoznienieKroku = 10; // Domyślna wartość początkowa
+  int jasnosc = 0;
+  int kierunek = 1;
+
+  for (;;) {
+    // Sprawdzamy nieblokująco (timeout = 0), czy w kolejce pojawiła się nowa wartość
+    if (xQueueReceive(kolejkaCzasuDelay, &opoznienieKroku, 0) == pdPASS) {
+      // Pomyślnie zaktualizowano opóźnienie kroku
+    }
+
+    analogWrite(PIN_LED, jasnosc);
+
+    jasnosc += kierunek;
+    if (jasnosc >= 255) {
+      jasnosc = 255;
+      kierunek = -1;
+    } else if (jasnosc <= 0) {
+      jasnosc = 0;
+      kierunek = 1;
+    }
+
+    // Wykorzystujemy odebrane z kolejki opóźnienie kroku
+    vTaskDelay(pdMS_TO_TICKS(opoznienieKroku));
+  }
+}
+
+// Callback timera programowego realizujący precyzyjny raport co 2 sekundy
+void CallbackStatusTimer(TimerHandle_t xTimer) {
+  Serial.print("[");
+  Serial.print(millis());
+  Serial.print(" ms] Status: ostatni odczyt ADC = ");
+  Serial.println(ostatniOdczyt);
+}
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(PIN_LED, OUTPUT);
+
+  // Tworzymy kolejkę o długości 1 przechowującą pojedynczą liczbę typu int
+  kolejkaCzasuDelay = xQueueCreate(1, sizeof(int));
+
+  // Tworzymy zadania FreeRTOS
+  xTaskCreate(TaskPotencjometr, "PotReader", 2048, NULL, 1, NULL);
+  xTaskCreate(TaskFadingLED, "LEDFader", 2048, NULL, 1, NULL);
+
+  // Tworzymy cykliczny (pdTRUE) timer programowy o okresie 2000 ms
+  statusTimer = xTimerCreate("StatusTimer", pdMS_TO_TICKS(2000), pdTRUE, (void *)0, CallbackStatusTimer);
+  
+  if (statusTimer != NULL) {
+    xTimerStart(statusTimer, 0);
+  }
+}
+
+void loop() {
+  // Kasujemy domyślne zadanie loopTask, ponieważ cała logika działa w osobnych wątkach
+  vTaskDelete(NULL);
+}
+```
+
+</details>
+
 

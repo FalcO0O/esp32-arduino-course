@@ -21,7 +21,7 @@ Fizyczna struktura takiego układu opiera się na inteligentnych diodach. Dioda 
 2. **Układ scalony (kontroler)**: Odpowiada za odczyt i dekodowanie cyfrowego sygnału oraz sterowanie jasnością poszczególnych barw poprzez PWM.
 
 ### Kaskadowe łączenie i "adresowanie"
-Transmisja nie używa fizycznych adresów jak I2C. Zamiast tego adresowanie odbywa się **geometrycznie**. 
+Transmisja nie używa fizycznych adresów jak I<sup>2</sup>C. Zamiast tego adresowanie odbywa się **geometrycznie**. 
 Sygnał z mikrokontrolera trafia najpierw do pinu wejściowego **DI** (*Data In*) pierwszej diody w łańcuchu. Układ scalony tej diody "odcina" dla siebie pierwszy pakiet danych (swój kolor), a całą resztę przesyła dalej ze swojego pinu wyjściowego **DO** (*Data Out*) prosto do pinu **DI** kolejnej diody. Dzięki temu można sterować łańcuchem setek diod używając zaledwie jednego pinu w ESP32.
 
 ---
@@ -38,7 +38,7 @@ Każda dioda oczekuje ramki składającej się z 24 bitów (po 8 bitów na skła
 * **Bit `1`**: długi stan wysoki ($T_{1H} \approx 0.8\ \mu\text{s}$), po którym następuje krótki stan niski ($T_{1L} \approx 0.45\ \mu\text{s}$).
 * **Sygnał resetu (Zatrzask)**: utrzymanie stanu niskiego przez czas dłuższy niż $50\ \mu\text{s}$ powoduje zakończenie transmisji ramki. Układy scalone zatrzaskują wtedy odcięte dane w swoich rejestrach, co skutkuje natychmiastową, jednoczesną aktualizacją kolorów w całym łańcuchu.
 
-![](../img/protokoly/NRZ.png){ align=center }
+![](../img/protokoly/NRZ.png){: .center }
 
 ---
 

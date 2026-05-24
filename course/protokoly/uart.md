@@ -19,7 +19,7 @@ Do pełnej komunikacji dwukierunkowej (Full-Duplex) wymagane są tylko dwie lini
 * **TX** (*Transmit Data*) – linia nadawcza.
 * **RX** (*Receive Data*) – linia odbiorcza.
 
-![UART](../img/protokoly/uart.png){ align=center }
+![UART](../img/protokoly/uart.png){: .center }
 
 > [!IMPORTANT] Krzyżowanie linii TX/RX i wspólna masa (GND)
 > Przy łączeniu dwóch niezależnych urządzeń (np. mikrokontrolera z sensorem GPS lub innej płytki deweloperskiej), musisz przestrzegać dwóch kluczowych zasad:
@@ -42,7 +42,7 @@ Ponieważ komunikujące się urządzenia nie dzielą wspólnego zegara, muszą o
 
 W stanie spoczynku (gdy dane nie są przesyłane) na linii TX utrzymuje się stan wysoki (**Idle HIGH**). Transmisja pojedynczej ramki przebiega według następującego schematu:
 
-![UART](../img/protokoly/uart_logic.png){ align=center }
+![UART](../img/protokoly/uart_logic.png){: .center }
 
 1. **Bit Startu (Start Bit)**: Nadawca ściąga stan linii w dół (do wartości logicznej `0` - LOW) na czas trwania jednego bitu. To zbocze opadające sygnalizuje odbiornikowi rozpoczęcie transmisji i pozwala mu zsynchronizować swój wewnętrzny zegar generatora baud rate.
 2. **Bity Danych (Data Bits)**: Następuje przesłanie właściwych danych (najczęściej 8 bitów), zaczynając od bitu najmniej znaczącego (LSB - *Least Significant Bit*).
@@ -90,11 +90,6 @@ Gdy dane przychodzą na pin RX, kontroler sprzętowy UART automatycznie zapisuje
 [**Link do symulacji w Wokwi**](https://wokwi.com/projects/464855527434006529){: style="display: block; text-align: center;" }
 
 W tym ćwiczeniu przeprowadzisz eksperyment pętli zwrotnej (loopback) na jednym mikrokontrolerze: ESP32 wyśle dane przez port nadawczy UART i natychmiast odbierze je na swoim portcie odbiorczym, dzięki fizycznemu połączeniu linii TX i RX za pomocą przewodu.
-
-### Podłączenie
-Połącz za pomocą przewodu połączeniowego dwa piny na płytce stykowej:
-
-* **GPIO4 (TX)** $\rightarrow$ **GPIO5 (RX)**
 
 > [!NOTE] Wybór pinów GPIO
 > Piny GPIO4 i GPIO5 zostały użyte jako przykład. Dzięki GPIO Matrix możesz wybrać dowolną inną parę wolnych pinów GPIO, pamiętając o zaktualizowaniu stałych w kodzie. Upewnij się jedynie, że wybrane piny nie pełnią specjalnych funkcji podczas rozruchu (tzw. Strapping Pins – szczegóły w sekcji [Płytka ESP32-C6](../start/sprzet.md)).

@@ -119,7 +119,7 @@ void loop() {
 > [!WARNING] mDNS i Android
 > Adres `http://esp32.local` często nie działa w przeglądarkach **Android**. Użyj bezpośredniego IP: `http://192.168.4.1` (wyświetlane w Serial Monitor po starcie).
 
-## 🛠️ Zadanie do samodzielnego wykonania: Sterowanie dodatkową diodą LED
+## 🛠️ Zadanie: Sterowanie dodatkową diodą LED
 
 Dodaj obsługę drugiej diody (podłączonej do innego GPIO, np. GPIO3) z dodatkowymi przyciskami „Włącz LED2” oraz „Wyłącz LED2” na podstronie HTML, które będą kierować odpowiednio na ścieżki `/on2` i `/off2`.
 
@@ -326,7 +326,7 @@ void loop() {
 ```
 
 
-## 🛠️ Zadanie do samodzielnego wykonania: Pobieranie danych z innego API
+## 🛠️ Zadanie: Pobieranie danych z innego API
 
 Odwiedź [listę publicznych API](https://github.com/public-apis/public-apis) i wybierz inne publiczne API (kolumna Auth = `No`). Wybierz interesującą Cię przez siebie kategorię API, kliknij w nazwę wybranego API, a następnie wybierz interesujący Cię Endpoint. Wyświetl pobrane z niego informacje na Serial Monitorze. Alternatywnie możesz użyć darmowego API pogodowego (np. [Open-Meteo](https://open-meteo.com/en)) i pobrać aktualną temperaturę dla wybranego przez siebie miasta.
 

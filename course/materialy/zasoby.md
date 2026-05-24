@@ -19,7 +19,7 @@ Przydatne linki do dokumentacji, bibliotek i kursów zewnętrznych.
 
 | Biblioteka | Autor | Zastosowanie | Link |
 |:---|:---|:---|:---|
-| `MPU6050_light` | rfetick | Akcelerometr I2C | [GitHub](https://github.com/rfetick/MPU6050_light) |
+| `MPU6050_light` | rfetick | Akcelerometr I<sup>2</sup>C | [GitHub](https://github.com/rfetick/MPU6050_light) |
 | `Adafruit_ILI9341` | Adafruit | Wyświetlacz TFT SPI | [GitHub](https://github.com/adafruit/Adafruit_ILI9341) |
 | `Adafruit_GFX` | Adafruit | Grafika 2D (wymagana przez wyświetlacz) | [GitHub](https://github.com/adafruit/Adafruit-GFX-Library) |
 | `Adafruit_NeoPixel` | Adafruit | Obsługa diod adresowalnych ARGB (WS2812B) | [GitHub](https://github.com/adafruit/Adafruit_NeoPixel) |

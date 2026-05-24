@@ -35,9 +35,11 @@ ESP32-C6 posiada kilka trybów uśpienia, z których dwa są najczęściej wykor
 > 3. **Dioda LED zasilania (Power LED)**: Dioda sygnalizująca włączenie płytki sama z siebie pobiera od $1\text{ do }3\text{ mA}$.
 > 
 > **Jak to rozwiązać w docelowym urządzeniu?**
-> Aby osiągnąć zużycie rzędu pojedynczych mikroamperów, w urządzeniach zasilanych bateryjnie stosuje się moduły (np. ESP32-C6-WROOM) zamontowane be## 🧠 Czym jest RTC i domena Low Power?
+> Aby osiągnąć zużycie rzędu pojedynczych mikroamperów, w urządzeniach zasilanych bateryjnie stosuje się moduły (np. ESP32-C6-WROOM) zamontowane bezpośrednio na dedykowanej płytce drukowanej (PCB) bez energochłonnych konwerterów i diod LED.
 
-Podczas głębokiego uśpienia (Deep Sleep) główne zasilanie mikrokontrolera ESP32-C6 (w tym rdzenia procesora RISC-V, pamięci RAM oraz peryferii takich jak Wi-Fi, SPI czy I2C) zostaje całkowicie wyłączone. Jedynym modułem, który pozostaje stale pod napięciem, jest **RTC** (*Real-Time Clock / Real-Time Controller*) – niezależna, ultra-energooszczędna domena sprzętowa.
+## 🧠 Czym jest RTC i domena Low Power?
+
+Podczas głębokiego uśpienia (Deep Sleep) główne zasilanie mikrokontrolera ESP32-C6 (w tym rdzenia procesora RISC-V, pamięci RAM oraz peryferii takich jak Wi-Fi, SPI czy I<sup>2</sup>C) zostaje całkowicie wyłączone. Jedynym modułem, który pozostaje stale pod napięciem, jest **RTC** (*Real-Time Clock / Real-Time Controller*) – niezależna, ultra-energooszczędna domena sprzętowa.
 
 W skład domeny RTC wchodzą:
 
@@ -96,6 +98,8 @@ Napiszemy program, który w pełny sposób zaprezentuje możliwości Deep Sleep.
 
 Program będzie zliczał oddzielnie wybudzenia z każdego z tych źródeł (dzięki zmiennym w RTC) oraz mrugał wbudowaną diodą LED (GPIO2) w różny sposób, zależnie od przyczyny wybudzenia.
 
+### Przykładowe połączenia:
+
 ![Płytka breadboard w ćwiczeniu Deep Sleep](../img/systemy/deepsleep_schematic.png){: .center}
 
 ### Kod programu:
@@ -114,12 +118,13 @@ const int PIN_PRZYCISKU = 7; // Przycisk budzący na GPIO7
 void setup() {
   Serial.begin(115200);
   delay(100); // Czas na stabilizację Serial
-  
+
   pinMode(PIN_LED, OUTPUT);
+  pinMode(PIN_PRZYCISKU, INPUT_PULLUP);
 
   // Odczytujemy przyczynę wybudzenia
   esp_sleep_wakeup_cause_t przyczyna = esp_sleep_get_wakeup_cause();
-  
+
   switch (przyczyna) {
     case ESP_SLEEP_WAKEUP_TIMER:
       liczba_timer++;
@@ -129,7 +134,7 @@ void setup() {
       delay(100);
       digitalWrite(PIN_LED, LOW);
       break;
-      
+
     case ESP_SLEEP_WAKEUP_EXT1:
       liczba_gpio++;
       Serial.println("Wybudzono przez: GPIO (Przycisk)");
@@ -142,7 +147,7 @@ void setup() {
       delay(150);
       digitalWrite(PIN_LED, LOW);
       break;
-      
+
     default:
       Serial.println("Uruchomienie po włączeniu zasilania lub twardym resecie");
       break;
@@ -162,7 +167,7 @@ void setup() {
 
   // 2. Konfiguracja wybudzenia przyciskiem (GPIO7, stan LOW - przycisk zwiera do masy)
   // Konieczne jest użycie zewnętrznego przycisku na płytce stykowej
-  esp_sleep_enable_ext1_wakeup(1ULL << PIN_PRZYCISKU, ESP_EXT1_WAKEUP_ANY_LOW); 
+  esp_sleep_enable_ext1_wakeup(1ULL << PIN_PRZYCISKU, ESP_EXT1_WAKEUP_ALL_LOW); 
 
   // Wejście w Deep Sleep
   esp_deep_sleep_start();
@@ -215,6 +220,7 @@ void setup() {
   delay(100); // Czas na stabilizację Serial
   
   pinMode(PIN_LED, OUTPUT);
+  pinMode(PIN_PRZYCISKU, INPUT_PULLUP);
 
   esp_sleep_wakeup_cause_t przyczyna = esp_sleep_get_wakeup_cause();
   
