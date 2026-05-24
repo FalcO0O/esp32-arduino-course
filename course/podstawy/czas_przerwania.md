@@ -13,7 +13,7 @@ W tym rozdziale rozwiążemy ten problem na dwa sposoby:
 
 ---
 
-## Czas bez blokowania: Zegar `millis()`
+## ⏱️ Czas bez blokowania: Zegar `millis()`
 
 Zamiast zatrzymywać procesor, pozwolimy pętli `loop()` wykonywać się bez żadnych przerw. W każdym jej obiegu będziemy sprawdzać aktualny czas systemowy. Funkcja `millis()` zwraca liczbę milisekund, które upłynęły od momentu uruchomienia (zasilenia) mikrokontrolera ESP32.
 
@@ -22,9 +22,9 @@ Zasada ta przypomina parzenie herbaty:
 * **Podejście z `delay()`**: Włączasz czajnik i stoisz przy nim bezczynnie przez 5 minut, ignorując wszystko inne wokół.
 * **Podejście z `millis()`**: Włączasz czajnik, zapisujesz na kartce aktualną godzinę i idziesz robić inne rzeczy (np. czytasz książkę w pętli `loop()`). Co jakiś czas spoglądasz na zegarek i porównujesz czas z zapisaną godziną. Gdy minie 5 minut, zalewasz herbatę.
 
-🎯 **[Otwórz Wokwi z układem wykorzystującym millis()]** *(link zostanie zaktualizowany)*
+### 🎯 Ćwiczenie 1: Blink bez delay()
 
-### Kod: Blink bez delay()
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464855065403076609){: style="display: block; text-align: center;" }
 
 Poniższy kod sprawia, że dioda mruga co pół sekundy, a procesor może jednocześnie wykonywać tysiące innych operacji w pętli `loop()` bez opóźnień:
 
@@ -68,7 +68,7 @@ void loop() {
 
 ---
 
-## Przerwania zewnętrzne (Interrupts / ISR)
+## ⚡ Przerwania zewnętrzne (Interrupts / ISR)
 
 W dziale o wejściach cyfrowych sprawdzaliśmy stan przycisku w pętli `loop()`, ciągle pytając: *„Czy przycisk jest wciśnięty?”*. Takie podejście nazywa się **pollingiem** (odpytywaniem). Jest ono nieefektywne i sprawia, że procesor marnuje zasoby na ciągłe sprawdzanie tego samego pinu.
 
@@ -93,9 +93,9 @@ attachInterrupt(digitalPinToInterrupt(PIN), funkcja_ISR, FALLING);
 > * **Szybkość i czas wykonania**: Przerwanie to wyjątkowy, priorytetowy stan procesora. W momencie jego wyzwolenia wykonywanie głównego programu zostaje natychmiast zawieszone na rzecz procedury ISR. Zbyt długie przebywanie w przerwaniu blokuje pracę całego systemu (w tym obsługę komunikacji sieciowej czy timerów systemowych), co może doprowadzić do destabilizacji mikrokontrolera lub wyzwolenia sprzętowego zabezpieczenia przed zawieszeniem systemu (**Watchdog Timer - WDT**). Dlatego wewnątrz ISR **nigdy nie wolno** stosować funkcji blokujących (np. `delay()`) oraz czasochłonnych metod komunikacji (np. `Serial.println()`). Zadaniem ISR jest jedynie wykonanie minimalnych i najpilniejszych zadań (np. zmiana flagi w zmiennej lub inkrementacja licznika) oraz natychmiastowe oddanie sterowania.
 > * **Volatile**: Każda zmienna modyfikowana wewnątrz funkcji przerwania, a odczytywana w pętli `loop()`, musi posiadać w swojej deklaracji słowo kluczowe `volatile`. Informuje ono kompilator, że jej wartość może ulec zmianie w dowolnym momencie, co zapobiega błędnej optymalizacji rejestrów.
 
-🎯 **[Otwórz Wokwi dla Przerwań Sprzętowych]** *(link zostanie zaktualizowany)*
+### 🎯 Ćwiczenie 2: Zliczanie zdarzeń za pomocą przerwania
 
-### Kod: Zliczanie zdarzeń za pomocą przerwania
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464855243190203393){: style="display: block; text-align: center;" }
 
 Poniższy program zlicza wciśnięcia przycisku bez ciągłego sprawdzania stanu pinu w pętli `loop()`:
 
@@ -135,7 +135,7 @@ void loop() {
 }
 ```
 
-### Zadanie: Eliminacja drgań styków (Debouncing) w przerwaniu
+### 🛠️ Zadanie: Eliminacja drgań styków (Debouncing) w przerwaniu
 
 Podczas testowania powyższego kodu mogłeś zauważyć, że pojedyncze wciśnięcie przycisku czasami zwiększa licznik o kilka jednostek w Monitorze Szeregowym. Wynika to ze znanego już zjawiska drgania styków (bouncing) – funkcja przerwania ISR jest wywoływana błyskawicznie przy każdym mikro-połączeniu blaszek przycisku.
 
@@ -155,8 +155,8 @@ void IRAM_ATTR moje_przerwanie_przycisku() {
   // Pobieramy aktualny czas systemowy
   unsigned long teraz = millis();
   
-  // Akceptujemy zdarzenie tylko, jeśli upłynęło więcej niż 50 ms od ostatniego poprawnie odczytanego wciśnięcia
-  if (teraz - ostatnie_odbicie > 50) {
+  // Akceptujemy zdarzenie tylko, jeśli upłynęło więcej niż 100 ms od ostatniego poprawnie odczytanego wciśnięcia
+  if (teraz - ostatnie_odbicie > 100) {
       licznikKlikniec++;
       flaga_zmiany = true;
   }

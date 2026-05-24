@@ -31,7 +31,6 @@ Jeśli chcesz pracować z fizycznym sprzętem, potrzebujesz:
 ---
 
 ## 🗺️ Spis Lekcji
-Masz już wszystko na biurku? Otwórz środowisko Arduino IDE i przejdź do pierwszej lekcji.
 
 1. [Wstęp do IO: Cyfrowe wyjścia i wejścia](cyfrowe.md)
 2. [Sygnały: PWM i ADC](analogowe.md)

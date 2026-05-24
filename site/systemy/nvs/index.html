@@ -1743,7 +1743,7 @@ Zamiast tego w ESP32 używamy biblioteki <strong>Preferences</strong>, która:</
 <hr />
 <h2 id="przykad-licznik-uruchomien-boot-counter">💻 Przykład: Licznik uruchomień (Boot Counter)</h2>
 <p>Poniższy program przy każdym uruchomieniu (lub resecie) odczytuje z pamięci NVS liczbę dotychczasowych uruchomień, zwiększa ją o jeden, wypisuje w Monitorze Szeregowym i zapisuje z powrotem.</p>
-<p>🎯 <strong>[Otwórz Wokwi z układem wykorzystującym NVS]</strong> <em>(link zostanie zaktualizowany)</em></p>
+<p><a href="https://wokwi.com/projects/464857466831004673" style="display: block; text-align: center;"><strong>Link do symulacji w Wokwi</strong></a></p>
 <div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Preferences.h&gt;</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">Preferences</span><span class="w"> </span><span class="n">preferences</span><span class="p">;</span>
@@ -1776,11 +1776,15 @@ Zamiast tego w ESP32 używamy biblioteki <strong>Preferences</strong>, która:</
 </span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">  </span><span class="c1">// Pętla pozostaje pusta – cała logika wykonuje się tylko raz przy starcie systemu</span>
 </span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>Spróbuj wgrać ten program, otworzyć Monitor Szeregowi i kilkukrotnie wcisnąć przycisk <strong>RST/EN</strong> na płytce ESP32-C6. Zobaczysz, że wartość licznika rośnie i nie zeruje się po resecie.</p>
+<p>Spróbuj wgrać ten program, otworzyć Monitor Szeregowi i kilkukrotnie wcisnąć przycisk <strong>RST/EN</strong> na płytce ESP32-C6. Zobaczysz, że wartość licznika rośnie i nie zeruje się po resecie. W przypadku Wokwi nie musisz nic klikać - mikrokontroler samemu się restartuje.</p>
 <hr />
 <h2 id="zadanie-pamiec-stanu-diody-led-power-on-state">🛠️ Zadanie: Pamięć stanu diody LED (Power-on State)</h2>
 <p>Napisz program, w którym wciśnięcie przycisku podłączonego do <code>GPIO9</code> zmienia stan diody LED (włącza lub wyłącza ją) na pinie <code>GPIO2</code>. </p>
 <p>Twój program powinien zapisać aktualny stan diody (czy świeci, czy jest zgaszona) do pamięci NVS. Po resecie urządzenia (lub odłączeniu i ponownym podłączeniu zasilania) dioda powinna automatycznie uruchomić się w takim stanie, w jakim znajdowała się przed restartem.</p>
+<div class="admonition warning">
+<p class="admonition-title">Testowanie NVS w symulatorze Wokwi</p>
+<p>W Wokwi ponowne uruchomienie symulacji (rekompilacja) kasuje zawartość wirtualnej pamięci Flash, przez co dane NVS zostaną utracone. Aby przetestować zachowanie programu w symulacji, możesz wywołać restart programowo w kodzie za pomocą funkcji <code>ESP.restart()</code>, co zasymuluje restart bez czyszczenia pamięci NVS.</p>
+</div>
 <details>
 <summary>Pokaż rozwiązanie</summary>
 
@@ -1950,6 +1954,8 @@ Zamiast tego w ESP32 używamy biblioteki <strong>Preferences</strong>, która:</
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/external_links.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

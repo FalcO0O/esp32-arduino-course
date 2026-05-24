@@ -4,7 +4,7 @@ Przydatne linki do dokumentacji, bibliotek i kursów zewnętrznych.
 
 ---
 
-## Oficjalna dokumentacja
+## 📚 Oficjalna dokumentacja
 
 | Zasób | Link |
 |:---|:---|
@@ -15,13 +15,15 @@ Przydatne linki do dokumentacji, bibliotek i kursów zewnętrznych.
 
 ---
 
-## Biblioteki używane w kursie
+## 📦 Biblioteki używane w kursie
 
 | Biblioteka | Autor | Zastosowanie | Link |
 |:---|:---|:---|:---|
-| `MPU6050_light` | rfetick | I2C akcelerometr | [GitHub](https://github.com/rfetick/MPU6050_light) |
-| `Adafruit SSD1306` | Adafruit | Wyświetlacz OLED SPI | [GitHub](https://github.com/adafruit/Adafruit_SSD1306) |
-| `Adafruit GFX Library` | Adafruit | Grafika 2D | [GitHub](https://github.com/adafruit/Adafruit-GFX-Library) |
+| `MPU6050_light` | rfetick | Akcelerometr I2C | [GitHub](https://github.com/rfetick/MPU6050_light) |
+| `Adafruit_ILI9341` | Adafruit | Wyświetlacz TFT SPI | [GitHub](https://github.com/adafruit/Adafruit_ILI9341) |
+| `Adafruit_GFX` | Adafruit | Grafika 2D (wymagana przez wyświetlacz) | [GitHub](https://github.com/adafruit/Adafruit-GFX-Library) |
+| `Adafruit_NeoPixel` | Adafruit | Obsługa diod adresowalnych ARGB (WS2812B) | [GitHub](https://github.com/adafruit/Adafruit_NeoPixel) |
+| `ESP32Servo` | Kevin Harrington | Sprzętowe sterowanie serwomechanizmami | [GitHub](https://github.com/madhephaestus/ESP32Servo) |
 | `ArduinoJson` | Benoit Blanchon | Parsowanie JSON | [arduinojson.org](https://arduinojson.org/) |
 | `WiFi.h` | Espressif | Wi-Fi (wbudowana) | — |
 | `esp_now.h` | Espressif | ESP-NOW (wbudowana) | — |
@@ -30,18 +32,18 @@ Przydatne linki do dokumentacji, bibliotek i kursów zewnętrznych.
 
 ---
 
-## Narzędzia
+## 🛠️ Narzędzia
 
 | Narzędzie | Opis | Link |
 |:---|:---|:---|
 | **Arduino IDE 2** | Środowisko programistyczne | [arduino.cc/en/software](https://www.arduino.cc/en/software) |
-| **nRF Connect for Mobile** | Testowanie BLE (Android/iOS) | Google Play / App Store |
+| **nRF Connect for Mobile** | Testowanie BLE (Android/iOS) | [play.google.com](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp&hl=en) |
 | **UUID Generator** | Generowanie UUID dla BLE | [uuidgenerator.net](https://www.uuidgenerator.net/) |
 | **Public APIs** | Lista darmowych publicznych API | [github.com/public-apis/public-apis](https://github.com/public-apis/public-apis) |
 
 ---
 
-## Dalsze kursy i materiały
+## 🎓 Dalsze kursy i materiały
 
 | Zasób | Opis |
 |:---|:---|

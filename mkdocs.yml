@@ -62,8 +62,8 @@ nav:
 
   - Systemy operacyjne i pamięć:
       - Przegląd modułu: systemy/index.md
-      - "Pamięć trwała (NVS)": systemy/nvs.md
       - "Sleep: zarządzanie energią": systemy/deepsleep.md
+      - "Pamięć trwała (NVS)": systemy/nvs.md
       - "FreeRTOS: Zadania, kolejki i notyfikacje": systemy/freertos.md
 
   - Technologie bezprzewodowe:
@@ -72,10 +72,7 @@ nav:
       - "Bluetooth Low Energy (BLE)": bezprzewodowe/ble.md
       - "ESP-NOW: Komunikacja bezpośrednia": bezprzewodowe/espnow.md
 
-  - Materiały:
-      - Kod wzorcowy: materialy/kod_wzorcowy.md
-      - Pinout ESP32-C6 DevKit: materialy/pinout.md
-      - Zasoby i dokumentacja: materialy/zasoby.md
+  - Materiały: materialy/zasoby.md
 
 markdown_extensions:
   - admonition
@@ -93,6 +90,7 @@ markdown_extensions:
 
 extra_javascript:
   - javascripts/mathjax.js
+  - javascripts/external_links.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 extra_css:

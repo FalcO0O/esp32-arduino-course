@@ -6,7 +6,7 @@ ESP32-C6 natywnie działa pod kontrolą **FreeRTOS** – systemu operacyjnego cz
 
 ---
 
-## Czym jest FreeRTOS?
+## 🧠 Czym jest FreeRTOS?
 
 FreeRTOS to system operacyjny czasu rzeczywistego (*Real-Time Operating System*). Odpowiada za dystrybucję zasobów (w tym czasu procesora) pomiędzy poszczególne zadania. Jego kluczowym elementem jest **scheduler (planista)** – algorytm zarządzający czasem CPU w taki sposób, aby wiele zadań mogło wykonywać się pozornie równolegle, zachowując przy tym pełen determinizm.
 
@@ -21,7 +21,7 @@ Każde **zadanie (Task)** to niezależny wątek kodu z:
 
 ---
 
-## 1. Tworzenie zadań (Tasks)
+## ⚙️ Tworzenie zadań (Tasks)
 
 ```cpp
 xTaskCreate(
@@ -52,6 +52,8 @@ xTaskCreate(
 ---
 
 ### 🎯 Ćwiczenie 1: Dwa niezależne zadania migania
+
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464896891167685633){: style="display: block; text-align: center;"}
 
 ```cpp
 const int PIN_LED1 = 2;
@@ -109,7 +111,7 @@ vTaskDelay(pdMS_TO_TICKS(555));
 
 ---
 
-## Wyzwania programowania współbieżnego
+## ⚠️ Wyzwania programowania współbieżnego
 
 Gdy wiele zadań działa jednocześnie, pojawiają się nowe klasy błędów:
 
@@ -123,7 +125,7 @@ Aby tego uniknąć, FreeRTOS oferuje wbudowane mechanizmy synchronizacji. Poznam
 
 ---
 
-## 2. Bezpieczna wymiana danych – Kolejki (Queues)
+## 📥 Bezpieczna wymiana danych – Kolejki (Queues)
 
 **Kolejka (Queue)** to bufor FIFO (*First-In, First-Out*). Zapewnia ona automatyczną synchronizację – żadne dwa zadania nie uszkodzą danych, jeśli bezpiecznie korzystają z kolejki.
 
@@ -163,6 +165,8 @@ Warto również sprawdzać, co zwracają te funkcje. Jeśli uda się z sukcesem 
 
 ### 🎯 Ćwiczenie 2: Uzupełnij kod kolejki
 
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464897005091283969){: style="display: block; text-align: center;"}
+
 Uzupełnij brakujące argumenty w funkcjach nadawania i odbierania.
 
 ```cpp
@@ -177,9 +181,9 @@ void TaskNadajnik(void *pvParameters) {
 
     // UZUPEŁNIJ: wyślij &odczyt do kolejkaDanych z nieskończonym czasem oczekiwania
     xQueueSend(
-      /* 1. uchwyt kolejki: */ kolejkaDanych,
-      /* 2. wskaźnik na dane: */ &odczyt,
-      /* 3. czas oczekiwania (nieskończoność): */ ???
+      /* 1. uchwyt kolejki: */,
+      /* 2. wskaźnik na dane: */,
+      /* 3. czas oczekiwania (nieskończoność): */
     );
 
     vTaskDelay(pdMS_TO_TICKS(100));
@@ -191,9 +195,9 @@ void TaskOdbiornik(void *pvParameters) {
   for (;;) {
     // UZUPEŁNIJ: odbierz dane z kolejkaDanych do &odebranaWartosc
     if (xQueueReceive(
-      /* 1. uchwyt kolejki: */ kolejkaDanych,
-      /* 2. bufor docelowy: */ ???,
-      /* 3. czas oczekiwania: */ portMAX_DELAY
+      /* 1. uchwyt kolejki: */,
+      /* 2. bufor docelowy: */,
+      /* 3. czas oczekiwania: */
     ) == pdPASS) { 
       // Zrób coś z danymi dopiero, gdy pdPASS potwierdzi poprawny odbiór!
       Serial.print("Odebrano: ");
@@ -231,7 +235,7 @@ portMAX_DELAY
 
 ---
 
-## 3. Szybka synchronizacja – Powiadomienia (Task Notifications)
+## 🔔 Szybka synchronizacja – Powiadomienia (Task Notifications)
 
 Kolejki świetnie nadają się do przesyłania konkretnych, dużych wartości (np. struktur danych, pomiarów). Czasami jednak chcemy po prostu wysłać szybki sygnał *"Hej, obudź się i zrób coś!"* z jednego zadania do drugiego, bez przesyłania żadnych skomplikowanych danych. 
 
@@ -245,6 +249,8 @@ Aby poczekać na sygnał (i znów - uśpić blokująco zadanie do czasu jego nad
 > Oprócz prostych powiadomień binarnych, FreeRTOS pozwala na przesyłanie wraz z powiadomieniem 32-bitowej liczby. Odpowiadają za to funkcje `xTaskNotify()` oraz `xTaskNotifyWait()`. Dzięki nim możesz przesłać np. kod zdarzenia lub prosty odczyt z czujnika całkowicie pomijając tworzenie kolejki!
 
 ### 🎯 Ćwiczenie 3: Uzupełnij kod powiadomień
+
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464897355945902081){: style="display: block; text-align: center;"}
 
 W tym przykładzie zadanie kontrolne co 2 sekundy "budzi" zadanie wykonawcze za pomocą lekkiego powiadomienia.
 
@@ -260,7 +266,7 @@ void TaskKontrolny(void *pvParameters) {
     Serial.println("Kontroler: Daję sygnał do pracy!");
     
     // UZUPEŁNIJ: Wyślij powiadomienie bezpośrenio do zadania wykonawczego
-    xTaskNotifyGive(/* uchwyt docelowy: */ ???); 
+    xTaskNotifyGive(/* uchwyt docelowy: */); 
   }
 }
 
@@ -268,7 +274,7 @@ void TaskWykonawczy(void *pvParameters) {
   for (;;) {
     // UZUPEŁNIJ: Czekaj w nieskończoność (portMAX_DELAY) na powiadomienie. 
     // Parametr pdTRUE oznacza, że po udanym odebraniu sygnału zerujemy licznik powiadomień.
-    ulTaskNotifyTake(pdTRUE, /* czas oczekiwania: */ ???);
+    ulTaskNotifyTake(pdTRUE, /* czas oczekiwania: */);
     
     Serial.println("Wykonawca: Odebrałem sygnał! Mrugam diodą.");
     digitalWrite(PIN_LED, HIGH);
@@ -305,7 +311,7 @@ ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
 ---
 
-## 4. Cykliczne akcje – Timery Programowe (Software Timers)
+## ⏰ Cykliczne akcje – Timery Programowe (Software Timers)
 
 Często w projektach potrzebujemy wykonać prostą akcję co równy odstęp czasu (np. miganie diodą awaryjną co 500 ms). Tworzenie dla niej całego, osobnego Zadania (Tasku) z dużą pętlą `for(;;)` i instrukcją opóźnienia to **ogromne marnowanie pamięci** (każde zadanie rezerwuje sobie własny, duży stos RAM).
 
@@ -321,6 +327,8 @@ Timery mogą być:
 > Wszystkie timery programowe w systemie są obsługiwane przez **jedno i to samo, wspólne zadanie systemowe w tle** (`Timer Daemon Task`). Oznacza to, że jeśli wewnątrz callbacku jakiegokolwiek timera użyjesz funkcji blokującej (np. `delay()`, `vTaskDelay()` lub oczekiwania na kolejkę z timeoutem), **zablokujesz wykonywanie wszystkich pozostałych timerów w programie!** Callbacki timerów powinny być jak najkrótsze i nieblokujące.
 
 ### 🎯 Ćwiczenie 4: Uzupełnij kod Timera
+
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464897495986393089){: style="display: block; text-align: center;"}
 
 Uzupełnij poniższy kod, aby stworzyć i uruchomić cykliczny timer działający co 500 ms.
 
@@ -342,14 +350,14 @@ void setup() {
   mojTimer = xTimerCreate(
     "Mrugacz",                   // Nazwa tekstowa do debugowania
     pdMS_TO_TICKS(500),          // Okres timera (500 ms)
-    /* UZUPEŁNIJ: Auto-reload? (pdTRUE = cykliczny, pdFALSE = jednorazowy) */ ???, 
+    /* UZUPEŁNIJ: Auto-reload? (pdTRUE = cykliczny, pdFALSE = jednorazowy) */, 
     (void *)0,                   // Opcjonalne wbudowane ID (tutaj nieużywane)
     CallbackTimera               // Funkcja, która ma się wywołać po upływie czasu
   );
 
   // UZUPEŁNIJ: Uruchom stworzony timer z zerowym czasem oczekiwania (0) na włączenie
   if (mojTimer != NULL) {
-    xTimerStart(/* uchwyt timera: */ ???, 0); 
+    xTimerStart(/* uchwyt timera: */, 0); 
   }
 }
 
@@ -370,7 +378,7 @@ xTimerStart(mojTimer, 0);
 
 ---
 
-## 🛠️ Zadanie:
+## 🛠️ Zadanie: Wielozadaniowy system sterowania diodą
 
 Podłącz potencjometr do pinu **GPIO4**, a diodę LED do pinu **GPIO2**.
 

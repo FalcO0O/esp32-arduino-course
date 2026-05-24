@@ -77,7 +77,7 @@ Biblioteka `Preferences` jest częścią rdzenia ESP32 Arduino Core, więc nie m
 
 Poniższy program przy każdym uruchomieniu (lub resecie) odczytuje z pamięci NVS liczbę dotychczasowych uruchomień, zwiększa ją o jeden, wypisuje w Monitorze Szeregowym i zapisuje z powrotem.
 
-🎯 **[Otwórz Wokwi z układem wykorzystującym NVS]** *(link zostanie zaktualizowany)*
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464857466831004673){: style="display: block; text-align: center;"}
 
 ```cpp
 #include <Preferences.h>
@@ -113,7 +113,7 @@ void loop() {
 }
 ```
 
-Spróbuj wgrać ten program, otworzyć Monitor Szeregowi i kilkukrotnie wcisnąć przycisk **RST/EN** na płytce ESP32-C6. Zobaczysz, że wartość licznika rośnie i nie zeruje się po resecie.
+Spróbuj wgrać ten program, otworzyć Monitor Szeregowi i kilkukrotnie wcisnąć przycisk **RST/EN** na płytce ESP32-C6. Zobaczysz, że wartość licznika rośnie i nie zeruje się po resecie. W przypadku Wokwi nie musisz nic klikać - mikrokontroler samemu się restartuje.
 
 ---
 
@@ -122,6 +122,9 @@ Spróbuj wgrać ten program, otworzyć Monitor Szeregowi i kilkukrotnie wcisną�
 Napisz program, w którym wciśnięcie przycisku podłączonego do `GPIO9` zmienia stan diody LED (włącza lub wyłącza ją) na pinie `GPIO2`. 
 
 Twój program powinien zapisać aktualny stan diody (czy świeci, czy jest zgaszona) do pamięci NVS. Po resecie urządzenia (lub odłączeniu i ponownym podłączeniu zasilania) dioda powinna automatycznie uruchomić się w takim stanie, w jakim znajdowała się przed restartem.
+
+> [!WARNING] Testowanie NVS w symulatorze Wokwi
+> W Wokwi ponowne uruchomienie symulacji (rekompilacja) kasuje zawartość wirtualnej pamięci Flash, przez co dane NVS zostaną utracone. Aby przetestować zachowanie programu w symulacji, możesz wywołać restart programowo w kodzie za pomocą funkcji `ESP.restart()`, co zasymuluje restart bez czyszczenia pamięci NVS.
 
 <details>
 <summary>Pokaż rozwiązanie</summary>

@@ -15,7 +15,7 @@ Jedną z najważniejszych cech I<sup>2</sup>C jest konstrukcja wyjść stopni el
 
 Z tego powodu magistrala I<sup>2</sup>C wymaga zastosowania zewnętrznych **rezystorów podciągających (Pull-Up)** podłączonych między liniami SDA/SCL a zasilaniem VCC.
 
-![I2C_diagram](../img/protokoly/i2c.png){ align=center }
+![I2C_diagram](../img/protokoly/i2c.png){.center}
 
 #### Dlaczego zastosowano otwarty dren?
 1. **Unikanie zwarć (Bus Contention)**: Gdyby jedno urządzenie próbowało ustawić stan wysoki (3.3V), a drugie stan niski (0V), doszłoby do zwarcia linii zasilania z masą. W konfiguracji Open-Drain, jeśli dwa układy nadają jednocześnie, stanem dominującym jest LOW (0V), co chroni mikrokontroler przed uszkodzeniem.
@@ -55,27 +55,12 @@ Układ ESP32-C6 wyposażony jest w **dedykowany sprzętowy kontroler I<sup>2</su
 
 ## 🎯 Ćwiczenie Praktyczne: Akcelerometr MPU6050
 
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464856436584059905){: style="display: block; text-align: center;" }
+
 W tym ćwiczeniu użyjemy modułu czujnika inercyjnego **MPU6050** (zawierającego 3-osiowy akcelerometr i 3-osiowy żyroskop), komunikującego się za pomocą I2C.
 
-🎯 **[Otwórz Wokwi z układem MPU6050]** *(link zostanie zaktualizowany)*
-
-### Podłączenie
-Połącz czujnik z ESP32-C6 na płytce stykowej zgodnie z poniższym schematem:
-
-```text
-MPU6050 (I2C)   ESP32-C6
-──────────────────────────────
-VCC   ────────  3.3 V
-GND   ────────  GND
-SCL   ────────  GPIO7
-SDA   ────────  GPIO6
-```
-
 > [!NOTE] Instalacja biblioteki
-> Do obsługi MPU6050 wykorzystamy gotową bibliotekę **MPU6050_light**. W Arduino IDE zainstaluj ją poprzez **Szkic -> Dołącz bibliotekę -> Zarządzaj bibliotekami** (wyszukaj *MPU6050_light*).
-> W środowisku symulacyjnym Wokwi biblioteka jest dodawana automatycznie poprzez plik konfiguracyjny (zakładka z ikoną biblioteki):
-
-![Instalacja bibliotek w Wokwi](../img/protokoly/wokwi_libs.png){ align=center }
+> Do obsługi MPU6050 wykorzystamy gotową bibliotekę **MPU6050_light** autorstwa *rfetick*. Instrukcja instalacji (krok po kroku) znajduje się [tutaj](../podstawy/serwa.md#instalacja-biblioteki-esp32servo).
 
 ### Kod programu: Odczyt orientacji
 Wgraj poniższy program na płytkę. Wykonuje on automatyczną kalibrację czujnika przy uruchomieniu (żyroskop musi leżeć nieruchomo!), a następnie wypisuje kąty pochylenia na port szeregowy.

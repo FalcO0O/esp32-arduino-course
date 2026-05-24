@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1-teoria-czym-jest-mikrokontroler" class="md-skip">
+        <a href="#teoria-czym-jest-mikrokontroler" class="md-skip">
           Przejdź do treści
         </a>
       
@@ -519,7 +519,7 @@
   <a href="#komputer-pc-vs-mikrokontroler-mcu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Komputer (PC) vs. Mikrokontroler (MCU)
+        💻 Komputer (PC) vs. Mikrokontroler (MCU)
       
     </span>
   </a>
@@ -530,7 +530,7 @@
   <a href="#po-co-w-ogole-stosuje-sie-mikrokontrolery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Po co w ogóle stosuje się mikrokontrolery?
+        ❓ Po co w ogóle stosuje się mikrokontrolery?
       
     </span>
   </a>
@@ -541,7 +541,7 @@
   <a href="#podejscie-bare-metal" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Podejście Bare Metal
+        🔩 Podejście Bare Metal
       
     </span>
   </a>
@@ -1533,7 +1533,7 @@
   <a href="#komputer-pc-vs-mikrokontroler-mcu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Komputer (PC) vs. Mikrokontroler (MCU)
+        💻 Komputer (PC) vs. Mikrokontroler (MCU)
       
     </span>
   </a>
@@ -1544,7 +1544,7 @@
   <a href="#po-co-w-ogole-stosuje-sie-mikrokontrolery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Po co w ogóle stosuje się mikrokontrolery?
+        ❓ Po co w ogóle stosuje się mikrokontrolery?
       
     </span>
   </a>
@@ -1555,7 +1555,7 @@
   <a href="#podejscie-bare-metal" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Podejście Bare Metal
+        🔩 Podejście Bare Metal
       
     </span>
   </a>
@@ -1585,10 +1585,10 @@
 
 
 
-<h1 id="1-teoria-czym-jest-mikrokontroler">1. Teoria – czym jest mikrokontroler?</h1>
+<h1 id="teoria-czym-jest-mikrokontroler">Teoria – czym jest mikrokontroler?</h1>
 <p>Zanim zaczniesz pisać swój pierwszy kod i łączyć kabelki na płytce stykowej, warto zrozumieć, z jakim rodzajem komputera masz do czynienia. Choć mikrokontroler potrafi wykonywać programy podobnie jak Twój komputer czy smartfon, jego architektura, przeznaczenie oraz sposób działania są zupełnie inne.</p>
 <hr />
-<h2 id="komputer-pc-vs-mikrokontroler-mcu">Komputer (PC) vs. Mikrokontroler (MCU)</h2>
+<h2 id="komputer-pc-vs-mikrokontroler-mcu">💻 Komputer (PC) vs. Mikrokontroler (MCU)</h2>
 <p>Urządzenia, z których korzystamy na co dzień, takie jak komputery osobiste, serwery czy smartfony, opierają się na <strong>procesorach aplikacyjnych (MPU)</strong>. Ich zadaniem jest uruchamianie ogromnych, złożonych systemów operacyjnych (np. Windows, Linux, macOS, Android), które koordynują setki procesów w tym samym czasie.</p>
 <p><strong>Mikrokontroler (MCU - Microcontroller Unit)</strong> to z kolei kompletny miniaturowy komputer zintegrowany wewnątrz <strong>jednego układu scalonego</strong>. Zawiera on w sobie nie tylko rdzeń procesora, ale również pamięć RAM, pamięć nieulotną Flash (odpowiednik dysku twardego) oraz bloki peryferyjne (np. przetworniki cyfrowo-analogowe, kontrolery magistral komunikacyjnych) ułatwiające fizyczne innymi urządzeniami.</p>
 <p>Poniższa tabela przedstawia kluczowe różnice między tymi dwoma światami:</p>
@@ -1644,7 +1644,7 @@
 Odpowiedź brzmi: <strong>Nie</strong>. Twój program wgrywany jest na stałe do nieulotnej pamięci <strong>Flash</strong>. Po odpięciu przewodu od komputera i podłączeniu np. ładowarki lub powerbanka, mikrokontroler ułamek sekundy po starcie automatycznie uruchomi wgrany wcześniej kod. Należy jednak pamiętać, że po każdym takim restarcie zasilania (lub wciśnięciu przycisku RESET) zawartość pamięci <strong>RAM</strong> jest całkowicie kasowana. Oznacza to, że wszystkie zmienne w Twoim programie (np. aktualny wynik licznika) zostaną zresetowane do wartości początkowych.</p>
 </div>
 <hr />
-<h2 id="po-co-w-ogole-stosuje-sie-mikrokontrolery">Po co w ogóle stosuje się mikrokontrolery?</h2>
+<h2 id="po-co-w-ogole-stosuje-sie-mikrokontrolery">❓ Po co w ogóle stosuje się mikrokontrolery?</h2>
 <p>Skoro tradycyjny komputer jest tak potężny, dlaczego nie stosuje się procesorów z rodziny Intel Core lub Apple Silicon w pralkach, lodówkach, pilotach telewizyjnych czy zabawkach? </p>
 <p>Powody są trzy: <strong>koszt, zużycie energii oraz niezawodność</strong>.</p>
 <ol>
@@ -1653,7 +1653,7 @@ Odpowiedź brzmi: <strong>Nie</strong>. Twój program wgrywany jest na stałe do
 <li><strong>Niezawodność i determinizm</strong>: Mikrokontroler nie posiada dysku twardego, który może ulec uszkodzeniu, ani systemu operacyjnego, który może się zawiesić z powodu braku pamięci lub błędu w tle. Sterownik poduszek powietrznych w samochodzie nie może czekać, aż system operacyjny skończy instalować aktualizację w tle – musi podjąć decyzję o wystrzale w ciągu ułamka milisekundy. Mikrokontrolery gwarantują czas reakcji w czasie rzeczywistym.</li>
 </ol>
 <hr />
-<h2 id="podejscie-bare-metal">Podejście Bare Metal</h2>
+<h2 id="podejscie-bare-metal">🔩 Podejście Bare Metal</h2>
 <p>W tym kursie rozpoczniemy naukę programowania w podejściu nazywanym <strong>Bare Metal</strong>. Oznacza to, że nasz mikrokontroler nie będzie obciążony żadnym systemem zarządzającym zasobami. </p>
 <p>Twój napisany program kompiluje się bezpośrednio do instrukcji procesora. Układ po włączeniu zasilania uruchamia funkcję konfiguracji, po czym rozpoczyna wykonywanie nieskończonej pętli, realizując instrukcje krok po kroku:</p>
 <div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -1773,6 +1773,8 @@ Odpowiedź brzmi: <strong>Nie</strong>. Twój program wgrywany jest na stałe do
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/external_links.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

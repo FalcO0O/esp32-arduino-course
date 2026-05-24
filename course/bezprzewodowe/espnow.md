@@ -42,8 +42,12 @@ void setup() {
 void loop() {}
 ```
 
+Przykładowy wynik w Monitorze Szeregowym:
+
+![MAC w serial monitorze](../img/bezprzewodowe/MAC_address.png){.center}
+
 > [!TIP] Zapisz adres MAC
-> Skopiuj wyświetlony adres (np. `24:DC:C3:A1:B2:C0`) do notatnika. Będziesz go potrzebował w kodzie Nadajnika w formacie tablicy bajtów szesnastkowych: `{0x24, 0xDC, 0xC3, 0xA1, 0xB2, 0xC0}`.
+> Skopiuj wyświetlony adres (np. `D0:CF:13:16:66:7C`) do notatnika. Będziesz go potrzebował w kodzie Nadajnika w formacie tablicy bajtów szesnastkowych: `{0xD0, 0xCF, 0x13, 0x16, 0x66, 0x7C}`.
 
 ### Krok 2: Kod Nadajnika (Płytka A)
 
@@ -54,7 +58,7 @@ Wgraj ten kod na **Płytkę A**, podstawiając uprzednio spisany adres MAC Płyt
 #include <WiFi.h>
 
 // UZUPEŁNIJ: wpisz adres MAC Płytki B (Odbiornika)
-uint8_t adresOdbiornika[] = {0x24, 0xDC, 0xC3, 0xA1, 0xB2, 0xC0};
+uint8_t adresOdbiornika[] = {0xD0, 0xCF, 0x13, 0x16, 0x66, 0x7C};
 
 // Definicja struktury przesyłanych danych (musi być identyczna na obu płytkach)
 typedef struct struct_message {
@@ -174,7 +178,7 @@ W trybie Peer-to-Peer musisz znać adres MAC odbiornika. Jeśli jednak chcesz wy
 
 W tym trybie dane są wysyłane na specjalny, zarezerwowany adres MAC: `FF:FF:FF:FF:FF:FF`. Każde urządzenie w zasięgu, które ma zainicjalizowany protokół ESP-NOW na tym samym kanale radiowym, odbierze taką wiadomość.
 
-### Krok 4: Kod Nadajnika (Broadcast)
+### Krok 1: Kod Nadajnika (Broadcast)
 
 Wgraj ten kod na płytkę nadawczą. Nie musisz tu podawać konkretnego adresu MAC odbiornika:
 
@@ -233,7 +237,7 @@ void loop() {
 }
 ```
 
-### Krok 5: Kod Odbiornika (Broadcast)
+### Krok 2: Kod Odbiornika (Broadcast)
 
 Odbiornik dla trybu broadcast jest identyczny jak dla trybu Peer-to-Peer. Nie musi rejestrować żadnych partnerów – wystarczy, że nasłuchuje na zdarzenia:
 
@@ -286,48 +290,128 @@ void loop() {}
 
 ---
 
-## 🎯 Ćwiczenie 1: Bezprzewodowy kontroler gestów (P2P)
+## 🛠️ Zadanie do samodzielnego wykonania: Bezprzewodowy kontroler gestów (P2P)
 
-Połączmy komunikację radiową ESP-NOW z obsługą magistrali I2C.
+Połączmy komunikację radiową ESP-NOW z obsługą magistrali I²C.
 
-1. **Płytka A (Nadajnik):** Podłącz akcelerometr MPU6050 przez magistralę I2C. Stwórz strukturę przesyłającą dwie wartości zmiennoprzecinkowe: `float katX; float katY;`. W pętli głównej wysyłaj zaktualizowane pomiary kątów 10 razy na sekundę do Odbiornika.
+1. **Płytka A (Nadajnik):** Podłącz akcelerometr MPU6050 przez magistralę I²C. Stwórz strukturę przesyłającą dwie wartości zmiennoprzecinkowe: `float katX; float katY;`. W pętli głównej wysyłaj zaktualizowane pomiary kątów 10 razy na sekundę do Odbiornika.
 2. **Płytka B (Odbiornik):** Po odebraniu pakietu przeanalizuj nachylenie kąta X. Jeśli `katX > 30.0`, włącz wbudowaną diodę LED. Jeśli `katX < -30.0`, wyłącz diodę LED.
 
 <details>
-<summary>Wskazówka i przykładowa implementacja</summary>
+<summary>Pokaż rozwiązanie</summary>
 
-Struktura danych wspólna dla obu kodów:
-
+#### Kod Nadajnika (Płytka A)
 ```cpp
+#include <esp_now.h>
+#include <WiFi.h>
+#include <Wire.h>
+#include <MPU6050_light.h>
+
+const int I2C_SDA = 6;
+const int I2C_SCL = 7;
+
+// UZUPEŁNIJ: wpisz adres MAC Płytki B (Odbiornika)
+uint8_t adresOdbiornika[] = {0x24, 0xDC, 0xC3, 0xA1, 0xB2, 0xC0};
+
 typedef struct struct_message {
   float katX;
   float katY;
 } struct_message;
-```
 
-**Kluczowa pętla Nadajnika (Płytka A):**
-```cpp
+struct_message wysylaneDane;
+esp_now_peer_info_t peerInfo;
+MPU6050 mpu(Wire);
+
+void onDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
+  Serial.print("Status wysyłania: ");
+  Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Sukces" : "Błąd");
+}
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+
+  Wire.begin(I2C_SDA, I2C_SCL);
+  if (mpu.begin() != 0) {
+    Serial.println("Błąd MPU6050!");
+    while (1);
+  }
+  delay(1000);
+  mpu.calcOffsets();
+
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("Błąd inicjalizacji ESP-NOW");
+    return;
+  }
+
+  esp_now_register_send_cb((esp_now_send_cb_t)onDataSent);
+
+  memcpy(peerInfo.peer_addr, adresOdbiornika, 6);
+  peerInfo.channel = 0;
+  peerInfo.encrypt = false;
+
+  if (esp_now_add_peer(&peerInfo) != ESP_OK) {
+    Serial.println("Nie udało się dodać partnera");
+    return;
+  }
+}
+
 void loop() {
   mpu.update();
   wysylaneDane.katX = mpu.getAngleX();
   wysylaneDane.katY = mpu.getAngleY();
-  
+
   esp_now_send(adresOdbiornika, (uint8_t *)&wysylaneDane, sizeof(wysylaneDane));
-  delay(100); // 10 wysyłek na sekundę
+  
+  Serial.printf("Wysłano -> Kat X: %.1f, Kat Y: %.1f\n", wysylaneDane.katX, wysylaneDane.katY);
+  delay(100); // 10 razy na sekundę
 }
 ```
 
-**Funkcja odbioru w Odbiorniku (Płytka B):**
+#### Kod Odbiornika (Płytka B)
 ```cpp
+#include <esp_now.h>
+#include <WiFi.h>
+
+const int PIN_LED = 2;
+
+typedef struct struct_message {
+  float katX;
+  float katY;
+} struct_message;
+
+struct_message odebraneDane;
+
 void onDataRecv(const esp_now_recv_info_t *recv_info, const uint8_t *incomingData, int len) {
   memcpy(&odebraneDane, incomingData, sizeof(odebraneDane));
   
+  Serial.printf("Odebrano -> Kat X: %.1f, Kat Y: %.1f\n", odebraneDane.katX, odebraneDane.katY);
+
   if (odebraneDane.katX > 30.0) {
     digitalWrite(PIN_LED, HIGH);
+    Serial.println("Dioda LED WŁĄCZONA (katX > 30)");
   } else if (odebraneDane.katX < -30.0) {
     digitalWrite(PIN_LED, LOW);
+    Serial.println("Dioda LED WYŁĄCZONA (katX < -30)");
   }
 }
-```
 
+void setup() {
+  Serial.begin(115200);
+  pinMode(PIN_LED, OUTPUT);
+  WiFi.mode(WIFI_STA);
+
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("Błąd inicjalizacji ESP-NOW");
+    return;
+  }
+
+  esp_now_register_recv_cb((esp_now_recv_cb_t)onDataRecv);
+  Serial.println("Odbiornik gotowy. Steruj płytką nadawczą...");
+}
+
+void loop() {
+  // Pętla pusta - obsługa w callbacku onDataRecv
+}
+```
 </details>

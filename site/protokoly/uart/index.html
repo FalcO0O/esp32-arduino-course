@@ -1755,6 +1755,12 @@
 
 <h1 id="uart-petla-zwrotna-i-parsowanie-komend">UART: pętla zwrotna i parsowanie komend</h1>
 <p><strong>UART</strong> (<em>Universal Asynchronous Receiver-Transmitter</em>) to jeden z najstarszych, najprostszych i najbardziej rozpowszechnionych protokołów komunikacji szeregowej w systemach wbudowanych. W przeciwieństwie do magistral takich jak I<sup>2</sup>C czy SPI, UART jest interfejsem typu <strong>punkt-punkt</strong> (point-to-point) służącym do łączenia dokładnie dwóch urządzeń.</p>
+<div class="admonition note">
+<p class="admonition-title">Ciekawostka: Czy wiesz, że używasz UART od samego początku?</p>
+<p>Kiedy wywołujesz w kodzie funkcje <code>Serial.begin(115200)</code> i <code>Serial.println()</code>, dane są przesyłane do komputera właśnie za pomocą interfejsu szeregowego. </p>
+<p>W klasycznych mikrokontrolerach (np. Arduino Uno lub starszych ESP32) na płytce zamontowany był dedykowany układ scalony (konwerter USB-UART, np. CH340), który tłumaczył sygnały USB na standard TTL UART (piny TX/RX mikrokontrolera). 
+W nowoczesnych układach takich jak <strong>ESP32-C6</strong> kontroler USB-to-Serial (USB JTAG/Serial Console) jest wbudowany bezpośrednio w strukturę krzemową mikrokontrolera (<strong>USB CDC</strong> - <em>Communication Device Class</em>). Choć fizycznie sygnał biegnie bezpośrednio przez linie USB, Twój komputer oraz framework Arduino emulują ten interfejs jako tradycyjny wirtualny port COM (szeregowy UART), zachowując pełną kompatybilność programową.</p>
+</div>
 <hr />
 <h2 id="charakterystyka-fizyczna">🔌 Charakterystyka fizyczna</h2>
 <p>Transmisja UART jest <strong>asynchroniczna</strong>, co oznacza, że linia transmisyjna nie przesyła sygnału zegarowego (SCLK). Brak współdzielonej linii zegara upraszcza strukturę fizyczną interfejsu (mniej potrzebnych przewodów), ale stawia określone wymagania po stronie logicznej nadajnika i odbiornika.</p>
@@ -1826,7 +1832,8 @@
 <p>Gdy dane przychodzą na pin RX, kontroler sprzętowy UART automatycznie zapisuje je w buforze FIFO i wywołuje przerwanie w tle. Biblioteka Arduino przepisuje te dane do większego bufora programowego w pamięci RAM, z którego odczytujemy je za pomocą funkcji <code>Serial.read()</code>.</p>
 <hr />
 <h2 id="cwiczenie-praktyczne-terminal-komend-i-petla-zwrotna-loopback">🎯 Ćwiczenie praktyczne: Terminal komend i pętla zwrotna (Loopback)</h2>
-<p>W tym ćwiczeniu przeprowadzisz eksperyment pętli zwrotnej (loopback) na jednym mikrokontrolerze: ESP32 wyśle dane przez port nadawczy UART i natychmiast odbierze je na swoim porcie odbiorczym, dzięki fizycznemu połączeniu linii TX i RX za pomocą przewodu.</p>
+<p><a href="https://wokwi.com/projects/464855527434006529" style="display: block; text-align: center;"><strong>Link do symulacji w Wokwi</strong></a></p>
+<p>W tym ćwiczeniu przeprowadzisz eksperyment pętli zwrotnej (loopback) na jednym mikrokontrolerze: ESP32 wyśle dane przez port nadawczy UART i natychmiast odbierze je na swoim portcie odbiorczym, dzięki fizycznemu połączeniu linii TX i RX za pomocą przewodu.</p>
 <h3 id="podaczenie">Podłączenie</h3>
 <p>Połącz za pomocą przewodu połączeniowego dwa piny na płytce stykowej:</p>
 <ul>
@@ -2096,6 +2103,8 @@
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/external_links.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

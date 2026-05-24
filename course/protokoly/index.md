@@ -19,14 +19,15 @@ Dla praktyki na żywym sprzęcie potrzebujesz:
 
 | Komponent | Do czego posłuży? |
 |:---|:---|
-| **Płytka ESP32-C6 + 1 przewód połączeniowy** | Realizacja testu pętli zwrotnej (loopback) poprzez połączenie pinu nadawczego (TX) z odbiorczym (RX) |
+| **Płytka ESP32-C6 + kabel USB** | Serce operacji i zasilanie układu |
+| **Płytka Stykowa (Breadboard) + kable (jumpery)** | Bezlutowe łączenie elementów razem (niezbędne dla czujnika i wyświetlacza) |
+| **Dioda LED + rezystor (150-220 Ohm)** | Wymagana do zadania w sekcji UART |
 | **Czujnik Akcelerometru (np. MPU6050)** | Komunikacja po magistrali I<sup>2</sup>C |
 | **Wyświetlacz Graficzny TFT ILI9341 SPI** | Komunikacja po magistrali SPI |
-| **Wbudowana dioda ARGB WS2812B** | Prezentacja działania protokołu jednoprzewodowego bez dodatkowego okablowania |
 
 ---
 
-## Spis Lekcji
+## 🗺️ Spis Lekcji
 
 1. [UART: pętla zwrotna i komendy](uart.md)
 2. [Magistrala I<sup>2</sup>C: komunikacja z akcelerometrem](i2c.md)

@@ -1,10 +1,10 @@
-# 3. Konfiguracja środowiska i Wokwi
+# Konfiguracja środowiska i Wokwi
 
 Gdy znasz już teorię oraz budowę mikrokontrolera ESP32-C6, należy przygotować narzędzia deweloperskie. Kod dla naszej płytki możemy pisać zarówno w środowisku fizycznym (używając darmowego **Arduino IDE**), jak i wirtualnym (za pomocą symulatora **Wokwi**).
 
 ---
 
-## Narzędzie wirtualne: Symulator Wokwi
+## 🌐 Narzędzie wirtualne: Symulator Wokwi
 
 Przy większości zadań i ćwiczeń w tym kursie znajdziesz link do gotowego projektu w symulatorze **[Wokwi.com](https://wokwi.com)**. Pozwala to na natychmiastowe testowanie, pisanie i wklejanie kodu bezpośrednio w oknie przeglądarki. 
 
@@ -12,9 +12,16 @@ Mimo tego gorąco zachęcamy do budowania układów w rzeczywistości. Praca z f
 
 ---
 
-## Narzędzie fizyczne: Arduino IDE 2.x
+## 💻 Narzędzie fizyczne: Arduino IDE 2.x
 
 Do pracy z rzeczywistym mikrokontrolerem będziemy korzystać z najpopularniejszego środowiska dla hobbystów – **Arduino IDE** w wersji 2.x. Środowisko to automatycznie kompiluje Twój kod (napisany w języku C/C++) do postaci kodu maszynowego i przesyła go za pośrednictwem portu USB do pamięci Flash mikrokontrolera.
+
+> [!NOTE] Ciekawostka: Trzy znaczenia słowa „Arduino”
+> Słowo **Arduino** w świecie systemów wbudowanych bywa używane w trzech różnych znaczeniach, co na początku może być mylące:
+> 1. **Płytki (Hardware)**: Oryginalne, fizyczne płytki deweloperskie zaprojektowane przez włoską firmę Arduino (np. kultowe Arduino Uno czy Nano). Nasz moduł ESP32-C6 to sprzęt innego producenta (Espressif Systems), ale doskonale współpracuje z oprogramowaniem od Arduino.
+> 2. **Środowisko (IDE)**: Program komputerowy (*Arduino Integrated Development Environment*), w którym piszemy kod, kompilujemy go i przesyłamy na mikrokontroler.
+> 3. **Framework/Standard (Software)**: Zbiór gotowych funkcji i ułatwień (takich jak `pinMode()`, `digitalWrite()`, `Serial.print()`), które sprawiają, że piszemy kod w ten sam prosty sposób niezależnie od tego, jaki mikrokontroler znajduje się pod maską.
+
 
 ### Krok 1: Instalacja programu
 
@@ -66,7 +73,7 @@ Układ ESP32-C6 posiada wbudowany kontroler USB-JTAG/Serial. Aby Monitor Szerego
 
 ---
 
-## Pierwsze uruchomienie programu (Test)
+## 🚀 Pierwsze uruchomienie programu (Test)
 
 Sprawdźmy, czy cały łańcuch narzędziowy działa poprawnie. Spróbujemy wgrać prosty szkic testowy i otworzyć komunikację szeregową. Na razie nie przejmuj się tym, jak ten kod działa ani co oznaczają poszczególne linijki – zrozumiesz to w dalszej części kursu. Na tym etapie chcemy jedynie upewnić się, że program wgrywa się poprawnie do pamięci mikrokontrolera, a połączenie szeregowe działa bez zarzutu.
 
@@ -97,7 +104,7 @@ Jeśli cokolwiek poszło nie tak, spróbuj rozwiązań opisanych poniżej.
 
 ---
 
-## Rozwiązywanie problemów (Troubleshooting)
+## 🛠️ Rozwiązywanie problemów (Troubleshooting)
 
 ### 1. Brak portu COM / Serial w menu Narzędzia → Port
 

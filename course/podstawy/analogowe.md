@@ -3,17 +3,15 @@
 Do tej pory operowaliśmy na dwóch stanach: 1 lub 0. Włączony lub wyłączony. Jednak nasz świat nie jest czarno-biały – światło ściemnia się płynnie, temperatura zmienia się co dziesiątą część stopnia, a głośność można regulować na obrotowym kółku.
 W tej sekcji nauczymy się "udawać" sygnał ciągły oraz odbierać sygnał ciągły ze świata fizycznego!
 
----
-
-## Ćwiczenie 1 – PWM: płynna regulacja jasności
+## 📊 Czym jest PWM i jak działa?
 
 Wyjście cyfrowe daje tylko dwa stany: włącz/wyłącz. Co jeśli chcemy płynnie regulować jasność diody? Z pomocą przychodzi technika **PWM**.
 
-### Czym jest PWM?
 **PWM** (*Pulse Width Modulation* – Modulacja Szerokości Impulsu) to technika symulowania sygnału analogowego za pomocą bardzo szybkiego przełączania sygnału cyfrowego w czasie, z odpowiednimi proporcjami na bycie włączonym względem bycia wyłączonym w ciągu mikrosekund.
 Pin jest bardzo szybko włączany i wyłączany (np. 10 000 razy na sekundę!), a bezwładność naszego oka powoduje, że widzimy płynną zmianę uśrednionej wartości jasności.
 
 Kluczowy parametr to **wypełnienie (duty cycle)**:
+
 ![PWM](../img/podstawy/PWM.png){.center}
 
 W Arduino domyślnie używamy ujednoliconej funkcji o nazwie `analogWrite(pin, wartość)`, która ustawia wypełnienie. Wartość to liczba z zakresu od **0** (całkowicie wyłączone) do **255** (pełna moc).
@@ -21,9 +19,12 @@ W Arduino domyślnie używamy ujednoliconej funkcji o nazwie `analogWrite(pin, w
 > [!NOTE] Dostępność wyjść PWM
 > W wielu starszych mikrokontrolerach liczba pinów mogących generować sprzętowy sygnał PWM była mocno ograniczona (np. tradycyjne Arduino Uno miało tylko 6 takich pinów). W układach ESP32 sygnał PWM jest generowany przez dedykowany blok sprzętowy (kontroler LEDC), a za pomocą elastycznej matrycy połączeń (**GPIO Matrix**) sygnał ten można przekierować i wyprowadzić na niemal dowolny cyfrowy pin GPIO. Daje to ogromną elastyczność podczas projektowania i montowania obwodów.
 
-🎯 **[Otwórz Wokwi z układem obwodu PWM]** *(link zostanie zaktualizowany)*
+---
 
-### Płytki i diody: Efekt "pulsowania" diody (Breathing LED)
+### 🎯 Ćwiczenie 1: Płynna regulacja jasności (Breathing LED)
+
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464853358722851841){: style="display: block; text-align: center;" }
+
 Napiszmy program realizujący efekt płynnego rozjaśniania i ściemniania diody LED:
 
 ```cpp
@@ -79,9 +80,9 @@ void loop() {
 
 ---
 
-## Ćwiczenie 2 – ADC: odczyt potencjometru
+## 📈 Czym jest przetwornik ADC i jak działa?
 
-Potrafimy już płynnie sterować poziomem sygnału wyjściowego. W jaki sposób możemy jednak odczytać wartości ciągłe z otoczenia? Na przykład sprawdzić kąt obrotu pokrętła potencjometru lub poziom wilgotności gleby?
+Potrafimy już płynnie sterować poziomem sygnału wyjściowego. W jaki sposób możemy jednak odczytać wartości ciągłe z otoczenia? Na Example sprawdzić kąt obrotu pokrętła potencjometru lub poziom wilgotności gleby?
 
 Do tego celu służy przetwornik analogowo-cyfrowy, czyli **ADC** (*Analog-to-Digital Converter*).
 Mikrokontroler ESP32-C6 wyposażony jest w 12-bitowy przetwornik ADC. Konwertuje on mierzone napięcie wejściowe z zakresu od 0 V do 3.3 V na odpowiadającą mu wartość cyfrową w skali od 0 do 4095:
@@ -96,12 +97,12 @@ Mikrokontroler ESP32-C6 wyposażony jest w 12-bitowy przetwornik ADC. Konwertuje
 ### Jak podłączyć potencjometr?
 Potencjometr obrotowy posiada trzy wyprowadzenia:
 
+![Potencjometr](../img/podstawy/potentiometer.png){.center}
+
 * **Skrajne nóżki**: Podłączamy odpowiednio do zasilania (**3.3 V**) oraz masy (**GND**).
-* **Środkowa nóżka (suwak/zbierak)**: Wyprowadza napięcie wyjściowe, które zmienia się proporcjonalnie do kąta obrotu osi potencjometru. To wyprowadzenie łączymy z wejściem ADC mikrokontrolera (w naszym przypadku `GPIO4`).
+* **Środkowa nóżka (suwak/zbierak)**: Wyprowadza napięcie wyjściowe, które zmienia się proporcjonalnie do kąta obrotu osi potencjometr  u. To wyprowadzenie łączymy z wejściem ADC mikrokontrolera (w naszym przypadku `GPIO4`).
 
 Taka konfiguracja tworzy tzw. **regulowany dzielnik napięcia**. Obracając pokrętłem, płynnie zmieniamy napięcie na środkowej nóżce w zakresie od 0 V (gdy suwak jest najbliżej masy) do 3.3 V (gdy suwak jest najbliżej zasilania). Przetwornik ADC odczytuje to napięcie i konwertuje je na wartość cyfrową od 0 do 4095.
-
-🎯 **[Otwórz Wokwi z układem potencjometru i Plotterem Szeregowym]** *(link zostanie zaktualizowany)*
 
 ### Odczyt wartości z dzielnika
 
@@ -111,6 +112,14 @@ Do odczytu napięcia analogowego wykorzystujemy funkcję:
 
 > [!NOTE] Brak potrzeby konfiguracji pinMode()
 > Zauważ, że w funkcji `setup()` poniższego programu nie wywołujemy `pinMode(PIN_POTENCJOMETR, INPUT)`. Wywołanie to nie jest wymagane dla odczytów analogowych, ponieważ funkcja `analogRead()` automatycznie rekonfiguruje wskazany pin GPIO do pracy w trybie wejścia analogowego (ADC) przy każdym wywołaniu.
+
+---
+
+### 🎯 Ćwiczenie 2: Odczyt potencjometru i sterowanie progowe
+
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464853537132826625){: style="display: block; text-align: center;" }
+
+Napiszmy program, który mierzy wartość napięcia z potencjometru i wypisuje ją na port szeregowy:
 
 ```cpp
 const int PIN_POTENCJOMETR = 4;
@@ -129,10 +138,10 @@ void loop() {
 ```
 
 > [!TIP] Wizualizacja danych: Serial Plotter
-> Aby zaobserwować zmiany odczytów w czasie w formie graficznej, możesz skorzystać z narzędzia **Serial Plotter** wbudowanego w Arduino IDE i Wokwi. Znajdziesz je w prawym górnym rogu okna (ikona wykresu obok lupy) lub w menu *Narzędzia -> Serial Plotter*. Ruch pokrętła potencjometru zostanie przedstawiony na płynnym, rysowanym w czasie rzeczywistym wykresie.
+> Aby zaobserwować zmiany odczytów w czasie w formie graficznej, możesz skorzystać z narzędzia **Serial Plotter** wbudowanego w Arduino IDE i Wokwi. W przypadku Arduino IDE znajdziesz je w prawym górnym rogu okna (ikona wykresu obok lupy) lub w menu *Narzędzia -> Serial Plotter*. W przypadku Wokwi należy kliknąć ikonę wykresu w prawym dolnym rogu okna. Ruch pokrętła potencjometru zostanie przedstawiony na płynnym, rysowanym w czasie rzeczywistym wykresie.
 ![Serial Plotter](../img/podstawy/serial_plotter.png){.center}
 
-### Zadanie: Kontrola progowa
+### 🛠️ Zadanie: Kontrola progowa
 
 Częstym zastosowaniem pomiarów analogowych (np. temperatury, poziomu wody czy ciśnienia) jest reagowanie na przekroczenie określonej wartości progowej – na przykład w celu uruchomienia alarmu lub wyłączenia zasilania.
 
@@ -172,7 +181,7 @@ void loop() {
 
 ---
 
-## Łączenie ADC z PWM
+## 🔄 Łączenie ADC z PWM
 
 Chcemy teraz zrealizować praktyczny projekt: płynnie kontrolować jasność diody LED za pomocą obracania potencjometru.
 
@@ -198,7 +207,7 @@ Przykład użycia w kodzie:
 int jasnosc_led = map(odczyt_potencjometru, 0, 4095, 0, 255);
 ```
 
-### Zadanie: Płynny regulator jasności
+### 🛠️ Zadanie: Płynny regulator jasności
 Połącz wiedzę o ADC oraz PWM. Napisz program, który odczytuje wartość z potencjometru, odpowiednio ją skaluje za pomocą funkcji `map()`, a następnie płynnie steruje jasnością diody LED (od całkowitego zgaszenia do maksymalnej jasności) proporcjonalnie do obrotu osi potencjometru.
 
 <details>

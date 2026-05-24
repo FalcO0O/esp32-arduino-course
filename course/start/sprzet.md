@@ -1,10 +1,10 @@
-# 2. Płytka ESP32-C6 i sprzęt
+# Płytka ESP32-C6 i sprzęt
 
-W tym kursie będziemy pracować na platformie sprzętowej opartej o mikrokontroler **ESP32-C6** firmy Espressif Systems. Zanim podłączymy go do komputera, przyjrzyjmy się jego możliwościom i zasadom bezpieczeństwa, których musisz bezwzględnie przestrzegać, aby nie uszkodzić sprzętu.
+W tym kursie będziemy pracować na platformie sprzętowej opartej o mikrokontroler **ESP32-C6** firmy Espressif Systems. Zanim podłączymy go do komputera, przyjrzyjmy się jego możliwościom i zasadom bezpieczeństwa, których musisz przestrzegać aby nie uszkodzić sprzętu.
 
 ---
 
-## Układ ESP32-C6
+## ⚙️ Układ ESP32-C6
 
 Poniżej możesz zobaczyć fizyczny wygląd płytki deweloperskiej ESP32-C6 (w wersji DevKit):
 
@@ -30,7 +30,7 @@ Płytka posiada również:
 
 ---
 
-## Schemat wyprowadzeń (Pinout)
+## 📍 Schemat wyprowadzeń (Pinout)
 
 Podczas podłączania elementów na płytce stykowej będziesz musiał odnaleźć odpowiednie numery pinów. 
 
@@ -50,7 +50,7 @@ Aby ułatwić lokalizację pinów, skorzystaj z poniższego schematu:
 
 ---
 
-## Czym są piny GPIO?
+## 📌 Czym są piny GPIO?
 
 Złącza **GPIO** (*General-Purpose Input/Output*) to wejścia i wyjścia ogólnego przeznaczenia. W kodzie programu decydujesz, jak dany pin ma się zachowywać:
 
@@ -74,7 +74,7 @@ Oprócz zwykłych cyfrowych wejść/wyjść, piny ESP32-C6 posiadają alternatyw
 
 ---
 
-## Proces uruchamiania, Bootloader i Strapping Pins
+## 🔄 Proces uruchamiania, Bootloader i Strapping Pins
 
 Mikrokontroler nie rozpoczyna pracy w sposób magiczny. Po włączeniu zasilania lub wciśnięciu przycisku RESET, w pierwszej kolejności uruchamiany jest tzw. **Bootloader** – niewielki, fabrycznie wgrany program systemowy.
 

@@ -48,18 +48,70 @@ Większość serw modelarskich wyprowadza trzy przewody w standardowych kolorach
 
 ## 💻 Sterowanie serwem w ESP32
 
-Standardowa biblioteka `<Servo.h>` wbudowana w Arduino IDE została napisana pod architekturę AVR (np. Arduino Uno) i nie współpracuje z mikrokontrolerami ESP32. Na szczęście istnieje dedykowana biblioteka **ESP32Servo**, która sprzętowo konfiguruje kontroler PWM w układach ESP.
+Zanim zaczniemy używać gotowych narzędzi, zobaczmy, jak możemy wysterować serwomechanizm na najniższym poziomie za pomocą podstawowych instrukcji sterowania pinami.
 
-### Instalacja biblioteki
-1. W Arduino IDE wybierz z menu po lewej stronie ikonę **Library Manager** (zarządzanie bibliotekami).
-2. Wpisz w wyszukiwarkę **ESP32Servo** (autor: John K. Bennett).
+### 🎯 Ćwiczenie 1: Ręczne generowanie sygnału (Soft-PWM)
+
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464854187082207233){: style="display: block; text-align: center;" }
+
+Aby serwo mogło przemieścić się i utrzymać w danej pozycji, musimy wysyłać impulsy sterujące nieprzerwanie (co $20\text{ ms}$). Pojedynczy impuls to za mało, aby silnik zdążył fizycznie obrócić wał.
+
+Napiszmy program, który co około 1 sekundę zmienia pozycję ramienia serwa między $0^\circ$ (impuls $1\text{ ms}$) a $180^\circ$ (impuls $2\text{ ms}$). Generujemy serię 50 impulsów dla każdej pozycji ($50 \times 20\text{ ms} = 1000\text{ ms}$):
+
+```cpp
+const int PIN_SERWA = 2;
+
+void setup() {
+  pinMode(PIN_SERWA, OUTPUT);
+}
+
+void loop() {
+  // 1. Ustawienie w pozycji 0 stopni (impuls 1000 µs) przez ok. 1 sekundę
+  for (int i = 0; i < 50; i++) {
+    digitalWrite(PIN_SERWA, HIGH);
+    delayMicroseconds(1000);
+    digitalWrite(PIN_SERWA, LOW);
+    delayMicroseconds(19000); // 20000 µs - 1000 µs = 19000 µs
+  }
+  
+  // 2. Ustawienie w pozycji 180 stopni (impuls 2000 µs) przez ok. 1 sekundę
+  for (int i = 0; i < 50; i++) {
+    digitalWrite(PIN_SERWA, HIGH);
+    delayMicroseconds(2000);
+    digitalWrite(PIN_SERWA, LOW);
+    delayMicroseconds(18000); // 20000 µs - 2000 µs = 18000 µs
+  }
+}
+```
+
+### 🧠 Dlaczego warto używać bibliotek?
+
+Powyższa metoda (ręczne sterowanie z opóźnieniami) ma ogromną wadę: **całkowicie blokuje procesor** na czas wykonywania opóźnień (tzw. *busy waiting*). 
+
+Jeśli w pętli `loop()` spróbujesz dopisać kod odczytujący czujniki, przyciski lub nawiązujący połączenie Wi-Fi, czas trwania pętli wydłuży się i zaburzy precyzyjny odstęp $20\text{ ms}$ oraz czas trwania samego impulsu. Serwo zacznie drżeć, szarpać lub całkowicie przestanie reagować.
+
+Aby tego uniknąć, w środowisku Arduino stosujemy dedykowane biblioteki, które sprzętowo konfigurują wbudowane w ESP32 timery. Generują one odpowiedni sygnał w tle (asynchronicznie i sprzętowo), nie obciążając w żaden sposób procesora.
+
+---
+
+## 📚 Instalacja biblioteki ESP32Servo
+
+Dla mikrokontrolerów ESP32 standardowa biblioteka `<Servo.h>` (stworzona z myślą o platformie AVR/Arduino Uno) nie zadziała. Użyjemy dedykowanej biblioteki **ESP32Servo**.
+
+### Instalacja w Arduino IDE:
+1. Kliknij ikonę **Library Manager** (trzy książki) w lewym panelu bocznym.
+2. W polu wyszukiwania wpisz **ESP32Servo** (autor: *Kevin Harrington*, *John K. Bennett*).
 3. Kliknij przycisk **Install**.
 
-🎯 **[Otwórz Wokwi z układem wykorzystującym Serwomechanizm]** *(link zostanie zaktualizowany)*
+![Library Manager](../img/podstawy/arduino_lib.png){.center}
 
-### Kod: Cykliczny obrót (Sweep)
+---
 
-Poniższy kod realizuje płynny ruch wału serwa od 0 do 180 stopni i z powrotem:
+### 🎯 Ćwiczenie 2: Cykliczny obrót (Sweep) z biblioteką
+
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464854291633632257){: style="display: block; text-align: center;" }
+
+Dzięki bibliotece `ESP32Servo` kod sterujący jest znacznie prostszy, a ruch serwa – płynny:
 
 ```cpp
 #include <ESP32Servo.h>
@@ -77,7 +129,7 @@ void setup() {
 }
 
 void loop() {
-  // Ruch od 0 do 180 stopni:
+  // Płynny ruch od 0 do 180 stopni:
   for (int kat = 0; kat <= 180; kat += 1) {
     moje_serwo.write(kat); // Ustawiamy serwo na zadany kąt
     delay(15);             // Czekamy chwilę, aby serwo zdążyło się obrócić
@@ -92,7 +144,7 @@ void loop() {
 ```
 
 > [!NOTE] Ciekawostka: Co się dzieje pod maską?
-> Biblioteka `ESP32Servo` nie wykonuje opóźnień programowych do generowania impulsów. Pod spodem konfiguruje ona sprzętowy kontroler PWM (**LEDC** lub **MCPWM**) wbudowany w ESP32-C6. Generuje on sygnał całkowicie sprzętowo i asynchronicznie w tle – oznacza to, że raz ustawiony kąt będzie utrzymywany przez sprzęt bez udziału pętli `loop()`.
+> Biblioteka `ESP32Servo` konfiguruje sprzętowy generator PWM (**LEDC**) wbudowany w ESP32. Generuje on sygnał całkowicie sprzętowo i asynchronicznie w tle – oznacza to, że raz ustawiony kąt za pomocą `moje_serwo.write()` będzie stale utrzymywany na pinie przez hardware, a pętla `loop()` pozostaje wolna na inne obliczenia!
 
 ---
 
@@ -105,7 +157,7 @@ Napisz program, który odczytuje wartość analogową z potencjometru i na tej p
 1. Podłącz potencjometr do pinu analogowego (np. `GPIO0` - ADC1).
 2. Odczytaj wartość napięcia (zakres ADC w ESP32-C6 to domyślnie 12 bitów, czyli wartości od `0` do `4095`).
 3. Przeskaluj odczytaną wartość na zakres kątów pracy serwa (`0` do `180`) za pomocą funkcji `map()`.
-4. Wyślij zmienioną wartość kąta do serwa.
+4. Wyślij zmienioną wartość kąta do serwa za pomocą biblioteki `ESP32Servo`.
 5. Dodaj małe opóźnienie w pętli `loop()`, aby ustabilizować odczyty i ruch silnika.
 
 <details>

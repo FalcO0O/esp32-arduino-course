@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#2-pytka-esp32-c6-i-sprzet" class="md-skip">
+        <a href="#pytka-esp32-c6-i-sprzet" class="md-skip">
           Przejdź do treści
         </a>
       
@@ -547,7 +547,7 @@
   <a href="#ukad-esp32-c6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Układ ESP32-C6
+        ⚙️ Układ ESP32-C6
       
     </span>
   </a>
@@ -558,12 +558,12 @@
   <a href="#schemat-wyprowadzen-pinout" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Schemat wyprowadzeń (Pinout)
+        📍 Schemat wyprowadzeń (Pinout)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Schemat wyprowadzeń (Pinout)">
+    <nav class="md-nav" aria-label="📍 Schemat wyprowadzeń (Pinout)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -586,7 +586,7 @@
   <a href="#czym-sa-piny-gpio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Czym są piny GPIO?
+        📌 Czym są piny GPIO?
       
     </span>
   </a>
@@ -597,7 +597,7 @@
   <a href="#proces-uruchamiania-bootloader-i-strapping-pins" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Proces uruchamiania, Bootloader i Strapping Pins
+        🔄 Proces uruchamiania, Bootloader i Strapping Pins
       
     </span>
   </a>
@@ -1561,7 +1561,7 @@
   <a href="#ukad-esp32-c6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Układ ESP32-C6
+        ⚙️ Układ ESP32-C6
       
     </span>
   </a>
@@ -1572,12 +1572,12 @@
   <a href="#schemat-wyprowadzen-pinout" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Schemat wyprowadzeń (Pinout)
+        📍 Schemat wyprowadzeń (Pinout)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Schemat wyprowadzeń (Pinout)">
+    <nav class="md-nav" aria-label="📍 Schemat wyprowadzeń (Pinout)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1600,7 +1600,7 @@
   <a href="#czym-sa-piny-gpio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Czym są piny GPIO?
+        📌 Czym są piny GPIO?
       
     </span>
   </a>
@@ -1611,7 +1611,7 @@
   <a href="#proces-uruchamiania-bootloader-i-strapping-pins" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Proces uruchamiania, Bootloader i Strapping Pins
+        🔄 Proces uruchamiania, Bootloader i Strapping Pins
       
     </span>
   </a>
@@ -1641,10 +1641,10 @@
 
 
 
-<h1 id="2-pytka-esp32-c6-i-sprzet">2. Płytka ESP32-C6 i sprzęt</h1>
-<p>W tym kursie będziemy pracować na platformie sprzętowej opartej o mikrokontroler <strong>ESP32-C6</strong> firmy Espressif Systems. Zanim podłączymy go do komputera, przyjrzyjmy się jego możliwościom i zasadom bezpieczeństwa, których musisz bezwzględnie przestrzegać, aby nie uszkodzić sprzętu.</p>
+<h1 id="pytka-esp32-c6-i-sprzet">Płytka ESP32-C6 i sprzęt</h1>
+<p>W tym kursie będziemy pracować na platformie sprzętowej opartej o mikrokontroler <strong>ESP32-C6</strong> firmy Espressif Systems. Zanim podłączymy go do komputera, przyjrzyjmy się jego możliwościom i zasadom bezpieczeństwa, których musisz przestrzegać aby nie uszkodzić sprzętu.</p>
 <hr />
-<h2 id="ukad-esp32-c6">Układ ESP32-C6</h2>
+<h2 id="ukad-esp32-c6">⚙️ Układ ESP32-C6</h2>
 <p>Poniżej możesz zobaczyć fizyczny wygląd płytki deweloperskiej ESP32-C6 (w wersji DevKit):</p>
 <p><img alt="Wygląd płytki deweloperskiej ESP32-C6" class="center" src="../../img/start/esp32c6.png" /></p>
 <div class="admonition tip">
@@ -1666,7 +1666,7 @@
 <li>Sprzętowe wsparcie dla <strong>kryptografii</strong>.</li>
 </ul>
 <hr />
-<h2 id="schemat-wyprowadzen-pinout">Schemat wyprowadzeń (Pinout)</h2>
+<h2 id="schemat-wyprowadzen-pinout">📍 Schemat wyprowadzeń (Pinout)</h2>
 <p>Podczas podłączania elementów na płytce stykowej będziesz musiał odnaleźć odpowiednie numery pinów. </p>
 <p>Aby ułatwić lokalizację pinów, skorzystaj z poniższego schematu:</p>
 <p><img alt="Schemat wyprowadzeń (pinout) ESP32-C6 DevKit" class="center" src="../../img/start/esp32c6-pinout.png" /></p>
@@ -1682,7 +1682,7 @@
 <p>Nie pomyl ich jednak z numeracją nóżek samego układu scalonego ESP32-C6 (czarnego układu scalonego na środku płytki)! W oficjalnej karcie katalogowej producenta nóżki samego chipu mają inną kolejność (np. GPIO2 może odpowiadać piętnastej nóżce krzemowej kostki). Dla nas liczą się wyłącznie napisy nadrukowane na płytce deweloperskiej i schemat pinoutu!</p>
 </div>
 <hr />
-<h2 id="czym-sa-piny-gpio">Czym są piny GPIO?</h2>
+<h2 id="czym-sa-piny-gpio">📌 Czym są piny GPIO?</h2>
 <p>Złącza <strong>GPIO</strong> (<em>General-Purpose Input/Output</em>) to wejścia i wyjścia ogólnego przeznaczenia. W kodzie programu decydujesz, jak dany pin ma się zachowywać:</p>
 <ul>
 <li><strong>Wyjście (OUTPUT)</strong>: Mikrokontroler steruje napięciem na pinie. Może podać stan wysoki (3.3 V) lub stan niski (0 V - masa). Pozwala to na włączanie diod LED, sterowanie przekaźnikami czy wysyłanie sygnałów sterujących do silników.</li>
@@ -1708,7 +1708,7 @@ Układy ESP32 rozwiązują ten problem za pomocą mechanizmu o nazwie <strong>GP
 </ol>
 </div>
 <hr />
-<h2 id="proces-uruchamiania-bootloader-i-strapping-pins">Proces uruchamiania, Bootloader i Strapping Pins</h2>
+<h2 id="proces-uruchamiania-bootloader-i-strapping-pins">🔄 Proces uruchamiania, Bootloader i Strapping Pins</h2>
 <p>Mikrokontroler nie rozpoczyna pracy w sposób magiczny. Po włączeniu zasilania lub wciśnięciu przycisku RESET, w pierwszej kolejności uruchamiany jest tzw. <strong>Bootloader</strong> – niewielki, fabrycznie wgrany program systemowy.</p>
 <p>Jego zadaniem jest sprawdzenie fizycznych stanów napięć na specjalnych pinach konfiguracyjnych, nazywanych <strong>Strapping Pins</strong> (w układzie ESP32-C6 są to przede wszystkim piny <strong>GPIO8</strong> oraz <strong>GPIO9</strong>), i na ich podstawie podjęcie decyzji o trybie pracy:</p>
 <ol>
@@ -1824,6 +1824,8 @@ Układy ESP32 rozwiązują ten problem za pomocą mechanizmu o nazwie <strong>GP
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/external_links.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

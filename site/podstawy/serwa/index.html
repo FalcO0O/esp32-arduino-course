@@ -794,10 +794,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#instalacja-biblioteki" class="md-nav__link">
+  <a href="#cwiczenie-1-reczne-generowanie-sygnau-soft-pwm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Instalacja biblioteki
+        🎯 Ćwiczenie 1: Ręczne generowanie sygnału (Soft-PWM)
       
     </span>
   </a>
@@ -805,10 +805,49 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#kod-cykliczny-obrot-sweep" class="md-nav__link">
+  <a href="#dlaczego-warto-uzywac-bibliotek" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kod: Cykliczny obrót (Sweep)
+        🧠 Dlaczego warto używać bibliotek?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacja-biblioteki-esp32servo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Instalacja biblioteki ESP32Servo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 Instalacja biblioteki ESP32Servo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacja-w-arduino-ide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instalacja w Arduino IDE:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cwiczenie-2-cykliczny-obrot-sweep-z-biblioteka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Ćwiczenie 2: Cykliczny obrót (Sweep) z biblioteką
       
     </span>
   </a>
@@ -1654,10 +1693,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#instalacja-biblioteki" class="md-nav__link">
+  <a href="#cwiczenie-1-reczne-generowanie-sygnau-soft-pwm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Instalacja biblioteki
+        🎯 Ćwiczenie 1: Ręczne generowanie sygnału (Soft-PWM)
       
     </span>
   </a>
@@ -1665,10 +1704,49 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#kod-cykliczny-obrot-sweep" class="md-nav__link">
+  <a href="#dlaczego-warto-uzywac-bibliotek" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kod: Cykliczny obrót (Sweep)
+        🧠 Dlaczego warto używać bibliotek?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacja-biblioteki-esp32servo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Instalacja biblioteki ESP32Servo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 Instalacja biblioteki ESP32Servo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacja-w-arduino-ide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instalacja w Arduino IDE:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cwiczenie-2-cykliczny-obrot-sweep-z-biblioteka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Ćwiczenie 2: Cykliczny obrót (Sweep) z biblioteką
       
     </span>
   </a>
@@ -1771,47 +1849,84 @@ Próba ustawienia kąta poza mechaniczne ograniczenia serwa (gdy silnik próbuje
 </div>
 <hr />
 <h2 id="sterowanie-serwem-w-esp32">💻 Sterowanie serwem w ESP32</h2>
-<p>Standardowa biblioteka <code>&lt;Servo.h&gt;</code> wbudowana w Arduino IDE została napisana pod architekturę AVR (np. Arduino Uno) i nie współpracuje z mikrokontrolerami ESP32. Na szczęście istnieje dedykowana biblioteka <strong>ESP32Servo</strong>, która sprzętowo konfiguruje kontroler PWM w układach ESP.</p>
-<h3 id="instalacja-biblioteki">Instalacja biblioteki</h3>
+<p>Zanim zaczniemy używać gotowych narzędzi, zobaczmy, jak możemy wysterować serwomechanizm na najniższym poziomie za pomocą podstawowych instrukcji sterowania pinami.</p>
+<h3 id="cwiczenie-1-reczne-generowanie-sygnau-soft-pwm">🎯 Ćwiczenie 1: Ręczne generowanie sygnału (Soft-PWM)</h3>
+<p><a href="https://wokwi.com/projects/464854187082207233" style="display: block; text-align: center;"><strong>Link do symulacji w Wokwi</strong></a></p>
+<p>Aby serwo mogło przemieścić się i utrzymać w danej pozycji, musimy wysyłać impulsy sterujące nieprzerwanie (co <span class="arithmatex">\(20\text{ ms}\)</span>). Pojedynczy impuls to za mało, aby silnik zdążył fizycznie obrócić wał.</p>
+<p>Napiszmy program, który co około 1 sekundę zmienia pozycję ramienia serwa między <span class="arithmatex">\(0^\circ\)</span> (impuls <span class="arithmatex">\(1\text{ ms}\)</span>) a <span class="arithmatex">\(180^\circ\)</span> (impuls <span class="arithmatex">\(2\text{ ms}\)</span>). Generujemy serię 50 impulsów dla każdej pozycji (<span class="arithmatex">\(50 \times 20\text{ ms} = 1000\text{ ms}\)</span>):</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">PIN_SERWA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">PIN_SERWA</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="c1">// 1. Ustawienie w pozycji 0 stopni (impuls 1000 µs) przez ok. 1 sekundę</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_SERWA</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_SERWA</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">19000</span><span class="p">);</span><span class="w"> </span><span class="c1">// 20000 µs - 1000 µs = 19000 µs</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="c1">// 2. Ustawienie w pozycji 180 stopni (impuls 2000 µs) przez ok. 1 sekundę</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_SERWA</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">PIN_SERWA</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">18000</span><span class="p">);</span><span class="w"> </span><span class="c1">// 20000 µs - 2000 µs = 18000 µs</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="dlaczego-warto-uzywac-bibliotek">🧠 Dlaczego warto używać bibliotek?</h3>
+<p>Powyższa metoda (ręczne sterowanie z opóźnieniami) ma ogromną wadę: <strong>całkowicie blokuje procesor</strong> na czas wykonywania opóźnień (tzw. <em>busy waiting</em>). </p>
+<p>Jeśli w pętli <code>loop()</code> spróbujesz dopisać kod odczytujący czujniki, przyciski lub nawiązujący połączenie Wi-Fi, czas trwania pętli wydłuży się i zaburzy precyzyjny odstęp <span class="arithmatex">\(20\text{ ms}\)</span> oraz czas trwania samego impulsu. Serwo zacznie drżeć, szarpać lub całkowicie przestanie reagować.</p>
+<p>Aby tego uniknąć, w środowisku Arduino stosujemy dedykowane biblioteki, które sprzętowo konfigurują wbudowane w ESP32 timery. Generują one odpowiedni sygnał w tle (asynchronicznie i sprzętowo), nie obciążając w żaden sposób procesora.</p>
+<hr />
+<h2 id="instalacja-biblioteki-esp32servo">📚 Instalacja biblioteki ESP32Servo</h2>
+<p>Dla mikrokontrolerów ESP32 standardowa biblioteka <code>&lt;Servo.h&gt;</code> (stworzona z myślą o platformie AVR/Arduino Uno) nie zadziała. Użyjemy dedykowanej biblioteki <strong>ESP32Servo</strong>.</p>
+<h3 id="instalacja-w-arduino-ide">Instalacja w Arduino IDE:</h3>
 <ol>
-<li>W Arduino IDE wybierz z menu po lewej stronie ikonę <strong>Library Manager</strong> (zarządzanie bibliotekami).</li>
-<li>Wpisz w wyszukiwarkę <strong>ESP32Servo</strong> (autor: John K. Bennett).</li>
+<li>Kliknij ikonę <strong>Library Manager</strong> (trzy książki) w lewym panelu bocznym.</li>
+<li>W polu wyszukiwania wpisz <strong>ESP32Servo</strong> (autor: <em>Kevin Harrington</em>, <em>John K. Bennett</em>).</li>
 <li>Kliknij przycisk <strong>Install</strong>.</li>
 </ol>
-<p>🎯 <strong>[Otwórz Wokwi z układem wykorzystującym Serwomechanizm]</strong> <em>(link zostanie zaktualizowany)</em></p>
-<h3 id="kod-cykliczny-obrot-sweep">Kod: Cykliczny obrót (Sweep)</h3>
-<p>Poniższy kod realizuje płynny ruch wału serwa od 0 do 180 stopni i z powrotem:</p>
-<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ESP32Servo.h&gt;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// Tworzymy obiekt reprezentujący nasze serwo</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">Servo</span><span class="w"> </span><span class="n">moje_serwo</span><span class="p">;</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1">// Deklarujemy pin sterujący</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">PIN_SERWA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="c1">// Przypisujemy pin do serwa oraz definiujemy zakres szerokości impulsów</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="c1">// dla standardowych mikroserw (SG90) to zazwyczaj 500 do 2400 mikrosekund</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="n">moje_serwo</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">PIN_SERWA</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">2400</span><span class="p">);</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">}</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="c1">// Ruch od 0 do 180 stopni:</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">180</span><span class="p">;</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">moje_serwo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">kat</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ustawiamy serwo na zadany kąt</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span><span class="w">             </span><span class="c1">// Czekamy chwilę, aby serwo zdążyło się obrócić</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="c1">// Ruch z powrotem od 180 do 0 stopni:</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">180</span><span class="p">;</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="n">moje_serwo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">kat</span><span class="p">);</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="p">}</span>
+<p><img alt="Library Manager" class="center" src="../../img/podstawy/arduino_lib.png" /></p>
+<hr />
+<h3 id="cwiczenie-2-cykliczny-obrot-sweep-z-biblioteka">🎯 Ćwiczenie 2: Cykliczny obrót (Sweep) z biblioteką</h3>
+<p><a href="https://wokwi.com/projects/464854291633632257" style="display: block; text-align: center;"><strong>Link do symulacji w Wokwi</strong></a></p>
+<p>Dzięki bibliotece <code>ESP32Servo</code> kod sterujący jest znacznie prostszy, a ruch serwa – płynny:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ESP32Servo.h&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">// Tworzymy obiekt reprezentujący nasze serwo</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">Servo</span><span class="w"> </span><span class="n">moje_serwo</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1">// Deklarujemy pin sterujący</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">PIN_SERWA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="c1">// Przypisujemy pin do serwa oraz definiujemy zakres szerokości impulsów</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="c1">// dla standardowych mikroserw (SG90) to zazwyczaj 500 do 2400 mikrosekund</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="n">moje_serwo</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">PIN_SERWA</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">2400</span><span class="p">);</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">}</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="c1">// Płynny ruch od 0 do 180 stopni:</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">180</span><span class="p">;</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="n">moje_serwo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">kat</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ustawiamy serwo na zadany kąt</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span><span class="w">             </span><span class="c1">// Czekamy chwilę, aby serwo zdążyło się obrócić</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">  </span><span class="c1">// Ruch z powrotem od 180 do 0 stopni:</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">180</span><span class="p">;</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="n">moje_serwo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">kat</span><span class="p">);</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="p">}</span>
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Ciekawostka: Co się dzieje pod maską?</p>
-<p>Biblioteka <code>ESP32Servo</code> nie wykonuje opóźnień programowych do generowania impulsów. Pod spodem konfiguruje ona sprzętowy kontroler PWM (<strong>LEDC</strong> lub <strong>MCPWM</strong>) wbudowany w ESP32-C6. Generuje on sygnał całkowicie sprzętowo i asynchronicznie w tle – oznacza to, że raz ustawiony kąt będzie utrzymywany przez sprzęt bez udziału pętli <code>loop()</code>.</p>
+<p>Biblioteka <code>ESP32Servo</code> konfiguruje sprzętowy generator PWM (<strong>LEDC</strong>) wbudowany w ESP32. Generuje on sygnał całkowicie sprzętowo i asynchronicznie w tle – oznacza to, że raz ustawiony kąt za pomocą <code>moje_serwo.write()</code> będzie stale utrzymywany na pinie przez hardware, a pętla <code>loop()</code> pozostaje wolna na inne obliczenia!</p>
 </div>
 <hr />
 <h2 id="zadanie-sterowanie-pozycja-serwa-za-pomoca-potencjometru">🛠️ Zadanie: Sterowanie pozycją serwa za pomocą potencjometru</h2>
@@ -1821,37 +1936,37 @@ Próba ustawienia kąta poza mechaniczne ograniczenia serwa (gdy silnik próbuje
 <li>Podłącz potencjometr do pinu analogowego (np. <code>GPIO0</code> - ADC1).</li>
 <li>Odczytaj wartość napięcia (zakres ADC w ESP32-C6 to domyślnie 12 bitów, czyli wartości od <code>0</code> do <code>4095</code>).</li>
 <li>Przeskaluj odczytaną wartość na zakres kątów pracy serwa (<code>0</code> do <code>180</code>) za pomocą funkcji <code>map()</code>.</li>
-<li>Wyślij zmienioną wartość kąta do serwa.</li>
+<li>Wyślij zmienioną wartość kąta do serwa za pomocą biblioteki <code>ESP32Servo</code>.</li>
 <li>Dodaj małe opóźnienie w pętli <code>loop()</code>, aby ustabilizować odczyty i ruch silnika.</li>
 </ol>
 <details>
 <summary>Pokaż rozwiązanie</summary>
 
-<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ESP32Servo.h&gt;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">Servo</span><span class="w"> </span><span class="n">moje_serwo</span><span class="p">;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">PIN_POTENCJOMETRU</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// GPIO0 (ADC)</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">PIN_SERWA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">         </span><span class="c1">// GPIO2 (PWM)</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="n">moje_serwo</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">PIN_SERWA</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">2400</span><span class="p">);</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">PIN_POTENCJOMETRU</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="c1">// Odczyt z potencjometru (0 - 4095)</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">wartosc_adc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="n">PIN_POTENCJOMETRU</span><span class="p">);</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="c1">// Zmapowanie zakresu ADC na kąt obrotu serwa (0 - 180)</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">wartosc_adc</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">4095</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">);</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="c1">// Ustawienie pozycji serwa</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span><span class="n">moje_serwo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">kat</span><span class="p">);</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">  </span><span class="c1">// Krótkie opóźnienie na ustabilizowanie pozycji serwa i przetwornika ADC</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ESP32Servo.h&gt;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">Servo</span><span class="w"> </span><span class="n">moje_serwo</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">PIN_POTENCJOMETRU</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// GPIO0 (ADC)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">PIN_SERWA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">         </span><span class="c1">// GPIO2 (PWM)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="n">moje_serwo</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">PIN_SERWA</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">2400</span><span class="p">);</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">PIN_POTENCJOMETRU</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="c1">// Odczyt z potencjometru (0 - 4095)</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">wartosc_adc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="n">PIN_POTENCJOMETRU</span><span class="p">);</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">  </span><span class="c1">// Zmapowanie zakresu ADC na kąt obrotu serwa (0 - 180)</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">kat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">wartosc_adc</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">4095</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">);</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">  </span><span class="c1">// Ustawienie pozycji serwa</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">  </span><span class="n">moje_serwo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">kat</span><span class="p">);</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">  </span><span class="c1">// Krótkie opóźnienie na ustabilizowanie pozycji serwa i przetwornika ADC</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="p">}</span>
 </span></code></pre></div>
 
 </details>
@@ -1956,6 +2071,8 @@ Próba ustawienia kąta poza mechaniczne ograniczenia serwa (gdy silnik próbuje
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/external_links.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

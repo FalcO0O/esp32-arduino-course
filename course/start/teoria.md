@@ -1,10 +1,10 @@
-# 1. Teoria – czym jest mikrokontroler?
+# Teoria – czym jest mikrokontroler?
 
 Zanim zaczniesz pisać swój pierwszy kod i łączyć kabelki na płytce stykowej, warto zrozumieć, z jakim rodzajem komputera masz do czynienia. Choć mikrokontroler potrafi wykonywać programy podobnie jak Twój komputer czy smartfon, jego architektura, przeznaczenie oraz sposób działania są zupełnie inne.
 
 ---
 
-## Komputer (PC) vs. Mikrokontroler (MCU)
+## 💻 Komputer (PC) vs. Mikrokontroler (MCU)
 
 Urządzenia, z których korzystamy na co dzień, takie jak komputery osobiste, serwery czy smartfony, opierają się na **procesorach aplikacyjnych (MPU)**. Ich zadaniem jest uruchamianie ogromnych, złożonych systemów operacyjnych (np. Windows, Linux, macOS, Android), które koordynują setki procesów w tym samym czasie.
 
@@ -28,7 +28,7 @@ Poniższa tabela przedstawia kluczowe różnice między tymi dwoma światami:
 
 ---
 
-## Po co w ogóle stosuje się mikrokontrolery?
+## ❓ Po co w ogóle stosuje się mikrokontrolery?
 
 Skoro tradycyjny komputer jest tak potężny, dlaczego nie stosuje się procesorów z rodziny Intel Core lub Apple Silicon w pralkach, lodówkach, pilotach telewizyjnych czy zabawkach? 
 
@@ -40,7 +40,7 @@ Powody są trzy: **koszt, zużycie energii oraz niezawodność**.
 
 ---
 
-## Podejście Bare Metal
+## 🔩 Podejście Bare Metal
 
 W tym kursie rozpoczniemy naukę programowania w podejściu nazywanym **Bare Metal**. Oznacza to, że nasz mikrokontroler nie będzie obciążony żadnym systemem zarządzającym zasobami. 
 

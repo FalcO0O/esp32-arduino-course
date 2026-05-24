@@ -2,6 +2,12 @@
 
 **UART** (*Universal Asynchronous Receiver-Transmitter*) to jeden z najstarszych, najprostszych i najbardziej rozpowszechnionych protokołów komunikacji szeregowej w systemach wbudowanych. W przeciwieństwie do magistral takich jak I<sup>2</sup>C czy SPI, UART jest interfejsem typu **punkt-punkt** (point-to-point) służącym do łączenia dokładnie dwóch urządzeń.
 
+> [!NOTE] Ciekawostka: Czy wiesz, że używasz UART od samego początku?
+> Kiedy wywołujesz w kodzie funkcje `Serial.begin(115200)` i `Serial.println()`, dane są przesyłane do komputera właśnie za pomocą interfejsu szeregowego. 
+> 
+> W klasycznych mikrokontrolerach (np. Arduino Uno lub starszych ESP32) na płytce zamontowany był dedykowany układ scalony (konwerter USB-UART, np. CH340), który tłumaczył sygnały USB na standard TTL UART (piny TX/RX mikrokontrolera). 
+> W nowoczesnych układach takich jak **ESP32-C6** kontroler USB-to-Serial (USB JTAG/Serial Console) jest wbudowany bezpośrednio w strukturę krzemową mikrokontrolera (**USB CDC** - *Communication Device Class*). Choć fizycznie sygnał biegnie bezpośrednio przez linie USB, Twój komputer oraz framework Arduino emulują ten interfejs jako tradycyjny wirtualny port COM (szeregowy UART), zachowując pełną kompatybilność programową.
+
 ---
 
 ## 🔌 Charakterystyka fizyczna
@@ -81,7 +87,9 @@ Gdy dane przychodzą na pin RX, kontroler sprzętowy UART automatycznie zapisuje
 
 ## 🎯 Ćwiczenie praktyczne: Terminal komend i pętla zwrotna (Loopback)
 
-W tym ćwiczeniu przeprowadzisz eksperyment pętli zwrotnej (loopback) na jednym mikrokontrolerze: ESP32 wyśle dane przez port nadawczy UART i natychmiast odbierze je na swoim porcie odbiorczym, dzięki fizycznemu połączeniu linii TX i RX za pomocą przewodu.
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464855527434006529){: style="display: block; text-align: center;" }
+
+W tym ćwiczeniu przeprowadzisz eksperyment pętli zwrotnej (loopback) na jednym mikrokontrolerze: ESP32 wyśle dane przez port nadawczy UART i natychmiast odbierze je na swoim portcie odbiorczym, dzięki fizycznemu połączeniu linii TX i RX za pomocą przewodu.
 
 ### Podłączenie
 Połącz za pomocą przewodu połączeniowego dwa piny na płytce stykowej:

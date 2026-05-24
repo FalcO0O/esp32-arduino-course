@@ -55,6 +55,8 @@ Aby temu zapobiec, układy ESP32-C6 wykorzystują wbudowane bloki sprzętowe:
 
 ## 🎯 Ćwiczenie praktyczne: Wbudowana dioda ARGB
 
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464857174120989697){: style="display: block; text-align: center;" }
+
 Standardowa płytka deweloperska **ESP32-C6 DevKit** posiada wbudowaną adresowalną diodę RGB podłączoną wewnętrznie do pinu **GPIO8**. 
 
 Do jej obsłużenia wykorzystamy najpopularniejszą bibliotekę **Adafruit NeoPixel**.

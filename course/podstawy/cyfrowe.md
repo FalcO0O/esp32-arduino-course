@@ -4,9 +4,9 @@ Witamy w sekcji praktycznej! W tym rozdziale dowiesz się, jak budować obwody n
 
 ---
 
-## Płytka stykowa (Breadboard) i Elektronika
+## 🔌 Płytka stykowa (Breadboard)
 
-Zanim rozpoczniesz łączenie elementów elektronicznych na płytce stykowej, musisz zrozumieć jej wewnętrzną budowę oraz zasadę działania.
+Zanim rozpoczniesz łączenie elementów na płytce stykowej, musisz zrozumieć jej wewnętrzną budowę oraz zasadę działania.
 **Płytka stykowa (Breadboard)** pozwala łączyć elementy elektryczne bez konieczności lutowania. Posiada tory przewodzące umieszczone pod warstwą tworzywa sztucznego, które tworzą z poszczególnych otworów połączone elektrycznie węzły.
 
 ### Budowa płytki
@@ -21,7 +21,7 @@ Zasada jest prosta - zielone linie to połączenia:
 
 ---
 
-## Ćwiczenie 1 – Serial
+## 💻 Port szeregowy (Serial)
 
 Do komunikacji z komputerem służy wbudowany w mikrokontroler port szeregowy, reprezentowany w kodzie przez obiekt **`Serial`**. Aby móc z niego korzystać, musimy poznać podstawowe funkcje:
 
@@ -29,6 +29,10 @@ Do komunikacji z komputerem służy wbudowany w mikrokontroler port szeregowy, r
 * **`Serial.println(tekst)`**: Wysyła tekst lub wartość zmiennej do komputera i automatycznie przechodzi do nowej linii (dodaje znak Enter).
 * **`Serial.print(tekst)`**: Działa identycznie jak `println()`, ale nie przechodzi do nowej linii – kolejny komunikat pojawi się bezpośrednio za nim.
 * **`delay(czas_ms)`**: Wstrzymuje (zamraża) wykonywanie programu na określoną liczbę milisekund (1 sekunda = 1000 ms).
+
+### 🎯 Ćwiczenie 1: Pierwszy program i Monitor Szeregowy
+
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464852352932900865){: style="display: block; text-align: center;" }
 
 1. Podłącz czyste ESP32-C6 za pomocą USB do komputera.
 
@@ -50,7 +54,7 @@ void loop() {
 }
 ```
 
-Po upewnieniu się że masz wybrany odpowiedni port COM oraz model płytki wciśnij ikonę wgrywania (Ctrl + U), a w IDE z menu górnego wybierz **Lupa z prawej strony (Monitor Szeregowy)**. Skontroluj w rogu jego okienka czy prędkość (*baud rate*) jest ustawiona na `115200`.
+Po upewnieniu się że masz wybrany odpowiedni port COM oraz model płytki wciśnij ikonę wgrywania (Ctrl + U), a w IDE z menu górnego wybierz **Lupa z prawej strony (Monitor Szeregowy)**. Skontroluj w rogu jego okienka czy prędkość (*baud rate*) jest ustawiona na `115200`. W przypadku Wokwi Serial Monitor otworzy się automatycznie i nie trzeba będzie wybierać prędkości.
 
 ![Serial Monitor](../img/podstawy/serial_monitor.png)
 
@@ -59,7 +63,7 @@ Po upewnieniu się że masz wybrany odpowiedni port COM oraz model płytki wciś
 > 
 > Ustawienie `115200` oznacza więc, że w ciągu jednej sekundy procesor wysyła lub odbiera dokładnie 115 200 bitów informacji. Jeśli po obu stronach połączenia (w mikrokontrolerze oraz na komputerze w programie Monitora) nie ustawimy dokładnie tej samej wartości, komputer błędnie zinterpretuje czas trwania każdego bitu. Zamiast tekstu zobaczysz wtedy nieczytelne, losowe znaki.
 
-### Zadanie: Licznik
+### 🛠️ Zadanie: Licznik sekund
 Zmodyfikuj kod. Dodaj na samym początku pliku zmienną globalną: `int licznik = 0;`.
 Zrób z niej licznik odliczający sekundy i wypisujący go w Serial Monitorze wraz ze stałym komunikatem.
 
@@ -88,14 +92,14 @@ void loop() {
 
 ---
 
-## Ćwiczenie 2 – Wyjście cyfrowe: LED
+## 💡 Wyjście cyfrowe (LED)
 
 Aby sterować diodą LED, musimy wysłać napięcie z pinu GPIO. W tym celu korzystamy z dwóch kluczowych funkcji:
 
 * **`pinMode(pin, tryb)`**: Konfiguruje dany pin do pracy. Jako tryb podajemy `OUTPUT` (wyjście, gdy chcemy sterować prądem) lub `INPUT` (wejście, gdy czytamy dane). Tę konfigurację wywołujemy raz w `setup()`.
 * **`digitalWrite(pin, stan)`**: Ustawia stan napięcia na skonfigurowanym wyjściu. Możemy podać stan **`HIGH`** (podaje pełne napięcie 3.3V) lub **`LOW`** (podaje masę 0V, wyłączając zasilanie).
 
-W ramach tego ćwiczenia zbudujemy fizyczny układ z diodą LED na płytce stykowej.
+W ramach tego ćwiczenia budujemy fizyczny układ z diodą LED na płytce stykowej.
 
 > [!NOTE] Polaryzacja diody LED
 > Dioda elektroluminescencyjna (LED) jest elementem półprzewodnikowym o określonej polaryzacji – przewodzi prąd elektryczny i świeci tylko w jednym kierunku:
@@ -121,7 +125,9 @@ W ramach tego ćwiczenia zbudujemy fizyczny układ z diodą LED na płytce styko
 > Ponieważ rezystory produkuje się w określonych szeregach wartości (np. E24), w praktyce wybieramy najbliższą większą dostępną wartość z szeregu, np. **$150\ \Omega$** lub bardzo popularny rezystor **$220\ \Omega$** (który ograniczy prąd do ok. 6 mA, co w zupełności wystarczy do jasnego świecenia diody).
 
 
-🎯 **[Otwórz Wokwi dla tego obwodu - ZOBACZ JAK ZROBIONO TO NA BREADBOARDZIE]** *(tutaj pojawi się docelowy link z wirtualnym układem)*
+### 🎯 Ćwiczenie 2: Sterowanie diodą LED (Blink)
+
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464852795527411713){: style="display: block; text-align: center;" }
 
 ```cpp
 // Przypisanie numerowi 2 etykiety.
@@ -143,7 +149,7 @@ void loop() {
 }
 ```
 
-### Zadanie: Naprzemienne światła alarmowe
+### 🛠️ Zadanie: Naprzemienne światła alarmowe
 Dołóż drugą diodę z jej osobnym rezystorem na nowym rzędzie breadboarda i podłącz jej anodę pod np. port `GPIO 3`.
 Spraw, aby jedna dioda zapalała się tylko w momencie gdy druga gaśnie, przypominając sygnały ostrzegawcze na przejeździe kolejowym.
 
@@ -174,7 +180,7 @@ void loop() {
 
 ---
 
-## Ćwiczenie 3 – Wejście cyfrowe: Przycisk
+## 🖲️ Wejście cyfrowe (Przycisk)
 
 W poprzednich ćwiczeniach mikrokontroler sterował stanem wyjść (wysyłał napięcie). W tym rozdziale skonfigurujemy go do odczytu sygnałów zewnętrznych (wprowadzania danych). Aby odczytać stan fizycznego przycisku (przełącznika), potrzebujemy:
 
@@ -203,7 +209,19 @@ W tym ćwiczeniu użyjemy wbudowanego podciągania `INPUT_PULLUP`. Przycisk pod�
 * Przycisk puszczony → odczytujemy stan **`HIGH`**
 * Przycisk wciśnięty → odczytujemy stan **`LOW`**
 
-🎯 **[Otwórz Wokwi z układem przycisku i LED]** *(tutaj pojawi się wirtualny układ)*
+### 🎯 Ćwiczenie 3: Odczyt stanu przycisku
+
+**Jak poprawnie podłączyć przycisk (tact switch)?**
+
+Fizyczny przycisk typu *tact switch* posiada zazwyczaj cztery nóżki, które wewnętrznie są połączone parami (nóżki leżące naprzeciwko siebie wzdłuż prostych krawędzi są trwale połączone). Naciśnięcie przycisku powoduje zamknięcie obwodu i połączenie wszystkich czterech wyprowadzeń.
+
+Aby poprawnie podłączyć przycisk na płytce stykowej musisz uważać, aby nie wpiąć się w nóżki, które są **wewnętrznie połączone na stałe** (internally connected) – w przeciwnym razie odczyt będzie cały czas wskazywał stan wciśnięty (`LOW`), niezależnie od fizycznego naciskania.
+
+Najbezpieczniejszym sposobem jest podłączenie przewodów **po przekątnej przycisku** (np. jeden styk do **GPIO9**, a styk po przekątnej do masy **GND**).
+
+![Podłączenie przycisku Tact Switch](../img/podstawy/tactswitch.png){: .center}
+
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464853016624915457){: style="display: block; text-align: center;" }
 
 Zadanie - zadeklaruj, odczytuj w pętli `digitalRead(PIN_BTN)` i zapal diodę wtedy, kiedy jej odczyt spadnie do `LOW`:
 
@@ -232,7 +250,7 @@ void loop() {
 }
 ```
 
-### Zadanie: Przycisk jako przełącznik (ON/OFF)
+### 🛠️ Zadanie: Przycisk jako przełącznik (ON/OFF)
 
 Przerób powyższy kod tak, aby jedno naciśnięcie (i puszczenie) przycisku zapaliło diodę na stałe, a kolejne wciśnięcie całkowicie ją zgasiło (tak jak klasyczny włącznik światła w pokoju).
 

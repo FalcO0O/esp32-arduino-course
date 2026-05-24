@@ -12,7 +12,7 @@ Aby tego uniknąć, wprowadza się układ w tryb uśpienia. ESP32-C6 w trybie ak
 
 ---
 
-## Różnica między Light Sleep a Deep Sleep
+## ⚖️ Różnica między Light Sleep a Deep Sleep
 
 ESP32-C6 posiada kilka trybów uśpienia, z których dwa są najczęściej wykorzystywane:
 
@@ -63,7 +63,7 @@ RTC_DATA_ATTR int liczbaWybudzen = 0;
 
 ---
 
-## 🔌 Źródła wybudzenia (Wakeup Sources)
+## ⏰ Źródła wybudzenia (Wakeup Sources)
 
 Konfigurację tego, co ma wybudzić mikrokontroler z głębokiego snu, przeprowadza się w funkcji `setup()` przed wywołaniem uśpienia. ESP32-C6 obsługuje kilka niezależnych źródeł wybudzeń, które mogą działać równolegle:
 
@@ -74,14 +74,15 @@ Pozwala na cykliczne budzenie procesora po określonym czasie (podawanym w mikro
 esp_sleep_enable_timer_wakeup(10000000ULL);
 ```
 
-### 2. Wybudzenie zewnętrzne (GPIO / EXT0 Wakeup)
-Pozwala wybudzić układ poprzez zmianę stanu logicznego na fizycznym pinie:
+### 2. Wybudzenie zewnętrzne (GPIO / EXT1 Wakeup)
+Pozwala wybudzić układ poprzez zmianę stanu logicznego na fizycznym pinie. W nowszych mikrokontrolerach, takich jak ESP32-C6, starszy interfejs EXT0 nie jest już dostępny. Zamiast tego używamy standardu **EXT1**, który jako pierwszy argument przyjmuje maskę bitową pinu (np. `1ULL << pin`), a jako drugi - stałą określającą poziom logiczny wybudzenia:
+
 ```cpp
 // Wybudź gdy na pinie GPIO7 pojawi się stan niski (LOW / 0)
-esp_sleep_enable_ext0_wakeup(GPIO_NUM_7, 0); 
+esp_sleep_enable_ext1_wakeup(1ULL << GPIO_NUM_7, ESP_EXT1_WAKEUP_ANY_LOW); 
 ```
 
-> [!IMPORTANT] Ograniczenie pinów dla EXT0
+> [!IMPORTANT] Ograniczenie pinów dla EXT1
 > Wybudzenie przez pin w trybie Deep Sleep działa wyłącznie na pinach obsługiwanych przez domenę RTC (są to piny od **GPIO0** do **GPIO7**, oznaczone jako `LP_GPIO` na [schemacie pinoutu](../start/sprzet.md#schemat-wyprowadzen-pinout)). Podłączenie przycisku budzącego do pinu z domeny High Power (np. GPIO9) nie przyniesie żadnego efektu, ponieważ ten pin w trybie Deep Sleep nie jest zasilany i nie czuwa.
 
 ---
@@ -91,9 +92,11 @@ esp_sleep_enable_ext0_wakeup(GPIO_NUM_7, 0);
 Napiszemy program, który w pełny sposób zaprezentuje możliwości Deep Sleep. Mikrokontroler będzie przechodził w głębokie uśpienie, z którego wybudzi go:
 
 * Upływ 10 sekund (Timer)
-* Wciśnięcie przycisku podłączonego do **GPIO7** (zewnętrzne przerwanie EXT0).
+* Wciśnięcie przycisku podłączonego do **GPIO7** (zewnętrzne przerwanie EXT1).
 
 Program będzie zliczał oddzielnie wybudzenia z każdego z tych źródeł (dzięki zmiennym w RTC) oraz mrugał wbudowaną diodą LED (GPIO2) w różny sposób, zależnie od przyczyny wybudzenia.
+
+![Płytka breadboard w ćwiczeniu Deep Sleep](../img/systemy/deepsleep_schematic.png){: .center}
 
 ### Kod programu:
 
@@ -106,6 +109,7 @@ RTC_DATA_ATTR int liczba_gpio = 0;
 
 const uint64_t SLEEP_US = 10 * 1000000ULL; // 10 sekund w mikrosekundach
 const int PIN_LED = 2; // Wbudowana dioda LED w ESP32-C6
+const int PIN_PRZYCISKU = 7; // Przycisk budzący na GPIO7
 
 void setup() {
   Serial.begin(115200);
@@ -126,7 +130,7 @@ void setup() {
       digitalWrite(PIN_LED, LOW);
       break;
       
-    case ESP_SLEEP_WAKEUP_EXT0:
+    case ESP_SLEEP_WAKEUP_EXT1:
       liczba_gpio++;
       Serial.println("Wybudzono przez: GPIO (Przycisk)");
       // Sygnalizacja: 2 szybkie mignięcia
@@ -158,7 +162,7 @@ void setup() {
 
   // 2. Konfiguracja wybudzenia przyciskiem (GPIO7, stan LOW - przycisk zwiera do masy)
   // Konieczne jest użycie zewnętrznego przycisku na płytce stykowej
-  esp_sleep_enable_ext0_wakeup(GPIO_NUM_7, 0); 
+  esp_sleep_enable_ext1_wakeup(1ULL << PIN_PRZYCISKU, ESP_EXT1_WAKEUP_ANY_LOW); 
 
   // Wejście w Deep Sleep
   esp_deep_sleep_start();
@@ -171,7 +175,7 @@ void loop() {
 
 ---
 
-## Porównanie procesu startu systemu
+## 🔄 Porównanie procesu startu systemu
 
 | Etap | Twardy reset / Zasilanie | Wybudzenie z Deep Sleep | Wybudzenie z Light Sleep |
 |:---|:---|:---|:---|
@@ -204,6 +208,7 @@ RTC_DATA_ATTR int liczbaRaportow = 0;
 
 const uint64_t SLEEP_US = 30 * 1000000ULL; // Raport co 30 sekund
 const int PIN_LED = 2;
+const int PIN_PRZYCISKU = 7; // Przycisk budzący na GPIO7
 
 void setup() {
   Serial.begin(115200);
@@ -214,7 +219,7 @@ void setup() {
   esp_sleep_wakeup_cause_t przyczyna = esp_sleep_get_wakeup_cause();
   
   switch (przyczyna) {
-    case ESP_SLEEP_WAKEUP_EXT0:
+    case ESP_SLEEP_WAKEUP_EXT1:
       // Zwiększamy licznik dzwonka
       licznikKlikniec++;
       Serial.print("🔔 Dzwonek wciśnięty! (W tym okresie: ");
@@ -256,7 +261,7 @@ void setup() {
 
   // Konfiguracja obu źródeł
   esp_sleep_enable_timer_wakeup(SLEEP_US);
-  esp_sleep_enable_ext0_wakeup(GPIO_NUM_7, 0); 
+  esp_sleep_enable_ext1_wakeup(1ULL << PIN_PRZYCISKU, ESP_EXT1_WAKEUP_ANY_LOW); 
   
   esp_deep_sleep_start();
 }

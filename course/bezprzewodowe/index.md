@@ -18,19 +18,25 @@ W tym module poznasz trzy najważniejsze metody komunikacji bezprzewodowej obsł
 
 ## 🛠️ Wymagany sprzęt w tym module
 
-Funkcje bezprzewodowe opierają się na łączności z innymi urządzeniami. Aby w pełni przetestować przykłady w tym module, będziesz potrzebować:
+> [!WARNING]
+> Ćwiczenia w tym module **nie są możliwe do wykonania w symulatorze Wokwi**. Funkcje bezprzewodowe (Wi-Fi, Bluetooth oraz ESP-NOW) wymagają fizycznego mikrokontrolera oraz komunikacji z rzeczywistymi urządzeniami w Twoim otoczeniu.
+
+Aby w pełni przetestować przykłady w tym module, będziesz potrzebować:
 
 | Komponent | Do czego posłuży? |
 |:---|:---|
-| **Smartfon lub laptop** | Niezbędny do połączenia z serwerem WWW przez Wi-Fi oraz do skanowania usług Bluetooth w aplikacji testowej. |
-| **Druga Płytka ESP32-C6** | Konieczna do przetestowania bezpośredniej komunikacji ESP-NOW. |
+| **Płytka ESP32-C6 + kabel USB** | Główny mikrokontroler i zasilanie układu |
+| **Druga płytka ESP32-C6 + kabel USB** | Konieczna do przetestowania bezpośredniej komunikacji ESP-NOW |
+| **Płytka Stykowa (Breadboard) + kable (jumpery)** | Bezlutowe łączenie dodatkowych elementów |
+| **2x dioda LED + 2x rezystor (150-220 Ohm)** | Wykonanie zadania samodzielnego z dodatkową diodą (sterowanie Wi-Fi/BLE) |
+| **Potencjometr obrotowy (10 kOhm)** | Generowanie analogowych danych do wysłania w powiadomieniach BLE |
+| **Czujnik Akcelerometru (np. MPU6050)** | Rejestracja orientacji przestrzennej przesyłanej bezprzewodowo przez ESP-NOW |
+| **Smartfon lub laptop** | Niezbędny do połączenia z serwerem WWW przez Wi-Fi oraz do skanowania usług Bluetooth w aplikacji testowej |
 
 ---
 
 ## 🗺️ Spis Lekcji
 
-| # | Temat | Technologie |
-|:---:|:---|:---|
-| 1 | [Wi-Fi: Serwer i Klient](wifi.md) | Uruchomienie punktu dostępowego WWW oraz klienta HTTP pobierającego dane JSON |
-| 2 | [Bluetooth Low Energy (BLE)](ble.md) | Konfiguracja serwera GATT i asynchroniczne powiadomienia (Notify) |
-| 3 | [ESP-NOW: Komunikacja bezpośrednia](espnow.md) | Szybka wymiana danych peer-to-peer oraz transmisja rozgłoszeniowa |
+1. [Wi-Fi: Serwer i Klient](wifi.md)
+2. [Bluetooth Low Energy (BLE)](ble.md)
+3. [ESP-NOW: Komunikacja bezpośrednia](espnow.md)

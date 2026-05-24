@@ -3,9 +3,9 @@
 Witaj! Ten kurs przeprowadzi Cię krok po kroku przez świat programowania mikrokontrolerów w środowisku **Arduino IDE**. Od najprostszego mrugania diodą, aż po zaawansowane systemy wykorzystujące wbudowany system operacyjny i sieć.
 
 > [!CAUTION] Wymagana wiedza wstępna
-> Kurs zakłada podstawową znajomość programowania w języku **C lub C++** (musisz rozumieć czym są zmienne, instrukcje warunkowe `if-else`, pętla `for`/`while` oraz funkcje). Skupiamy się tutaj na elektronice i specyfice mikrokontrolerów, a nie na tłumaczeniu podstaw składni języka od zera.
+> Kurs zakłada znajomość języka **C++** (musisz rozumieć czym są zmienne, instrukcje warunkowe `if-else`, pętle `for`/`while`, funkcje, klasy, a w dalszych modułach także wskaźniki i referencje). Skupiamy się tutaj na elektronice i specyfice mikrokontrolerów, a nie na tłumaczeniu podstaw składni języka od zera.
 
-## Struktura i nawigacja
+## 🗺️ Struktura i nawigacja
 
 Kurs jest zoptymalizowany pod kątem **liniowego** realizowania materiału i został przygotowany z myślą o łagodnej krzywej uczenia.
 
@@ -23,7 +23,7 @@ Każde z ćwiczeń posiada **rozwijane rozwiązanie wzorcowe**. Znajdziesz je na
 
 ---
 
-## Moduły
+## 📦 Moduły
 
 ### 🏠 Start – *jesteś tutaj*
 Poznasz teorię działania układów wbudowanych, różnicę między komputerami PC a mikrokontrolerami, budowę ESP32-C6, a także zainstalujesz i skonfigurujesz środowisko **Arduino IDE** oraz zapoznasz się z symulatorem **Wokwi**.
@@ -39,11 +39,11 @@ Postawisz pierwsze kroki, łącząc na płytce stykowej podstawowe elementy elek
 
 **Zadania w module:**
 
-* Serial Monitor i Wejścia/Wyjścia cyfrowe (GPIO)
-* Sygnały analogowe (PWM i ADC)
-* Sterowanie serwomechanizmami (PWM w praktyce)
-* Wielozadaniowość bez blokowania (funkcja `millis()`)
-* Reakcja na zdarzenia poprzez przerwania zewnętrzne (ISR)
+* [Serial Monitor i Wejścia/Wyjścia cyfrowe (GPIO)](podstawy/cyfrowe.md)
+* [Sygnały analogowe (PWM i ADC)](podstawy/analogowe.md)
+* [Sterowanie serwomechanizmami (PWM w praktyce)](podstawy/serwa.md)
+* [Wielozadaniowość bez blokowania (funkcja `millis()`)](podstawy/czas_przerwania.md)
+* [Reakcja na zdarzenia poprzez przerwania zewnętrzne (ISR)](podstawy/czas_przerwania.md)
 
 ---
 
@@ -53,10 +53,10 @@ Większość cyfrowych czujników oraz wyświetlaczy komunikuje się z mikrokont
 
 **Zadania w module:**
 
-* Komunikacja UART
-* Magistrala I<sup>2</sup>C (akcelerometr MPU6050)
-* Magistrala SPI (wyświetlacz graficzny TFT ILI9341)
-* Transmisja jednoprzewodowa i diody ARGB (WS2812B)
+* [Komunikacja UART](protokoly/uart.md)
+* [Magistrala I<sup>2</sup>C (akcelerometr MPU6050)](protokoly/i2c.md)
+* [Magistrala SPI (wyświetlacz graficzny TFT ILI9341)](protokoly/spi.md)
+* [Transmisja jednoprzewodowa i diody ARGB (WS2812B)](protokoly/onewire.md)
 
 ---
 
@@ -66,9 +66,9 @@ W tym module poznasz system operacyjny czasu rzeczywistego FreeRTOS, który umo�
 
 **Zadania w module:**
 
-* Trwały zapis ustawień w pamięci Flash (NVS)
-* Tryby uśpienia mikrokontrolera (Deep Sleep)
-* System operacyjny czasu rzeczywistego (FreeRTOS - zadania i kolejki)
+* [Trwały zapis ustawień w pamięci Flash (NVS)](systemy/nvs.md)
+* [Tryby uśpienia mikrokontrolera (Deep Sleep)](systemy/deepsleep.md)
+* [System operacyjny czasu rzeczywistego (FreeRTOS - zadania i kolejki)](systemy/freertos.md)
 
 ---
 
@@ -78,6 +78,6 @@ W tym dziale wykorzystasz wbudowany moduł radiowy układu ESP32. Nauczysz się 
 
 **Zadania w module:**
 
-* Radio ESP-NOW
-* Technologia WiFi
-* Łączność Bluetooth (BLE)
+* [Radio ESP-NOW](bezprzewodowe/espnow.md)
+* [Technologia WiFi](bezprzewodowe/wifi.md)
+* [Łączność Bluetooth (BLE)](bezprzewodowe/ble.md)

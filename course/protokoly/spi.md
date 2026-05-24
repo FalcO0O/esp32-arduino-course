@@ -72,27 +72,12 @@ Ponieważ ekran jedynie przyjmuje dane o kolorach pikseli i nie odsyła informac
 
 * **RESET (RES)** – służący do sprzętowego resetu sterownika ekranu.
 * **Data/Command (D/C)** – określa typ wysyłanych danych: stan niski (LOW) oznacza komendę konfiguracyjną, a wysoki (HIGH) przesyłanie pikseli obrazu.
+* **LED** - pin odpowiedzialny za podświetlenie wyświetlacza - logiczna 1 oznacza włączenie podświetlenia.
 
-🎯 **[Otwórz Wokwi z podłączonym ekranem TFT ILI9341]** *(link zostanie zaktualizowany)*
-
-### Podłączenie
-Połącz wyświetlacz z mikrokontrolerem według tabeli:
-
-```text
-ILI9341 (SPI)   ESP32-C6
-──────────────────────────────
-VCC   ────────  3.3 V
-GND   ────────  GND
-CS    ────────  GPIO2
-RESET ────────  GPIO4
-D/C   ────────  GPIO3
-SDI   ────────  GPIO7 (MOSI)
-SCK   ────────  GPIO6 (SCK)
-LED   ────────  3.3 V (Zasilanie podświetlenia)
-```
+[**Link do symulacji w Wokwi**](https://wokwi.com/projects/464856960830135297){: style="display: block; text-align: center;" }
 
 > [!NOTE] Instalacja biblioteki
-> W Arduino IDE pobierz i zainstaluj z Menedżera Bibliotek dwie pozycje: **Adafruit GFX Library** (podstawowe rysowanie kształtów) oraz **Adafruit ILI9341** (sterownik konkretnego ekranu).
+> W Arduino IDE pobierz i zainstaluj z Menedżera Bibliotek dwie pozycje: **Adafruit GFX Library** (podstawowe rysowanie kształtów) oraz **Adafruit ILI9341** (sterownik konkretnego ekranu). Instrukcja instalacji (krok po kroku) znajduje się [tutaj](../podstawy/serwa.md#instalacja-biblioteki-esp32servo).
 
 ### Kod programu: Animowany pasek postępu
 Poniższy kod konfiguruje ekran SPI i w pętli `loop` rysuje przesuwający się biały pasek. W przeciwieństwie do małych ekranów monochromatycznych, sterownik ILI9341 zapisuje piksele bezpośrednio do pamięci GRAM wyświetlacza – każda funkcja rysująca natychmiast zmienia stan fizyczny matrycy, bez konieczności wywoływania metody `display()`.
@@ -152,7 +137,7 @@ void loop() {
 
 Zbuduj miniaturowy system pomiarowy:
 
-1. Połącz kody dla czujnika **MPU6050 (I2C)** oraz wyświetlacza **TFT ILI9341 (SPI)**.
+1. Połącz kody dla czujnika **MPU6050 (I<sup>2</sup>C)** oraz wyświetlacza **TFT ILI9341 (SPI)**.
 2. Odczytuj w pętli `loop` wartości kątów pochylenia w osiach X i Y co 100 ms.
 3. Wyświetlaj te wartości w czytelny sposób na ekranie TFT.
 4. *Wskazówka optymalizacyjna*: Czyszczenie całego ekranu (`fillScreen`) przy każdym odczycie spowoduje silne migotanie tekstu ze względu na ograniczony czas transmisji. Zamiast tego czyść tylko obszar tekstu z wartością liczbową (np. rysując czarny prostokąt pod tekstem) lub nadpisuj stary tekst nowym kolorem czarnym przed wypisaniem nowej wartości.
