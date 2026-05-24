@@ -1,6 +1,7 @@
 site_name: Kurs Programowania Mikrokontrolerów
 site_description: Kurs ESP32-C6 z Arduino IDE – od podstaw do systemów bezprzewodowych
-site_author: AGH-AIOTA
+site_author: Bartosz Ludwin
+copyright: 'Autor: Bartosz Ludwin'
 
 docs_dir: course
 
