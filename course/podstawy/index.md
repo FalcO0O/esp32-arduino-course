@@ -11,7 +11,7 @@ Poznasz fundamenty pracy z mikrokontrolerami:
 1. **Sygnały Cyfrowe** – nauczysz się konfigurować piny wejścia/wyjścia (GPIO), sterować diodami LED oraz reagować na wciśnięcia przycisku.
 2. **Sygnały Analogowe** – opanujesz generowanie płynnych zmian za pomocą modulacji szerokości impulsów (PWM) oraz cyfrowy odczyt napięć z otoczenia za pomocą przetwornika analogowo-cyfrowego (ADC).
 3. **Serwomechanizmy** – zastosujesz w praktyce sygnał PWM do precyzyjnego pozycjonowania wału silnika (serwa modelarskiego).
-4. **Wielozadaniowość i Przerwania** – nauczysz się pisać nieblokujący kod za pomocą funkcji `millis()` oraz natychmiastowo reagować na sygnały zewnętrzne za pomocą przerwanych sprzętowych (ISR).
+4. **Zarządzanie czasem i wielozadaniowość** – dowiesz się, jak korzystać z funkcji `millis()` do asynchronicznego wykonywania kodu oraz jak natychmiastowo reagować na zdarzenia zewnętrzne za pomocą przerwań sprzętowych (ISR).
 
 ## 🛠️ Wymagany sprzęt w tym module
 

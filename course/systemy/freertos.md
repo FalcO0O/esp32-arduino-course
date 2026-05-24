@@ -265,7 +265,7 @@ void TaskKontrolny(void *pvParameters) {
     vTaskDelay(pdMS_TO_TICKS(2000)); // Czekaj 2 sekundy
     Serial.println("Kontroler: Daję sygnał do pracy!");
     
-    // UZUPEŁNIJ: Wyślij powiadomienie bezpośrenio do zadania wykonawczego
+    // UZUPEŁNIJ: Wyślij powiadomienie bezpośrednio do zadania wykonawczego
     xTaskNotifyGive(/* uchwyt docelowy: */); 
   }
 }

@@ -310,18 +310,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../materialy/kod_wzorcowy/" class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href="../../materialy/zasoby/" class="md-tabs__link">
+        
   
+  
+    
   
   Materiały
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -1189,14 +1188,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/nvs/" class="md-nav__link">
+      <a href="../../systemy/deepsleep/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pamięć trwała (NVS)
+    Sleep: zarządzanie energią
   
 
     
@@ -1217,14 +1216,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/deepsleep/" class="md-nav__link">
+      <a href="../../systemy/nvs/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Sleep: zarządzanie energią
+    Pamięć trwała (NVS)
   
 
     
@@ -1450,114 +1449,6 @@
   
   
   
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Materiały
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Materiały
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../materialy/kod_wzorcowy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Kod wzorcowy
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../materialy/pinout/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pinout ESP32-C6 DevKit
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../../materialy/zasoby/" class="md-nav__link">
         
@@ -1566,7 +1457,7 @@
   <span class="md-ellipsis">
     
   
-    Zasoby i dokumentacja
+    Materiały
   
 
     
@@ -1575,14 +1466,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1760,8 +1643,8 @@ W tej sekcji nauczymy się "udawać" sygnał ciągły oraz odbierać sygnał ci�
 <p>Wyjście cyfrowe daje tylko dwa stany: włącz/wyłącz. Co jeśli chcemy płynnie regulować jasność diody? Z pomocą przychodzi technika <strong>PWM</strong>.</p>
 <p><strong>PWM</strong> (<em>Pulse Width Modulation</em> – Modulacja Szerokości Impulsu) to technika symulowania sygnału analogowego za pomocą bardzo szybkiego przełączania sygnału cyfrowego w czasie, z odpowiednimi proporcjami na bycie włączonym względem bycia wyłączonym w ciągu mikrosekund.
 Pin jest bardzo szybko włączany i wyłączany (np. 10 000 razy na sekundę!), a bezwładność naszego oka powoduje, że widzimy płynną zmianę uśrednionej wartości jasności.</p>
-<p>Kluczowy parametr to <strong>wypełnienie (duty cycle)</strong>:
-<img alt="PWM" class="center" src="../../img/podstawy/PWM.png" /></p>
+<p>Kluczowy parametr to <strong>wypełnienie (duty cycle)</strong>:</p>
+<p><img alt="PWM" class="center" src="../../img/podstawy/PWM.png" /></p>
 <p>W Arduino domyślnie używamy ujednoliconej funkcji o nazwie <code>analogWrite(pin, wartość)</code>, która ustawia wypełnienie. Wartość to liczba z zakresu od <strong>0</strong> (całkowicie wyłączone) do <strong>255</strong> (pełna moc).</p>
 <div class="admonition note">
 <p class="admonition-title">Dostępność wyjść PWM</p>
@@ -1821,7 +1704,7 @@ Pin jest bardzo szybko włączany i wyłączany (np. 10 000 razy na sekundę!), 
 </div>
 <hr />
 <h2 id="czym-jest-przetwornik-adc-i-jak-dziaa">📈 Czym jest przetwornik ADC i jak działa?</h2>
-<p>Potrafimy już płynnie sterować poziomem sygnału wyjściowego. W jaki sposób możemy jednak odczytać wartości ciągłe z otoczenia? Na Example sprawdzić kąt obrotu pokrętła potencjometru lub poziom wilgotności gleby?</p>
+<p>Potrafimy już płynnie sterować poziomem sygnału wyjściowego. W jaki sposób możemy jednak odczytać wartości ciągłe z otoczenia? Na przykład sprawdzić kąt obrotu pokrętła potencjometru lub poziom wilgotności gleby?</p>
 <p>Do tego celu służy przetwornik analogowo-cyfrowy, czyli <strong>ADC</strong> (<em>Analog-to-Digital Converter</em>).
 Mikrokontroler ESP32-C6 wyposażony jest w 12-bitowy przetwornik ADC. Konwertuje on mierzone napięcie wejściowe z zakresu od 0 V do 3.3 V na odpowiadającą mu wartość cyfrową w skali od 0 do 4095:</p>
 <ul>
@@ -1835,6 +1718,7 @@ Mikrokontroler ESP32-C6 wyposażony jest w 12-bitowy przetwornik ADC. Konwertuje
 </div>
 <h3 id="jak-podaczyc-potencjometr">Jak podłączyć potencjometr?</h3>
 <p>Potencjometr obrotowy posiada trzy wyprowadzenia:</p>
+<p><img alt="Potencjometr" class="center" src="../../img/podstawy/potentiometer.png" /></p>
 <ul>
 <li><strong>Skrajne nóżki</strong>: Podłączamy odpowiednio do zasilania (<strong>3.3 V</strong>) oraz masy (<strong>GND</strong>).</li>
 <li><strong>Środkowa nóżka (suwak/zbierak)</strong>: Wyprowadza napięcie wyjściowe, które zmienia się proporcjonalnie do kąta obrotu osi potencjometru. To wyprowadzenie łączymy z wejściem ADC mikrokontrolera (w naszym przypadku <code>GPIO4</code>).</li>

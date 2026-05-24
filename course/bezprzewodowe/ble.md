@@ -55,6 +55,12 @@ Profil GATT organizuje dane w hierarchiczną strukturę, która ułatwia ich odc
 
 W tym ćwiczeniu smartfon (klient) będzie wysyłał komendy sterujące do naszej płytki (serwer). Zaimportujemy klasę callbacku obsługi zapisu, która będzie odbierać pakiety danych i reagować na nie w czasie rzeczywistym.
 
+### Przykładowe połączenia:
+
+![Schemat połączeń](../img/bezprzewodowe/wifi1_schematic.png){: .center}
+
+### Kod:
+
 ```cpp
 #include <BLEDevice.h>
 #include <BLEServer.h>
@@ -192,6 +198,12 @@ void loop() {
 W poprzednim ćwiczeniu smartfon wysyłał komendy do płytki. Teraz odwrócimy kierunek: płytka **samoczynnie** informuje smartfon o nowych pomiarach.
 
 Właściwość **Notify** wymaga od klienta subskrypcji – technicznie realizowanej przez deskryptor **CCCD (BLE2902)**.
+
+### Przykładowe połączenia:
+
+![Schemat połączeń](../img/bezprzewodowe/ble2_schematic.png){: .center}
+
+### Kod:
 
 ```cpp
 #include <BLEDevice.h>
@@ -431,5 +443,5 @@ Aby poprawnie skonstruować ramkę iBeacon bez pełnego stosu połączeniowego, 
 
 ## 🛠️ Zadanie: Personalizacja identyfikatorów beacona
 
-Zmień wartość parametru Major i Minor dowolnie wybrane. Uruchom program i zaobserwuj w aplikacji skanującej nRF Connect, czy wartości zaktualizowały się poprawnie na żywo.
+Zmień wartości parametrów Major i Minor na dowolnie wybrane. Uruchom program i zaobserwuj w aplikacji skanującej nRF Connect, czy wartości zaktualizowały się poprawnie na żywo.
 

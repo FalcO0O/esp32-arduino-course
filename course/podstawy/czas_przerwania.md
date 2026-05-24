@@ -89,7 +89,7 @@ attachInterrupt(digitalPinToInterrupt(PIN), funkcja_ISR, FALLING);
 ```
 
 > [!WARNING] Ważne zasady dotyczące funkcji obsługi przerwań (ISR)
-> * **IRAM_ATTR**: Funkcja uruchamiana przez przerwanie na układach ESP32 musi posiadać przedrostek `IRAM_ATTR`. Dzięki temu kompilator umieści jej kod w szybkiej pamięci RAM (a nie w pamięci Flash), co gwarantuje natychmiastowe wykonanie.
+> * **IRAM_ATTR**: Funkcja uruchamiana przez przerwanie na układach ESP32 musi posiadać atrybut `IRAM_ATTR`. Dzięki temu kompilator umieści jej kod w szybkiej pamięci RAM (a nie w pamięci Flash), co gwarantuje natychmiastowe wykonanie.
 > * **Szybkość i czas wykonania**: Przerwanie to wyjątkowy, priorytetowy stan procesora. W momencie jego wyzwolenia wykonywanie głównego programu zostaje natychmiast zawieszone na rzecz procedury ISR. Zbyt długie przebywanie w przerwaniu blokuje pracę całego systemu (w tym obsługę komunikacji sieciowej czy timerów systemowych), co może doprowadzić do destabilizacji mikrokontrolera lub wyzwolenia sprzętowego zabezpieczenia przed zawieszeniem systemu (**Watchdog Timer - WDT**). Dlatego wewnątrz ISR **nigdy nie wolno** stosować funkcji blokujących (np. `delay()`) oraz czasochłonnych metod komunikacji (np. `Serial.println()`). Zadaniem ISR jest jedynie wykonanie minimalnych i najpilniejszych zadań (np. zmiana flagi w zmiennej lub inkrementacja licznika) oraz natychmiastowe oddanie sterowania.
 > * **Volatile**: Każda zmienna modyfikowana wewnątrz funkcji przerwania, a odczytywana w pętli `loop()`, musi posiadać w swojej deklaracji słowo kluczowe `volatile`. Informuje ono kompilator, że jej wartość może ulec zmianie w dowolnym momencie, co zapobiega błędnej optymalizacji rejestrów.
 

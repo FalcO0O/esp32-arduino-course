@@ -310,18 +310,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../materialy/kod_wzorcowy/" class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href="../../materialy/zasoby/" class="md-tabs__link">
+        
   
+  
+    
   
   Materiały
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -606,10 +605,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#krok-3-wybor-pytki-i-portu-komunikacyjnego" class="md-nav__link">
+  <a href="#krok-2-wybor-pytki-i-portu-komunikacyjnego" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Krok 3: Wybór płytki i portu komunikacyjnego
+        Krok 2: Wybór płytki i portu komunikacyjnego
       
     </span>
   </a>
@@ -1183,14 +1182,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/nvs/" class="md-nav__link">
+      <a href="../../systemy/deepsleep/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pamięć trwała (NVS)
+    Sleep: zarządzanie energią
   
 
     
@@ -1211,14 +1210,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/deepsleep/" class="md-nav__link">
+      <a href="../../systemy/nvs/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Sleep: zarządzanie energią
+    Pamięć trwała (NVS)
   
 
     
@@ -1444,114 +1443,6 @@
   
   
   
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Materiały
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Materiały
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../materialy/kod_wzorcowy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Kod wzorcowy
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../materialy/pinout/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pinout ESP32-C6 DevKit
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../../materialy/zasoby/" class="md-nav__link">
         
@@ -1560,7 +1451,7 @@
   <span class="md-ellipsis">
     
   
-    Zasoby i dokumentacja
+    Materiały
   
 
     
@@ -1569,14 +1460,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1642,10 +1525,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#krok-3-wybor-pytki-i-portu-komunikacyjnego" class="md-nav__link">
+  <a href="#krok-2-wybor-pytki-i-portu-komunikacyjnego" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Krok 3: Wybór płytki i portu komunikacyjnego
+        Krok 2: Wybór płytki i portu komunikacyjnego
       
     </span>
   </a>
@@ -1760,37 +1643,41 @@
 </ol>
 </div>
 <h3 id="krok-1-instalacja-programu">Krok 1: Instalacja programu</h3>
-<ol>
+<ul>
 <li>Wejdź na oficjalną stronę: 🔗 <a href="https://www.arduino.cc/en/software">arduino.cc/en/software</a></li>
 <li>Pobierz wersję instalacyjną dla swojego systemu operacyjnego (np. Windows Installer) i przejdź standardowy proces instalacji.</li>
-</ol>
+</ul>
 <p>Domyślnie środowisko Arduino IDE obsługuje jedynie oficjalne płytki z rodziny Arduino (np. Uno, Nano). Aby umożliwić programowanie układów firmy Espressif (w tym ESP32-C6), należy zainstalować odpowiedni pakiet obsługi:</p>
+<ul>
+<li>Kliknij w ikonkę płytki po lewej stronie edytora.</li>
+<li>Wyszukaj pakiet o nazwie <strong><code>esp32</code></strong> (autorstwa <em>Espressif Systems</em>)</li>
+<li>Kliknij przycisk <strong>Instaluj</strong>. Instalacja łańcucha narzędziowego i definicji może potrwać kilka minut.</li>
+</ul>
+<p><img alt="Instalacja pakietu esp32" class="center" src="../../img/start/board_install.png" /></p>
+<h3 id="krok-2-wybor-pytki-i-portu-komunikacyjnego">Krok 2: Wybór płytki i portu komunikacyjnego</h3>
 <ol>
-<li>Otwórz Arduino IDE i wejdź w <strong>Plik → Preferencje</strong> (lub wciśnij skrót <code>Ctrl + ,</code>).</li>
-<li>Znajdź pole <strong>Dodatkowe adresy URL menedżera płytek</strong>.</li>
-<li>Wklej poniższy adres URL (odpowiadający za pobranie definicji płytek przez menedżer):
-   <div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://espressif.github.io/arduino-esp32/package_esp32_index.json
-</span></code></pre></div>
-   <em>Uwaga: Jeśli masz już tam wpisane inne linki, rozdziel je przecinkiem lub dodaj w nowej linii klikając ikonę okna obok pola tekstowego.</em></li>
-<li>Kliknij <strong>OK</strong>, aby zatwierdzić zmiany.</li>
-<li>Z lewego paska bocznego wybierz ikonę <strong>Menedżer płytek</strong> (lub przejdź do menu: <em>Narzędzia → Płytka → Menedżer płytek...</em>).</li>
-<li>Wyszukaj pakiet o nazwie <strong><code>esp32</code></strong> (autorstwa <em>Espressif Systems</em>) i kliknij przycisk <strong>Instaluj</strong>. Instalacja łańcucha narzędziowego i definicji może potrwać kilka minut.</li>
-</ol>
-<h3 id="krok-3-wybor-pytki-i-portu-komunikacyjnego">Krok 3: Wybór płytki i portu komunikacyjnego</h3>
-<ol>
-<li>Podłącz swoją płytkę ESP32-C6 do komputera za pomocą kabla USB-C. Kabel należy podłączyć do portu oznaczonego na płytce deweloperskiej jako <strong><code>USB</code></strong>.</li>
+<li>Podłącz swoją płytkę ESP32-C6 do komputera za pomocą kabla USB. Kabel należy podłączyć do portu oznaczonego na płytce deweloperskiej jako <strong><code>USB</code></strong>.</li>
 <li>Upewnij się, że używany przewód obsługuje transmisję danych (niektóre przewody przeznaczone wyłącznie do ładowania nie posiadają linii sygnałowych).</li>
-<li>W Arduino IDE wejdź w menu <strong>Narzędzia → Płytka → esp32</strong> i wybierz <strong><code>ESP32-C6 Dev Module</code></strong>.</li>
-</ol>
-<!-- ![Zdjęcie okna wyboru płytki w Arduino IDE](../img/start/arduinio_ide_wybor_plytki.png) -->
-<ol>
+<li>W Arduino IDE wejdź w menu <strong>Narzędzia → Płytka → esp32</strong> i wybierz <strong><code>ESP32-C6 Dev Module</code></strong>.
+<img alt="Zdjęcie okna wyboru płytki w Arduino IDE" class="center" src="../../img/start/board_selection.png" /></li>
 <li>Wejdź w <strong>Narzędzia → Port</strong> i wybierz port, pod którym zgłosiła się Twoja płytka (na Windowsie będzie to np. <code>COM3</code> lub <code>COM4</code>, na Linuxie np. <code>/dev/ttyACM0</code> lub <code>/dev/ttyUSB0</code>, na macOS np. <code>/dev/cu.usbmodem...</code>).</li>
 </ol>
+<p><img alt="Zdjęcie okna wyboru portu w Arduino IDE" class="center" src="../../img/start/port_selection.png" /></p>
 <div class="admonition tip">
+<p class="admonition-title">Jak najłatwiej sprawdzić, który port odpowiada Twojej płytce?</p>
+<p>Jeśli na liście widzisz wiele portów (np. <code>COM1</code>, <code>COM3</code>, <code>COM4</code>) i nie wiesz, który z nich to podłączone ESP32-C6:</p>
+<ol>
+<li>Odłącz płytkę od portu USB komputera.</li>
+<li>Kliknij w menu <strong>Narzędzia</strong> i zjedź kursorem z zakładki <strong>Port</strong> (lub całkowicie zamknij menu), a następnie najedź na nią ponownie, aby odświeżyć listę portów.</li>
+<li>Zobacz, który port zniknął z listy.</li>
+<li>Podłącz płytkę z powrotem i ponownie rozwiń listę. Nowo dodany port (ten, który zniknął w poprzednim kroku) to Twoje urządzenie!</li>
+</ol>
+</div>
+<div class="admonition warning">
 <p class="admonition-title">Ważne dla użytkowników systemu Linux: Brak dostępu do portu</p>
 <p>W systemach Linux domyślny użytkownik nie ma uprawnień do zapisu i odczytu z portów szeregowych (takich jak <code>/dev/ttyACM0</code> lub <code>/dev/ttyUSB0</code>). Uruchomienie Arduino IDE w takiej konfiguracji uniemożliwi wgranie programu i zakończy się błędem braku uprawnień (Permission Denied).</p>
 <p>Aby nadać uprawnienia na stałe, dodaj swojego użytkownika do grupy systemowej <code>dialout</code> (w dystrybucjach typu Ubuntu/Debian) lub <code>uucp</code> (w dystrybucjach typu Arch). Otwórz terminal i wpisz:
-<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-a<span class="w"> </span>-G<span class="w"> </span>dialout<span class="w"> </span><span class="nv">$USER</span>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-a<span class="w"> </span>-G<span class="w"> </span>dialout<span class="w"> </span><span class="nv">$USER</span>
 </span></code></pre></div>
 Po wykonaniu tej komendy <strong>musisz wylogować się i zalogować ponownie</strong> (lub zrestartować komputer), aby system zaczął respektować Twoje nowe uprawnienia.</p>
 </div>
@@ -1802,43 +1689,49 @@ Po wykonaniu tej komendy <strong>musisz wylogować się i zalogować ponownie</s
 <p>W menu Narzędzia odszukaj pozycję <strong><code>USB CDC On Boot</code></strong> i ustaw jej wartość na <strong><code>Enabled</code></strong>.
 Bez tego ustawienia program wgra się poprawnie, ale w Monitorze Szeregowym nie zobaczysz żadnych napisów!</p>
 </div>
-<p><img align="center" alt="Włączenie USB CDC On Boot w Arduino IDE" src="../../img/podstawy/cnc_enable.png" /></p>
+<p><img alt="Włączenie USB CDC On Boot w Arduino IDE" class="center" src="../../img/start/cnc_enable.png" /></p>
 <hr />
 <h2 id="pierwsze-uruchomienie-programu-test">🚀 Pierwsze uruchomienie programu (Test)</h2>
 <p>Sprawdźmy, czy cały łańcuch narzędziowy działa poprawnie. Spróbujemy wgrać prosty szkic testowy i otworzyć komunikację szeregową. Na razie nie przejmuj się tym, jak ten kod działa ani co oznaczają poszczególne linijki – zrozumiesz to w dalszej części kursu. Na tym etapie chcemy jedynie upewnić się, że program wgrywa się poprawnie do pamięci mikrokontrolera, a połączenie szeregowe działa bez zarzutu.</p>
 <ol>
 <li>Wklej poniższy kod testowy do okna edytora:
-   <div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="c1">// Uruchamiamy port szeregowy z prędkością 115200 bodów (standard dla ESP32)</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// Czas na ustabilizowanie połączenia</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Środowisko Arduino IDE działa poprawnie!&quot;</span><span class="p">);</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">}</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;ESP32-C6 żyje i nadaje...&quot;</span><span class="p">);</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wyślij komunikat co 2 sekundy</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
+   <div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="c1">// Uruchamiamy port szeregowy z prędkością 115200 bodów (standard dla ESP32)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// Czas na ustabilizowanie połączenia</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Środowisko Arduino IDE działa poprawnie!&quot;</span><span class="p">);</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;ESP32-C6 żyje i nadaje...&quot;</span><span class="p">);</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wyślij komunikat co 2 sekundy</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
 </span></code></pre></div></li>
-<li>Kliknij ikonę <strong>Strzałki w prawo (Wgraj)</strong> w lewym górnym rogu (lub użyj skrótu <code>Ctrl + U</code>).</li>
-</ol>
-<!-- ![Zdjęcie okna z kodem w Arduino IDE](../img/start/arduinio_ide_kod.png) -->
-<ol>
+<li>Kliknij ikonę <strong>Strzałki w prawo (Wgraj)</strong> w lewym górnym rogu (lub użyj skrótu <code>Ctrl + U</code>).
+<img alt="Zdjęcie okna z kodem w Arduino IDE" class="center" src="../../img/start/upload_arror.png" /></li>
 <li>Poczekaj, aż w dolnej konsoli zobaczysz napisy informujące o kompilacji i procesie wgrywania (zakończonym komunikatem typu <em>Leaving... Hard resetting via RTS pin...</em>).</li>
 <li>Otwórz <strong>Monitor Szeregowy</strong> (ikona lupy w prawym górnym rogu lub skrót <code>Ctrl + Shift + M</code>).
-<img alt="Zdjęcie okna Monitora Szeregowego w Arduino IDE" src="../../img/podstawy/serial_monitor.png" /></li>
-<li>Upewnij się, że w prawym dolnym rogu okna Monitora wybrana jest poprawna prędkość transmisji: <strong><code>115200 baud</code></strong>.</li>
-<li>Jeśli widzisz pojawiające się napisy "ESP32-C6 żyje i nadaje..." – Twoje środowisko jest gotowe do pracy!
-<img alt="Zdjęcie okna Monitora Szeregowego w Arduino IDE" src="../../img/podstawy/serial_monitor.png" /></li>
+<img alt="Zdjęcie okna Monitora Szeregowego w Arduino IDE" class="center" src="../../img/start/serial_monitor_ide.png" /></li>
+<li>Upewnij się, że w prawym dolnym rogu okna Monitora wybrana jest poprawna prędkość transmisji: <strong><code>115200 baud</code></strong>.
+<img alt="Zdjęcie okna Monitora Szeregowego w Arduino IDE" class="center" src="../../img/start/serial_monitor.png" /></li>
+<li>Jeśli widzisz pojawiające się napisy "ESP32-C6 żyje i nadaje..." – Twoje środowisko jest gotowe do pracy!</li>
 </ol>
+<div class="admonition warning">
+<p class="admonition-title">Rozłączanie Monitora Szeregowego po wgraniu programu</p>
+<p>W momencie wgrywania nowego programu do ESP32-C6 port szeregowy w komputerze na chwilę znika (jest resetowany), co powoduje odłączenie Monitora Szeregowego w Arduino IDE.</p>
+<p>Aby poprawnie odczytać dane po wgraniu:</p>
+<ol>
+<li>Upewnij się, że Monitor Szeregowy połączył się ponownie. Zrobisz to poprzez dwukrotne kliknięcie ikonki lupy w prawym górnym rogu (lub użyj skrótu <code>Ctrl + Shift + M</code>). (pierwsze kliknięcie zamyka monitor, drugie otwiera)</li>
+<li>Wciśnij krótko fizyczny przycisk <strong>RST</strong> (lub <strong>EN</strong>) na płytce deweloperskiej. Spowoduje to restart ESP32 i ponowne wysłanie początkowych komunikatów (z funkcji <code>setup()</code>), które mogły zostać wysłane zanim komputer zdążył ponownie otworzyć port szeregowy.</li>
+</ol>
+</div>
 <p>Jeśli cokolwiek poszło nie tak, spróbuj rozwiązań opisanych poniżej.</p>
 <hr />
 <h2 id="rozwiazywanie-problemow-troubleshooting">🛠️ Rozwiązywanie problemów (Troubleshooting)</h2>
 <h3 id="1-brak-portu-com-serial-w-menu-narzedzia-port">1. Brak portu COM / Serial w menu Narzędzia → Port</h3>
 <ul>
 <li><strong>Przyczyna 1</strong>: Twój kabel USB służy tylko do ładowania telefonu i nie przesyła danych. Wymień kabel na inny.</li>
-<li><strong>Przyczyna 2</strong>: Brak sterowników do konwertera USB-Serial na płytce. W zależności od wersji płytki deweloperskiej, zainstaluj sterowniki do układów <strong>CH340</strong> lub <strong>CP2102</strong> (dostępne na stronach producentów tych układów).</li>
-<li><strong>Przyczyna 3 (Linux)</strong>: Twój użytkownik nie ma uprawnień do odczytu urządzenia. Upewnij się, że wykonałeś krok z dodaniem użytkownika do grupy <code>dialout</code> i ponownie uruchomiłeś sesję systemową.</li>
+<li><strong>Przyczyna 2 (Linux)</strong>: Twój użytkownik nie ma uprawnień do odczytu urządzenia. Upewnij się, że wykonałeś krok z dodaniem użytkownika do grupy <code>dialout</code> i ponownie uruchomiłeś sesję systemową.</li>
 </ul>
 <h3 id="2-kompilator-zgasza-bad-podczas-wgrywania-timeout-failed-to-connect">2. Kompilator zgłasza błąd podczas wgrywania (Timeout / Failed to connect)</h3>
 <ul>

@@ -6,7 +6,7 @@ W tym rozdziale skupimy się na specyficznym, niezwykle popularnym protokole sł
 
 > [!NOTE] 1-Wire vs Single-Wire
 > Choć pojęcia te bywają potocznie używane zamiennie, oznaczają dwa różne standardy:
-> * **Dallas 1-Wire** – dwukierunkowa, relatywnie wolna magistrala z unikalnym 64-bitowym adresowaniem sprzętowym każdego układu, używana głownie do czujników (np. popularnego czujnika temperatury DS18B20).
+> * **Dallas 1-Wire** – dwukierunkowa, relatywnie wolna magistrala z unikalnym 64-bitowym adresowaniem sprzętowym każdego układu, używana głównie do czujników (np. popularnego czujnika temperatury DS18B20).
 > * **Custom Single-Wire (NZR)** – jednokierunkowy, szybki protokół kaskadowy bez sprzętowego adresowania, stosowany wyłącznie do sterowania matrycami i paskami LED (np. WS2812B). To właśnie nim zajmiemy się w tej lekcji.
 
 ---

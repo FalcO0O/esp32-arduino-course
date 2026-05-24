@@ -310,18 +310,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../materialy/kod_wzorcowy/" class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href="../../materialy/zasoby/" class="md-tabs__link">
+        
   
+  
+    
   
   Materiały
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -1178,14 +1177,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/nvs/" class="md-nav__link">
+      <a href="../../systemy/deepsleep/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pamięć trwała (NVS)
+    Sleep: zarządzanie energią
   
 
     
@@ -1206,14 +1205,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/deepsleep/" class="md-nav__link">
+      <a href="../../systemy/nvs/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Sleep: zarządzanie energią
+    Pamięć trwała (NVS)
   
 
     
@@ -1439,114 +1438,6 @@
   
   
   
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Materiały
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Materiały
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../materialy/kod_wzorcowy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Kod wzorcowy
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../materialy/pinout/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pinout ESP32-C6 DevKit
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../../materialy/zasoby/" class="md-nav__link">
         
@@ -1555,7 +1446,7 @@
   <span class="md-ellipsis">
     
   
-    Zasoby i dokumentacja
+    Materiały
   
 
     
@@ -1564,14 +1455,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1740,9 +1623,9 @@
 </ul>
 <hr />
 <h2 id="charakterystyka-fizyczna-i2c-konfiguracja-otwartych-drenow-i-pull-up">🔌 Charakterystyka fizyczna I<sup>2</sup>C: Konfiguracja Otwartych Drenów i Pull-Up</h2>
-<p>Jedną z najważniejszych cech I<sup>2</sup>C jest konstrukcja wyjść stopni elektrycznych urządzeń. Pracują one w konfiguracji <strong>otrawtego drenu</strong> (Open-Drain). Oznacza to, że żadne urządzenie nie potrafi aktywnie wymusić na magistrali stanu wysokiego (<span class="arithmatex">\(3.3\text{ V}\)</span>). Układy mogą jedynie "ściągać" linię do masy (<span class="arithmatex">\(0\text{ V}\)</span>), zwierając ją wewnętrznym tranzystorem.</p>
+<p>Jedną z najważniejszych cech I<sup>2</sup>C jest konstrukcja wyjść stopni elektrycznych urządzeń. Pracują one w konfiguracji <strong>otwartego drenu</strong> (Open-Drain). Oznacza to, że żadne urządzenie nie potrafi aktywnie wymusić na magistrali stanu wysokiego (<span class="arithmatex">\(3.3\text{ V}\)</span>). Układy mogą jedynie "ściągać" linię do masy (<span class="arithmatex">\(0\text{ V}\)</span>), zwierając ją wewnętrznym tranzystorem.</p>
 <p>Z tego powodu magistrala I<sup>2</sup>C wymaga zastosowania zewnętrznych <strong>rezystorów podciągających (Pull-Up)</strong> podłączonych między liniami SDA/SCL a zasilaniem VCC.</p>
-<p><img align="center" alt="I2C_diagram" src="../../img/protokoly/i2c.png" /></p>
+<p><img alt="I2C_diagram" class="center" src="../../img/protokoly/i2c.png" /></p>
 <h4 id="dlaczego-zastosowano-otwarty-dren">Dlaczego zastosowano otwarty dren?</h4>
 <ol>
 <li><strong>Unikanie zwarć (Bus Contention)</strong>: Gdyby jedno urządzenie próbowało ustawić stan wysoki (3.3V), a drugie stan niski (0V), doszłoby do zwarcia linii zasilania z masą. W konfiguracji Open-Drain, jeśli dwa układy nadają jednocześnie, stanem dominującym jest LOW (0V), co chroni mikrokontroler przed uszkodzeniem.</li>
@@ -1763,8 +1646,8 @@
 <li><strong>Potwierdzenie ACK/NACK</strong>: Po przesłaniu każdego bajtu (8 bitów), odbiorca musi potwierdzić jego odebranie. W dziewiątym takcie zegara odbiorca ściąga linię SDA do stanu niskiego (<strong>ACK</strong> - <em>Acknowledge</em>). Jeśli linia pozostanie wysoka, oznacza to brak potwierdzenia (<strong>NACK</strong> - <em>Not Acknowledge</em>).</li>
 <li><strong>Warunek STOP (P)</strong>: Linia SDA przechodzi ze stanu niskiego do wysokiego, podczas gdy linia SCL jest w stanie wysokim. Sygnalizuje to koniec transmisji.</li>
 </ol>
-<p><img align="center" alt="I2C_wave" src="../../img/protokoly/i2c_logic.png" /></p>
-<h4 id="predkosci-pracy-i2c-speed-modes">Prędkości pracy (I2C Speed Modes):</h4>
+<p><img alt="I2C_wave" class="center" src="../../img/protokoly/i2c_logic.png" /></p>
+<h4 id="predkosci-pracy-i2c-speed-modes">Prędkości pracy (I<sup>2</sup>C Speed Modes):</h4>
 <ul>
 <li><strong>Standard Mode</strong>: do <span class="arithmatex">\(100\text{ kb/s}\)</span></li>
 <li><strong>Fast Mode</strong>: do <span class="arithmatex">\(400\text{ kb/s}\)</span> (najbardziej powszechny standard)</li>
@@ -1776,7 +1659,7 @@
 <hr />
 <h2 id="cwiczenie-praktyczne-akcelerometr-mpu6050">🎯 Ćwiczenie Praktyczne: Akcelerometr MPU6050</h2>
 <p><a href="https://wokwi.com/projects/464856436584059905" style="display: block; text-align: center;"><strong>Link do symulacji w Wokwi</strong></a></p>
-<p>W tym ćwiczeniu użyjemy modułu czujnika inercyjnego <strong>MPU6050</strong> (zawierającego 3-osiowy akcelerometr i 3-osiowy żyroskop), komunikującego się za pomocą I2C.</p>
+<p>W tym ćwiczeniu użyjemy modułu czujnika inercyjnego <strong>MPU6050</strong> (zawierającego 3-osiowy akcelerometr i 3-osiowy żyroskop), komunikującego się za pomocą I<sup>2</sup>C.</p>
 <div class="admonition note">
 <p class="admonition-title">Instalacja biblioteki</p>
 <p>Do obsługi MPU6050 wykorzystamy gotową bibliotekę <strong>MPU6050_light</strong> autorstwa <em>rfetick</em>. Instrukcja instalacji (krok po kroku) znajduje się <a href="../../podstawy/serwa/#instalacja-biblioteki-esp32servo">tutaj</a>.</p>
@@ -1824,10 +1707,12 @@
 </span></code></pre></div>
 <hr />
 <h2 id="zadanie-wykrywacz-wstrzasow">🛠️ Zadanie: Wykrywacz wstrząsów</h2>
-<p>Zamiast odczytywać kąt pochylenia (który bazuje na fuzji danych z żyroskopu i akcelerometru), napisz aplikację reagującą na nagły ruch (wstrząs).
-1. Zamiast metody <code>.getAngleX()</code>, użyj metody <code>.getAccX()</code> zwracającej przyspieszenie liniowe w osi X (mierzone w jednostkach przyspieszenia ziemskiego <span class="arithmatex">\(G\)</span>, gdzie <span class="arithmatex">\(1.0\text{ G} \approx 9.81\text{ m/s}^2\)</span>).
-2. Skonfiguruj pin <code>GPIO2</code> jako wyjście dla wbudowanej diody LED.
-3. Jeśli przyspieszenie w osi X przekroczy próg wstrząsu (wartość bezwzględna <span class="arithmatex">\(|a_x| &gt; 2.0\text{ G}\)</span>), włącz diodę LED i wyświetl ostrzeżenie na porcie szeregowym. Pamiętaj, że wstrząs może nastąpić w obu kierunkach osi X (przyspieszenie ujemne lub dodatnie).</p>
+<p>Zamiast odczytywać kąt pochylenia (który bazuje na fuzji danych z żyroskopu i akcelerometru), napisz aplikację reagującą na nagły ruch (wstrząs).</p>
+<ol>
+<li>Zamiast metody <code>.getAngleX()</code>, użyj metody <code>.getAccX()</code> zwracającej przyspieszenie liniowe w osi X (mierzone w jednostkach przyspieszenia ziemskiego <span class="arithmatex">\(G\)</span>, gdzie <span class="arithmatex">\(1.0\text{ G} \approx 9.81\text{ m/s}^2\)</span>).</li>
+<li>Skonfiguruj pin <code>GPIO2</code> jako wyjście dla wbudowanej diody LED.</li>
+<li>Jeśli przyspieszenie w osi X przekroczy próg wstrząsu (wartość bezwzględna <span class="arithmatex">\(|a_x| &gt; 2.0\text{ G}\)</span>), włącz diodę LED i wyświetl ostrzeżenie na porcie szeregowym. Pamiętaj, że wstrząs może nastąpić w obu kierunkach osi X (przyspieszenie ujemne lub dodatnie).</li>
+</ol>
 <details>
 <summary>Pokaż rozwiązanie zadania</summary>
 

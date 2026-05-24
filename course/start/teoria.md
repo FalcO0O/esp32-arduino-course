@@ -8,7 +8,7 @@ Zanim zaczniesz pisać swój pierwszy kod i łączyć kabelki na płytce stykowe
 
 Urządzenia, z których korzystamy na co dzień, takie jak komputery osobiste, serwery czy smartfony, opierają się na **procesorach aplikacyjnych (MPU)**. Ich zadaniem jest uruchamianie ogromnych, złożonych systemów operacyjnych (np. Windows, Linux, macOS, Android), które koordynują setki procesów w tym samym czasie.
 
-**Mikrokontroler (MCU - Microcontroller Unit)** to z kolei kompletny miniaturowy komputer zintegrowany wewnątrz **jednego układu scalonego**. Zawiera on w sobie nie tylko rdzeń procesora, ale również pamięć RAM, pamięć nieulotną Flash (odpowiednik dysku twardego) oraz bloki peryferyjne (np. przetworniki cyfrowo-analogowe, kontrolery magistral komunikacyjnych) ułatwiające fizyczne innymi urządzeniami.
+**Mikrokontroler (MCU - Microcontroller Unit)** to z kolei kompletny miniaturowy komputer zintegrowany wewnątrz **jednego układu scalonego**. Zawiera on w sobie nie tylko rdzeń procesora, ale również pamięć RAM, pamięć nieulotną Flash (odpowiednik dysku twardego) oraz bloki peryferyjne (np. przetworniki cyfrowo-analogowe, kontrolery magistral komunikacyjnych) ułatwiające fizyczne połączenie z innymi urządzeniami.
 
 Poniższa tabela przedstawia kluczowe różnice między tymi dwoma światami:
 

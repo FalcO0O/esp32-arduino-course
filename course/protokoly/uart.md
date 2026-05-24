@@ -89,7 +89,7 @@ Gdy dane przychodzą na pin RX, kontroler sprzętowy UART automatycznie zapisuje
 
 [**Link do symulacji w Wokwi**](https://wokwi.com/projects/464855527434006529){: style="display: block; text-align: center;" }
 
-W tym ćwiczeniu przeprowadzisz eksperyment pętli zwrotnej (loopback) na jednym mikrokontrolerze: ESP32 wyśle dane przez port nadawczy UART i natychmiast odbierze je na swoim portcie odbiorczym, dzięki fizycznemu połączeniu linii TX i RX za pomocą przewodu.
+W tym ćwiczeniu przeprowadzisz eksperyment pętli zwrotnej (loopback) na jednym mikrokontrolerze: ESP32 wyśle dane przez port nadawczy UART i natychmiast odbierze je na swoim porcie odbiorczym, dzięki fizycznemu połączeniu linii TX i RX za pomocą przewodu.
 
 > [!NOTE] Wybór pinów GPIO
 > Piny GPIO4 i GPIO5 zostały użyte jako przykład. Dzięki GPIO Matrix możesz wybrać dowolną inną parę wolnych pinów GPIO, pamiętając o zaktualizowaniu stałych w kodzie. Upewnij się jedynie, że wybrane piny nie pełnią specjalnych funkcji podczas rozruchu (tzw. Strapping Pins – szczegóły w sekcji [Płytka ESP32-C6](../start/sprzet.md)).

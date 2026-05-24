@@ -28,6 +28,13 @@ Płytka posiada również:
 * **4 MB pamięci Flash** (pamięć nieulotna na Twój program).
 * Sprzętowe wsparcie dla **kryptografii**.
 
+> [!WARNING] Bezpieczne obchodzenie się z płytką (ESD)
+> Układy scalone na płytce są bardzo wrażliwe na wyładowania elektrostatyczne. Przypadkowe dotknięcie metalowych elementów lub pinów naelektryzowanym ciałem może doprowadzić do niewidocznego przeskoku ładunku (ESD), który bezpowrotnie uszkodzi delikatną strukturę procesora. 
+> 
+> Aby zminimalizować to ryzyko:
+> * Przed wzięciem płytki do ręki warto rozładować ładunek elektrostatyczny zebrany na ciele, dotykając na chwilę dowolnego uziemionego metalowego przedmiotu (np. metalowej obudowy komputera, kranu czy rury grzejnika).
+> * Staraj się zawsze chwytać płytkę za jej boczne krawędzie laminatu, unikając bezpośredniego dotykania metalowych wyprowadzeń oraz ścieżek sygnałowych.
+
 ---
 
 ## 📍 Schemat wyprowadzeń (Pinout)

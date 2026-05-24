@@ -113,7 +113,7 @@ void loop() {
 }
 ```
 
-Spróbuj wgrać ten program, otworzyć Monitor Szeregowi i kilkukrotnie wcisnąć przycisk **RST/EN** na płytce ESP32-C6. Zobaczysz, że wartość licznika rośnie i nie zeruje się po resecie. W przypadku Wokwi nie musisz nic klikać - mikrokontroler samemu się restartuje.
+Spróbuj wgrać ten program, otworzyć Monitor Szeregowy i kilkukrotnie wcisnąć przycisk **RST/EN** na płytce ESP32-C6. Zobaczysz, że wartość licznika rośnie i nie zeruje się po resecie. W przypadku Wokwi nie musisz nic klikać - mikrokontroler samemu się restartuje.
 
 ---
 
@@ -141,7 +141,7 @@ bool stan_led = false;
 bool stan_przycisku_poprzedni = HIGH;
 // zmienna służąca zapobieganiu zmiany stanu diody podczas jednego wciśnięcia
 bool przycisk_obsluzony = false;
-unsigned long ostatni_czas_debouce = 0;
+unsigned long ostatni_czas_debounce = 0;
 
 void setup() {
   Serial.begin(115200);
@@ -163,11 +163,11 @@ void loop() {
   int odczyt_przycisku = digitalRead(PIN_BTN);
 
   if (odczyt_przycisku != stan_przycisku_poprzedni) {
-    ostatni_czas_debouce = millis();
+    ostatni_czas_debounce = millis();
   }
 
   // Jeśli stan przycisku ustabilizował się na co najmniej 50 ms
-  if ((millis() - ostatni_czas_debouce) > 50) {
+  if ((millis() - ostatni_czas_debounce) > 50) {
     if (odczyt_przycisku == LOW) {
       if (!przycisk_obsluzony) {
         // Zmieniamy stan diody na przeciwny i zapisujemy do NVS

@@ -16,7 +16,7 @@
         <link rel="prev" href="../protokoly/onewire/">
       
       
-        <link rel="next" href="nvs/">
+        <link rel="next" href="deepsleep/">
       
       
         
@@ -310,18 +310,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../materialy/kod_wzorcowy/" class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href="../materialy/zasoby/" class="md-tabs__link">
+        
   
+  
+    
   
   Materiały
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -1105,14 +1104,14 @@
   
   
     <li class="md-nav__item">
-      <a href="nvs/" class="md-nav__link">
+      <a href="deepsleep/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pamięć trwała (NVS)
+    Sleep: zarządzanie energią
   
 
     
@@ -1133,14 +1132,14 @@
   
   
     <li class="md-nav__item">
-      <a href="deepsleep/" class="md-nav__link">
+      <a href="nvs/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Sleep: zarządzanie energią
+    Pamięć trwała (NVS)
   
 
     
@@ -1366,114 +1365,6 @@
   
   
   
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Materiały
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Materiały
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../materialy/kod_wzorcowy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Kod wzorcowy
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../materialy/pinout/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pinout ESP32-C6 DevKit
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../materialy/zasoby/" class="md-nav__link">
         
@@ -1482,7 +1373,7 @@
   <span class="md-ellipsis">
     
   
-    Zasoby i dokumentacja
+    Materiały
   
 
     
@@ -1491,14 +1382,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1596,7 +1479,7 @@
 <li><strong>Pamięć nieulotna (NVS)</strong> – dowiesz się, jak trwale zapisywać ustawienia, zmienne oraz konfigurację w pamięci Flash mikrokontrolera tak, aby nie uległy skasowaniu po zaniku zasilania.</li>
 </ol>
 <h2 id="wymagany-sprzet-w-tym-module">🛠️ Wymagany sprzęt w tym module</h2>
-<p>Tak jak do tej pory, zadania i struktury możesz odtwarzać na symulatorze <strong>Wokwi</strong> (linki z gotowcami na stronach zadań).</p>
+<p>Zadania z sekcji FreeRTOS oraz NVS możesz odtworzyć w symulatorze <strong>Wokwi</strong>. Wyjątkiem jest <strong>Deep Sleep</strong> – Wokwi nie wspiera głębokiego uśpienia w sposób, który pozwoliłby na ładne i czytelne pokazanie jego działania, dlatego to ćwiczenie wymaga fizycznego mikrokontrolera.</p>
 <p>Do przetestowania na żywym stole potrzebujesz:</p>
 <table>
 <thead>
@@ -1607,12 +1490,24 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Płytka ESP32-C6</strong></td>
+<td style="text-align: left;"><strong>Płytka ESP32-C6 + kabel USB</strong></td>
 <td style="text-align: left;">Serce operacji systemowych i uśpienia</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Dwie diody LED i dwa przyciski</strong></td>
+<td style="text-align: left;"><strong>Płytka Stykowa (Breadboard) + kable (jumpery)</strong></td>
+<td style="text-align: left;">Bezlutowe łączenie elementów razem</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2x dioda LED + 2x rezystor (150-220 Ohm)</strong></td>
 <td style="text-align: left;">Wykazanie współbieżności i reakcji na niezależne zadania systemowe</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Przycisk (Tact Switch)</strong></td>
+<td style="text-align: left;">Sterowanie wejściami w zadaniach systemowych i wybudzanie z uśpienia</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Potencjometr obrotowy (10 kOhm)</strong></td>
+<td style="text-align: left;">Generowanie analogowych wartości przekazywanych w kolejkach FreeRTOS</td>
 </tr>
 </tbody>
 </table>
@@ -1675,13 +1570,13 @@
         
         
           
-          <a href="nvs/" class="md-footer__link md-footer__link--next" aria-label="Następna strona: Pamięć trwała (NVS)">
+          <a href="deepsleep/" class="md-footer__link md-footer__link--next" aria-label="Następna strona: Sleep: zarządzanie energią">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Następna strona
               </span>
               <div class="md-ellipsis">
-                Pamięć trwała (NVS)
+                Sleep: zarządzanie energią
               </div>
             </div>
             <div class="md-footer__button md-icon">

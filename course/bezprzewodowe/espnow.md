@@ -119,6 +119,12 @@ void loop() {
 
 ### Krok 3: Kod Odbiornika (Płytka B)
 
+#### Przykładowe połączenia:
+
+![Schemat połączeń](../img/bezprzewodowe/wifi1_schematic.png){: .center} 
+
+#### Kod:
+
 Wgraj ten kod z powrotem na **Płytkę B** (Odbiornik):
 
 ```cpp
@@ -182,7 +188,7 @@ W trybie Peer-to-Peer musisz znać adres MAC odbiornika. Jeśli jednak chcesz wy
 
 W tym trybie dane są wysyłane na specjalny, zarezerwowany adres MAC: `FF:FF:FF:FF:FF:FF`. Każde urządzenie w zasięgu, które ma zainicjalizowany protokół ESP-NOW na tym samym kanale radiowym, odbierze taką wiadomość.
 
-### Krok 1: Kod Nadajnika (Broadcast)
+### Krok 1: Nadajnik (Broadcast)
 
 Wgraj ten kod na płytkę nadawczą. Nie musisz tu podawać konkretnego adresu MAC odbiornika:
 
@@ -241,9 +247,15 @@ void loop() {
 }
 ```
 
-### Krok 2: Kod Odbiornika (Broadcast)
+### Krok 2: Odbiornik (Broadcast)
+
+#### Przykładowe połączenia:
+
+![Schemat połączeń](../img/bezprzewodowe/wifi1_schematic.png){: .center} 
 
 Odbiornik dla trybu broadcast jest identyczny jak dla trybu Peer-to-Peer. Nie musi rejestrować żadnych partnerów – wystarczy, że nasłuchuje na zdarzenia:
+
+#### Kod:
 
 ```cpp
 #include <esp_now.h>

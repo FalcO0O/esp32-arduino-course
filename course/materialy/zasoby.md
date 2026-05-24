@@ -29,6 +29,7 @@ Przydatne linki do dokumentacji, bibliotek i kursów zewnętrznych.
 | `esp_now.h` | Espressif | ESP-NOW (wbudowana) | — |
 | `BLEDevice.h` | Espressif | BLE (wbudowana) | — |
 | `WebServer.h` | Espressif | Serwer HTTP (wbudowana) | — |
+| `Preferences.h` | Espressif | Zapis danych do pamięci trwałej (NVS) | — |
 
 ---
 

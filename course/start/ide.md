@@ -109,7 +109,7 @@ Sprawdźmy, czy cały łańcuch narzędziowy działa poprawnie. Spróbujemy wgra
 > W momencie wgrywania nowego programu do ESP32-C6 port szeregowy w komputerze na chwilę znika (jest resetowany), co powoduje odłączenie Monitora Szeregowego w Arduino IDE.
 > 
 > Aby poprawnie odczytać dane po wgraniu:
-> 1. Upewnij się, że Monitor Szeregowy połączył się ponownie. Zrobsz to poprzez dwukrotne kliknięcie ikonki lupy w prawym górnym rogu (lub użyj skrótu `Ctrl + Shift + M`). (pierwsze kliknięcie zamyka monitor, drugie otwiera)
+> 1. Upewnij się, że Monitor Szeregowy połączył się ponownie. Zrobisz to poprzez dwukrotne kliknięcie ikonki lupy w prawym górnym rogu (lub użyj skrótu `Ctrl + Shift + M`). (pierwsze kliknięcie zamyka monitor, drugie otwiera)
 > 2. Wciśnij krótko fizyczny przycisk **RST** (lub **EN**) na płytce deweloperskiej. Spowoduje to restart ESP32 i ponowne wysłanie początkowych komunikatów (z funkcji `setup()`), które mogły zostać wysłane zanim komputer zdążył ponownie otworzyć port szeregowy.
 
 Jeśli cokolwiek poszło nie tak, spróbuj rozwiązań opisanych poniżej.

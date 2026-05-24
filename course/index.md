@@ -35,7 +35,7 @@ Poznasz teorię działania układów wbudowanych, różnicę między komputerami
 ---
 
 ### ⚡ Podstawy
-Postawisz pierwsze kroki, łącząc na płytce stykowej podstawowe elementy elektroniczne, aby zrozumieć pojęcia stanów cyfrowych. Przejdziesz do płynnego sterowania jasnością (PWM), sterowania serwomechanizmami oraz odczytywania wielkości analogowych z otoczenia (ADC). Na koniec poznasz nieblokujący pomiar czasu i przerwane sprzętowe, które pozwalają reagować mikrokontrolerowi na zdarzenia w czasie rzeczywistym.
+Postawisz pierwsze kroki, łącząc na płytce stykowej podstawowe elementy elektroniczne, aby zrozumieć pojęcia stanów cyfrowych. Przejdziesz do płynnego sterowania jasnością (PWM), sterowania serwomechanizmami oraz odczytywania wielkości analogowych z otoczenia (ADC). Na koniec poznasz nieblokujący pomiar czasu i przerwania sprzętowe, które pozwalają reagować mikrokontrolerowi na zdarzenia w czasie rzeczywistym.
 
 **Zadania w module:**
 

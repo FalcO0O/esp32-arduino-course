@@ -310,18 +310,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../materialy/kod_wzorcowy/" class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href="../../materialy/zasoby/" class="md-tabs__link">
+        
   
+  
+    
   
   Materiały
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -1178,14 +1177,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/nvs/" class="md-nav__link">
+      <a href="../../systemy/deepsleep/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pamięć trwała (NVS)
+    Sleep: zarządzanie energią
   
 
     
@@ -1206,14 +1205,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../systemy/deepsleep/" class="md-nav__link">
+      <a href="../../systemy/nvs/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Sleep: zarządzanie energią
+    Pamięć trwała (NVS)
   
 
     
@@ -1439,114 +1438,6 @@
   
   
   
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Materiały
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Materiały
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../materialy/kod_wzorcowy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Kod wzorcowy
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../materialy/pinout/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pinout ESP32-C6 DevKit
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../../materialy/zasoby/" class="md-nav__link">
         
@@ -1555,7 +1446,7 @@
   <span class="md-ellipsis">
     
   
-    Zasoby i dokumentacja
+    Materiały
   
 
     
@@ -1564,14 +1455,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1738,7 +1621,7 @@
 <p class="admonition-title">1-Wire vs Single-Wire</p>
 <p>Choć pojęcia te bywają potocznie używane zamiennie, oznaczają dwa różne standardy:</p>
 <ul>
-<li><strong>Dallas 1-Wire</strong> – dwukierunkowa, relatywnie wolna magistrala z unikalnym 64-bitowym adresowaniem sprzętowym każdego układu, używana głownie do czujników (np. popularnego czujnika temperatury DS18B20).</li>
+<li><strong>Dallas 1-Wire</strong> – dwukierunkowa, relatywnie wolna magistrala z unikalnym 64-bitowym adresowaniem sprzętowym każdego układu, używana głównie do czujników (np. popularnego czujnika temperatury DS18B20).</li>
 <li><strong>Custom Single-Wire (NZR)</strong> – jednokierunkowy, szybki protokół kaskadowy bez sprzętowego adresowania, stosowany wyłącznie do sterowania matrycami i paskami LED (np. WS2812B). To właśnie nim zajmiemy się w tej lekcji.</li>
 </ul>
 </div>
@@ -1751,7 +1634,7 @@
 <li><strong>Układ scalony (kontroler)</strong>: Odpowiada za odczyt i dekodowanie cyfrowego sygnału oraz sterowanie jasnością poszczególnych barw poprzez PWM.</li>
 </ol>
 <h3 id="kaskadowe-aczenie-i-adresowanie">Kaskadowe łączenie i "adresowanie"</h3>
-<p>Transmisja nie używa fizycznych adresów jak I2C. Zamiast tego adresowanie odbywa się <strong>geometrycznie</strong>. 
+<p>Transmisja nie używa fizycznych adresów jak I<sup>2</sup>C. Zamiast tego adresowanie odbywa się <strong>geometrycznie</strong>. 
 Sygnał z mikrokontrolera trafia najpierw do pinu wejściowego <strong>DI</strong> (<em>Data In</em>) pierwszej diody w łańcuchu. Układ scalony tej diody "odcina" dla siebie pierwszy pakiet danych (swój kolor), a całą resztę przesyła dalej ze swojego pinu wyjściowego <strong>DO</strong> (<em>Data Out</em>) prosto do pinu <strong>DI</strong> kolejnej diody. Dzięki temu można sterować łańcuchem setek diod używając zaledwie jednego pinu w ESP32.</p>
 <hr />
 <h2 id="charakterystyka-logiczna-anatomia-transmisji">📊 Charakterystyka logiczna (Anatomia transmisji)</h2>
@@ -1763,7 +1646,7 @@ Sygnał z mikrokontrolera trafia najpierw do pinu wejściowego <strong>DI</stron
 <li><strong>Bit <code>1</code></strong>: długi stan wysoki (<span class="arithmatex">\(T_{1H} \approx 0.8\ \mu\text{s}\)</span>), po którym następuje krótki stan niski (<span class="arithmatex">\(T_{1L} \approx 0.45\ \mu\text{s}\)</span>).</li>
 <li><strong>Sygnał resetu (Zatrzask)</strong>: utrzymanie stanu niskiego przez czas dłuższy niż <span class="arithmatex">\(50\ \mu\text{s}\)</span> powoduje zakończenie transmisji ramki. Układy scalone zatrzaskują wtedy odcięte dane w swoich rejestrach, co skutkuje natychmiastową, jednoczesną aktualizacją kolorów w całym łańcuchu.</li>
 </ul>
-<p><img align="center" alt="" src="../../img/protokoly/NRZ.png" /></p>
+<p><img alt="" class="center" src="../../img/protokoly/NRZ.png" /></p>
 <hr />
 <h2 id="obsuga-sprzetowa-w-esp32-c6">📦 Obsługa sprzętowa w ESP32-C6</h2>
 <p>Ponieważ czasy trwania impulsów muszą być dotrzymane z dokładnością do kilkudziesięciu nanosekund, generowanie takiego sygnału programowo (<em>bit-banging</em> poprzez szybkie włączanie/wyłączanie pinu w kodzie) jest trudne i mocno obciąża procesor. Każde przerwanie systemowe zakłóciłoby strukturę czasową ramki, powodując migotanie diod lub błędne kolory.</p>

@@ -223,7 +223,7 @@ Najbezpieczniejszym sposobem jest podłączenie przewodów **po przekątnej przy
 
 [**Link do symulacji w Wokwi**](https://wokwi.com/projects/464853016624915457){: style="display: block; text-align: center;" }
 
-Zadanie - zadeklaruj, odczytuj w pętli `digitalRead(PIN_BTN)` i zapal diodę wtedy, kiedy jej odczyt spadnie do `LOW`:
+Zadanie: Zadeklaruj i odczytuj w pętli `digitalRead(PIN_BTN)`. Zapal diodę wtedy, kiedy jej odczyt spadnie do stanu `LOW`:
 
 ```cpp
 const int PIN_BTN = 9;   // Pin przycisku
@@ -242,7 +242,7 @@ void loop() {
 
   if (aktualny_stan == LOW) {  // Pamiętaj! W Pullupie LOW oznacza naciśnięty!
      /* ZAPAL DIODE Z POPRZEDNIEGO ZADANIA */
-  } else {
+    } else {
      /* ZGAS DIODE */
   }
 
@@ -264,7 +264,6 @@ Przerób powyższy kod tak, aby jedno naciśnięcie (i puszczenie) przycisku zap
 
 Algorytm wymaga dwóch zmiennych w celu porównania stanu przycisku w obecnym oraz poprzednim cyklu pętli. Pozwala to na wykrycie samego momentu wciśnięcia (zbocza opadającego sygnału), a nie ciągłego odczytywania stanu trzymanego przycisku.
 
-To tzw. zjawisko *zbocza opadającego*.
 
 ```cpp
 const int PIN_BTN = 9;

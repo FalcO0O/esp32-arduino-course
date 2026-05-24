@@ -44,6 +44,12 @@ W tym ćwiczeniu ESP32-C6 wykreuje własną sieć bezprzewodową (tryb Access Po
 > [!WARNING] Obsługa mDNS na smartfonach
 > System Android domyślnie nie wspiera mDNS bez dodatkowego oprogramowania. Jeśli testujesz układ na telefonie z Androidem, połącz się z siecią ESP i w przeglądarce wpisz surowy adres IP: `http://192.168.4.1`. Na systemach iOS, macOS oraz Windows adres `http://moje_esp.local` powinien zadziałać automatycznie.
 
+### Przykładowe połączenia:
+
+![Schemat połączeń](../img/bezprzewodowe/wifi1_schematic.png){: .center}
+
+### Kod:
+
 ```cpp
 #include <WiFi.h>
 #include <WebServer.h>

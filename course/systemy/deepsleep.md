@@ -31,7 +31,7 @@ ESP32-C6 posiada kilka trybów uśpienia, z których dwa są najczęściej wykor
 > [!CAUTION] Dlaczego rzeczywiste pomiary na płytce DevKit będą znacznie wyższe?
 > Wartości rzędu $5\text{–}15\ \mu\text{A}$ podane w tabeli dotyczą samego mikrokontrolera ESP32-C6. Jeśli spróbujesz zmierzyć pobór prądu całej płytki deweloperskiej (DevKit) podłączonej pod zasilanie USB, miernik wskaże znacznie więcej (często nawet od 1 do kilku miliamperów!). Wynika to z obecności dodatkowych elementów na laminacie płytki:
 > 1. **Stabilizator napięcia (LDO)**: Regulatory montowane na płytkach DevKit mają wysoki prąd spoczynkowy (*quiescent current*). Zużywają energię nawet wtedy, gdy sam mikrokontroler śpi.
-> 2. **Układ konwertera USB-UART (np. CP2102 lub CH340)**: Obsługuje on programowanie i Monitor Szeregowi, pobierając prąd z szyny 3.3V przez cały czas, gdy płytka ma zasilanie.
+> 2. **Układ konwertera USB-UART (np. CP2102 lub CH340)**: Obsługuje on programowanie i Monitor Szeregowy, pobierając prąd z szyny 3.3V przez cały czas, gdy płytka ma zasilanie.
 > 3. **Dioda LED zasilania (Power LED)**: Dioda sygnalizująca włączenie płytki sama z siebie pobiera od $1\text{ do }3\text{ mA}$.
 > 
 > **Jak to rozwiązać w docelowym urządzeniu?**
@@ -81,7 +81,7 @@ Pozwala wybudzić układ poprzez zmianę stanu logicznego na fizycznym pinie. W 
 
 ```cpp
 // Wybudź gdy na pinie GPIO7 pojawi się stan niski (LOW / 0)
-esp_sleep_enable_ext1_wakeup(1ULL << GPIO_NUM_7, ESP_EXT1_WAKEUP_ANY_LOW); 
+esp_sleep_enable_ext1_wakeup(1ULL << GPIO_NUM_7, ESP_EXT1_WAKEUP_ALL_LOW); 
 ```
 
 > [!IMPORTANT] Ograniczenie pinów dla EXT1
@@ -267,7 +267,7 @@ void setup() {
 
   // Konfiguracja obu źródeł
   esp_sleep_enable_timer_wakeup(SLEEP_US);
-  esp_sleep_enable_ext1_wakeup(1ULL << PIN_PRZYCISKU, ESP_EXT1_WAKEUP_ANY_LOW); 
+  esp_sleep_enable_ext1_wakeup(1ULL << PIN_PRZYCISKU, ESP_EXT1_WAKEUP_ALL_LOW); 
   
   esp_deep_sleep_start();
 }
