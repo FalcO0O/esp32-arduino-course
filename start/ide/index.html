@@ -1658,10 +1658,10 @@
 <ol>
 <li>Podłącz swoją płytkę ESP32-C6 do komputera za pomocą kabla USB. Kabel należy podłączyć do portu oznaczonego na płytce deweloperskiej jako <strong><code>USB</code></strong>.</li>
 <li>Upewnij się, że używany przewód obsługuje transmisję danych (niektóre przewody przeznaczone wyłącznie do ładowania nie posiadają linii sygnałowych).</li>
-<li>W Arduino IDE wejdź w menu <strong>Narzędzia → Płytka → esp32</strong> i wybierz <strong><code>ESP32-C6 Dev Module</code></strong>.
-<img alt="Zdjęcie okna wyboru płytki w Arduino IDE" class="center" src="../../img/start/board_selection.png" /></li>
-<li>Wejdź w <strong>Narzędzia → Port</strong> i wybierz port, pod którym zgłosiła się Twoja płytka (na Windowsie będzie to np. <code>COM3</code> lub <code>COM4</code>, na Linuxie np. <code>/dev/ttyACM0</code> lub <code>/dev/ttyUSB0</code>, na macOS np. <code>/dev/cu.usbmodem...</code>).</li>
+<li>W Arduino IDE wejdź w menu <strong>Narzędzia → Płytka → esp32</strong> i wybierz <strong><code>ESP32-C6 Dev Module</code></strong>.</li>
 </ol>
+<p><img alt="Zdjęcie okna wyboru płytki w Arduino IDE" class="center" src="../../img/start/board_selection.png" />
+4. Wejdź w <strong>Narzędzia → Port</strong> i wybierz port, pod którym zgłosiła się Twoja płytka (na Windowsie będzie to np. <code>COM3</code> lub <code>COM4</code>, na Linuxie np. <code>/dev/ttyACM0</code> lub <code>/dev/ttyUSB0</code>, na macOS np. <code>/dev/cu.usbmodem...</code>).</p>
 <p><img alt="Zdjęcie okna wyboru portu w Arduino IDE" class="center" src="../../img/start/port_selection.png" /></p>
 <div class="admonition tip">
 <p class="admonition-title">Jak najłatwiej sprawdzić, który port odpowiada Twojej płytce?</p>
@@ -1694,7 +1694,7 @@ Bez tego ustawienia program wgra się poprawnie, ale w Monitorze Szeregowym nie 
 <div class="admonition note">
 <p class="admonition-title">Alternatywa: Port UART i sterowniki CP2102</p>
 <p>Na niektórych wersjach płytek deweloperskich (między innymi tej, której używamy na kursie) obok złącza <code>USB</code> znajduje się drugie złącze oznaczone jako <strong><code>UART</code></strong>. Korzysta ono z zewnętrznego chipu-konwertera (w naszym wypadku z <strong>CP2102</strong> – scalonego "tłumacza" pośredniczącego w komunikacji). </p>
-<p>Gdybyśmy chcieli korzystać z portu UART, musielibyśmy najpierw pobrać i zainstalować dedykowane sterowniki CP2102 ze strony producenta (Silicon Labs), aby nasz komputer w ogóle wykrył to urządzenie. W zamian za to nie potrzebowalibyśmy włączać opcji <em>USB CDC On Boot</em> w Arduino IDE, ponieważ mikrokontroler wysyłałby dane swoim domyślnym, sprzętowym portem UART0.</p>
+<p>Gdybyśmy chcieli korzystać z portu UART, musielibyśmy najpierw pobrać i zainstalować dedykowane sterowniki CP2102 ze strony producenta (Silicon Labs), aby nasz komputer w ogóle wykrył to urządzenie. W zamian za to nie potrzebowalibyśmy włączać opcji <em>USB CDC On Boot</em> w Arduino IDE, ponieważ mikrokontroler wysyłałby dane swoim domyślnym, sprzętowym portem <code>UART0</code>.</p>
 </div>
 <hr />
 <h2 id="pierwsze-uruchomienie-programu-test">🚀 Pierwsze uruchomienie programu (Test)</h2>
@@ -1718,8 +1718,14 @@ Bez tego ustawienia program wgra się poprawnie, ale w Monitorze Szeregowym nie 
 <li>Poczekaj, aż w dolnej konsoli zobaczysz napisy informujące o kompilacji i procesie wgrywania (zakończonym komunikatem typu <em>Leaving... Hard resetting via RTS pin...</em>).</li>
 <li>Otwórz <strong>Monitor Szeregowy</strong> (ikona lupy w prawym górnym rogu lub skrót <code>Ctrl + Shift + M</code>).
 <img alt="Zdjęcie okna Monitora Szeregowego w Arduino IDE" class="center" src="../../img/start/serial_monitor_ide.png" /></li>
-<li>Upewnij się, że w prawym dolnym rogu okna Monitora wybrana jest poprawna prędkość transmisji: <strong><code>115200 baud</code></strong>.
+<li>Upewnij się, że w prawym dolnym rogu okna Monitora wybrana jest prędkość transmisji: <strong><code>115200 baud</code></strong>.
 <img alt="Zdjęcie okna Monitora Szeregowego w Arduino IDE" class="center" src="../../img/start/serial_monitor.png" /></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Prędkość transmisji (Baud rate) a USB CDC</p>
+<p>Przy połączeniu przez natywny port <strong><code>USB</code></strong> (z włączonym <em>USB CDC On Boot</em>) prędkość transmisji ustawiona w kodzie (<code>Serial.begin()</code>) oraz wybrana w Monitorze Szeregowym nie ma znaczenia – komunikacja zawsze odbywa się z pełną prędkością USB. Ustawienie <strong>prędkości baud</strong> jest jednak dobrym nawykiem i zapobiega problemom przy korzystaniu z tradycyjnego portu <strong><code>UART</code></strong>, gdzie prędkości po obu stronach muszą się dokładnie pokrywać (inaczej zobaczysz nieczytelne znaki).</p>
+</div>
+<ol>
 <li>Jeśli widzisz pojawiające się napisy "ESP32-C6 żyje i nadaje..." – Twoje środowisko jest gotowe do pracy!</li>
 </ol>
 <div class="admonition warning">

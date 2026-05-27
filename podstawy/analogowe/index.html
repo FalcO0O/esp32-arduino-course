@@ -1723,12 +1723,26 @@ Mikrokontroler ESP32-C6 wyposażony jest w 12-bitowy przetwornik ADC. Konwertuje
 <li><strong>Skrajne nóżki</strong>: Podłączamy odpowiednio do zasilania (<strong>3.3 V</strong>) oraz masy (<strong>GND</strong>).</li>
 <li><strong>Środkowa nóżka (suwak/zbierak)</strong>: Wyprowadza napięcie wyjściowe, które zmienia się proporcjonalnie do kąta obrotu osi potencjometru. To wyprowadzenie łączymy z wejściem ADC mikrokontrolera (w naszym przypadku <code>GPIO4</code>).</li>
 </ul>
-<p>Taka konfiguracja tworzy tzw. <strong>regulowany dzielnik napięcia</strong>. Obracając pokrętłem, płynnie zmieniamy napięcie na środkowej nóżce w zakresie od 0 V (gdy suwak jest najbliżej masy) do 3.3 V (gdy suwak jest najbliżej zasilania). Przetwornik ADC odczytuje to napięcie i konwertuje je na wartość cyfrową od 0 do 4095.</p>
+<p>Taka konfiguracja tworzy tzw. <strong>regulowany dzielnik napięcia</strong>. Obracając pokrętłem, płynnie zmieniamy napięcie na środkowej nóżce w zakresie od 0 V (gdy suwak jest najbliżej masy) do 3.3 V (gdy suwak jest najbliżej zasilania). Przetwornik ADC odczytuje to napięcie.</p>
 <h3 id="odczyt-wartosci-z-dzielnika">Odczyt wartości z dzielnika</h3>
-<p>Do odczytu napięcia analogowego wykorzystujemy funkcję:</p>
+<p>Do odczytu napięcia analogowego wykorzystujemy funkcje:</p>
 <ul>
-<li><strong><code>analogRead(pin)</code></strong>: Odczytuje napięcie na podanym pinie (z przedziału 0 V – 3,3 V) i zwraca wartość całkowitą z zakresu od <strong><code>0</code></strong> do <strong><code>4095</code></strong> (dla rozdzielczości 12-bitowej).</li>
+<li><strong><code>analogRead(pin)</code></strong>: Odczytuje napięcie na podanym pinie i zwraca surową wartość całkowitą z zakresu od <strong><code>0</code></strong> do <strong><code>4095</code></strong> (dla rozdzielczości 12-bitowej).</li>
+<li><strong><code>analogReadMilliVolts(pin)</code></strong>: Odczytuje napięcie na podanym pinie i zwraca od razu skalibrowaną wartość napięcia bezpośrednio w <strong>miliwoltach</strong> (np. ok. <code>3300</code> dla napięcia 3.3 V).</li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">Rzeczywistość a teoria: Dlaczego przy 3.3 V nie dostajemy 4095?</p>
+<p>W teorii 12-bitowy przetwornik dla maksymalnego napięcia 3.3 V powinien zwrócić wartość 4095. W rzeczywistości w mikrokontrolerach z rodziny ESP32 (w tym ESP32-C6) przetwornik ADC ma wbudowane wewnętrzne <strong>tłumienie (attenuation)</strong> ustawione domyślnie na <strong>11 dB</strong>. </p>
+<p><strong>Czym jest to tłumienie?</strong> 
+Rdzeń przetwornika ADC w ESP32 potrafi fizycznie zmierzyć napięcie tylko do ok. 1.1 V (jest to jego wewnętrzne napięcie odniesienia – <span class="arithmatex">\(V_{ref}\)</span>). Aby mikrokontroler mógł mierzyć wyższe napięcia (np. do 3.3 V), sygnał wejściowy musi zostać najpierw przepuszczony przez wewnętrzny dzielnik napięcia (tłumik). Tłumienie 11 dB pozwala rozszerzyć zakres pomiarowy do poziomu zasilania układu.</p>
+<p>Jednak przetwornik ADC w ESP32 charakteryzuje się sporą <strong>nieliniowością</strong> (szczególnie na krańcach zakresu, powyżej 2.6 V–3.0 V) oraz rozrzutem produkcyjnym napięcia odniesienia. Z tego powodu dla pełnego napięcia 3.3 V surowy odczyt z <code>analogRead()</code> zamiast 4095 wynosi w praktyce często <strong>ok. 3400 - 3600</strong>. </p>
+<p><strong>Jak sobie z tym radzić?</strong></p>
+<ol>
+<li><strong>Używać <code>analogReadMilliVolts(pin)</code></strong>: Funkcja ta korzysta z fabrycznej kalibracji wypalonej w pamięci eFuse Twojego konkretnego egzemplarza ESP32. Automatycznie przelicza ona surowy odczyt na rzeczywiste miliwolty (mV), dając o wiele dokładniejszy wynik.</li>
+<li><strong>Kalibrować ręcznie w kodzie</strong>: Zamiast zakładać, że 3.3 V to 4095, zmierz rzeczywistą wartość maksymalną i użyj jej w swoim programie.</li>
+<li><strong>Zewnętrzny dzielnik napięcia</strong>: Jeśli potrzebujesz dużej liniowości i dokładności w pełnym zakresie, najlepszym rozwiązaniem jest obniżenie mierzonego napięcia zewnętrznymi rezystorami i zmiana tłumienia ADC na mniejsze (np. 0 dB lub 2.5 dB).</li>
+</ol>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Brak potrzeby konfiguracji pinMode()</p>
 <p>Zauważ, że w funkcji <code>setup()</code> poniższego programu nie wywołujemy <code>pinMode(PIN_POTENCJOMETR, INPUT)</code>. Wywołanie to nie jest wymagane dla odczytów analogowych, ponieważ funkcja <code>analogRead()</code> automatycznie rekonfiguruje wskazany pin GPIO do pracy w trybie wejścia analogowego (ADC) przy każdym wywołaniu.</p>
