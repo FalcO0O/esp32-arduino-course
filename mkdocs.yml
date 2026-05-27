@@ -45,7 +45,7 @@ nav:
       - Mapa kursu: index.md
       - Teoria – czym jest mikrokontroler: start/teoria.md
       - Płytka ESP32-C6: start/sprzet.md
-      - Konfiguracja środowiska i Wokwi: start/ide.md
+      - Wokwi i Konfiguracja środowiska: start/ide.md
 
   - Podstawy:
       - Przegląd modułu: podstawy/index.md

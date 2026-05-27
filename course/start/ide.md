@@ -1,4 +1,4 @@
-# Konfiguracja środowiska i Wokwi
+# Wokwi i Konfiguracja środowiska
 
 Gdy znasz już teorię oraz budowę mikrokontrolera ESP32-C6, należy przygotować narzędzia deweloperskie. Kod dla naszej płytki możemy pisać zarówno w środowisku fizycznym (używając darmowego **Arduino IDE**), jak i wirtualnym (za pomocą symulatora **Wokwi**).
 
@@ -68,13 +68,21 @@ Domyślnie środowisko Arduino IDE obsługuje jedynie oficjalne płytki z rodzin
 
 ## ⚠️ Kluczowe ustawienie: USB CDC On Boot
 
-Układ ESP32-C6 posiada wbudowany kontroler USB-JTAG/Serial. Aby Monitor Szeregowy w Arduino IDE mógł odbierać komunikaty wysyłane za pomocą instrukcji `Serial.println()`, konieczne jest włączenie odpowiedniej opcji przekierowania portu szeregowego na port USB.
+Układ ESP32-C6 posiada wbudowany, bezpośredni kontroler USB. W tym kursie podłączamy kabel USB do portu oznaczonego na płytce jako **`USB`**. Dzięki temu system operacyjny (np. Windows 10/11) rozpoznaje płytkę automatycznie bez konieczności instalowania zewnętrznych sterowników. 
+
+Aby jednak mikrokontroler wiedział, że ma wysyłać komunikaty szeregowe (generowane przez instrukcje typu `Serial.println()`) bezpośrednio na to natywne złącze USB, musimy odpowiednio skonfigurować środowisko Arduino IDE.
 
 > [!IMPORTANT] Aktywacja CDC
-> W menu Narzędzia odszukaj pozycję **`USB CDC On Boot`** i ustaw jej wartość na **`Enabled`**.
+> W menu **Narzędzia** odszukaj pozycję **`USB CDC On Boot`** i ustaw jej wartość na **`Enabled`**.
 > Bez tego ustawienia program wgra się poprawnie, ale w Monitorze Szeregowym nie zobaczysz żadnych napisów!
 
 ![Włączenie USB CDC On Boot w Arduino IDE](../img/start/cnc_enable.png){: .center }
+
+> [!NOTE] Alternatywa: Port UART i sterowniki CP2102
+> Na niektórych wersjach płytek deweloperskich (między innymi tej, której używamy na kursie) obok złącza `USB` znajduje się drugie złącze oznaczone jako **`UART`**. Korzysta ono z zewnętrznego chipu-konwertera (w naszym wypadku z **CP2102** – scalonego "tłumacza" pośredniczącego w komunikacji). 
+> 
+> Gdybyśmy chcieli korzystać z portu UART, musielibyśmy najpierw pobrać i zainstalować dedykowane sterowniki CP2102 ze strony producenta (Silicon Labs), aby nasz komputer w ogóle wykrył to urządzenie. W zamian za to nie potrzebowalibyśmy włączać opcji *USB CDC On Boot* w Arduino IDE, ponieważ mikrokontroler wysyłałby dane swoim domyślnym, sprzętowym portem UART0.
+
 
 ---
 
