@@ -102,13 +102,27 @@ Potencjometr obrotowy posiada trzy wyprowadzenia:
 * **Skrajne nóżki**: Podłączamy odpowiednio do zasilania (**3.3 V**) oraz masy (**GND**).
 * **Środkowa nóżka (suwak/zbierak)**: Wyprowadza napięcie wyjściowe, które zmienia się proporcjonalnie do kąta obrotu osi potencjometru. To wyprowadzenie łączymy z wejściem ADC mikrokontrolera (w naszym przypadku `GPIO4`).
 
-Taka konfiguracja tworzy tzw. **regulowany dzielnik napięcia**. Obracając pokrętłem, płynnie zmieniamy napięcie na środkowej nóżce w zakresie od 0 V (gdy suwak jest najbliżej masy) do 3.3 V (gdy suwak jest najbliżej zasilania). Przetwornik ADC odczytuje to napięcie i konwertuje je na wartość cyfrową od 0 do 4095.
+Taka konfiguracja tworzy tzw. **regulowany dzielnik napięcia**. Obracając pokrętłem, płynnie zmieniamy napięcie na środkowej nóżce w zakresie od 0 V (gdy suwak jest najbliżej masy) do 3.3 V (gdy suwak jest najbliżej zasilania). Przetwornik ADC odczytuje to napięcie.
 
 ### Odczyt wartości z dzielnika
 
-Do odczytu napięcia analogowego wykorzystujemy funkcję:
+Do odczytu napięcia analogowego wykorzystujemy funkcje:
 
-* **`analogRead(pin)`**: Odczytuje napięcie na podanym pinie (z przedziału 0 V – 3,3 V) i zwraca wartość całkowitą z zakresu od **`0`** do **`4095`** (dla rozdzielczości 12-bitowej).
+* **`analogRead(pin)`**: Odczytuje napięcie na podanym pinie i zwraca surową wartość całkowitą z zakresu od **`0`** do **`4095`** (dla rozdzielczości 12-bitowej).
+* **`analogReadMilliVolts(pin)`**: Odczytuje napięcie na podanym pinie i zwraca od razu skalibrowaną wartość napięcia bezpośrednio w **miliwoltach** (np. ok. `3300` dla napięcia 3.3 V).
+
+> [!WARNING] Rzeczywistość a teoria: Dlaczego przy 3.3 V nie dostajemy 4095?
+> W teorii 12-bitowy przetwornik dla maksymalnego napięcia 3.3 V powinien zwrócić wartość 4095. W rzeczywistości w mikrokontrolerach z rodziny ESP32 (w tym ESP32-C6) przetwornik ADC ma wbudowane wewnętrzne **tłumienie (attenuation)** ustawione domyślnie na **11 dB**. 
+>
+> **Czym jest to tłumienie?** 
+> Rdzeń przetwornika ADC w ESP32 potrafi fizycznie zmierzyć napięcie tylko do ok. 1.1 V (jest to jego wewnętrzne napięcie odniesienia – $V_{ref}$). Aby mikrokontroler mógł mierzyć wyższe napięcia (np. do 3.3 V), sygnał wejściowy musi zostać najpierw przepuszczony przez wewnętrzny dzielnik napięcia (tłumik). Tłumienie 11 dB pozwala rozszerzyć zakres pomiarowy do poziomu zasilania układu.
+>
+> Jednak przetwornik ADC w ESP32 charakteryzuje się sporą **nieliniowością** (szczególnie na krańcach zakresu, powyżej 2.6 V–3.0 V) oraz rozrzutem produkcyjnym napięcia odniesienia. Z tego powodu dla pełnego napięcia 3.3 V surowy odczyt z `analogRead()` zamiast 4095 wynosi w praktyce często **ok. 3400 - 3600**. 
+>
+> **Jak sobie z tym radzić?**
+> 1. **Używać `analogReadMilliVolts(pin)`**: Funkcja ta korzysta z fabrycznej kalibracji wypalonej w pamięci eFuse Twojego konkretnego egzemplarza ESP32. Automatycznie przelicza ona surowy odczyt na rzeczywiste miliwolty (mV), dając o wiele dokładniejszy wynik.
+> 2. **Kalibrować ręcznie w kodzie**: Zamiast zakładać, że 3.3 V to 4095, zmierz rzeczywistą wartość maksymalną i użyj jej w swoim programie.
+> 3. **Zewnętrzny dzielnik napięcia**: Jeśli potrzebujesz dużej liniowości i dokładności w pełnym zakresie, najlepszym rozwiązaniem jest obniżenie mierzonego napięcia zewnętrznymi rezystorami i zmiana tłumienia ADC na mniejsze (np. 0 dB lub 2.5 dB).
 
 > [!NOTE] Brak potrzeby konfiguracji pinMode()
 > Zauważ, że w funkcji `setup()` poniższego programu nie wywołujemy `pinMode(PIN_POTENCJOMETR, INPUT)`. Wywołanie to nie jest wymagane dla odczytów analogowych, ponieważ funkcja `analogRead()` automatycznie rekonfiguruje wskazany pin GPIO do pracy w trybie wejścia analogowego (ADC) przy każdym wywołaniu.

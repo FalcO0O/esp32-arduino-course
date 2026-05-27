@@ -43,6 +43,7 @@ Domyślnie środowisko Arduino IDE obsługuje jedynie oficjalne płytki z rodzin
 1. Podłącz swoją płytkę ESP32-C6 do komputera za pomocą kabla USB. Kabel należy podłączyć do portu oznaczonego na płytce deweloperskiej jako **`USB`**.
 2. Upewnij się, że używany przewód obsługuje transmisję danych (niektóre przewody przeznaczone wyłącznie do ładowania nie posiadają linii sygnałowych).
 3. W Arduino IDE wejdź w menu **Narzędzia → Płytka → esp32** i wybierz **`ESP32-C6 Dev Module`**.
+
 ![Zdjęcie okna wyboru płytki w Arduino IDE](../img/start/board_selection.png){: .center }
 4. Wejdź w **Narzędzia → Port** i wybierz port, pod którym zgłosiła się Twoja płytka (na Windowsie będzie to np. `COM3` lub `COM4`, na Linuxie np. `/dev/ttyACM0` lub `/dev/ttyUSB0`, na macOS np. `/dev/cu.usbmodem...`).
 
@@ -81,7 +82,7 @@ Aby jednak mikrokontroler wiedział, że ma wysyłać komunikaty szeregowe (gene
 > [!NOTE] Alternatywa: Port UART i sterowniki CP2102
 > Na niektórych wersjach płytek deweloperskich (między innymi tej, której używamy na kursie) obok złącza `USB` znajduje się drugie złącze oznaczone jako **`UART`**. Korzysta ono z zewnętrznego chipu-konwertera (w naszym wypadku z **CP2102** – scalonego "tłumacza" pośredniczącego w komunikacji). 
 > 
-> Gdybyśmy chcieli korzystać z portu UART, musielibyśmy najpierw pobrać i zainstalować dedykowane sterowniki CP2102 ze strony producenta (Silicon Labs), aby nasz komputer w ogóle wykrył to urządzenie. W zamian za to nie potrzebowalibyśmy włączać opcji *USB CDC On Boot* w Arduino IDE, ponieważ mikrokontroler wysyłałby dane swoim domyślnym, sprzętowym portem UART0.
+> Gdybyśmy chcieli korzystać z portu UART, musielibyśmy najpierw pobrać i zainstalować dedykowane sterowniki CP2102 ze strony producenta (Silicon Labs), aby nasz komputer w ogóle wykrył to urządzenie. W zamian za to nie potrzebowalibyśmy włączać opcji *USB CDC On Boot* w Arduino IDE, ponieważ mikrokontroler wysyłałby dane swoim domyślnym, sprzętowym portem `UART0`.
 
 
 ---
@@ -109,8 +110,11 @@ Sprawdźmy, czy cały łańcuch narzędziowy działa poprawnie. Spróbujemy wgra
 3. Poczekaj, aż w dolnej konsoli zobaczysz napisy informujące o kompilacji i procesie wgrywania (zakończonym komunikatem typu *Leaving... Hard resetting via RTS pin...*).
 4. Otwórz **Monitor Szeregowy** (ikona lupy w prawym górnym rogu lub skrót `Ctrl + Shift + M`).
 ![Zdjęcie okna Monitora Szeregowego w Arduino IDE](../img/start/serial_monitor_ide.png){: .center }
-5. Upewnij się, że w prawym dolnym rogu okna Monitora wybrana jest poprawna prędkość transmisji: **`115200 baud`**.
+5. Upewnij się, że w prawym dolnym rogu okna Monitora wybrana jest prędkość transmisji: **`115200 baud`**.
 ![Zdjęcie okna Monitora Szeregowego w Arduino IDE](../img/start/serial_monitor.png){: .center }
+
+> [!NOTE] Prędkość transmisji (Baud rate) a USB CDC
+> Przy połączeniu przez natywny port **`USB`** (z włączonym *USB CDC On Boot*) prędkość transmisji ustawiona w kodzie (`Serial.begin()`) oraz wybrana w Monitorze Szeregowym nie ma znaczenia – komunikacja zawsze odbywa się z pełną prędkością USB. Ustawienie **prędkości baud** jest jednak dobrym nawykiem i zapobiega problemom przy korzystaniu z tradycyjnego portu **`UART`**, gdzie prędkości po obu stronach muszą się dokładnie pokrywać (inaczej zobaczysz nieczytelne znaki).
 6. Jeśli widzisz pojawiające się napisy "ESP32-C6 żyje i nadaje..." – Twoje środowisko jest gotowe do pracy!
 
 > [!WARNING] Rozłączanie Monitora Szeregowego po wgraniu programu
